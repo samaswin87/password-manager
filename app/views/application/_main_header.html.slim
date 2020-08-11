@@ -1,0 +1,17 @@
+header.main-header
+  a.logo
+    span.logo-lg
+      = fa_icon 'connectdevelop'
+      |  Painel
+    span.logo-mini
+      = fa_icon 'connectdevelop'
+  nav.navbar.navbar-static-top
+    a.sidebar-toggle data-toggle="offcanvas" role="button"
+      span.sr-only
+        | tn
+    .navbar-custom-menu
+      ul.nav.navbar-nav
+        li.signout
+          = link_to destroy_user_session_path, method: :delete do
+            = fa_icon 'sign-out'
+            |  Sair

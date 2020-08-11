@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+
+development:
+  <<: *default
+  database: nome_da_base
+
+# test:
+#   <<: *default
+#   database: nome_da_base
+#
+# production:
+#   <<: *default
+#   database: nome_da_base
+  username: aswin
+  # password: <%= ENV['SISTEMA_DATABASE_PASSWORD'] %>
+  # password:

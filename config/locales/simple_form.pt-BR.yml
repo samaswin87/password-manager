@@ -1,0 +1,29 @@
+pt-BR:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+
+    required:
+      text: 'required'
+      mark: '*'
+
+    error_notification:
+      default_message: "Please review the problems below:"
+
+    labels:
+      address:
+        street: "Rua/Av "
+        number: "Nr"
+        complement: "Complemento"
+        district: "Bairro"
+        city: "Cidade"
+        state: "Estado"
+        zipcode: "CEP"
+      user:
+        user_type: "Tipo de usuário"
+        first_name: "Nome"
+        last_name: "Sobrenome"
+        phone: "Telefone"
+        gender: "Gênero"
+        email: "E-mail"
+        password: "Senha"

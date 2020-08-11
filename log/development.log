@@ -1,0 +1,733 @@
+  [1m[36m (71.9ms)[0m  [1mCREATE TABLE "schema_migrations" ("version" character varying NOT NULL) [0m
+  [1m[35m (50.8ms)[0m  CREATE UNIQUE INDEX  "unique_schema_migrations" ON "schema_migrations"  ("version")
+  [1m[36mActiveRecord::SchemaMigration Load (0.8ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.5ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to CreateGenders (20170220212612)
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36m (110.6ms)[0m  [1mCREATE TABLE "genders" ("id" serial primary key, "name" character varying, "alias" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170220212612"]]
+  [1m[36m (19.1ms)[0m  [1mCOMMIT[0m
+Migrating to CreateUserTypes (20170221201534)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (79.9ms)[0m  [1mCREATE TABLE "user_types" ("id" serial primary key, "name" character varying, "alias" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170221201534"]]
+  [1m[36m (24.0ms)[0m  [1mCOMMIT[0m
+Migrating to CreateStates (20170222201812)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (79.2ms)[0m  [1mCREATE TABLE "states" ("id" serial primary key, "name" character varying, "initials" character varying, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170222201812"]]
+  [1m[36m (11.4ms)[0m  [1mCOMMIT[0m
+Migrating to CreateCities (20170222201956)
+  [1m[35m (0.5ms)[0m  BEGIN
+  [1m[36m (79.8ms)[0m  [1mCREATE TABLE "cities" ("id" serial primary key, "name" character varying, "state_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (51.2ms)[0m  CREATE  INDEX  "index_cities_on_state_id" ON "cities"  ("state_id")
+  [1m[36m (3.4ms)[0m  [1mALTER TABLE "cities" ADD CONSTRAINT "fk_rails_59b5e22e07"
+FOREIGN KEY ("state_id")
+  REFERENCES "states" ("id")
+[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "schema_migrations" ("version") VALUES ($1)  [["version", "20170222201956"]]
+  [1m[36m (18.9ms)[0m  [1mCOMMIT[0m
+Migrating to CreateAddresses (20170222202243)
+  [1m[35m (0.4ms)[0m  BEGIN
+  [1m[36m (79.9ms)[0m  [1mCREATE TABLE "addresses" ("id" serial primary key, "street" character varying, "number" integer, "district" character varying, "complement" character varying, "zipcode" character varying, "linkable_id" integer, "linkable_type" character varying, "city_id" integer, "state_id" integer, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) [0m
+  [1m[35m (28.9ms)[0m  CREATE  INDEX  "index_addresses_on_linkable_type_and_linkable_id" ON "addresses"  ("linkable_type", "linkable_id")
+  [1m[36m (45.2ms)[0m  [1mCREATE  INDEX  "index_addresses_on_city_id" ON "addresses"  ("city_id")[0m
+  [1m[35m (35.7ms)[0m  CREATE  INDEX  "index_addresses_on_state_id" ON "addresses"  ("state_id")
+  [1m[36m (2.6ms)[0m  [1mALTER TABLE "addresses" ADD CONSTRAINT "fk_rails_ab048f757c"
+FOREIGN KEY ("city_id")
+  REFERENCES "cities" ("id")
+[0m
+  [1m[35m (2.1ms)[0m  ALTER TABLE "addresses" ADD CONSTRAINT "fk_rails_2d87b6c11e"
+FOREIGN KEY ("state_id")
+  REFERENCES "states" ("id")
+
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20170222202243"]]
+  [1m[35m (15.7ms)[0m  COMMIT
+Migrating to DeviseCreateUsers (20170223182053)
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35m (88.1ms)[0m  CREATE TABLE "users" ("id" serial primary key, "email" character varying DEFAULT '' NOT NULL, "encrypted_password" character varying DEFAULT '' NOT NULL, "reset_password_token" character varying, "reset_password_sent_at" timestamp, "sign_in_count" integer DEFAULT 0 NOT NULL, "current_sign_in_at" timestamp, "last_sign_in_at" timestamp, "current_sign_in_ip" inet, "last_sign_in_ip" inet, "failed_attempts" integer DEFAULT 0 NOT NULL, "unlock_token" character varying, "locked_at" timestamp, "invitation_token" character varying, "invitation_created_at" timestamp, "invitation_sent_at" timestamp, "invitation_accepted_at" timestamp, "invitation_limit" integer, "invited_by_id" integer, "invited_by_type" integer, "first_name" character varying, "last_name" character varying, "phone" character varying, "gender_id" integer, "user_type_id" integer, "avatar_file_name" character varying, "avatar_content_type" character varying, "avatar_file_size" integer, "avatar_updated_at" timestamp, "created_at" timestamp NOT NULL, "updated_at" timestamp NOT NULL) 
+  [1m[36m (40.2ms)[0m  [1mCREATE  INDEX  "index_users_on_gender_id" ON "users"  ("gender_id")[0m
+  [1m[35m (51.5ms)[0m  CREATE  INDEX  "index_users_on_user_type_id" ON "users"  ("user_type_id")
+  [1m[36m (2.9ms)[0m  [1mALTER TABLE "users" ADD CONSTRAINT "fk_rails_47055e3204"
+FOREIGN KEY ("gender_id")
+  REFERENCES "genders" ("id")
+[0m
+  [1m[35m (2.4ms)[0m  ALTER TABLE "users" ADD CONSTRAINT "fk_rails_a2f1461231"
+FOREIGN KEY ("user_type_id")
+  REFERENCES "user_types" ("id")
+
+  [1m[36m (44.4ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_email" ON "users"  ("email")[0m
+  [1m[35m (40.2ms)[0m  CREATE UNIQUE INDEX  "index_users_on_reset_password_token" ON "users"  ("reset_password_token")
+  [1m[36m (40.1ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_unlock_token" ON "users"  ("unlock_token")[0m
+  [1m[35m (53.9ms)[0m  CREATE UNIQUE INDEX  "index_users_on_invitation_token" ON "users"  ("invitation_token")
+  [1m[36m (48.5ms)[0m  [1mCREATE UNIQUE INDEX  "index_users_on_invited_by_id" ON "users"  ("invited_by_id")[0m
+  [1m[35m (39.1ms)[0m  CREATE UNIQUE INDEX  "index_users_on_invited_by_type" ON "users"  ("invited_by_type")
+  [1m[36mSQL (0.4ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES ($1)[0m  [["version", "20170223182053"]]
+  [1m[35m (8.9ms)[0m  COMMIT
+  [1m[36mActiveRecord::SchemaMigration Load (0.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (2.6ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'addresses'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'cities'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'genders'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.2ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'states'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[35m (2.3ms)[0m  SELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'user_types'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+
+  [1m[36m (2.3ms)[0m  [1mSELECT t2.oid::regclass::text AS to_table, a1.attname AS column, a2.attname AS primary_key, c.conname AS name, c.confupdtype AS on_update, c.confdeltype AS on_delete
+FROM pg_constraint c
+JOIN pg_class t1 ON c.conrelid = t1.oid
+JOIN pg_class t2 ON c.confrelid = t2.oid
+JOIN pg_attribute a1 ON a1.attnum = c.conkey[1] AND a1.attrelid = t1.oid
+JOIN pg_attribute a2 ON a2.attnum = c.confkey[1] AND a2.attrelid = t2.oid
+JOIN pg_namespace t3 ON c.connamespace = t3.oid
+WHERE c.contype = 'f'
+  AND t1.relname = 'users'
+  AND t3.nspname = ANY (current_schemas(false))
+ORDER BY c.conname
+[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.4ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m  BEGIN
+  [1m[36mSQL (12.0ms)[0m  [1mINSERT INTO "genders" ("name", "alias", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Masculino"], ["alias", "male"], ["created_at", "2020-08-11 17:35:45.057135"], ["updated_at", "2020-08-11 17:35:45.057135"]]
+  [1m[35m (62.0ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.6ms)[0m  INSERT INTO "genders" ("name", "alias", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Feminino"], ["alias", "female"], ["created_at", "2020-08-11 17:35:45.138570"], ["updated_at", "2020-08-11 17:35:45.138570"]]
+  [1m[36m (5.8ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.9ms)[0m  [1mINSERT INTO "user_types" ("name", "alias", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Administrador"], ["alias", "administrator"], ["created_at", "2020-08-11 17:35:45.168567"], ["updated_at", "2020-08-11 17:35:45.168567"]]
+  [1m[35m (8.0ms)[0m  COMMIT
+  [1m[36m (0.4ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.9ms)[0m  INSERT INTO "states" ("name", "initials", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "São Paulo"], ["initials", "SP"], ["created_at", "2020-08-11 17:35:45.198874"], ["updated_at", "2020-08-11 17:35:45.198874"]]
+  [1m[36m (11.1ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.5ms)[0m  [1mINSERT INTO "states" ("name", "initials", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Minas Gerais"], ["initials", "MG"], ["created_at", "2020-08-11 17:35:45.216314"], ["updated_at", "2020-08-11 17:35:45.216314"]]
+  [1m[35m (6.0ms)[0m  COMMIT
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (2.0ms)[0m  INSERT INTO "cities" ("name", "state_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"  [["name", "Mogi Mirim"], ["state_id", 1], ["created_at", "2020-08-11 17:35:45.241530"], ["updated_at", "2020-08-11 17:35:45.241530"]]
+  [1m[36m (11.4ms)[0m  [1mCOMMIT[0m
+  [1m[35m (0.3ms)[0m  BEGIN
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "cities" ("name", "state_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4) RETURNING "id"[0m  [["name", "Poços de Caldas"], ["state_id", 2], ["created_at", "2020-08-11 17:35:45.260642"], ["updated_at", "2020-08-11 17:35:45.260642"]]
+  [1m[35m (5.7ms)[0m  COMMIT
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (1.0ms)[0m  INSERT INTO "users" ("first_name", "last_name", "phone", "email", "encrypted_password", "gender_id", "user_type_id", "created_at", "updated_at") VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) RETURNING "id"  [["first_name", "Administrador"], ["last_name", ""], ["phone", ""], ["email", "admin@admin.com"], ["encrypted_password", "$2a$11$Q/IOS7M3vPQ2SvjGOUp8XOzC4b0VadO3Lk1p.MUqmmKF8JUdI2/Qe"], ["gender_id", 1], ["user_type_id", 1], ["created_at", "2020-08-11 17:35:45.465624"], ["updated_at", "2020-08-11 17:35:45.465624"]]
+  [1m[36m (30.6ms)[0m  [1mCOMMIT[0m
+
+
+Started GET "/" for 127.0.0.1 at 2020-08-11 17:36:14 +0530
+  [1m[36mActiveRecord::SchemaMigration Load (1.0ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ApplicationController#go_home as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 13ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-08-11 17:36:14 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.slim (4.9ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (86.2ms)
+Completed 200 OK in 16037ms (Views: 15997.4ms | ActiveRecord: 5.8ms)
+
+
+Started GET "/assets/bootstrap-wysihtml5/bootstrap3-wysihtml5.self-bd96b16c5abeede9e3f30732e24627ca6299b988436861c186ebadb340b6c7e2.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/index.self-4a4c63b3b379fe307cf83e414c8ae532911fc0a1f3cb82fac49a7c36a8c5b78a.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/selectize.self-551db63aaf9b7edb73fd2ec06001faa1bf4ee3b64e03d566b3625906456ab9d2.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/selectize.bootstrap3.self-b7fd17b0eecb9684f733b29241619ed9732c26b7500ea106a3543f1efac2ec99.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/bootstrap-datepicker.self-6f946f50d03e184f97842d36f40832a293d2db3b71f450c3ee341983bb7af623.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/bootstrap-switch.self-54bd391bd7ed4383a7903d918cfdeaaf34bd92fe56fb0ce6d7b4c809d034bee6.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/sweetalert2.self-d800cd592f5d171d662b293694cc17d1fb10e1e664de19d62d99ed8af5d3bf50.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/toastr.self-7fcbef054fa204537d7c0033bdede068851e82286672375afb5f49bdc1e1ba8d.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/dataTables/jquery.dataTables.responsive.self-e926da6977dc76dbadb4d4f31eba624031d3d26fef093aa306a2d15f3436441e.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/dataTables/jquery.dataTables.bootstrap3.self-c06fa3e066dcd8974be8bbd4c12964d154a5a7d18b79f2346386208472a4b14b.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/bootstrap.self-cf32ef155e875f584d21f0673e68f73d14f73843f8d42f97f843feedffd58ee1.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/font-awesome.self-2a86d2017f4b74f22943750b3b50b9cb753581bab96cbdaaf2df53f4c04c995b.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/adminlte.self-c5a397b578cf27c4fef6bf704d67ae3fefeabcd7dee7ac21a1b4741620bf1820.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/custom.self-56da59197437ead1b35828cfe5c9c64043d19346208c18609cf015d3451b6334.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/users.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/vendor/notify.self-b385506698a17ac7c03a2c4ca32b90268f5210732308011b2e17305860ceda24.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/vendor/skin.self-8d697ec3d072c3208b000c2f153afe1b76eea156a3f17160c42cba4fe6e7cc84.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/application.self-f9d46a7fdc4a19947c10e8393d77cdb4c2450217e7474606bbe7cffc6e728410.css?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery/jquery.self-0128b1b2e361e2e64b7e48ba8dba94546c02fbbde5e1628f60dc899465a90dae.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/version.self-c8e3d1203da26ea7efdf83c1eabb3f0ba55cb68e463f5ccf0d77bd15ce6a8e61.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/data.self-2067c82e6fe39a9cba5623206a5dc28d5c60d26b95cd100855b78cacf72865b8.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/disable-selection.self-5675f71f2fbbc6857ea700ba843af748b50dbc0150cc87932a7d05ec016bb659.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/focusable.self-426e99e67d1f1bd4cb444fd878ee63a6de1f5d1d61451e43022c86214b9eec64.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/form.self-711978b53107be2d9ef1b7369beb151b229cefa8c1405a056d3c34262d5b477e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/keycode.self-ad63cd20acf49dd333bbbc537454d7d475bd610eb5b88de0dca009f0c3d314b1.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/ie.self-163eb039dcb1e0c3471b7d91386eabb8753da6906e84824c019f9ff56bdb83a6.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/escape-selector.self-43e4d61501e4ffb1ecba387affbae1eb3e1c863ab0b0e71897851cddd246e50e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:30 +0530
+
+
+Started GET "/assets/jquery-ui/labels.self-c0448a3cb597a9a9429be814ab0e9ed2a14d85604555b4cff897adf3f0415f38.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/jquery-1-7.self-22c197e38fc01a29431530c4c5c7263e26d2b611994b1f9c5c8c900a97b4bc44.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/plugin.self-d8f576c8e073ca51f095505f47bd09d306b875404cd90afcbb6338287cfb0247.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/safe-active-element.self-a1f1a1a7dae3269ce03f6fffb2dcc9b4a7490f5d546c65d54417bec3be24b668.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/safe-blur.self-2cc24c46132d51c7724f6371154241b0a81c9bae5d5681d8f62b01ce46236726.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/scroll-parent.self-38e26a71a450a29fb63425e8f589a7046862f927eb0a1dbf6a6c44da05196d2e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/tabbable.self-f3f62ceed772d3a325cebd6a03221f8a8cb02c6150f4feba738c6525a2953690.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/unique-id.self-66e85ac85cd0b6b8b1bb89369fc65f608f716869dc0930862a8d421a57a9580a.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/core.self-886760af898381620a8980841c646ae70e894b5292c3138e6dfd75b6904deffb.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effect.self-776455da1682afff3a4974146aa96ca840597b879ed3797af0604063527443c6.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/form-reset-mixin.self-3a447942586b5719fdd7f1d1a3ac0da9e757a0eb8f4a7cb145f6deb820d2dc54.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/position.self-1b49c8c521e67a4a88bfdad6b4d944d33686d25009a0e40a1e170acdd7b6962a.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widget.self-fca20bcec06d192f97cffa6e734e24360e227237b8ae7d7e7e60754df7d5444f.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-blind.self-2f8923f5c3073717dad35ac1f9bd4dbc13d2f9c8128f7dbea9819921338271f4.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-bounce.self-ca3686abc7c667b5380422af36b618923c2fc8e901b3eb2ff627f1cdef60486a.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-clip.self-9e606afd1b0d1679f42b1ce5c2ad29f242ed98a9b1a473a9ef8a8bf10df2afe4.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-drop.self-481600061a28b5621b1d78187468e63f057665ce6af6401db851f9b79e345965.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-explode.self-b5f68a634df4bc19111474eb15bcd99597dc19c721b33647fbb04f2bb6d52ca3.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-fade.self-60febf4d2a1f6f013852a42da59c74d840f205715162a2b11e734fd4dd73a519.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-fold.self-78adc6cc7f2d8dac25e8c82164ae61cc3160bb5280ed3d24dd96a576e37a6e46.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-highlight.self-842a0db414abed8fbccb48908bd933b32c93c6b9d725160c85dc2bde708fa753.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-size.self-2094878ac7ba38dcd4539cd4595fa4d6ed7182be8bb6f03785684a5e470a293d.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-scale.self-88872e591cdbf30b3d09946e82e96e25bcd99b03857ead844a503301e6de71f3.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-puff.self-be0ba8a98762bf10054deb4e8bdf92c44de0d570714624d16c396f1ffe3a82d6.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-pulsate.self-bf83d1979be265f242fceb95cc3cfeca5467e4aab9cdea27ebb6f2e17bdaae2e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-shake.self-867270f4e72f7895d38b10fdf9a6ba20f22bee88ac4d79654a9227c14141e1ca.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-slide.self-b59b0b36df7b3e5e4f4190ab51e5c212744d2b34d5ed14c96bfe9c8a3096c00b.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/effects/effect-transfer.self-5ab6d30ecb0b73e2b9a528f6d66c0732ba43a93a5326d88dae547f0c7c759e79.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/accordion.self-267aabfe487e53fce0399a77f9030a87b9d8a409eb30c4c85c5637da9ac35429.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/menu.self-0730fe713007bd93e6db569352a20ed92448299505ff6f525bc0dc6dd488254e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/autocomplete.self-6a89d7a43741ec810ef95de143a7c0297e2e4368ebecff64493ebb7a9ac3a524.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/controlgroup.self-0b7409f97114a33de116bd5429e9df199cbdea3f276d8bd725c4c2c60f244711.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/checkboxradio.self-60f68cb16012ef210c931076ada2d65d54a8c74a2dc71ce383af758460f8b686.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:31 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/button.self-659b51f6fb5303f90ed8cf551509063770a50168a15795ba834b08f8bf2e0ce0.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/datepicker.self-2af0dec09da99d687c31fc224e940687a4eb3694e7b38b0871bba475cad86120.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/mouse.self-f0790a202dcf54fab051e71b042335d5346f9cceb0f645223c1dab93f349a04b.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/draggable.self-42c3eda0b49f105628cea7580fe38c7ed77467cee384bb2c4e095a2bd0a172e6.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/resizable.self-1a46c2f5b876918e02bf979080e56f57846590cd880721bca5058e84f7f60bae.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/dialog.self-2bd687f9580c0be4213c50b4bb1211c28ceedb045eba954e63d40bfbb4d1affd.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/droppable.self-4e3be0d7524dd1852e3b37ae00cd0c351c6178bcad39b17315cca941ddd44148.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/progressbar.self-3bf965ce4e8ade2f07336ae5ffce7fe58897333238561761ffcb16f31af673fc.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/selectable.self-a364da09c555890f5bb64704711594a88e94988edb285735bda59431a749226e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/selectmenu.self-43e0fc6b5fba037933a7d89a5b2a7127aa9c7494cc605c2dcd3146265e2d3d35.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/slider.self-f166e8b345d6a2376ab8f43b05ab7629016706df83f2d96113cf5d8905c3d028.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/sortable.self-6e5e1f07a29b5a89ec1d359363d2800904e3ae548a38ab2f8eded36746d1adbe.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/spinner.self-2769386b6b06e175a13ccdcd6d2d0cd40c45cec19607bcb818cee0704c165557.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/tabs.self-b7f60535e992224ca66c3f11dc943eba9ef42a9605241e27b9dba24c7efb287e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui/widgets/tooltip.self-50ae9488af573c99a78b60209bce5c7a4affc4e175fef523942acb163dd8deb8.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/jquery-ui.self-d4c1ae19d9b853ec1c8c83784fa979bbe4075a84932a080bbd7d7706240410e1.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/bootstrap/bootstrap.self-d0e973a52d36a01036265aeefaf2d1ae3499d2cb231a9be3bd846432daf231de.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/bootstrap.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/adminlte/app.self-e7107412589ffe7f372a5711948066ee763c4f68084475e3cb8aed2e431599f8.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/adminlte.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/wysihtml5x-toolbar.self-f835bfe0ef8681a04b930aafeb1f792406f9426924cc7d7bf8d08463415b8120.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/handlebars.runtime.min.self-5fa4bfc769ba3f6e730c2453d45ab26222e546e884ece044b0781c93c4cfd65d.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/templates.self-3763bc32531aa6eead5161ab352ad4fd9a42814041116e110de42647257fd7fc.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:32 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/bootstrap3-wysihtml5.self-afc297bd9a94e1ae19f3084ece7269c7329614dbf0b8573bc8e150a13a903365.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/commands.self-0e434cd483ee027fcbdceb27a1784b62509766f11a510aa400e559e03082f132.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/locales/en-US.self-4c2b45f8023b8a34240c7a73e6f9692b425fd8797c94ed3f7a91cbe649111959.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-wysihtml5/index.self-d088784b7ecb87f1ea17e6f982fa968ffefcc07b79de6ecc548fc00242868da6.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/selectize.self-89bb259712ae6f2d043ed9c7ac47a4b50ff88611b6c8e1ed8effef2ccd75d21e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-datepicker/bootstrap-datepicker.self-2847d40a98948028b8fdd264d9431ab23da3a5f4b42f7a021e88b46b1a1510f9.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-datepicker.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-switch/bootstrap-switch.self-9c188966531905d4f00825a32cfdc69739614920a9a8657be2d3e8b2dd6fce9f.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/bootstrap-switch.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/sweetalert2/sweetalert2.self-98936868c42fc5fd8b578342b23bf6463bdfd04aefe78130db9030f61a2aacb1.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/sweetalert2.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/jQuery-Mask-Plugin/jquery.mask.self-c84e4b2e9e47490ff3fa125e0aa933f617633649358da8861b4b430ab6ae9a70.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/jQuery-Mask-Plugin.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/jquery.slimscroll/jquery.slimscroll.min.self-472b568d87cf0eae6d509e98db084cf05d510c20400f84376916cf3bfb846b82.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/jquery.slimscroll.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/momentjs/moment.self-e7d219e5d6cbc81c99812b111376744e30ee5fb7b5022a96e5b67c060e7476c5.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/momentjs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/notifyjs/notify.self-580979233c906abe103d95ccdbfe97994e5a03d69946ab5b2f74dc3a667fde52.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/notifyjs.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/toastr.self-e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/dataTables/jquery.dataTables.self-936a0e7b3c07dbe4c8ae022eee745a46ee66c371356b6522a810775e1d8350db.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/jquery_ujs.self-784a997f6726036b1993eb2217c9cb558e1cbb801c6da88105588c56f13b466a.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/toastr/toastr.self-bea5554353bcc2cf59b67143981ba70115be76a50ce64627c188cae082a7cc31.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/dataTables/jquery.dataTables.bootstrap3.self-a5e04fb27717a9cc6459fae6a1b86b3175bbea9f06c946f8f5f94405c93da367.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/dataTables/jquery.dataTables.responsive.self-c1a8076d40e578c0ba3cb0ad33fcc7fd7b7dcbf2255a0e9a14942a7d7f575386.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/forms.self-0a3ba3c805104c4b7bd36025380422491d0dac0e5be9ac2465a00b182a8bc74e.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/users.self-d88b8874bd609c0d7ba27031bec0ba6670399cdfebcb9d2a297265baa03edcb5.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/vendor/lazyload.self-cd4d7bf22d03a46e8d5293078376a8029eb57c7f15c6a652376215fd511840bf.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/vendor/notifyset.self-f32abe3365dbbcb5e71e7cdd7df250138f99fec3fb47d3450c633b99fcf28d3f.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started GET "/assets/application.self-c234eff410df64696cf692eb5758b8624f96645b2a400f5504c80a4d9432b70c.js?body=1" for 127.0.0.1 at 2020-08-11 17:36:33 +0530
+
+
+Started POST "/login" for 127.0.0.1 at 2020-08-11 17:37:28 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"OzF8URRpzE7MREJ74Rj/FPNVEzsuzpMtaDAp0AENtd0Jg/F+tqTJLSUDr7Dc/mtqKsk/HUq0z59HQy/wijFSmw==", "user"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["email", "admin@admin.com"]]
+  [1m[36m (0.1ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "last_sign_in_at" = $1, "current_sign_in_at" = $2, "last_sign_in_ip" = $3, "current_sign_in_ip" = $4, "sign_in_count" = $5, "updated_at" = $6 WHERE "users"."id" = $7  [["last_sign_in_at", "2020-08-11 17:37:28.228344"], ["current_sign_in_at", "2020-08-11 17:37:28.228344"], ["last_sign_in_ip", "127.0.0.1/32"], ["current_sign_in_ip", "127.0.0.1/32"], ["sign_in_count", 1], ["updated_at", "2020-08-11 17:37:28.229468"], ["id", 1]]
+  [1m[36m (18.0ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 221ms (ActiveRecord: 19.9ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-08-11 17:37:28 +0530
+Processing by ApplicationController#go_home as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-08-11 17:37:28 +0530
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered application/_form_header.html.slim (3.9ms)
+  Rendered users/_collection_table.html.slim (7.3ms)
+  Rendered shared/_bootstrap_box.html.slim (4.4ms)
+  Rendered application/index.html.slim within layouts/admin (23.3ms)
+  Rendered application/_main_header.html.slim (4.3ms)
+  Rendered application/_user_panel_menu.html.slim (5.6ms)
+  Rendered application/_main_menu.html.slim (11.4ms)
+Completed 200 OK in 811ms (Views: 796.7ms | ActiveRecord: 0.6ms)
+
+
+Started GET "/assets/dataTables/sort_asc-ee6010bb0a8d17e58307136a0fbf0b196d949ab6c50eb66d1ff8f0a7d2a4d48b.png" for 127.0.0.1 at 2020-08-11 17:37:29 +0530
+
+
+Started GET "/assets/dataTables/sort_both-624f0a471a2535c4754e1f6974b0e64ee70d6907738346e2a11d0bff20258b8c.png" for 127.0.0.1 at 2020-08-11 17:37:29 +0530
+
+
+Started GET "/users?form=json&sEcho=1&iColumns=4&sColumns=&iDisplayStart=0&iDisplayLength=10&mDataProp_0=0&mDataProp_1=1&mDataProp_2=2&mDataProp_3=3&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=false" for 127.0.0.1 at 2020-08-11 17:37:29 +0530
+Processing by UsersController#index as JSON
+  Parameters: {"form"=>"json", "sEcho"=>"1", "iColumns"=>"4", "sColumns"=>"", "iDisplayStart"=>"0", "iDisplayLength"=>"10", "mDataProp_0"=>"0", "mDataProp_1"=>"1", "mDataProp_2"=>"2", "mDataProp_3"=>"3", "sSearch"=>"", "bRegex"=>"false", "sSearch_0"=>"", "bRegex_0"=>"false", "bSearchable_0"=>"true", "sSearch_1"=>"", "bRegex_1"=>"false", "bSearchable_1"=>"true", "sSearch_2"=>"", "bRegex_2"=>"false", "bSearchable_2"=>"true", "sSearch_3"=>"", "bRegex_3"=>"false", "bSearchable_3"=>"true", "iSortCol_0"=>"0", "sSortDir_0"=>"asc", "iSortingCols"=>"1", "bSortable_0"=>"true", "bSortable_1"=>"true", "bSortable_2"=>"true", "bSortable_3"=>"false"}
+  [1m[35mUser Load (3.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.8ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."id" != $1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" != $1  ORDER BY first_name asc LIMIT 10 OFFSET 0[0m  [["id", 1]]
+Completed 200 OK in 37ms (Views: 14.4ms | ActiveRecord: 4.3ms)
+
+
+Started GET "/assets/fontawesome-webfont-2adefcbc041e7d18fcf2d417879dc5a09997aa64d675b7a3c4b6ce33da13f3fe.woff2" for 127.0.0.1 at 2020-08-11 17:37:29 +0530
+
+
+Started GET "/users/new" for 127.0.0.1 at 2020-08-11 17:37:51 +0530
+Processing by UsersController#new as HTML
+  [1m[35mUser Load (0.7ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered application/_form_header.html.slim (0.6ms)
+  [1m[36mUserType Load (0.4ms)[0m  [1mSELECT "user_types".* FROM "user_types"[0m
+  [1m[35mGender Load (0.5ms)[0m  SELECT "genders".* FROM "genders"
+  [1m[36mCity Load (0.6ms)[0m  [1mSELECT "cities".* FROM "cities"[0m
+  [1m[35mState Load (0.5ms)[0m  SELECT "states".* FROM "states"
+  Rendered shared/_address_form_fields.html.slim (47.4ms)
+  Rendered users/_form_fields.html.slim (108.8ms)
+  Rendered application/_form_navigation.html.slim (3.2ms)
+  Rendered application/_form.html.slim (119.0ms)
+  Rendered shared/_bootstrap_box.html.slim (0.2ms)
+  Rendered application/new.html.slim within layouts/admin (127.5ms)
+  Rendered application/_main_header.html.slim (0.6ms)
+  Rendered application/_user_panel_menu.html.slim (1.0ms)
+  Rendered application/_main_menu.html.slim (5.0ms)
+Completed 200 OK in 951ms (Views: 906.5ms | ActiveRecord: 9.2ms)
+
+
+Started DELETE "/logout" for 127.0.0.1 at 2020-08-11 17:38:15 +0530
+Processing by Devise::SessionsController#destroy as HTML
+  Parameters: {"authenticity_token"=>"fseBCuMEMjDQecVs1DVZNhOuS5azBtmqVDFfUdvQ+xPIh3In04mdL9NWPea8Fk+xLA0mmS/jPdzGyZrRshqcVQ=="}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Redirected to http://localhost:3000/
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-08-11 17:38:15 +0530
+Processing by ApplicationController#go_home as HTML
+Redirected to http://localhost:3000/login
+Completed 302 Found in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-08-11 17:38:15 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.slim (0.3ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (6.1ms)
+Completed 200 OK in 952ms (Views: 948.9ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-08-11 22:00:38 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.slim (0.4ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (13.1ms)
+Completed 200 OK in 821ms (Views: 820.3ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/login" for 127.0.0.1 at 2020-08-11 22:00:42 +0530
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"8wofccQIciukhMZJZzXor9DJbbu4K2K3BgblvFAXvZgEdVKj//o+LmtYPyt4wTtKIjI7xYK6Fh26YihXXyt0QQ==", "user"=>{"email"=>"admin@admin.com", "password"=>"[FILTERED]"}, "commit"=>"Entrar"}
+  [1m[35mUser Load (1.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["email", "admin@admin.com"]]
+  [1m[36m (0.3ms)[0m  [1mBEGIN[0m
+  [1m[35mSQL (0.4ms)[0m  UPDATE "users" SET "current_sign_in_at" = $1, "sign_in_count" = $2, "updated_at" = $3 WHERE "users"."id" = $4  [["current_sign_in_at", "2020-08-11 22:00:43.025825"], ["sign_in_count", 2], ["updated_at", "2020-08-11 22:00:43.027922"], ["id", 1]]
+  [1m[36m (19.3ms)[0m  [1mCOMMIT[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 229ms (ActiveRecord: 21.1ms)
+
+
+Started GET "/" for 127.0.0.1 at 2020-08-11 22:00:43 +0530
+Processing by ApplicationController#go_home as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/users
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-08-11 22:00:43 +0530
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered application/_form_header.html.slim (0.4ms)
+  Rendered users/_collection_table.html.slim (0.2ms)
+  Rendered shared/_bootstrap_box.html.slim (0.1ms)
+  Rendered application/index.html.slim within layouts/admin (4.3ms)
+  Rendered application/_main_header.html.slim (0.3ms)
+  Rendered application/_user_panel_menu.html.slim (0.6ms)
+  Rendered application/_main_menu.html.slim (3.5ms)
+Completed 200 OK in 809ms (Views: 798.2ms | ActiveRecord: 0.4ms)
+
+
+Started GET "/users?form=json&sEcho=1&iColumns=4&sColumns=&iDisplayStart=0&iDisplayLength=10&mDataProp_0=0&mDataProp_1=1&mDataProp_2=2&mDataProp_3=3&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=false" for 127.0.0.1 at 2020-08-11 22:00:44 +0530
+Processing by UsersController#index as JSON
+  Parameters: {"form"=>"json", "sEcho"=>"1", "iColumns"=>"4", "sColumns"=>"", "iDisplayStart"=>"0", "iDisplayLength"=>"10", "mDataProp_0"=>"0", "mDataProp_1"=>"1", "mDataProp_2"=>"2", "mDataProp_3"=>"3", "sSearch"=>"", "bRegex"=>"false", "sSearch_0"=>"", "bRegex_0"=>"false", "bSearchable_0"=>"true", "sSearch_1"=>"", "bRegex_1"=>"false", "bSearchable_1"=>"true", "sSearch_2"=>"", "bRegex_2"=>"false", "bSearchable_2"=>"true", "sSearch_3"=>"", "bRegex_3"=>"false", "bSearchable_3"=>"true", "iSortCol_0"=>"0", "sSortDir_0"=>"asc", "iSortingCols"=>"1", "bSortable_0"=>"true", "bSortable_1"=>"true", "bSortable_2"=>"true", "bSortable_3"=>"false"}
+  [1m[35mUser Load (0.6ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.3ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."id" != $1  [["id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" != $1  ORDER BY first_name asc LIMIT 10 OFFSET 0[0m  [["id", 1]]
+Completed 200 OK in 37ms (Views: 13.5ms | ActiveRecord: 1.3ms)
+
+
+Started GET "/login" for 127.0.0.1 at 2020-08-11 22:01:10 +0530
+Processing by Devise::SessionsController#new as HTML
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Redirected to http://localhost:3000/
+Filter chain halted as :require_no_authentication rendered or redirected
+Completed 302 Found in 9ms (ActiveRecord: 0.4ms)
+
+
+Started GET "/users/new" for 127.0.0.1 at 2020-08-11 22:01:17 +0530
+Processing by UsersController#new as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered application/_form_header.html.slim (1.9ms)
+  [1m[35mUserType Load (0.3ms)[0m  SELECT "user_types".* FROM "user_types"
+  [1m[36mGender Load (0.3ms)[0m  [1mSELECT "genders".* FROM "genders"[0m
+  [1m[35mCity Load (0.3ms)[0m  SELECT "cities".* FROM "cities"
+  [1m[36mState Load (0.2ms)[0m  [1mSELECT "states".* FROM "states"[0m
+  Rendered shared/_address_form_fields.html.slim (20.4ms)
+  Rendered users/_form_fields.html.slim (38.3ms)
+  Rendered application/_form_navigation.html.slim (0.4ms)
+  Rendered application/_form.html.slim (42.1ms)
+  Rendered shared/_bootstrap_box.html.slim (0.2ms)
+  Rendered application/new.html.slim within layouts/admin (51.3ms)
+  Rendered application/_main_header.html.slim (0.3ms)
+  Rendered application/_user_panel_menu.html.slim (1.3ms)
+  Rendered application/_main_menu.html.slim (5.8ms)
+Completed 200 OK in 862ms (Views: 843.1ms | ActiveRecord: 1.4ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-08-11 22:01:26 +0530
+Processing by UsersController#index as HTML
+  [1m[35mUser Load (0.3ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered application/_form_header.html.slim (0.6ms)
+  Rendered users/_collection_table.html.slim (0.3ms)
+  Rendered shared/_bootstrap_box.html.slim (0.2ms)
+  Rendered application/index.html.slim within layouts/admin (6.3ms)
+  Rendered application/_main_header.html.slim (0.3ms)
+  Rendered application/_user_panel_menu.html.slim (1.1ms)
+  Rendered application/_main_menu.html.slim (7.1ms)
+Completed 200 OK in 949ms (Views: 939.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users?form=json&sEcho=1&iColumns=4&sColumns=&iDisplayStart=0&iDisplayLength=10&mDataProp_0=0&mDataProp_1=1&mDataProp_2=2&mDataProp_3=3&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=false" for 127.0.0.1 at 2020-08-11 22:01:27 +0530
+Processing by UsersController#index as JSON
+  Parameters: {"form"=>"json", "sEcho"=>"1", "iColumns"=>"4", "sColumns"=>"", "iDisplayStart"=>"0", "iDisplayLength"=>"10", "mDataProp_0"=>"0", "mDataProp_1"=>"1", "mDataProp_2"=>"2", "mDataProp_3"=>"3", "sSearch"=>"", "bRegex"=>"false", "sSearch_0"=>"", "bRegex_0"=>"false", "bSearchable_0"=>"true", "sSearch_1"=>"", "bRegex_1"=>"false", "bSearchable_1"=>"true", "sSearch_2"=>"", "bRegex_2"=>"false", "bSearchable_2"=>"true", "sSearch_3"=>"", "bRegex_3"=>"false", "bSearchable_3"=>"true", "iSortCol_0"=>"0", "sSortDir_0"=>"asc", "iSortingCols"=>"1", "bSortable_0"=>"true", "bSortable_1"=>"true", "bSortable_2"=>"true", "bSortable_3"=>"false"}
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.6ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."id" != $1  [["id", 1]]
+  [1m[36mCACHE (0.1ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 1]]
+  [1m[35mUser Load (0.4ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" != $1  ORDER BY first_name asc LIMIT 10 OFFSET 0  [["id", 1]]
+Completed 200 OK in 37ms (Views: 16.9ms | ActiveRecord: 1.7ms)
+
+
+Started GET "/users" for 127.0.0.1 at 2020-08-11 22:02:10 +0530
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered application/_form_header.html.slim (1.9ms)
+  Rendered users/_collection_table.html.slim (0.3ms)
+  Rendered shared/_bootstrap_box.html.slim (0.1ms)
+  Rendered application/index.html.slim within layouts/admin (9.5ms)
+  Rendered application/_main_header.html.slim (0.3ms)
+  Rendered application/_user_panel_menu.html.slim (0.9ms)
+  Rendered application/_main_menu.html.slim (4.5ms)
+Completed 200 OK in 809ms (Views: 800.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/users?form=json&sEcho=1&iColumns=4&sColumns=&iDisplayStart=0&iDisplayLength=10&mDataProp_0=0&mDataProp_1=1&mDataProp_2=2&mDataProp_3=3&sSearch=&bRegex=false&sSearch_0=&bRegex_0=false&bSearchable_0=true&sSearch_1=&bRegex_1=false&bSearchable_1=true&sSearch_2=&bRegex_2=false&bSearchable_2=true&sSearch_3=&bRegex_3=false&bSearchable_3=true&iSortCol_0=0&sSortDir_0=asc&iSortingCols=1&bSortable_0=true&bSortable_1=true&bSortable_2=true&bSortable_3=false" for 127.0.0.1 at 2020-08-11 22:02:11 +0530
+Processing by UsersController#index as JSON
+  Parameters: {"form"=>"json", "sEcho"=>"1", "iColumns"=>"4", "sColumns"=>"", "iDisplayStart"=>"0", "iDisplayLength"=>"10", "mDataProp_0"=>"0", "mDataProp_1"=>"1", "mDataProp_2"=>"2", "mDataProp_3"=>"3", "sSearch"=>"", "bRegex"=>"false", "sSearch_0"=>"", "bRegex_0"=>"false", "bSearchable_0"=>"true", "sSearch_1"=>"", "bRegex_1"=>"false", "bSearchable_1"=>"true", "sSearch_2"=>"", "bRegex_2"=>"false", "bSearchable_2"=>"true", "sSearch_3"=>"", "bRegex_3"=>"false", "bSearchable_3"=>"true", "iSortCol_0"=>"0", "sSortDir_0"=>"asc", "iSortingCols"=>"1", "bSortable_0"=>"true", "bSortable_1"=>"true", "bSortable_2"=>"true", "bSortable_3"=>"false"}
+  [1m[35mUser Load (0.8ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = $1  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.5ms)[0m  [1mSELECT COUNT(*) FROM "users" WHERE "users"."id" != $1[0m  [["id", 1]]
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."id" != $1  [["id", 1]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" != $1  ORDER BY first_name asc LIMIT 10 OFFSET 0[0m  [["id", 1]]
+Completed 200 OK in 35ms (Views: 14.8ms | ActiveRecord: 2.0ms)

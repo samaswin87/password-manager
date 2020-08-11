@@ -1,0 +1,46 @@
+body {
+  font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica,Arial, sans-serif;
+}
+
+.dataTables_processing {
+  text-align: center;
+}
+
+.pagination > .active > a, .pagination > .active > span, .pagination > .active > a:hover, .pagination > .active > span:hover, .pagination > .active > a:focus, .pagination > .active > span:focus {
+  background-color: #f4f4f4 !important;
+  border-color: #ddd !important;
+  color: #444 !important;
+}
+
+.pagination > li > a, .pagination > li > span {
+  padding: 4px 8px !important;
+}
+
+.btn-success {
+  color: #fff !important;
+}
+
+.img-crud {
+  margin-bottom: 15px;
+}
+
+.text-ajust {
+  display: table-cell;
+  height: 45px;
+  vertical-align: middle;
+  white-space: normal !important;
+}
+
+.user-panel > .info {
+  padding-top: 0 !important;
+}
+
+.description-box {
+  padding: 13px;
+  background-color: #fafafa;
+  color: #454545;
+}
+
+blockquote {
+  margin: 20px 0 !important;
+}

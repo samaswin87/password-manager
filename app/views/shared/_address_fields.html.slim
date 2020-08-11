@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    hr
+
+.row
+  .col-md-6
+    label.control-label= t 'simple_form.labels.address.street'
+    p= deal_value resource.address_street
+  .col-md-2
+    label.control-label= t 'simple_form.labels.address.number'
+    p= deal_value resource.address_number
+  .col-md-4
+    label.control-label= t 'simple_form.labels.address.complement'
+    p= deal_value resource.address_complement
+.row
+  .col-md-4
+    label.control-label= t 'simple_form.labels.address.district'
+    p= deal_value resource.address_district
+  .col-md-3
+    label.control-label= t 'simple_form.labels.address.city'
+    p= deal_value resource.address_city_name
+  .col-md-3
+    label.control-label= t 'simple_form.labels.address.state'
+    p= deal_value resource.address_state_name
+  .col-md-2
+    label.control-label= t 'simple_form.labels.address.zipcode'
+    p.cep= deal_value resource.address_zipcode

@@ -1,0 +1,27 @@
+.row
+  .col-md-12
+    label
+      | Foto
+.row
+  .col-md-12
+    - if resource.persisted?
+      = image_tag resource.avatar.url(:large), class: 'img-crud img-responsive', lazy: true
+    = form.input :avatar, as: :file, label: false
+hr
+
+.row
+  .col-md-4
+    = form.input :first_name
+  .col-md-4
+    = form.input :last_name
+  .col-md-4
+    = form.association :user_type, input_html: { class: 'selectize-single' }
+.row
+  .col-md-5
+    = form.input :email
+  .col-md-5
+    = form.input :phone, input_html: { class: 'phone' }
+  .col-md-2
+    = form.association :gender, input_html: { class: 'selectize-single' }
+
+= render 'shared/address_form_fields', form: form

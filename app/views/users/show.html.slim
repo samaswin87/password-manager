@@ -1,0 +1,44 @@
+= render 'form_header'
+
+section.content
+  .box.box-default
+    .box-header.with-border
+      h3.box-title
+        | Informações
+    .box-body
+      .row
+        .col-md-12
+          label.control-label
+            | Foto
+          = image_tag resource.avatar.url(:large), class: 'img-crud img-responsive', lazy: true
+      hr
+
+      .row
+        .col-md-4
+          label.control-label= t 'simple_form.labels.user.first_name'
+          p= deal_value resource.first_name
+        .col-md-4
+          label.control-label= t 'simple_form.labels.user.last_name'
+          p= deal_value resource.last_name
+        .col-md-4
+          label.control-label= t 'simple_form.labels.user.user_type'
+            p= deal_value resource.user_type_name
+      .row
+        .col-md-5
+          label.control-label= t 'simple_form.labels.user.email'
+          p= deal_value resource.email
+        .col-md-5
+          label.control-label= t 'simple_form.labels.user.phone'
+          p.phone= deal_value resource.phone
+        .col-md-2
+          label.control-label= t 'simple_form.labels.user.gender'
+          p= deal_value resource.gender_name
+
+      = render 'shared/address_fields'
+
+    .box-footer
+      .row
+        .col-xs-6
+          = link_to 'Editar', edit_resource_path(resource), class: 'btn btn-default btn-sm'
+        .col-xs-6.text-right
+          = link_to 'Voltar', collection_path(resource), class: 'btn btn-default btn-sm'
