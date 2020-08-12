@@ -1,5 +1,5 @@
 h2
-  | Inscrever-se
+  | Sign Up
 
 = simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   .form-inputs
@@ -7,6 +7,6 @@ h2
     = f.input :password, required: true, hint: ("Mínimo de #{@minimum_password_length} caracteres" if @minimum_password_length)
     / = f.input :password_confirmation, required: true
   .form-actions
-    = f.button :submit, 'Inscrever-se'
+    = f.button :submit, 'Sign Up'
 
 = render 'devise/shared/links'
