@@ -1,2 +1,2 @@
-class Gender < ActiveRecord::Base
+class Gender < ApplicationRecord
 end

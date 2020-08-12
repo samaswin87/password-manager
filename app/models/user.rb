@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # ---- devise ----
 
   devise :database_authenticatable, :invitable, :recoverable, :registerable,

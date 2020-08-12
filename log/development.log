@@ -731,3 +731,267 @@ Processing by UsersController#index as JSON
   [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "users" WHERE "users"."id" != $1  [["id", 1]]
   [1m[36mUser Load (0.7ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" != $1  ORDER BY first_name asc LIMIT 10 OFFSET 0[0m  [["id", 1]]
 Completed 200 OK in 35ms (Views: 14.8ms | ActiveRecord: 2.0ms)
+Started GET "/users" for ::1 at 2020-08-12 09:23:22 +0530
+  [1m[35m (8.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/aswin/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+actionpack (5.2.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+request_store (1.5.0) lib/request_store/middleware.rb:19:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.3) lib/rails/engine.rb:524:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/" for ::1 at 2020-08-12 09:23:28 +0530
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /home/aswin/.rvm/gems/ruby-2.4.4/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /home/aswin/.rvm/gems/ruby-2.4.4/gems/railties-5.2.4.3/lib/rails/templates/rails/welcome/index.html.erb (2.9ms)
+Completed 200 OK in 7ms (Views: 4.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users" for ::1 at 2020-08-12 09:23:33 +0530
+  
+ActionController::RoutingError (No route matches [GET] "/users"):
+  
+actionpack (5.2.4.3) lib/action_dispatch/middleware/debug_exceptions.rb:65:in `call'
+web-console (3.7.0) lib/web_console/middleware.rb:135:in `call_app'
+web-console (3.7.0) lib/web_console/middleware.rb:30:in `block in call'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `catch'
+web-console (3.7.0) lib/web_console/middleware.rb:20:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (5.2.4.3) lib/rails/rack/logger.rb:38:in `call_app'
+railties (5.2.4.3) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (5.2.4.3) lib/active_support/tagged_logging.rb:71:in `block in tagged'
+activesupport (5.2.4.3) lib/active_support/tagged_logging.rb:28:in `tagged'
+activesupport (5.2.4.3) lib/active_support/tagged_logging.rb:71:in `tagged'
+railties (5.2.4.3) lib/rails/rack/logger.rb:26:in `call'
+sprockets-rails (3.2.1) lib/sprockets/rails/quiet_assets.rb:13:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+request_store (1.5.0) lib/request_store/middleware.rb:19:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/request_id.rb:27:in `call'
+rack (2.2.3) lib/rack/method_override.rb:24:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (5.2.4.3) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (5.2.4.3) lib/action_dispatch/middleware/static.rb:127:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+railties (5.2.4.3) lib/rails/engine.rb:524:in `call'
+puma (4.3.5) lib/puma/configuration.rb:228:in `call'
+puma (4.3.5) lib/puma/server.rb:713:in `handle_request'
+puma (4.3.5) lib/puma/server.rb:472:in `process_client'
+puma (4.3.5) lib/puma/server.rb:328:in `block in run'
+puma (4.3.5) lib/puma/thread_pool.rb:134:in `block in spawn_thread'
+Started GET "/users" for ::1 at 2020-08-12 09:24:53 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/aswin/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+  
+ActionController::RoutingError (undefined method `before_filter' for UsersController:Class
+Did you mean?  before_action):
+  
+app/controllers/users_controller.rb:8:in `<class:UsersController>'
+app/controllers/users_controller.rb:1:in `<top (required)>'
+Started GET "/users" for ::1 at 2020-08-12 09:25:31 +0530
+Processing by UsersController#index as HTML
+  [1m[36mUser Load (24.3ms)[0m  [1m[34mSELECT  "users".* FROM "users" WHERE "users"."id" = $1 ORDER BY "users"."id" ASC LIMIT $2[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ /home/aswin/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Completed 401 Unauthorized in 169ms (ActiveRecord: 108.7ms)
+
+
+Started GET "/users" for ::1 at 2020-08-12 09:25:31 +0530
+Processing by UsersController#index as HTML
+Completed 401 Unauthorized in 1ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/login" for ::1 at 2020-08-12 09:25:31 +0530
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.slim within layouts/application
+  Rendered devise/shared/_links.html.slim (4.6ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (59.2ms)
+Completed 500 Internal Server Error in 268ms (ActiveRecord: 0.0ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'dataTables/jquery.dataTables.responsive' with type 'text/css'
+Checked in these paths: 
+  /home/aswin/git/password-manager/app/assets/images
+  /home/aswin/git/password-manager/app/assets/javascripts
+  /home/aswin/git/password-manager/app/assets/stylesheets
+  /home/aswin/git/password-manager/vendor/assets/javascripts
+  /home/aswin/git/password-manager/vendor/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-toastr-2.1.3/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-toastr-2.1.3/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-sweetalert2-8.15.2/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-sweetalert2-8.15.2/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-sweetalert2-8.15.2/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-notifyjs-0.4.2/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-notifyjs-0.4.2/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-notifyjs-0.4.2/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-momentjs-2.22.2/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-momentjs-2.22.2/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery.slimscroll-1.3.8/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery.slimscroll-1.3.8/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery.slimscroll-1.3.8/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jQuery-Mask-Plugin-1.14.16/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jQuery-Mask-Plugin-1.14.16/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-switch-3.3.4/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-switch-3.3.4/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/fonts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-datepicker-1.9.0/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-datepicker-1.9.0/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery-1.9.1/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery-1.9.1/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery-1.9.1/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/flash
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/fonts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/selectize-rails-0.12.6/vendor/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/selectize-rails-0.12.6/vendor/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/scoped_search-4.1.8/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/scoped_search-4.1.8/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/scoped_search-4.1.8/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/media
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/font-awesome-rails-4.7.0.5/app/assets/fonts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/font-awesome-rails-4.7.0.5/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/bootstrap-wysihtml5-rails-0.3.3.8/vendor/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/bootstrap-wysihtml5-rails-0.3.3.8/vendor/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-ui-rails-6.0.1/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-ui-rails-6.0.1/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-ui-rails-6.0.1/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/actioncable-5.2.4.3/lib/assets/compiled
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/activestorage-5.2.4.3/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/actionview-5.2.4.3/lib/assets/compiled
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /home/aswin/git/password-manager/node_modules):
+     6:     <meta name="robots" content="noindex, nofollow" />
+     7:     <title>Sistema Administrativo | Entrar</title>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all' %>
+    10:     <%= csrf_meta_tags %>
+    11:   </head>
+    12: 
+  
+app/assets/stylesheets/application.css:20
+app/views/layouts/application.html.erb:9:in `_app_views_layouts_application_html_erb__2597974008102401551_46977430184780'
+Started GET "/login" for ::1 at 2020-08-12 09:27:59 +0530
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  ↳ /home/aswin/.rvm/gems/ruby-2.4.4/gems/activerecord-5.2.4.3/lib/active_record/log_subscriber.rb:98
+Processing by Devise::SessionsController#new as HTML
+  Rendering devise/sessions/new.html.slim within layouts/application
+  Rendered devise/shared/_links.html.slim (4.7ms)
+  Rendered devise/sessions/new.html.slim within layouts/application (91.1ms)
+Completed 500 Internal Server Error in 295ms (ActiveRecord: 5.9ms)
+
+
+  
+ActionView::Template::Error (couldn't find file 'dataTables/jquery.dataTables.responsive' with type 'text/css'
+Checked in these paths: 
+  /home/aswin/git/password-manager/app/assets/images
+  /home/aswin/git/password-manager/app/assets/javascripts
+  /home/aswin/git/password-manager/app/assets/stylesheets
+  /home/aswin/git/password-manager/vendor/assets/javascripts
+  /home/aswin/git/password-manager/vendor/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-toastr-2.1.3/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-toastr-2.1.3/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-sweetalert2-8.15.2/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-sweetalert2-8.15.2/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-sweetalert2-8.15.2/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-notifyjs-0.4.2/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-notifyjs-0.4.2/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-notifyjs-0.4.2/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-momentjs-2.22.2/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-momentjs-2.22.2/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery.slimscroll-1.3.8/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery.slimscroll-1.3.8/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery.slimscroll-1.3.8/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jQuery-Mask-Plugin-1.14.16/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jQuery-Mask-Plugin-1.14.16/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-switch-3.3.4/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-switch-3.3.4/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/fonts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-4.3.1/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-datepicker-1.9.0/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-bootstrap-datepicker-1.9.0/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery-1.9.1/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery-1.9.1/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-jquery-1.9.1/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/documents
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/flash
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/fonts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/rails-assets-admin-lte-2.3.11/app/assets/templates
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/selectize-rails-0.12.6/vendor/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/selectize-rails-0.12.6/vendor/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/scoped_search-4.1.8/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/scoped_search-4.1.8/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/scoped_search-4.1.8/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/media
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-datatables-rails-3.4.0/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/font-awesome-rails-4.7.0.5/app/assets/fonts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/font-awesome-rails-4.7.0.5/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/bootstrap-wysihtml5-rails-0.3.3.8/vendor/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/bootstrap-wysihtml5-rails-0.3.3.8/vendor/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-ui-rails-6.0.1/app/assets/images
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-ui-rails-6.0.1/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-ui-rails-6.0.1/app/assets/stylesheets
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/jquery-rails-4.4.0/vendor/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/coffee-rails-4.2.2/lib/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/actioncable-5.2.4.3/lib/assets/compiled
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/activestorage-5.2.4.3/app/assets/javascripts
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/actionview-5.2.4.3/lib/assets/compiled
+  /home/aswin/.rvm/gems/ruby-2.4.4/gems/turbolinks-source-5.2.0/lib/assets/javascripts
+  /home/aswin/git/password-manager/node_modules):
+     6:     <meta name="robots" content="noindex, nofollow" />
+     7:     <title>Sistema Administrativo | Entrar</title>
+     8: 
+     9:     <%= stylesheet_link_tag 'application', media: 'all' %>
+    10:     <%= csrf_meta_tags %>
+    11:   </head>
+    12: 
+  
+app/assets/stylesheets/application.css:20
+app/views/layouts/application.html.erb:9:in `_app_views_layouts_application_html_erb__3016455939405873744_69942336447100'
