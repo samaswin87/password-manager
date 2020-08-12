@@ -175,7 +175,7 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 4.2.7.1)
       sprockets-rails
-    rails-assets-adminlte (2.3.11)
+    rails-assets-admin-lte (2.3.11)
     rails-assets-bootstrap (3.3.6)
       rails-assets-jquery (>= 1.9.1, < 3)
     rails-assets-bootstrap-datepicker (1.9.0)
@@ -322,7 +322,7 @@ DEPENDENCIES
   paranoia (~> 2.0)
   pg (~> 0.20)
   rails (~> 4.2.7.1)
-  rails-assets-adminlte!
+  rails-assets-admin-lte!
   rails-assets-bootstrap (= 3.3.6)!
   rails-assets-bootstrap-datepicker!
   rails-assets-bootstrap-switch!

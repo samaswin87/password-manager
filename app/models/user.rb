@@ -1,4 +1,4 @@
-class User < ActiveRecord::Base
+class User < ApplicationRecord
   # ---- devise ----
 
   devise :database_authenticatable, :invitable, :recoverable, :registerable,
@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   # ---- relationships ----
 
   belongs_to :user_type
-  belongs_to :gender
+  belongs_to :gender, optional: true
   has_one :address, as: :linkable, dependent: :destroy
 
   # ---- paperclip ----
