@@ -1,6 +1,6 @@
-# Base Admin Panel
+# Password Manager
 
-Password Manager
+Password Manager to maintain the user passwords
 
 ### Installed features
 - Devise (with invitable module)
