@@ -22,18 +22,18 @@ class UsersController < InheritedResources::Base
   end
 
   def show
-    add_breadcrumb 'Detalhes', :resource_path
+    add_breadcrumb 'Show', :resource_path
   end
 
   def new
-    add_breadcrumb 'Incluir', :new_resource_path
+    add_breadcrumb 'New', :new_resource_path
 
     @user = User.new
     @user.build_address
   end
 
   def edit
-    add_breadcrumb 'Editar', :edit_resource_path
+    add_breadcrumb 'Edit', :edit_resource_path
 
     resource.build_address if resource.address.blank?
   end
