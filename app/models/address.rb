@@ -1,4 +1,4 @@
-class Address < ActiveRecord::Base
+class Address < ApplicationRecord
   # ---- relationships ----
 
   belongs_to :linkable, polymorphic: true

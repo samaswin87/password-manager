@@ -1,4 +1,4 @@
-class UserType < ActiveRecord::Base
+class UserType < ApplicationRecord
   # ---- relationships ----
 
   has_many :users

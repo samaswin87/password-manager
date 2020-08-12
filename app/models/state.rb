@@ -1,4 +1,4 @@
-class State < ActiveRecord::Base
+class State < ApplicationRecord
   # ---- relationships ----
 
   has_many :cities
