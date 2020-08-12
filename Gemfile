@@ -99,7 +99,7 @@ gem 'slim'
 gem 'will_paginate-bootstrap'
 
 source 'https://rails-assets.org' do
-  gem 'rails-assets-admin-lte'
+  gem 'rails-assets-adminlte'
   gem 'rails-assets-bootstrap-datepicker'
   gem 'rails-assets-bootstrap-switch'
   gem 'rails-assets-bootstrap'

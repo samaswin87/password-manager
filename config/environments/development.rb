@@ -52,6 +52,19 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Compress JavaScripts and CSS
+  config.assets.compress = true
+
+  # Don't fallback to assets pipeline if a precompiled asset is missed
+  config.assets.compile = true
+
+   # Devise
+  config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+
+  # Mailcatcher
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
