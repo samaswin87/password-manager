@@ -2,7 +2,7 @@ header.main-header
   a.logo
     span.logo-lg
       = fa_icon 'connectdevelop'
-      |  Painel
+      |  Password Manager
     span.logo-mini
       = fa_icon 'connectdevelop'
   nav.navbar.navbar-static-top
@@ -14,4 +14,4 @@ header.main-header
         li.signout
           = link_to destroy_user_session_path, method: :delete do
             = fa_icon 'sign-out'
-            |  Sair
+            |  Logout

@@ -1,7 +1,7 @@
 pt-BR:
   resources:
     user:
-      title: "Usuários"
+      title: "Users"
       description: "manutenção de cadastros"
       new: "Incluir usuário"
       edit: "Editar usuário"

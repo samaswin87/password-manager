@@ -1,0 +1,50 @@
+I"8(function() {
+  $(function() {
+    return window.UserDataTable = $("#users").dataTable({
+      sDom: "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
+      bProcessing: true,
+      bServerSide: true,
+      sAjaxSource: $("#users").data("source"),
+      fnServerData: function(sSource, aaData, fnCallback) {
+        return $.getJSON(sSource, aaData, function(json) {
+          return fnCallback(json);
+        });
+      },
+      oLanguage: {
+        sEmptyTable: "Nenhum registro encontrado",
+        sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        sInfoEmpty: "Mostrando 0 até 0 de 0 registros",
+        sInfoFiltered: "(Filtrados de _MAX_ registros)",
+        sInfoPostFix: "",
+        sInfoThousands: ".",
+        sLengthMenu: "_MENU_ total per pages",
+        sLoadingRecords: "Carregando...",
+        sProcessing: "Processando...",
+        sZeroRecords: "Nenhum registro encontrado",
+        sSearch: "Pesquisar",
+        oPaginate: {
+          sNext: "Próximo",
+          sPrevious: "Anterior",
+          sFirst: "Primeiro",
+          sLast: "Último"
+        },
+        oAria: {
+          sSortAscending: ": Ordenar colunas de forma ascendente",
+          sSortDescending: ": Ordenar colunas de forma descendente"
+        }
+      },
+      aoColumnDefs: [
+        {
+          bSortable: false,
+          aTargets: [3]
+        }
+      ],
+      fnRowCallback: function(nRow, aData, iDisplayIndex, iDisplayIndexFull) {
+        return $("td:eq(3)", nRow).addClass("text-center");
+      },
+      bAutoWidth: false
+    });
+  });
+
+}).call(this);
+:ET

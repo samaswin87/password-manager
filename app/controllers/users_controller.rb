@@ -10,7 +10,7 @@ class UsersController < InheritedResources::Base
 
   # ---- breadcrumbs ----
 
-  add_breadcrumb 'Usuários', :collection_path
+  add_breadcrumb 'Users', :collection_path
 
   # ---- methods ----
 

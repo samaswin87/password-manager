@@ -9,22 +9,22 @@ $ ->
         fnCallback json
 
     oLanguage:
-      sEmptyTable: "Nenhum registro encontrado"
-      sInfo: "Mostrando de _START_ até _END_ de _TOTAL_ registros"
-      sInfoEmpty: "Mostrando 0 até 0 de 0 registros"
+      sEmptyTable: "No records found"
+      sInfo: "Showing _START_ to _END_ of _TOTAL_ entries"
+      sInfoEmpty: "Showing 0 to 0 of 0 entries"
       sInfoFiltered: "(Filtrados de _MAX_ registros)"
       sInfoPostFix: ""
       sInfoThousands: "."
-      sLengthMenu: "_MENU_ resultados por página"
+      sLengthMenu: "_MENU_ entries"
       sLoadingRecords: "Carregando..."
       sProcessing: "Processando..."
-      sZeroRecords: "Nenhum registro encontrado"
-      sSearch: "Pesquisar"
+      sZeroRecords: "No records found"
+      sSearch: "Search"
       oPaginate:
-        sNext: "Próximo"
-        sPrevious: "Anterior"
-        sFirst: "Primeiro"
-        sLast: "Último"
+        sNext: "Next"
+        sPrevious: "Previous"
+        sFirst: "First"
+        sLast: "Current"
       oAria:
         sSortAscending: ": Ordenar colunas de forma ascendente"
         sSortDescending: ": Ordenar colunas de forma descendente"
