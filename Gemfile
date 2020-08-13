@@ -84,7 +84,6 @@ gem 'has_scope', '~> 0.7.2'
 gem 'humanize_boolean'
 gem 'iconv'
 gem 'inherited_resources', '~> 1.11'
-gem 'jquery-datatables-rails', '~> 3.4'
 gem 'lazyload-rails'
 gem 'paperclip', '~> 5.2.0'
 gem 'paranoia', '~> 2.0'
@@ -97,6 +96,10 @@ gem 'simple-navigation'
 gem 'simple_form'
 gem 'slim'
 gem 'will_paginate-bootstrap'
+
+gem 'ajax-datatables-rails'
+gem 'jquery-datatables'
+gem 'yajl-ruby', require: 'yajl'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-adminlte'
