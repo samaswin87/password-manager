@@ -24,3 +24,11 @@
  *= require datatables
  *= require_self
  */
+
+.content-header > .breadcrumb > li + li:before {
+  font-family: FontAwesome;
+  content: "\f138";
+  padding-right: 3px;
+  padding-left: 3px;
+  vertical-align: middle;
+}

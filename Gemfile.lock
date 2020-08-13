@@ -215,12 +215,14 @@ GEM
     rails-assets-bootstrap-switch (3.3.4)
       rails-assets-bootstrap (>= 2.3.2)
       rails-assets-jquery (~> 1.9.0)
+    rails-assets-es6-promise (4.2.4)
     rails-assets-jQuery-Mask-Plugin (1.14.16)
     rails-assets-jquery (1.9.1)
     rails-assets-jquery.slimscroll (1.3.8)
     rails-assets-momentjs (2.22.2)
     rails-assets-notifyjs (0.4.2)
-    rails-assets-sweetalert2 (8.15.2)
+    rails-assets-sweetalert2 (5.1.1)
+      rails-assets-es6-promise
     rails-assets-toastr (2.1.3)
       rails-assets-jquery (>= 1.6.3, < 3)
     rails-dom-testing (2.0.3)
@@ -294,6 +296,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
+    sweet-alert2-rails (0.1.0)
     temple (0.8.2)
     thor (1.0.1)
     thread_safe (0.3.6)
@@ -365,7 +368,7 @@ DEPENDENCIES
   rails-assets-jquery.slimscroll!
   rails-assets-momentjs!
   rails-assets-notifyjs!
-  rails-assets-sweetalert2!
+  rails-assets-sweetalert2 (~> 5.1.1)!
   rails-assets-toastr!
   responders
   sass-rails (~> 5.0)
@@ -380,6 +383,7 @@ DEPENDENCIES
   slim
   spring
   spring-watcher-listen (~> 2.0.0)
+  sweet-alert2-rails
   turbolinks (~> 5)
   tzinfo-data
   uglifier (>= 1.3.0)

@@ -19,6 +19,7 @@
 //= require bootstrap-datepicker
 //= require bootstrap-switch
 //= require sweetalert2
+//= require sweet-alert2-rails
 //= require jQuery-Mask-Plugin
 //= require jquery.slimscroll
 //= require momentjs

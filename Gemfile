@@ -96,6 +96,7 @@ gem 'simple-navigation'
 gem 'simple_form'
 gem 'slim'
 gem 'will_paginate-bootstrap'
+gem 'sweet-alert2-rails'
 
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables'
@@ -110,6 +111,6 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery.slimscroll'
   gem 'rails-assets-momentjs'
   gem 'rails-assets-notifyjs'
-  gem 'rails-assets-sweetalert2'
+  gem 'rails-assets-sweetalert2', '~> 5.1.1'
   gem 'rails-assets-toastr'
 end
