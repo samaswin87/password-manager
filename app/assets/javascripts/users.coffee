@@ -12,4 +12,5 @@ $ ->
       {data: 'phone'}
       {data: 'gender', 'orderable': false, 'searchable': false}
       {data: 'type', 'orderable': false, 'searchable': false}
+      {"data": "action", bSortable: false}
     ]

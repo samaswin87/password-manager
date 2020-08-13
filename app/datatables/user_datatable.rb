@@ -1,6 +1,6 @@
 class UserDatatable < ApplicationDatatable
 
-  def_delegators :@view, :check_box_tag, :link_to, :edit_user_path
+  def_delegators :@view, :check_box_tag, :link_to, :edit_user_path, :resource_path, :content_tag, :concat
 
   def view_columns
     # Declare strings in this format: ModelName.column_name
@@ -13,6 +13,7 @@ class UserDatatable < ApplicationDatatable
       phone: { source: "User.phone", cond: :like },
       gender: { source: "Gender.name", searchable: false},
       type: { source: "UserType.name", searchable: false},
+      action: { source: nil, searchable: false, orderable: false }
     }
   end
 
@@ -24,7 +25,13 @@ class UserDatatable < ApplicationDatatable
         phone: record.phone,
         email: record.email,
         gender: record.gender_name,
-        type: record.user_type_name
+        type: record.user_type_name,
+        DT_RowId: record.id,
+        action: content_tag(:div, class: 'btn-group') do
+          concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
+          concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
+          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), {method: :delete, data: { confirm: 'Are you sure?' }}))
+        end
       }
     end
   end

@@ -11,4 +11,9 @@ class ApplicationDatatable < AjaxDatatablesRails::ActiveRecord
       draw: params[:draw].try(:to_i)
     }
   end
+
+   def fa_icon(icon)
+    content_tag(:i, class: "fa fa-#{icon}") {}
+   end
+
 end
