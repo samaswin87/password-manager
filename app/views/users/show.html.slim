@@ -4,12 +4,12 @@ section.content
   .box.box-default
     .box-header.with-border
       h3.box-title
-        | Informações
+        | User Information
     .box-body
       .row
         .col-md-12
           label.control-label
-            | Foto
+            | Photo
           = image_tag resource.avatar.url(:large), class: 'img-crud img-responsive', lazy: true
       hr
 
@@ -39,6 +39,6 @@ section.content
     .box-footer
       .row
         .col-xs-6
-          = link_to 'Editar', edit_resource_path(resource), class: 'btn btn-default btn-sm'
+          = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-default btn-sm'
         .col-xs-6.text-right
-          = link_to 'Voltar', collection_path(resource), class: 'btn btn-default btn-sm'
+          = link_to 'Back', collection_path(resource), class: 'btn btn-default btn-sm'

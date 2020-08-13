@@ -24,7 +24,7 @@ class UserDatatable < BaseDatatable
 
         content_tag(:div, class: 'btn-group') do
           link_to('javascript:;', class: 'btn btn-default btn-sm') do
-            'Ações'
+            'Actions'
           end +
 
           link_to('javascript:;', class: 'btn btn-default btn-sm dropdown-toggle', data: { toggle: 'dropdown' }) do
@@ -35,21 +35,21 @@ class UserDatatable < BaseDatatable
             content_tag(:li) do
               link_to resource_path(item) do
                 content_tag(:i, class: 'fa fa-eye') {} +
-                ' Detalhes'
+                'Show'
               end
             end +
 
             content_tag(:li) do
               link_to edit_resource_path(item) do
                 content_tag(:i, class: 'fa fa-pencil') {} +
-                ' Editar'
+                'Edit'
               end
             end +
 
             content_tag(:li) do
               link_to resource_path(item), method: :delete, data: { confirm: 'Confirma?' } do
                 content_tag(:i, class: 'fa fa-trash-o') {} +
-                ' Excluir'
+                'Delete'
               end
             end
           end

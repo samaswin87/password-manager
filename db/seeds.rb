@@ -1,32 +1,32 @@
 # defaults
 
 Gender.create!([
-    { name: 'Masculino', alias: 'male' },
-    { name: 'Feminino', alias: 'female' }
+    { name: 'Male', alias: 'male' },
+    { name: 'Female', alias: 'female' }
   ])
 
 UserType.create!([
-    { name: 'Administrador', alias: 'administrator' },
+    { name: 'Administrator', alias: 'administrator' },
   ])
 
 # data
 
 State.create!([
-    { name: 'São Paulo', initials: 'SP' },
-    { name: 'Minas Gerais', initials: 'MG' }
+    { name: 'Tamil Nadu', initials: 'TN' },
+    { name: 'Kerala', initials: 'KL' }
   ])
 
 City.create!([
-    { name: 'Mogi Mirim', state_id: 1 },
-    { name: 'Poços de Caldas', state_id: 2 }
+    { name: 'Chennai', state_id: 1 },
+    { name: 'Kollam', state_id: 2 }
   ])
 
-user = User.new(first_name: 'Administrador',
+user = User.new(first_name: 'Administrator',
                 last_name: '',
                 phone: '',
                 email: 'admin@admin.com',
-                password: 'qwerty',
-                password_confirmation: 'qwerty',
+                password: 'password',
+                password_confirmation: 'password',
                 gender_id: 1,
                 user_type_id: 1)
 
