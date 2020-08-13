@@ -50,7 +50,7 @@ class User < ApplicationRecord
 
   # ---- scope ----
 
-  scope :valid, -> { where.not(id: 1) }
+  scope :valid, -> { where(active: true) }
 
   # ---- aliases ----
 
