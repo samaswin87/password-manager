@@ -13,17 +13,27 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
+//= require sweetalert2
 //= require adminlte
 //= require bootstrap-wysihtml5
 //= require selectize
 //= require bootstrap-datepicker
 //= require bootstrap-switch
-//= require sweetalert2
-//= require sweet-alert2-rails
 //= require jQuery-Mask-Plugin
 //= require jquery.slimscroll
 //= require momentjs
 //= require notifyjs
 //= require toastr
 //= require datatables
+//= require rails-sweetalert2-confirm
 //= require_tree .
+
+
+var sweetAlertConfirmDefaults = {
+  title: 'Are you sure?',
+  type: 'warning',
+  showCancelButton: true,
+  confirmButtonText: "I'm sure",
+  confirmButtonClass: 'btn btn-danger',
+  cancelButtonClass: 'btn btn-default',
+};

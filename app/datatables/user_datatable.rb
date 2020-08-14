@@ -30,7 +30,14 @@ class UserDatatable < ApplicationDatatable
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
-          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, :onclick => 'remove()'))
+          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {
+            confirm: 'Are you sure?',
+            swal: {
+              text: "User will be removed from the system",
+              type: 'question',
+              confirm_button_class: 'btn btn-default'
+            }
+          }))
         end
       }
     end

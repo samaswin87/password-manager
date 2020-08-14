@@ -1,6 +1,6 @@
 (function() {
   $(function() {
-    return $('#users-datatable').dataTable({
+    $('#users-datatable').dataTable({
       processing: true,
       serverSide: true,
       ajax: {
