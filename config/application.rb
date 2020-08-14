@@ -22,5 +22,7 @@ module SistemaAdministrativo
 
     I18n.config.enforce_available_locales = false
     I18n.locale = "en"
+
+    config.generators.javascript_engine = :js
   end
 end

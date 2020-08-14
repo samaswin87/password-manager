@@ -30,14 +30,14 @@ class UserDatatable < ApplicationDatatable
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
-          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), {method: :delete, data: { confirm: 'Are you sure?' }}))
+          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, :onclick => 'remove()'))
         end
       }
     end
   end
 
   def get_raw_records
-    User.valid.includes(:user_type)
+    User.valid.includes(:user_type, :gender)
   end
 
 end

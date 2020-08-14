@@ -11,7 +11,7 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
+//= require jquery_ujs
 //= require bootstrap
 //= require adminlte
 //= require bootstrap-wysihtml5
@@ -25,6 +25,5 @@
 //= require momentjs
 //= require notifyjs
 //= require toastr
-//= require jquery_ujs
 //= require datatables
 //= require_tree .
