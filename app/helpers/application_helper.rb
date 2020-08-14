@@ -84,7 +84,7 @@ module ApplicationHelper
 
   def custom_bootstrap_flash
     types = { 'notice' => 'success', 'info' => 'info', 'warning' => 'warning', 'alert' => 'error' }
-    titles = { 'notice' => 'Sucesso', 'info' => 'Mensagem', 'warning' => 'Advertência', 'alert' => 'Atenção' }
+    titles = { 'notice' => 'Success', 'info' => 'Message', 'warning' => 'Warning', 'alert' => 'Alert' }
 
     flash_messages = []
 

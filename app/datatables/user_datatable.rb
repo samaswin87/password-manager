@@ -1,74 +1,43 @@
-class UserDatatable < BaseDatatable
-  delegate :content_tag, :params, :link_to, :resource_path, :edit_resource_path,
-           to: :@view
+class UserDatatable < ApplicationDatatable
 
-  def initialize(view)
-    @view = view
-    @columns = %w(first_name email user_types.name)
+  def_delegators :@view, :check_box_tag, :link_to, :edit_user_path, :resource_path, :content_tag, :concat
+
+  def view_columns
+    # Declare strings in this format: ModelName.column_name
+    # or in aliased_join_table.column_name format
+    @view_columns ||= {
+      id: { source: "User.id"},
+      first_name: { source: "User.first_name", cond: :like },
+      last_name: { source: "User.last_name", cond: :like },
+      email: { source: "User.email", cond: :like },
+      phone: { source: "User.phone", cond: :like },
+      gender: { source: "Gender.name", searchable: false},
+      type: { source: "UserType.name", searchable: false},
+      action: { source: nil, searchable: false, orderable: false }
+    }
   end
-
-  protected
-
-  def total_records
-    User.valid.count
-  end
-
-  private
 
   def data
-    collection.map do |item|
-      [
-        item.name,
-        item.email,
-        item.user_type_name,
-
-        content_tag(:div, class: 'btn-group') do
-          link_to('javascript:;', class: 'btn btn-default btn-sm') do
-            'Actions'
-          end +
-
-          link_to('javascript:;', class: 'btn btn-default btn-sm dropdown-toggle', data: { toggle: 'dropdown' }) do
-            content_tag(:span, class: 'fa fa-caret-down') {}
-          end +
-
-          content_tag(:ul, class: 'dropdown-menu pull-right') do
-            content_tag(:li) do
-              link_to resource_path(item) do
-                content_tag(:i, class: 'fa fa-eye') {} +
-                'Show'
-              end
-            end +
-
-            content_tag(:li) do
-              link_to edit_resource_path(item) do
-                content_tag(:i, class: 'fa fa-pencil') {} +
-                'Edit'
-              end
-            end +
-
-            content_tag(:li) do
-              link_to resource_path(item), method: :delete, data: { confirm: 'Confirma?' } do
-                content_tag(:i, class: 'fa fa-trash-o') {} +
-                'Delete'
-              end
-            end
-          end
+    records.map do |record|
+      {
+        first_name: record.first_name,
+        last_name: record.last_name,
+        phone: record.phone,
+        email: record.email,
+        gender: record.gender_name,
+        type: record.user_type_name,
+        DT_RowId: record.id,
+        action: content_tag(:div, class: 'btn-group') do
+          concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
+          concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
+          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), {method: :delete, data: { confirm: 'Are you sure?' }}))
         end
-      ]
+      }
     end
   end
-  #
 
-  def fetch_collection
-    query = {}
-
-    if params[:sSearch].present?
-      ids = User.valid.search_for(params[:sSearch]).ids
-      query[:id] = ids
-    end
-
+  def get_raw_records
     User.valid.includes(:user_type)
-        .where(query).order("#{sort_column} #{sort_direction}")
-        .page(page).per_page(per_page)
   end
+
 end

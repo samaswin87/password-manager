@@ -19,14 +19,12 @@
 //= require bootstrap-datepicker
 //= require bootstrap-switch
 //= require sweetalert2
+//= require sweet-alert2-rails
 //= require jQuery-Mask-Plugin
 //= require jquery.slimscroll
 //= require momentjs
 //= require notifyjs
 //= require toastr
 //= require jquery_ujs
-//= require dataTables/jquery.dataTables
-//= require dataTables/extras/dataTables.responsive
-//= require dataTables/jquery.dataTables
-//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require datatables
 //= require_tree .

@@ -21,8 +21,18 @@
  *= require font-awesome
  *= require adminlte
  *= require_tree .
- *= require dataTables/extras/dataTables.responsive
- *= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
- *= require dataTables/jquery.dataTables
+ *= require datatables
  *= require_self
  */
+
+.content-header > .breadcrumb > li + li:before {
+  font-family: FontAwesome;
+  content: "\f138";
+  padding-right: 3px;
+  padding-left: 3px;
+  vertical-align: middle;
+}
+
+.padding-right {
+  padding-right: 6px;
+}
