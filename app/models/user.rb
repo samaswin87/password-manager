@@ -41,7 +41,7 @@ class User < ApplicationRecord
 
   delegate :name, to: :user_type, prefix: true, allow_nil: true
   delegate :name, to: :gender, prefix: true, allow_nil: true
-  delegate :street, :number, :district, :complement, :city_name,
+  delegate :street, :number, :additional_details, :house_name, :city_name,
            :state_name, :zipcode, to: :address, prefix: true, allow_nil: true
 
   # ---- scoped search ----

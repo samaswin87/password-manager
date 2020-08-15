@@ -3,19 +3,19 @@
     hr
 
 .row
-  .col-md-6
-    label.control-label= t 'simple_form.labels.address.street'
-    p= deal_value resource.address_street
+  .col-md-4
+    label.control-label= t 'simple_form.labels.address.house_name'
+    p= deal_value resource.address_house_name
   .col-md-2
     label.control-label= t 'simple_form.labels.address.number'
     p= deal_value resource.address_number
-  .col-md-4
-    label.control-label= t 'simple_form.labels.address.complement'
-    p= deal_value resource.address_complement
+  .col-md-6
+    label.control-label= t 'simple_form.labels.address.street'
+    p= deal_value resource.address_street
 .row
   .col-md-4
-    label.control-label= t 'simple_form.labels.address.district'
-    p= deal_value resource.address_district
+    label.control-label= t 'simple_form.labels.address.additional_details'
+    p= deal_value resource.address_additional_details
   .col-md-3
     label.control-label= t 'simple_form.labels.address.city'
     p= deal_value resource.address_city_name

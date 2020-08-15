@@ -22,15 +22,15 @@ section.content
           p= deal_value resource.last_name
         .col-md-4
           label.control-label= t 'simple_form.labels.user.user_type'
-            p= deal_value resource.user_type_name
+          p= deal_value resource.user_type_name
       .row
-        .col-md-5
+        .col-md-4
           label.control-label= t 'simple_form.labels.user.email'
           p= deal_value resource.email
         .col-md-5
           label.control-label= t 'simple_form.labels.user.phone'
-          p.phone= deal_value resource.phone
-        .col-md-2
+          p= deal_value resource.phone
+        .col-md-3
           label.control-label= t 'simple_form.labels.user.gender'
           p= deal_value resource.gender_name
 
@@ -38,7 +38,5 @@ section.content
 
     .box-footer
       .row
-        .col-xs-6
-          = link_to 'Edit', edit_resource_path(resource), class: 'btn btn-default btn-sm'
         .col-xs-6.text-right
           = link_to 'Back', collection_path(resource), class: 'btn btn-default btn-sm'

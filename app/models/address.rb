@@ -1,6 +1,5 @@
 class Address < ApplicationRecord
   # ---- relationships ----
-
   belongs_to :linkable, polymorphic: true
   belongs_to :city
   belongs_to :state

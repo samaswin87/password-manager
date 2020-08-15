@@ -1,10 +1,11 @@
+# rake db:migrate:down VERSION=20170222202243
 class CreateAddresses < ActiveRecord::Migration[5.2]
   def change
     create_table :addresses do |t|
-      t.string :street
+      t.string :house_name
       t.integer :number
-      t.string :district
-      t.string :complement
+      t.string :street
+      t.string :additional_details
       t.string :zipcode
       t.references :linkable, polymorphic: true, index: true
       t.references :city, index: true, foreign_key: true

@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
   enable_extension "plpgsql"
 
   create_table "addresses", force: :cascade do |t|
-    t.string "street"
+    t.string "house_name"
     t.integer "number"
-    t.string "district"
-    t.string "complement"
+    t.string "street"
+    t.string "additional_details"
     t.string "zipcode"
     t.string "linkable_type"
     t.bigint "linkable_id"
@@ -38,6 +38,9 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
   create_table "genders", force: :cascade do |t|

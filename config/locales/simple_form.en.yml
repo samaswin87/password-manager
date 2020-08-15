@@ -1,0 +1,29 @@
+en:
+  simple_form:
+    "yes": 'Yes'
+    "no": 'No'
+
+    required:
+      text: 'required'
+      mark: '*'
+
+    error_notification:
+      default_message: "Please review the issues below:"
+
+    labels:
+      address:
+        street: "Street"
+        number: "Flat / House Number"
+        house_name: "Flat / House Name"
+        additional_details: "Additional details"
+        city: "City"
+        state: "State"
+        zipcode: "Pincode"
+      user:
+        user_type: "User Type"
+        first_name: "First Name"
+        last_name: "Last Name"
+        phone: "Phone"
+        gender: "Gender"
+        email: "E-mail"
+        password: "Password"
