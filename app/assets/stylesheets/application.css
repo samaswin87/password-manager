@@ -15,7 +15,6 @@
  *= require selectize.bootstrap3
  *= require bootstrap-datepicker
  *= require bootstrap-switch
- *= require sweetalert2
  *= require toastr
  *= require bootstrap
  *= require font-awesome

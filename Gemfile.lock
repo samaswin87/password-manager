@@ -186,6 +186,8 @@ GEM
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
+    rack-proxy (0.6.5)
+      rack
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rails (5.2.4.3)
@@ -208,14 +210,11 @@ GEM
     rails-assets-bootstrap-switch (3.3.4)
       rails-assets-bootstrap (>= 2.3.2)
       rails-assets-jquery (~> 1.9.0)
-    rails-assets-es6-promise (4.2.4)
     rails-assets-jQuery-Mask-Plugin (1.14.16)
     rails-assets-jquery (1.9.1)
     rails-assets-jquery.slimscroll (1.3.8)
     rails-assets-momentjs (2.22.2)
     rails-assets-notifyjs (0.4.2)
-    rails-assets-sweetalert2 (5.1.1)
-      rails-assets-es6-promise
     rails-assets-toastr (2.1.3)
       rails-assets-jquery (>= 1.6.3, < 3)
     rails-dom-testing (2.0.3)
@@ -223,7 +222,6 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.3.0)
       loofah (~> 2.3)
-    rails-sweetalert2-confirm (0.9.10)
     railties (5.2.4.3)
       actionpack (= 5.2.4.3)
       activesupport (= 5.2.4.3)
@@ -267,6 +265,7 @@ GEM
     selenium-webdriver (3.142.7)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
+    semantic_range (2.3.0)
     sidekiq (4.0.2)
       concurrent-ruby (~> 1.0)
       connection_pool (~> 2.2, >= 2.2.0)
@@ -308,6 +307,11 @@ GEM
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webpacker (5.1.1)
+      activesupport (>= 5.2)
+      rack-proxy (>= 0.6.1)
+      railties (>= 5.2)
+      semantic_range (>= 2.3.0)
     websocket-driver (0.7.3)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
@@ -360,9 +364,7 @@ DEPENDENCIES
   rails-assets-jquery.slimscroll!
   rails-assets-momentjs!
   rails-assets-notifyjs!
-  rails-assets-sweetalert2!
   rails-assets-toastr!
-  rails-sweetalert2-confirm
   responders
   sass-rails (~> 5.0)
   scoped_search
@@ -380,6 +382,7 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webpacker (~> 5.1.1)
   will_paginate-bootstrap
   yajl-ruby
 

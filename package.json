@@ -1,5 +1,14 @@
 {
   "name": "password-manager",
   "private": true,
-  "dependencies": {}
+  "dependencies": {
+    "@rails/webpacker": "5.1.1",
+    "core-js": "^3.6.5",
+    "rails-ujs": "^5.2.4-3",
+    "regenerator-runtime": "^0.13.7",
+    "sweetalert2": "^9.17.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^3.11.0"
+  }
 }

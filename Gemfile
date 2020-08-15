@@ -94,11 +94,11 @@ gem 'simple-navigation'
 gem 'simple_form'
 gem 'slim'
 gem 'will_paginate-bootstrap'
-gem 'rails-sweetalert2-confirm'
 
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
+gem 'webpacker', '~> 5.1.1'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-adminlte'
@@ -109,6 +109,5 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery.slimscroll'
   gem 'rails-assets-momentjs'
   gem 'rails-assets-notifyjs'
-  gem 'rails-assets-sweetalert2'
   gem 'rails-assets-toastr'
 end
