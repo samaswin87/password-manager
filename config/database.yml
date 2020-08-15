@@ -5,15 +5,14 @@ default: &default
 
 development:
   <<: *default
-  database: nome_da_base
+  database: password_manager_development
 
-# test:
-#   <<: *default
-#   database: nome_da_base
-#
-# production:
-#   <<: *default
-#   database: nome_da_base
-  username: aswin
-  # password: <%= ENV['SISTEMA_DATABASE_PASSWORD'] %>
-  # password:
+test:
+  <<: *default
+  database: password_manager_test
+
+production:
+  <<: *default
+  database: password_manager_production
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>

@@ -15,16 +15,16 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "addresses", id: :serial, force: :cascade do |t|
+  create_table "addresses", force: :cascade do |t|
     t.string "street"
     t.integer "number"
     t.string "district"
     t.string "complement"
     t.string "zipcode"
-    t.integer "linkable_id"
     t.string "linkable_type"
-    t.integer "city_id"
-    t.integer "state_id"
+    t.bigint "linkable_id"
+    t.bigint "city_id"
+    t.bigint "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["city_id"], name: "index_addresses_on_city_id"
@@ -32,36 +32,35 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
     t.index ["state_id"], name: "index_addresses_on_state_id"
   end
 
-  create_table "cities", id: :serial, force: :cascade do |t|
+  create_table "cities", force: :cascade do |t|
     t.string "name"
-    t.integer "state_id"
+    t.bigint "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
-  create_table "genders", id: :serial, force: :cascade do |t|
+  create_table "genders", force: :cascade do |t|
     t.string "name"
     t.string "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "states", id: :serial, force: :cascade do |t|
+  create_table "states", force: :cascade do |t|
     t.string "name"
-    t.string "initials"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "user_types", id: :serial, force: :cascade do |t|
+  create_table "user_types", force: :cascade do |t|
     t.string "name"
     t.string "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  create_table "users", id: :serial, force: :cascade do |t|
+  create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
     t.string "reset_password_token"
@@ -84,8 +83,8 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
     t.string "first_name"
     t.string "last_name"
     t.string "phone"
-    t.integer "gender_id"
-    t.integer "user_type_id"
+    t.bigint "gender_id"
+    t.bigint "user_type_id"
     t.string "avatar_file_name"
     t.string "avatar_content_type"
     t.integer "avatar_file_size"

@@ -4,7 +4,9 @@ SimpleNavigation::Configuration.run do |navigation|
   navigation.items do |primary|
     primary.dom_class = 'sidebar-menu'
     primary.item :admin_users, menu_label_icon('Users', 'user'), users_path, class: 'root-level', highlights_on: %r{/users} if can?(:manage, User)
-    primary.item :passwords, menu_label_icon('Passwords', 'key'), users_path, class: 'root-level', highlights_on: %r{/password} if can?(:manage, User)
+    primary.item :passwords, menu_label_icon('Passwords', 'key'), users_path, class: 'root-level', highlights_on: %r{/passwords} if can?(:manage, User)
+    primary.item :states, menu_label_icon('States', 'globe'), users_path, class: 'root-level', highlights_on: %r{/states} if can?(:manage, User)
+    primary.item :cities, menu_label_icon('Cities', 'building-o'), users_path, class: 'root-level', highlights_on: %r{/cities} if can?(:manage, User)
   end
 
   #   # Add an item to the primary navigation. The following params apply:
