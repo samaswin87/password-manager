@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_13_024836) do
+ActiveRecord::Schema.define(version: 2020_08_16_041557) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,24 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
     t.string "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "passwords", force: :cascade do |t|
+    t.string "name"
+    t.string "url"
+    t.string "username"
+    t.string "password"
+    t.string "key"
+    t.text "ssh"
+    t.text "details"
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.integer "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 
   create_table "states", force: :cascade do |t|
@@ -108,6 +126,7 @@ ActiveRecord::Schema.define(version: 2020_08_13_024836) do
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "states"
   add_foreign_key "cities", "states"
+  add_foreign_key "passwords", "users"
   add_foreign_key "users", "genders"
   add_foreign_key "users", "user_types"
 end
