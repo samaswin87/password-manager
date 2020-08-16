@@ -5,6 +5,7 @@
 #  state_id   | bigint                      |           |          |
 #  created_at | timestamp without time zone |           | not null |
 #  updated_at | timestamp without time zone |           | not null |
+#  active     | boolean                     |           |          | true
 class City < ApplicationRecord
   # ---- relationships ----
 

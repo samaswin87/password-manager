@@ -1,4 +1,4 @@
-#         Column          |            Type             | Collation | Nullable |                Default
+#          Column          |            Type             | Collation | Nullable |                Default
 # -------------------------+-----------------------------+-----------+----------+---------------------------------------
 #  id                      | bigint                      |           | not null | nextval('passwords_id_seq'::regclass)
 #  name                    | character varying           |           |          |
@@ -15,6 +15,7 @@
 #  user_id                 | bigint                      |           |          |
 #  created_at              | timestamp without time zone |           | not null |
 #  updated_at              | timestamp without time zone |           | not null |
+#  active                  | boolean                     |           |          | true
 class Password < ApplicationRecord
   # ---- relationships ----
   belongs_to :user

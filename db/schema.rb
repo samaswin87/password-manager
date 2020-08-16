@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_16_041557) do
+ActiveRecord::Schema.define(version: 2020_08_16_140952) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_041557) do
     t.bigint "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
@@ -65,6 +66,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_041557) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
     t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 
@@ -72,6 +74,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_041557) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "active", default: true
   end
 
   create_table "user_types", force: :cascade do |t|
