@@ -33,4 +33,8 @@ class Password < ApplicationRecord
      ! %w(application/zip application/x-zip).include?(attachment_content_type)
   end
 
+  # ---- scope ----
+
+  scope :valid, -> { where(active: true) }
+
 end

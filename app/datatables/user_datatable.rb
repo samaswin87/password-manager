@@ -30,7 +30,7 @@ class UserDatatable < ApplicationDatatable
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
-          unless record.user_type_name == 'Administrator'
+          unless record.first_name == 'Administrator'
             concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
           end
         end

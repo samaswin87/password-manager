@@ -106,4 +106,5 @@ class User < ApplicationRecord
   def admin?
     user_type_id == UserType.where(alias: 'administrator').first.id
   end
+
 end

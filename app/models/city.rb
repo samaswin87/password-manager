@@ -15,4 +15,8 @@ class City < ApplicationRecord
   # ---- scoped search ----
 
   scoped_search on: [:name]
+
+  # ---- scope ----
+
+  scope :valid, -> { where(active: true) }
 end

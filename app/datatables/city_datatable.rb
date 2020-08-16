@@ -30,7 +30,7 @@ class CityDatatable < ApplicationDatatable
   end
 
   def get_raw_records
-    City.all
+    City.valid
   end
 
 end

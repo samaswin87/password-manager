@@ -1,6 +1,6 @@
 class StateDatatable < ApplicationDatatable
 
-  def_delegators :@view, :check_box_tag, :link_to, :edit_state_path, :resource_path, :content_tag, :concat
+  def_delegators :@view, :check_box_tag, :link_to, :resource_path, :content_tag, :concat
 
   def view_columns
     # Declare strings in this format: ModelName.column_name
@@ -22,8 +22,7 @@ class StateDatatable < ApplicationDatatable
         updated_at: record.updated_on,
         DT_RowId: record.id,
         action: content_tag(:div, class: 'btn-group') do
-          concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
-          concat(link_to(fa_icon('pencil padding-right'), edit_state_path(record)))
+          concat(link_to(fa_icon('pencil padding-right'), '#', onclick: "editState(#{record.id}, '#{record.name}')"))
           concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
         end
       }
@@ -31,7 +30,7 @@ class StateDatatable < ApplicationDatatable
   end
 
   def get_raw_records
-    State.all
+    State.valid
   end
 
 end
