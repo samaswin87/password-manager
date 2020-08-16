@@ -1,5 +1,28 @@
 (function() {
   $(function() {
+    editCity = function(cityId, cityName) {
+      $("#modal-field-name").val(cityName);
+      $("#modal-field-id").val(cityId);
+      $("#city-modal").modal("show");
+    };
+
+    $( "#modal-submit" ).click(function() {
+      let name = $("#modal-field-name").val();
+      let id = $("#modal-field-id").val();
+      let data = {city: {name: name, id: id}};
+      let url = "/cities/"+id;
+      $.ajax({
+        type: "PATCH",
+        url: url,
+        data: data,
+        dataType: 'JSON',
+        complete: function() {
+          location.reload();
+        }
+       });
+    });
+
+
     $('#cities-datatable').dataTable({
       processing: true,
       serverSide: true,

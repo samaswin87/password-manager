@@ -39,3 +39,7 @@
 .margin-left {
   margin-left: 6px;
 }
+
+.modal-header {
+  display: block !important;
+}
