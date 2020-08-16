@@ -7,7 +7,7 @@ Password Manager to maintain the user passwords
 - CanCanCan
 - Inherited Resources
 - Paperclip
-- Sidekiq
+- Data Migrator
 - Simple Form
 - Slim
 - AdminLTE
