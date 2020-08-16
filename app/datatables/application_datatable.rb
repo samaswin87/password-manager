@@ -3,6 +3,7 @@ class ApplicationDatatable < AjaxDatatablesRails::ActiveRecord
 
   def initialize(params, opts = {})
     @view = opts[:view_context]
+    @current_user = opts[:current_user]
     super
   end
 

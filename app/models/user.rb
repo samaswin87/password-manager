@@ -43,6 +43,7 @@ class User < ApplicationRecord
   belongs_to :user_type
   belongs_to :gender
   has_one :address, as: :linkable, dependent: :destroy
+  has_many :passwords, dependent: :delete_all
 
   # ---- paperclip ----
 

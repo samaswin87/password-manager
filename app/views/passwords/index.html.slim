@@ -1,0 +1,15 @@
+= bootstrap_box 'Passwords', 'table', bootstrap_button_new do
+  .box-body
+    .row
+      .col-md-12
+        table#passwords-datatable.table.table-bordered.datatable.dataTable data-source= collection_url(form: 'json')
+          thead
+            tr
+              th width="*" Name
+              th width="*" User Name
+              th width="*" URL
+              th width="*" Created On
+              th width="*" Updated On
+              th width="*" Actions
+        tbody
+

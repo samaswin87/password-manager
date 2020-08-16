@@ -31,4 +31,5 @@ class Password < ApplicationRecord
   def skip_for_zip
      ! %w(application/zip application/x-zip).include?(attachment_content_type)
   end
+
 end

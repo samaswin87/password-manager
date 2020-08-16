@@ -13,4 +13,7 @@ Rails.application.routes.draw do
   # resources
 
   resources :users
+  resources :passwords
+  resources :states
+  resources :cities
 end
