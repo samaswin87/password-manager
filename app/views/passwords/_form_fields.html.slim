@@ -1,0 +1,14 @@
+.row
+  .col-md-4
+    = form.input :name
+  .col-md-4
+    = form.input :url
+  .col-md-4
+    = form.association :user, input_html: { class: 'selectize-single' }
+.row
+  .col-md-4
+    = form.input :username
+  .col-md-4
+    = form.input :password
+  .col-md-4
+    = form.input :key
