@@ -1,0 +1,7 @@
+div.input-group
+  div.input-group-prepend
+    span.input-group-text =title
+  input.form-control id="copy-#{field}" type="text" value=value readonly=true
+  span.input-group-append
+    button.btn.clipboard-btn.btn-outline-secondary.border data-clipboard-target="#copy-#{field}" type="button"
+      = fa_icon 'files-o'

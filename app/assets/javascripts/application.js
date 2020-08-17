@@ -25,6 +25,10 @@
 //= require datatables
 //= require_tree .
 
+$(document).ready(function(){
+  var clipboard = new ClipboardJS('.clipboard-btn');
+});
+
 let app = (function(){
   let user_data;
 

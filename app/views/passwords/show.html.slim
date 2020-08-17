@@ -11,18 +11,14 @@ section.content
           label.control-label= t 'simple_form.labels.password.name'
           p= deal_value resource.name
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.url'
-          p= deal_value resource.url
+          =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.username'
-          p= deal_value resource.username
+          =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
       .row
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.password'
-          p= deal_value resource.password
+          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password'
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.key'
-          p= deal_value resource.key
+          =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
         .col-md-4
           label.control-label= t 'simple_form.labels.password.user'
           p= deal_value resource.user.name
