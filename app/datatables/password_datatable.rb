@@ -12,6 +12,7 @@ class PasswordDatatable < ApplicationDatatable
       url: { source: "Password.url", cond: :like },
       created_at: { source: "Password.created_at", searchable: false},
       updated_at: { source: "Password.updated_at", searchable: false },
+      status: { source: "Password.active", searchable: false},
       action: { source: nil, searchable: false, orderable: false }
     }
   end
@@ -25,6 +26,7 @@ class PasswordDatatable < ApplicationDatatable
         created_at: record.created_on,
         updated_at: record.updated_on,
         url: record.url,
+        status: record.status,
         DT_RowId: record.id,
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
@@ -36,7 +38,7 @@ class PasswordDatatable < ApplicationDatatable
   end
 
   def get_raw_records
-    @current_user.passwords
+    @current_user.admin? ? Password.all : @current_user.passwords.valid
   end
 
 end

@@ -24,6 +24,10 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def user
+    render json: current_user.try(:to_hash)
+  end
+
   protected
 
   def configure_permitted_parameters

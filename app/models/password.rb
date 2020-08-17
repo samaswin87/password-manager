@@ -29,12 +29,18 @@ class Password < ApplicationRecord
 
   before_post_process :skip_for_zip
 
-  def skip_for_zip
-     ! %w(application/zip application/x-zip).include?(attachment_content_type)
-  end
-
   # ---- scope ----
 
   scope :valid, -> { where(active: true) }
+
+  def status
+    self.active ? 'Active' : 'In Active'
+  end
+
+  private
+
+  def skip_for_zip
+     ! %w(application/zip application/x-zip).include?(attachment_content_type)
+  end
 
 end

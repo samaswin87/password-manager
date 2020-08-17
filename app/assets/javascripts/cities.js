@@ -6,20 +6,38 @@
       $("#city-modal").modal("show");
     };
 
-    $( "#modal-submit" ).click(function() {
+    $( "#submit-modal-city" ).click(function() {
       let name = $("#modal-field-name").val();
       let id = $("#modal-field-id").val();
-      let data = {city: {name: name, id: id}};
-      let url = "/cities/"+id;
-      $.ajax({
-        type: "PATCH",
-        url: url,
-        data: data,
-        dataType: 'JSON',
-        complete: function() {
-          location.reload();
-        }
-       });
+      if (typeof id !== 'undefined' && id) {
+        let data = {city: {name: name, id: id}};
+        let url = "/cities/"+id;
+        $.ajax({
+          type: "PATCH",
+          url: url,
+          data: data,
+          dataType: 'JSON',
+          complete: function() {
+            location.reload();
+          }
+         });
+      } else {
+        let url = "/cities/";
+        let data = {city: {name: name}};
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          dataType: 'JSON',
+          complete: function() {
+            location.reload();
+          }
+         });
+      }
+    });
+
+    $( "#add-city" ).click(function() {
+      $("#city-modal").modal("show");
     });
 
 

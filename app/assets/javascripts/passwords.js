@@ -1,5 +1,9 @@
 (function() {
   $(function() {
+    let isAdmin = true;
+    if (app.getUser() != undefined) {
+      isAdmin = app.getUser().is_admin
+    }
     $('#passwords-datatable').dataTable({
       processing: true,
       serverSide: true,
@@ -18,6 +22,9 @@
           data: 'created_at'
         }, {
           data: 'updated_at'
+        },{
+          data: 'status',
+          visible: isAdmin
         }, {
           "data": "action",
           bSortable: false

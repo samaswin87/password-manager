@@ -107,4 +107,14 @@ class User < ApplicationRecord
     user_type_id == UserType.where(alias: 'administrator').first.id
   end
 
+  def to_hash
+    {
+      id: self.id,
+      first_name: self.first_name,
+      last_name: self.last_name,
+      email: self.email,
+      is_admin: admin?
+    }
+  end
+
 end

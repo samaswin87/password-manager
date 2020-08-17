@@ -25,3 +25,20 @@
 //= require datatables
 //= require_tree .
 
+let app = (function(){
+  let user_data;
+
+  $.ajax({
+    type: "GET",
+    url: "/current_user",
+    async: false,
+    success : function(data) {
+      user_data = data;
+    }
+  });
+
+  return {getUser : function()
+  {
+    return user_data;
+  }};
+})();

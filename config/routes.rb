@@ -16,4 +16,5 @@ Rails.application.routes.draw do
   resources :passwords
   resources :states
   resources :cities
+  get 'current_user' => 'application#user'
 end

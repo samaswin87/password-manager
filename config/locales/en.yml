@@ -5,9 +5,22 @@ en:
       description: "Maintain Users"
       new: "New user"
       edit: "Edit user"
+    state:
+      title: "States"
+      description: "Maintain State"
+      new: "New State"
+      edit: "Edit State"
+    city:
+      title: "Cities"
+      description: "Maintain City"
+      new: "New City"
+      edit: "Edit City"
   activerecord:
     models:
       user: "Users"
+      password: "Passwords"
+      city: "Cities"
+      state: "States"
     errors:
       messages:
         record_invalid: 'Invalid record: %{errors}'

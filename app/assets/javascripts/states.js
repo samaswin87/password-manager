@@ -6,20 +6,38 @@
       $("#state-modal").modal("show");
     };
 
-    $( "#modal-submit" ).click(function() {
+    $( "#submit-modal-state" ).click(function() {
       let name = $("#modal-field-name").val();
       let id = $("#modal-field-id").val();
-      let data = {state: {name: name, id: id}};
-      let url = "/states/"+id;
-      $.ajax({
-        type: "PATCH",
-        url: url,
-        data: data,
-        dataType: 'JSON',
-        complete: function() {
-          location.reload();
-        }
-       });
+      if (typeof id !== 'undefined' && id) {
+        let data = {state: {name: name, id: id}};
+        let url = "/states/"+id;
+        $.ajax({
+          type: "PATCH",
+          url: url,
+          data: data,
+          dataType: 'JSON',
+          complete: function() {
+            location.reload();
+          }
+         });
+      } else {
+        let url = "/states/";
+        let data = {state: {name: name}};
+        $.ajax({
+          type: "POST",
+          url: url,
+          data: data,
+          dataType: 'JSON',
+          complete: function() {
+            location.reload();
+          }
+         });
+      }
+    });
+
+    $( "#add-state" ).click(function() {
+      $("#state-modal").modal("show");
     });
 
     $('#states-datatable').dataTable({

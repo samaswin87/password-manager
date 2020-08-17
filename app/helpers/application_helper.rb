@@ -68,6 +68,10 @@ module ApplicationHelper
       path = options.delete(:url) || new_resource_path
     end
 
+    unless options[:page].nil?
+      path = options[:page]
+    end
+
     icon = options.delete(:icon) || 'plus'
     css_class = options.delete(:class) || 'btn btn-default btn-xs pull-right'
     id = options.delete(:id)
