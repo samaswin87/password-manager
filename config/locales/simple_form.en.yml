@@ -27,3 +27,13 @@ en:
         gender: "Gender"
         email: "E-mail"
         password: "Password"
+      password:
+        name: "Title"
+        url: "URL"
+        username: "User Name"
+        password: "Password"
+        key: "Key Phrase"
+        ssh: "SSH Key"
+        details: "Addtional Details"
+        attachment: "Attachment"
+        user: "User"

@@ -15,6 +15,11 @@ en:
       description: "Maintain City"
       new: "New City"
       edit: "Edit City"
+    password:
+      title: "Passwords"
+      description: "Maintain Password"
+      new: "New Password"
+      edit: "Edit Password"
   activerecord:
     models:
       user: "Users"

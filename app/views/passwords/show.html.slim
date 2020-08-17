@@ -4,28 +4,28 @@ section.content
   .box.box-default
     .box-header.with-border
       h3.box-title
-        | Password
+        | Password Details
     .box-body
       .row
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.first_name'
-          p= deal_value resource.first_name
+          label.control-label= t 'simple_form.labels.password.name'
+          p= deal_value resource.name
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.last_name'
-          p= deal_value resource.last_name
+          label.control-label= t 'simple_form.labels.password.url'
+          p= deal_value resource.url
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.user_type'
-          p= deal_value resource.user_type_name
+          label.control-label= t 'simple_form.labels.password.username'
+          p= deal_value resource.username
       .row
         .col-md-4
-          label.control-label= t 'simple_form.labels.password.email'
-          p= deal_value resource.email
-        .col-md-5
-          label.control-label= t 'simple_form.labels.password.phone'
-          p= deal_value resource.phone
-        .col-md-3
-          label.control-label= t 'simple_form.labels.password.gender'
-          p= deal_value resource.gender_name
+          label.control-label= t 'simple_form.labels.password.password'
+          p= deal_value resource.password
+        .col-md-4
+          label.control-label= t 'simple_form.labels.password.key'
+          p= deal_value resource.key
+        .col-md-4
+          label.control-label= t 'simple_form.labels.password.user'
+          p= deal_value resource.user.name
 
     .box-footer
       .row
