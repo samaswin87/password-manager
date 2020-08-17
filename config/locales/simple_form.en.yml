@@ -11,6 +11,9 @@ en:
       default_message: "Please review the issues below:"
 
     labels:
+      city:
+        name: "Name"
+        state_name: "State Name"
       address:
         street: "Street"
         number: "Flat / House Number"

@@ -26,6 +26,18 @@ section.content
         .col-md-4
           label.control-label= t 'simple_form.labels.password.user'
           p= deal_value resource.user.name
+      .row
+        .col-md-12
+          label.control-label= t 'simple_form.labels.password.ssh'
+          p= deal_value resource.ssh
+      .row
+        .col-md-12
+          label.control-label= t 'simple_form.labels.password.details'
+          p= deal_value resource.details
+      .row
+        .col-md-4
+          label.control-label= t 'simple_form.labels.password.attachment'
+          p= deal_value ''
 
     .box-footer
       .row
