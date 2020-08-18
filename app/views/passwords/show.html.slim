@@ -48,7 +48,7 @@ section.content
       .row
         .col-md-4
           - if resource.attachment.present?
-            =link_to resource.name, resource.attachment.url, download: resource.attachment.original_filename
+            =link_to resource.attachment.original_filename, resource.attachment.url, download: resource.attachment.original_filename
           - else
             p= deal_value ''
     .box-footer
