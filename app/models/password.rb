@@ -25,7 +25,7 @@ class Password < ApplicationRecord
 
   # ---- paperclip ----
   has_attached_file :attachment
-  validates_attachment_content_type :attachment, :content_type => [/\Aimage\/.*\z/, "application/zip", "application/x-zip"]
+  validates_attachment_content_type :attachment, :content_type => ['application/pdf', /\Aimage\/.*\z/, "application/zip", "application/x-zip"]
 
   before_post_process :skip_for_zip
 

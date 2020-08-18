@@ -85,3 +85,17 @@ header {
 .user-panel {
   background-color: #00BCD4;
 }
+
+.password_name,
+.password_url,
+.password_key,
+.password_username,
+.password_password,
+.password_ssh,
+.password_details {
+  width: 80% !important;
+}
+
+.form-input-control {
+  margin-bottom: -1rem !important;
+}
