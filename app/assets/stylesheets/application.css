@@ -60,3 +60,7 @@
     top: 3px;
     width: 13px;
 }
+
+.text-area-copy {
+  display: block !important;
+}

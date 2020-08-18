@@ -31,7 +31,7 @@ en:
         email: "E-mail"
         password: "Password"
       password:
-        name: "Title"
+        name: "Name"
         url: "URL"
         username: "User Name"
         password: "Password"

@@ -1,0 +1,6 @@
+div.input-group.margin-bottom-33
+  textarea.form-control id="copy-#{field}" type="text" readonly=true rows="10"
+    = value
+  span.input-group-append.text-area-copy
+    button.btn.clipboard-btn.btn-outline-secondary.border id="tooltip-#{field}" data-clipboard-target="#copy-#{field}" type="button" data-toggle="tooltip" title="Copy to clipboard"
+      = image_tag('clippy.svg', class: 'clippy', alt: 'Copy to clipboard')

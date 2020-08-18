@@ -7,29 +7,47 @@ section.content
         | Password Details
     .box-body
       .row
+        .col-md-6
+          .h3 Title
+      .row
         .col-md-4
           label.control-label= t 'simple_form.labels.password.name'
           p= deal_value resource.name
         .col-md-4
           label.control-label= t 'simple_form.labels.password.user'
           p= deal_value resource.user.name
-        .col-md-4
-          label.control-label= t 'simple_form.labels.password.attachment'
-          p= deal_value ''
+
       .row
         .col-md-6
-          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password'
-          =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
+          .h3 Password Fields
+      .row
+        .col-md-6
           =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
           =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
+          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password'
+          =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
       .row
-        .col-md-12
-          label.control-label= t 'simple_form.labels.password.ssh'
-          p= deal_value resource.ssh
+        .col-md-6
+          .h3 SSH Keys
       .row
-        .col-md-12
-          label.control-label= t 'simple_form.labels.password.details'
-          p= deal_value resource.details
+        .col-md-6
+          label.control-label Private Key
+          =render 'shared/copy_text_area', value: resource.ssh, field: 'private_ssh'
+        .col-md-6
+          label.control-label Public Key
+          =render 'shared/copy_text_area', value: resource.ssh, field: 'public_ssh'
+      .row
+        .col-md-6
+          .h3 Additional Details
+      .row
+        .col-md-6
+          =render 'shared/copy_text_area', value: resource.details, field: 'details'
+      .row
+        .col-md-6
+          .h3 Attachment
+      .row
+        .col-md-4
+          p= deal_value ''
 
     .box-footer
       .row
