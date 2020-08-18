@@ -64,3 +64,11 @@
 .text-area-copy {
   display: block !important;
 }
+
+.sidebar-menu > li.active > a {
+  background: rgb(57, 179, 215) !important;
+}
+
+.sidebar-menu > li > a:hover {
+  background: #3c8dbc !important;
+}
