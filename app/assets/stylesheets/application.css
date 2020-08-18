@@ -43,3 +43,20 @@
 .modal-header {
   display: block !important;
 }
+
+.margin-bottom-33 {
+  margin-bottom: 33px;
+}
+
+.password-text-color {
+  color: rgb(255, 255, 255);
+  background-color: rgb(57, 179, 215);
+  border-color: rgb(38, 154, 188);
+}
+
+.clippy {
+    margin-top: -3px;
+    position: relative;
+    top: 3px;
+    width: 13px;
+}

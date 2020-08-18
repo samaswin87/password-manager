@@ -11,17 +11,17 @@ section.content
           label.control-label= t 'simple_form.labels.password.name'
           p= deal_value resource.name
         .col-md-4
-          =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
-        .col-md-4
-          =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
-      .row
-        .col-md-4
-          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password'
-        .col-md-4
-          =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
-        .col-md-4
           label.control-label= t 'simple_form.labels.password.user'
           p= deal_value resource.user.name
+        .col-md-4
+          label.control-label= t 'simple_form.labels.password.attachment'
+          p= deal_value ''
+      .row
+        .col-md-6
+          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password'
+          =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
+          =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
+          =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
       .row
         .col-md-12
           label.control-label= t 'simple_form.labels.password.ssh'
@@ -30,10 +30,6 @@ section.content
         .col-md-12
           label.control-label= t 'simple_form.labels.password.details'
           p= deal_value resource.details
-      .row
-        .col-md-4
-          label.control-label= t 'simple_form.labels.password.attachment'
-          p= deal_value ''
 
     .box-footer
       .row
