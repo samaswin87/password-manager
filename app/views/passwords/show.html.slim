@@ -47,8 +47,10 @@ section.content
           .h3 Attachment
       .row
         .col-md-4
-          p= deal_value ''
-
+          - if resource.attachment.present?
+            =link_to resource.name, resource.attachment.url, download: resource.attachment.original_filename
+          - else
+            p= deal_value ''
     .box-footer
       .row
         .col-md-6
