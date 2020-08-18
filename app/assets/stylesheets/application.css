@@ -24,6 +24,15 @@
  *= require_self
  */
 
+header {
+  background-color: white;
+}
+
+.main-header .logo {
+  line-height: 69px;
+  height: auto;
+}
+
 .content-header > .breadcrumb > li + li:before {
   font-family: FontAwesome;
   content: "\f138";
@@ -71,4 +80,8 @@
 
 .sidebar-menu > li > a:hover {
   background: #3c8dbc !important;
+}
+
+.user-panel {
+  background-color: #00BCD4;
 }
