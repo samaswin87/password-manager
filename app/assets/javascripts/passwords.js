@@ -7,6 +7,7 @@
     $('#passwords-datatable').dataTable({
       processing: true,
       serverSide: true,
+      autoWidth: false,
       ajax: {
         url: $('#passwords-datatable').data('source')
       },
@@ -18,10 +19,6 @@
           data: 'username'
         }, {
           data: 'url'
-        }, {
-          data: 'created_at'
-        }, {
-          data: 'updated_at'
         },{
           data: 'status',
           visible: isAdmin
@@ -29,7 +26,10 @@
           "data": "action",
           bSortable: false
         }
-      ]
+      ],
+      columnDefs: [
+        { width: 200, targets: 3 }
+      ],
     });
   });
 

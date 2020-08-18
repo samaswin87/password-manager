@@ -10,8 +10,6 @@ class PasswordDatatable < ApplicationDatatable
       name: { source: "Password.name", cond: :like },
       username: { source: "Password.username", cond: :like },
       url: { source: "Password.url", cond: :like },
-      created_at: { source: "Password.created_at", searchable: false},
-      updated_at: { source: "Password.updated_at", searchable: false },
       status: { source: "Password.active", searchable: false},
       action: { source: nil, searchable: false, orderable: false }
     }
@@ -23,8 +21,6 @@ class PasswordDatatable < ApplicationDatatable
         name: record.name,
         username: record.username,
         url: record.url,
-        created_at: record.created_on,
-        updated_at: record.updated_on,
         url: record.url,
         status: record.status,
         DT_RowId: record.id,
