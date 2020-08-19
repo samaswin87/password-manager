@@ -7,11 +7,11 @@
     };
 
     $( "#submit-modal-city" ).click(function() {
-      let name = $("#modal-field-name").val();
-      let id = $("#modal-field-id").val();
+      var name = $("#modal-field-name").val();
+      var id = $("#modal-field-id").val();
       if (typeof id !== 'undefined' && id) {
-        let data = {city: {name: name, id: id}};
-        let url = "/cities/"+id;
+        var data = {city: {name: name, id: id}};
+        var url = "/cities/"+id;
         $.ajax({
           type: "PATCH",
           url: url,
@@ -22,8 +22,8 @@
           }
          });
       } else {
-        let url = "/cities/";
-        let data = {city: {name: name}};
+        var url = "/cities/";
+        var data = {city: {name: name}};
         $.ajax({
           type: "POST",
           url: url,

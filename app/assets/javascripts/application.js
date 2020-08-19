@@ -30,8 +30,8 @@ $(document).ready(function(){
   $('.sidebar-menu > li.treeview > a').append("<span class='pull-right-container'><i class='fa fa-angle-left pull-right'></i></span>")
 });
 
-let app = (function(){
-  let user_data;
+var app = (function(){
+  var user_data;
 
   $.ajax({
     type: "GET",

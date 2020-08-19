@@ -7,11 +7,11 @@
     };
 
     $( "#submit-modal-state" ).click(function() {
-      let name = $("#modal-field-name").val();
-      let id = $("#modal-field-id").val();
+      var name = $("#modal-field-name").val();
+      var id = $("#modal-field-id").val();
       if (typeof id !== 'undefined' && id) {
-        let data = {state: {name: name, id: id}};
-        let url = "/states/"+id;
+        var data = {state: {name: name, id: id}};
+        var url = "/states/"+id;
         $.ajax({
           type: "PATCH",
           url: url,
@@ -22,8 +22,8 @@
           }
          });
       } else {
-        let url = "/states/";
-        let data = {state: {name: name}};
+        var url = "/states/";
+        var data = {state: {name: name}};
         $.ajax({
           type: "POST",
           url: url,

@@ -1,12 +1,12 @@
 (function() {
   $(function() {
-    let isAdmin = true;
+    var isAdmin = true;
     if (app.getUser() != undefined) {
       isAdmin = app.getUser().is_admin
     }
 
     $( "#show_password" ).click(function() {
-      let $pwd = $("#copy-password");
+      var $pwd = $("#copy-password");
       if ($pwd.attr('type') === 'password') {
         $pwd.attr('type', 'text');
       } else {
