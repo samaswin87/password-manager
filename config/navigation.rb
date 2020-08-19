@@ -5,12 +5,13 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.dom_class = 'sidebar-menu'
     primary.item :admin_users, menu_label_icon('Users', 'user'), users_path, html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:manage, User)
     primary.item :passwords, menu_label_icon('Passwords', 'key'), passwords_path, html: { class: 'root-level'}, highlights_on: %r{/passwords} if can?(:manage, Password)
-    primary.item :settings, menu_label_icon('Settings', 'globe'), '#', html: { class: 'treeview'} do |sub_nav|
-      sub_nav.dom_class = 'treeview-menu'
-      sub_nav.item :states, menu_label_icon('States', 'globe'), states_path, class: 'treeview-menu', highlights_on: %r{/states}
-      sub_nav.item :cities, menu_label_icon('Cities', 'building-o'), cities_path, class: 'treeview-menu', highlights_on: %r{/cities}
+    if can?(:manage, State)
+      primary.item :settings, menu_label_icon('Settings', 'globe'), '#', html: { class: 'treeview'} do |sub_nav|
+        sub_nav.dom_class = 'treeview-menu'
+        sub_nav.item :states, menu_label_icon('States', 'globe'), states_path, class: 'treeview-menu', highlights_on: %r{/states}
+        sub_nav.item :cities, menu_label_icon('Cities', 'building-o'), cities_path, class: 'treeview-menu', highlights_on: %r{/cities}
+      end
     end
-
   end
 
   #   # Add an item to the primary navigation. The following params apply:
