@@ -74,7 +74,7 @@ header {
   display: block !important;
 }
 
-.sidebar-menu > li.active > a {
+.sidebar-menu > li.active > a.active {
   background: rgb(57, 179, 215) !important;
 }
 
@@ -102,4 +102,31 @@ header {
 
 .password-show {
   padding-left: 10px;
+}
+
+.treeview > ul.treeview-menu > li > a {
+  padding-top: 15px !important;
+  padding-bottom: 15px !important;
+}
+
+.treeview > ul.treeview-menu > li.active > a {
+  background: rgb(57, 179, 215) !important;
+}
+.treeview > ul.treeview-menu > li > a:hover {
+  background: #3c8dbc !important;
+}
+
+.sidebar-menu .treeview-menu {
+  padding-left: 0px !important;
+}
+
+.treeview > ul.treeview-menu > li > a > i {
+  padding-left: 10px;
+}
+
+.treeview > ul.treeview-menu > li > a > span {
+  padding-left: 5px;
+}
+.sidebar-menu > li.treeview > a.active {
+  background: none !important;
 }

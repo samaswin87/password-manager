@@ -27,6 +27,7 @@
 
 $(document).ready(function(){
   var clipboard = new ClipboardJS('.clipboard-btn');
+  $('.sidebar-menu > li.treeview > a').append("<span class='pull-right-container'><i class='fa fa-angle-left pull-right'></i></span>")
 });
 
 let app = (function(){
