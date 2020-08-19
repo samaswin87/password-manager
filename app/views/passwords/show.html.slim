@@ -24,7 +24,9 @@ section.content
         .col-md-6
           =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
           =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
-          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password'
+          =check_box_tag 'show_password'
+          span.password-show Show Password
+          =render 'shared/copy_text', value: resource.password, field: 'password', title: 'Password', input_type: 'password'
           =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
       .row
         .col-md-6

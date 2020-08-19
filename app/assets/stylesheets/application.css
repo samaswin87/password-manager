@@ -99,3 +99,7 @@ header {
 .form-input-control {
   margin-bottom: -1rem !important;
 }
+
+.password-show {
+  padding-left: 10px;
+}
