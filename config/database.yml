@@ -13,4 +13,4 @@ test:
 
 production:
   <<: *default
-  database: password_manager_development
+  url: <%= ENV['DATABASE_URL'] %>
