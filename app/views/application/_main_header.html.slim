@@ -11,7 +11,18 @@ header.main-header
         | tn
     .navbar-custom-menu
       ul.nav.navbar-nav
-        li.signout
-          = link_to destroy_user_session_path, method: :delete do
-            = fa_icon 'sign-out'
-            |  Logout
+        li.dropdown.user.user-menu
+          a.dropdown-toggle href="#" data-toggle="dropdown"
+            span.hidden-xs = current_user.name
+          ul.dropdown-menu
+            li.user-header
+              p
+                = current_user.name
+                small="Member since #{current_user.member_since}"
+            li.user-footer
+              div.pull-left
+                a.btn.btn-default.btn-flat href="#" Profile
+              div.pull-right
+                = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn-flat' do
+                  = fa_icon 'sign-out'
+                  |  Logout

@@ -117,4 +117,8 @@ class User < ApplicationRecord
     }
   end
 
+  def member_since
+    self.created_at.strftime("%b, %Y")
+  end
+
 end
