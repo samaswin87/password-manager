@@ -104,7 +104,7 @@ Rails.application.configure do
    :password             => ENV['SMTP_PASSWORD'],
    :authentication       => ENV['SMTP_AUTH'],
    :domain => ENV['SMTP_DOMAIN'],
-   :enable_starttls_auto => true
+   :enable_starttls_auto => ENV['SMTP_STARTTLS'].present?
   }
 
   # Do not dump schema after migrations.

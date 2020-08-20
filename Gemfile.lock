@@ -101,6 +101,10 @@ GEM
     devise_invitable (2.0.2)
       actionmailer (>= 5.0)
       devise (>= 4.6)
+    dotenv (2.7.6)
+    dotenv-rails (2.7.6)
+      dotenv (= 2.7.6)
+      railties (>= 3.2)
     draper (4.0.1)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -342,6 +346,7 @@ DEPENDENCIES
   data_migrate
   devise
   devise_invitable
+  dotenv-rails
   draper (~> 4.0, >= 4.0.1)
   faker
   font-awesome-rails (~> 4.7, >= 4.7.0.5)

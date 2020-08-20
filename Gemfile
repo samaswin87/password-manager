@@ -24,6 +24,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'dotenv-rails'
   gem 'pry'
   gem 'faker'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
