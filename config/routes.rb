@@ -4,6 +4,10 @@ Rails.application.routes.draw do
   root 'application#go_home'
 
   devise_for :users, path: '',
+                     controllers: {
+                      sessions: 'users/sessions',
+                      registrations: 'users/registrations'
+                     },
                      path_names: { sign_in: 'login',
                                    sign_out: 'logout',
                                    password: 'password',

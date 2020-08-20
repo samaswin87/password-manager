@@ -136,9 +136,9 @@ en:
     messages:
       accepted: must be accepted
       blank: cannot be blank
-      present: deve ficar em branco
-      confirmation: não é igual a %{attribute}
-      empty: não pode ficar vazio
+      present: must be blank
+      confirmation: is not equal to %{attribute}
+      empty: cannot be empty
       equal_to: deve ser igual a %{count}
       even: deve ser par
       exclusion: não está disponível
@@ -153,7 +153,7 @@ en:
       not_an_integer: não é um número inteiro
       odd: deve ser ímpar
       required: required
-      taken: já está em uso
+      taken: already in use
       too_long:
         one: 'é muito longo (máximo: 1 caracter)'
         other: 'é muito longo (máximo: %{count} caracteres)'
