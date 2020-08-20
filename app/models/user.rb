@@ -63,6 +63,8 @@ class User < ApplicationRecord
   # ---- callbacks ----
 
   after_create :invite
+  after_create :send_mail
+
 
   # ---- nested values ----
 
@@ -95,6 +97,10 @@ class User < ApplicationRecord
 
   def full_name
     "#{first_name} #{last_name}"
+  end
+
+  def send_mail
+    UserMailer.send_new_user_message(self).deliver
   end
 
   def invite
