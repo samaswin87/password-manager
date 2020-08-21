@@ -22,4 +22,4 @@ Password Manager to maintain the user passwords
 
 ## Screenshots
 
-![screencapture-localhost-3000-passwords-2-2020-08-19-10_59_35](https://user-images.githubusercontent.com/50949606/90595764-33374800-e20b-11ea-8225-eed4e870f8fa.png)
+![screencapture-localhost-3000-passwords-2-2020-08-21-08_15_32](https://user-images.githubusercontent.com/50949606/90846763-8aadf300-e386-11ea-8d0b-b9aecf1f06d8.png)
