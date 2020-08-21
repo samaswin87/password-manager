@@ -23,6 +23,9 @@
  *= require datatables
  *= require_self
  */
+.main-header {
+  max-height: 100% !important;
+}
 
 .main-header .logo {
   line-height: 69px;

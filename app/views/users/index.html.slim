@@ -2,15 +2,15 @@
   .box-body
     .row
       .col-md-12
-        table#users-datatable.table.table-bordered.datatable.dataTable data-source= collection_url(form: 'json')
+        table#users-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
           thead
             tr
-              th width="*" First Name
+              th.all width="*" First Name
               th width="*" Last Name
-              th width="*" E-mail
+              th.all width="*" E-mail
               th width="*" Phone
               th width="*" Gender
               th width="*" User Type
-              th width="*" Action
+              th.all width="*" Action
         tbody
 
