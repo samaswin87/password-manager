@@ -1,19 +1,19 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  street: MyString
-  number: 1
-  district: MyString
-  complement: MyString
-  city_id: 
-  state_id: 
-  postalcode: 1
+john:
+  house_name: Mckenzie Field
+  number: 5528
+  street: Nathalie Radial
+  additional_details:
+  city: chennai
+  state: tamil_nadu
+  zipcode: 29729
 
-two:
-  street: MyString
-  number: 1
-  district: MyString
-  complement: MyString
-  city_id: 
-  state_id: 
-  postalcode: 1
+kart:
+  house_name: Nobuko Terrace
+  number: 28477
+  street: Ward Squares
+  additional_details:
+  city: tamil_nadu
+  state: madurai
+  zipcode: 44742
