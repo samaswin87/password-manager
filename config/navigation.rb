@@ -3,8 +3,9 @@ SimpleNavigation::Configuration.run do |navigation|
 
   navigation.items do |primary|
     primary.dom_class = 'sidebar-menu'
-    primary.item :admin_users, menu_label_icon('Users', 'user'), users_path, html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:manage, User)
     primary.item :passwords, menu_label_icon('Passwords', 'key'), passwords_path, html: { class: 'root-level'}, highlights_on: %r{/passwords} if can?(:manage, Password)
+    primary.item :admin_users, menu_label_icon('Users', 'user'), users_path, html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:manage, User)
+    primary.item :profile, menu_label_icon('Profile', 'user'), user_path(current_user), html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:show, User) & !current_user.admin?
     if can?(:manage, State)
       primary.item :settings, menu_label_icon('Settings', 'globe'), '#', html: { class: 'treeview'} do |sub_nav|
         sub_nav.dom_class = 'treeview-menu'

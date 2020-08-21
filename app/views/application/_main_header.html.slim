@@ -21,7 +21,9 @@ header.main-header
                 small="Member since #{current_user.member_since}"
             li.user-footer
               div.pull-left
-                a.btn.btn-default.btn-flat href="#" Profile
+                = link_to user_path(current_user), class: 'btn btn-default btn-flat' do
+                  = fa_icon 'user'
+                  |  Profile
               div.pull-right
                 = link_to destroy_user_session_path, method: :delete, class: 'btn btn-default btn-flat' do
                   = fa_icon 'sign-out'

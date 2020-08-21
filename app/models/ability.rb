@@ -6,9 +6,11 @@ class Ability
     # ---- defaults ----
 
     if user.present?  # additional permissions for logged in users (they can manage their posts)
-      can :manage, Password, user_id: user.id
+      can :manage, Password
       if user.admin?  # additional permissions for administrators
         can :manage, :all
+      else
+        can :show, User, id: user.id
       end
     end
 

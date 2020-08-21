@@ -14,11 +14,7 @@ class ApplicationController < ActionController::Base
 
   def go_home
     if user_signed_in?
-      if current_user.admin?
-        redirect_to users_path
-      else
-        redirect_to passwords_path
-      end
+      redirect_to passwords_path
     else
       redirect_to new_user_session_path
     end
