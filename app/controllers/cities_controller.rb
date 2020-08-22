@@ -1,12 +1,4 @@
-class CitiesController < InheritedResources::Base
-
-  # ---- layout ----
-
-  layout 'admin'
-  # ---- devise ----
-
-  before_action :authenticate_user!
-  load_and_authorize_resource
+class CitiesController < BaseController
 
   # ---- breadcrumbs ----
 
@@ -28,6 +20,16 @@ class CitiesController < InheritedResources::Base
     add_breadcrumb 'New', :new_resource_path
 
     @city = City.new
+  end
+
+  def create
+    create! do  |success, failure|
+      success.html {redirect_to city_url(@city)}
+      failure.html {
+        flash[:alert] = @city.errors.full_messages.join(', ') if @city.errors.present?
+        render 'new'
+      }
+    end
   end
 
   def edit
