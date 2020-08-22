@@ -104,6 +104,7 @@
 .password_password,
 .password_ssh_public_key,
 .password_ssh_private_key,
+.password_ssh_finger_print,
 .password_details {
   width: 80% !important;
 }

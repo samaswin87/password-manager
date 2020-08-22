@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_21_175806) do
+ActiveRecord::Schema.define(version: 2020_08_22_111438) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -68,6 +68,7 @@ ActiveRecord::Schema.define(version: 2020_08_21_175806) do
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
     t.text "ssh_public_key"
+    t.string "ssh_finger_print"
     t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 

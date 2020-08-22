@@ -1,12 +1,4 @@
-class StatesController < InheritedResources::Base
-
-  # ---- layout ----
-
-  layout 'admin'
-  # ---- devise ----
-
-  before_action :authenticate_user!
-  load_and_authorize_resource
+class StatesController < BaseController
 
   # ---- breadcrumbs ----
 
@@ -28,6 +20,16 @@ class StatesController < InheritedResources::Base
     add_breadcrumb 'New', :new_resource_path
 
     @state = State.new
+  end
+
+  def create
+    create! do  |success, failure|
+      success.html {redirect_to state_url(@state)}
+      failure.html {
+        flash[:alert] = @state.errors.full_messages.join(', ') if @state.errors.present?
+        render 'new'
+      }
+    end
   end
 
   def edit
