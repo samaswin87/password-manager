@@ -1,13 +1,4 @@
-class UsersController < InheritedResources::Base
-  # ---- layout ----
-
-  layout 'admin'
-
-
-  # ---- devise ----
-
-  before_action :authenticate_user!
-  load_and_authorize_resource
+class UsersController < BaseController
 
   # ---- breadcrumbs ----
 
@@ -31,6 +22,16 @@ class UsersController < InheritedResources::Base
 
     @user = User.new
     @user.build_address
+  end
+
+  def create
+    create! do  |success, failure|
+      success.html {redirect_to user_url(@user)}
+      failure.html {
+        flash[:alert] = @user.errors.full_messages.join(', ') if @user.errors.present?
+        render 'new'
+      }
+    end
   end
 
   def edit

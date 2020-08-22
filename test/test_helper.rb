@@ -7,4 +7,11 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def assert_mails(count)
+    ActionMailer::Base.deliveries.clear
+    assert_difference('ActionMailer::Base.deliveries.size', count) do
+      yield
+    end
+  end
+
 end

@@ -25,9 +25,9 @@ class PasswordsController < BaseController
   def create
     @password.user_id = current_user.id
     create! do  |success, failure|
-      success.html {redirect_to root_url}
+      success.html {redirect_to password_url(@password)}
       failure.html {
-        flash[:alert] = @password.errors.full_messages.join(', ')
+        flash[:alert] = @password.errors.full_messages.join(', ') if @password.errors.present?
         render 'new'
       }
     end
