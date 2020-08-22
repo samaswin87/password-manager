@@ -22,7 +22,6 @@
 //= require momentjs
 //= require notifyjs
 //= require toastr
-//= require datatables
 //= require_tree .
 
 $(document).ready(function(){

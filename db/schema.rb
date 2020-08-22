@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_16_140952) do
+ActiveRecord::Schema.define(version: 2020_08_21_175806) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,7 +57,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_140952) do
     t.string "username"
     t.string "password"
     t.string "key"
-    t.text "ssh"
+    t.text "ssh_private_key"
     t.text "details"
     t.string "attachment_file_name"
     t.string "attachment_content_type"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 2020_08_16_140952) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.text "ssh_public_key"
     t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 

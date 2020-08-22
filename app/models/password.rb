@@ -1,4 +1,4 @@
-#          Column          |            Type             | Collation | Nullable |                Default
+#         Column          |            Type             | Collation | Nullable |                Default
 # -------------------------+-----------------------------+-----------+----------+---------------------------------------
 #  id                      | bigint                      |           | not null | nextval('passwords_id_seq'::regclass)
 #  name                    | character varying           |           |          |
@@ -6,7 +6,7 @@
 #  username                | character varying           |           |          |
 #  password                | character varying           |           |          |
 #  key                     | character varying           |           |          |
-#  ssh                     | text                        |           |          |
+#  ssh_private_key         | text                        |           |          |
 #  details                 | text                        |           |          |
 #  attachment_file_name    | character varying           |           |          |
 #  attachment_content_type | character varying           |           |          |
@@ -16,6 +16,7 @@
 #  created_at              | timestamp without time zone |           | not null |
 #  updated_at              | timestamp without time zone |           | not null |
 #  active                  | boolean                     |           |          | true
+#  ssh_public_key          | text                        |           |          |
 class Password < ApplicationRecord
   # ---- relationships ----
   belongs_to :user
@@ -23,6 +24,10 @@ class Password < ApplicationRecord
   # ---- delegates ----
   delegate :name, to: :user, prefix: true, allow_nil: false
 
+  # ---- validates ----
+
+  validates :url, :password, presence: true
+  validates :name, presence: true, uniqueness: true
   # ---- paperclip ----
   has_attached_file :attachment
   validates_attachment_content_type :attachment, :content_type => ['application/pdf', /\Aimage\/.*\z/, "application/zip", "application/x-zip"]
