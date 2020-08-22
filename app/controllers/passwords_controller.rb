@@ -1,12 +1,4 @@
-class PasswordsController < InheritedResources::Base
-
-  # ---- layout ----
-
-  layout 'admin'
-  # ---- devise ----
-
-  before_action :authenticate_user!
-  load_and_authorize_resource
+class PasswordsController < BaseController
 
   # ---- breadcrumbs ----
 
@@ -28,6 +20,17 @@ class PasswordsController < InheritedResources::Base
     add_breadcrumb 'New', :new_resource_path
 
     @password = Password.new
+  end
+
+  def create
+    @password.user_id = current_user.id
+    create! do  |success, failure|
+      success.html {redirect_to root_url}
+      failure.html {
+        flash[:alert] = @password.errors.full_messages.join(', ')
+        render 'new'
+      }
+    end
   end
 
   def edit

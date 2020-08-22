@@ -2,7 +2,11 @@ require 'test_helper'
 
 class PasswordsControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
-  # test "the truth" do
-  #   assert true
-  # end
+
+  def test_index
+    sign_in(users(:john))
+    get(:index)
+    assert_response(:success)
+    assert_not_nil assigns(:passwords)
+  end
 end

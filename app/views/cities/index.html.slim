@@ -3,12 +3,12 @@
   .box-body
     .row
       .col-md-12
-        table#cities-datatable.table.table-bordered.datatable.dataTable data-source= collection_url(form: 'json')
+        table#cities-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
           thead
             tr
-              th width="*" Name
+              th.all width="*" Name
               th width="*" Created On
               th width="*" Updated On
-              th width="*" Actions
+              th.all width="*" Actions
         tbody
 

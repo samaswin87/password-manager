@@ -1,3 +1,4 @@
+# rake db:migrate:down VERSION=20200816140952
 class AddActiveInTables < ActiveRecord::Migration[5.2]
   def change
     add_column :states, :active, :boolean, default: true
