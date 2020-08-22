@@ -93,7 +93,6 @@ module ApplicationHelper
     flash_messages = []
 
     flash.each do |type, message|
-      puts type
       next unless types.key?(type)
       text = "<script>
       $.notify.autoHideNotify('#{types[type]}', 'top right', '#{titles[type]}','#{message}');
