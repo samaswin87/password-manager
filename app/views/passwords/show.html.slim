@@ -34,10 +34,10 @@ section.content
       .row
         .col-md-6
           label.control-label Private Key
-          =render 'shared/copy_text_area', value: resource.ssh, field: 'private_ssh'
+          =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
         .col-md-6
           label.control-label Public Key
-          =render 'shared/copy_text_area', value: resource.ssh, field: 'public_ssh'
+          =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
       .row
         .col-md-6
           .h3 Additional Details
