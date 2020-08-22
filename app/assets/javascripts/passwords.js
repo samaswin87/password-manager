@@ -7,6 +7,9 @@
 
     $( "#show_password" ).click(function() {
       var $pwd = $("#copy-password");
+      if ($pwd.attr('type') === undefined) {
+        $pwd = $("#password_password");
+      }
       if ($pwd.attr('type') === 'password') {
         $pwd.attr('type', 'text');
       } else {
