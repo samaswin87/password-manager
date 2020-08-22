@@ -24,6 +24,8 @@ group :development, :test do
 end
 
 group :development do
+  gem 'guard'
+  gem 'guard-shell'
   gem 'dotenv-rails'
   gem 'pry'
   gem 'faker'
