@@ -12,6 +12,8 @@
 .row
   .col-md-6
     =render 'shared/text_form', form: form, title: 'User Name', field: :username
+    =check_box_tag 'show_password'
+    span.password-show Show Password
     =render 'shared/text_form', form: form, title: 'Password', field: :password
     =render 'shared/text_form', form: form, title: 'Key Phrase', field: :key
 

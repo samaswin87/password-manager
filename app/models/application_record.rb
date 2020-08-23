@@ -11,13 +11,7 @@ class ApplicationRecord < ActiveRecord::Base
 
   def active!
     unless self.active.nil?
-      self.update_attributes(active: false)
-    end
-  end
-
-  def activate!
-    unless self.active.nil?
-      self.update_attributes(active: true)
+      self.toggle!(:active)
     end
   end
 

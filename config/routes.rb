@@ -16,8 +16,17 @@ Rails.application.routes.draw do
 
   # resources
 
-  resources :users
-  resources :passwords
+  resources :users do
+    member do
+      put :status
+    end
+  end
+  resources :passwords do
+    member do
+      put :status
+    end
+  end
+
   resources :states
   resources :cities
   get 'current_user' => 'application#user'

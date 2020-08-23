@@ -21,6 +21,7 @@
           user_invitation PATCH  /invitation(.:format)                                                                    devise/invitations#update
                           PUT    /invitation(.:format)                                                                    devise/invitations#update
                           POST   /invitation(.:format)                                                                    devise/invitations#create
+              status_user PUT    /users/:id/status(.:format)                                                              users#status
                     users GET    /users(.:format)                                                                         users#index
                           POST   /users(.:format)                                                                         users#create
                  new_user GET    /users/new(.:format)                                                                     users#new
@@ -29,6 +30,7 @@
                           PATCH  /users/:id(.:format)                                                                     users#update
                           PUT    /users/:id(.:format)                                                                     users#update
                           DELETE /users/:id(.:format)                                                                     users#destroy
+          status_password PUT    /passwords/:id/status(.:format)                                                          passwords#status
                 passwords GET    /passwords(.:format)                                                                     passwords#index
                           POST   /passwords(.:format)                                                                     passwords#create
              new_password GET    /passwords/new(.:format)                                                                 passwords#new

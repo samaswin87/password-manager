@@ -22,7 +22,7 @@ class PasswordDatatable < ApplicationDatatable
         username: record.username,
         url: record.url,
         url: record.url,
-        status: record.status,
+        status: status(record.status),
         DT_RowId: record.id,
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
@@ -30,6 +30,18 @@ class PasswordDatatable < ApplicationDatatable
           concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
         end
       }
+    end
+  end
+
+  def status(status)
+    if status == 'Active'
+      content_tag(:span, class: 'label label-success') do
+        status
+      end
+    else
+      content_tag(:span, class: 'label label-danger') do
+        status
+      end
     end
   end
 
