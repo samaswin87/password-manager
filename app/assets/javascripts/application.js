@@ -25,7 +25,6 @@
 //= require_tree .
 
 $(document).ready(function(){
-  $('.sidebar-menu > li.treeview > a').append("<span class='pull-right-container'><i class='fa fa-angle-left pull-right'></i></span>")
   var clipboard;
   if (typeof ClipboardJS !== 'undefined')
     clipboard = new ClipboardJS('.clipboard-btn');

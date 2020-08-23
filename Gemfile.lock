@@ -1,4 +1,12 @@
 GIT
+  remote: https://github.com/samaswin87/simple-navigation.git
+  revision: 3979b449226bff544ab083608b5845b75566628f
+  branch: master
+  specs:
+    simple-navigation (4.1.0)
+      activesupport (>= 2.3.2)
+
+GIT
   remote: https://github.com/useruby/bootstrap_flash_messages.git
   revision: 373e124b666b7b22be98e52a7ed384d5854c1d48
   specs:
@@ -111,12 +119,12 @@ GEM
       activemodel-serializers-xml (>= 1.0)
       activesupport (>= 5.0)
       request_store (>= 1.0)
-    elasticsearch (7.8.1)
-      elasticsearch-api (= 7.8.1)
-      elasticsearch-transport (= 7.8.1)
-    elasticsearch-api (7.8.1)
+    elasticsearch (7.9.0)
+      elasticsearch-api (= 7.9.0)
+      elasticsearch-transport (= 7.9.0)
+    elasticsearch-api (7.9.0)
       multi_json
-    elasticsearch-transport (7.8.1)
+    elasticsearch-transport (7.9.0)
       faraday (~> 1)
       multi_json
     erubi (1.9.0)
@@ -300,8 +308,6 @@ GEM
       rubyzip (>= 1.2.2)
     semantic_range (2.3.0)
     shellany (0.0.1)
-    simple-navigation (4.1.0)
-      activesupport (>= 2.3.2)
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
@@ -409,7 +415,7 @@ DEPENDENCIES
   searchkick
   selectize-rails
   selenium-webdriver
-  simple-navigation
+  simple-navigation!
   simple_form
   slim
   spring
