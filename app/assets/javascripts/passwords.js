@@ -5,6 +5,23 @@
       isAdmin = app.getUser().is_admin
     }
 
+    genPassword = function() {
+      $("#password_text_password").val(generatePassword(true, true, true, false, 20));
+    };
+
+    $('.eye-btn').click(function() {
+      $(this).toggleClass("fa-eye fa-eye-slash");
+      var $pwd = $("#copy-text_password");
+      if ($pwd.attr('type') === undefined) {
+        $pwd = $("#password_text_password");
+      }
+      if ($pwd.attr('type') === 'password') {
+        $pwd.attr('type', 'text');
+      } else {
+        $pwd.attr('type', 'password');
+      }
+    });
+
     $('#password_status').click(function() {
       var url = window.location.pathname;
       var id = url.substring(url.lastIndexOf('/') + 1);
@@ -16,18 +33,6 @@
             location.reload();
           }
       });
-    });
-
-    $( "#show_password" ).click(function() {
-      var $pwd = $("#copy-password");
-      if ($pwd.attr('type') === undefined) {
-        $pwd = $("#password_password");
-      }
-      if ($pwd.attr('type') === 'password') {
-        $pwd.attr('type', 'text');
-      } else {
-        $pwd.attr('type', 'password');
-      }
     });
 
     $('#passwords-datatable').dataTable({

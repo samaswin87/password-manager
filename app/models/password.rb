@@ -4,7 +4,7 @@
 #  name                    | character varying           |           |          |
 #  url                     | character varying           |           |          |
 #  username                | character varying           |           |          |
-#  password                | character varying           |           |          |
+#  text_password           | character varying           |           |          |
 #  key                     | character varying           |           |          |
 #  ssh_private_key         | text                        |           |          |
 #  details                 | text                        |           |          |
@@ -26,7 +26,7 @@ class Password < ApplicationRecord
 
   # ---- validates ----
 
-  validates :url, :password, presence: true
+  validates :url, :text_password, presence: true
   validates :name, presence: true, uniqueness: true
   # ---- paperclip ----
   has_attached_file :attachment
