@@ -9,9 +9,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+       unless resource.active?
+        sign_out
+        flash[:alert] = 'User is in in active. Please contact admin'
+        redirect_to new_user_session_path
+        return
+      end
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
