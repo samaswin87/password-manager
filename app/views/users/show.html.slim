@@ -3,35 +3,49 @@
 section.content
   .box.box-default
     .box-header.with-border
+      span.padding-right_10
+        =@user.status_button
       h3.box-title
         | User Information
     .box-body
       .row
-        .col-md-12
-          label.control-label
-            | Photo
+        .col-md-6
+          strong
+            label.control-label
+              | Photo:
           = image_tag resource.avatar.url(:large), class: 'img-crud img-responsive', lazy: true
+        .col-md-6
+          strong
+            label.control-label.status_button Status:
+
+
       hr
 
       .row
         .col-md-4
-          label.control-label= t 'simple_form.labels.user.first_name'
+          strong
+            label.control-label= t 'simple_form.labels.user.first_name'
           p= deal_value resource.first_name
         .col-md-4
-          label.control-label= t 'simple_form.labels.user.last_name'
+          strong
+            label.control-label= t 'simple_form.labels.user.last_name'
           p= deal_value resource.last_name
         .col-md-4
-          label.control-label= t 'simple_form.labels.user.user_type'
+          strong
+            label.control-label= t 'simple_form.labels.user.user_type'
           p= deal_value resource.user_type_name
       .row
         .col-md-4
-          label.control-label= t 'simple_form.labels.user.email'
+          strong
+            label.control-label= t 'simple_form.labels.user.email'
           p= deal_value resource.email
         .col-md-5
-          label.control-label= t 'simple_form.labels.user.phone'
+          strong
+            label.control-label= t 'simple_form.labels.user.phone'
           p= deal_value resource.phone
         .col-md-3
-          label.control-label= t 'simple_form.labels.user.gender'
+          strong
+            label.control-label= t 'simple_form.labels.user.gender'
           p= deal_value resource.gender_name
 
       = render 'shared/address_fields'

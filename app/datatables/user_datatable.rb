@@ -13,6 +13,7 @@ class UserDatatable < ApplicationDatatable
       phone: { source: "User.phone", cond: :like },
       gender: { source: "Gender.name", searchable: false},
       type: { source: "UserType.name", searchable: false},
+      status: { source: "Password.active", searchable: false},
       action: { source: nil, searchable: false, orderable: false }
     }
   end
@@ -27,6 +28,7 @@ class UserDatatable < ApplicationDatatable
         gender: record.gender_name,
         type: record.user_type_name,
         DT_RowId: record.id,
+        status: status(record.active),
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
@@ -38,8 +40,20 @@ class UserDatatable < ApplicationDatatable
     end
   end
 
+  def status(active)
+    if active
+      content_tag(:span, class: 'label label-success') do
+        'Active'
+      end
+    else
+      content_tag(:span, class: 'label label-danger') do
+        'InActive'
+      end
+    end
+  end
+
   def get_raw_records
-    User.valid.includes(:user_type, :gender)
+    User.includes(:user_type, :gender).all
   end
 
 end

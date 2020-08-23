@@ -1,5 +1,25 @@
 (function() {
   $(function() {
+    $('#user_status').click(function() {
+      var isAdmin = false;
+      if (app.getUser() != undefined) {
+        isAdmin = app.getUser().is_admin
+      }
+      if (!isAdmin)
+        return
+
+      var url = window.location.pathname;
+      var id = url.substring(url.lastIndexOf('/') + 1);
+      $.ajax({
+          type: "PUT",
+          url: id+'/status',
+          dataType: 'JSON',
+          complete: function() {
+            location.reload();
+          }
+      });
+    });
+
     $('#users-datatable').dataTable({
       processing: true,
       serverSide: true,
@@ -24,6 +44,8 @@
           data: 'type',
           'orderable': false,
           bSortable: false
+        }, {
+          data: 'status'
         }, {
           "data": "action",
           bSortable: false

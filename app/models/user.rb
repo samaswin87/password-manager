@@ -107,6 +107,10 @@ class User < ApplicationRecord
     invite! if encrypted_password.blank?
   end
 
+  def status
+    self.active ? 'Active' : 'In Active'
+  end
+
   # ---- user types ----
 
   def admin?

@@ -205,3 +205,12 @@
   vertical-align: baseline;
   border-radius: .25em;
 }
+
+.status_button {
+  padding-top: 14%;
+  padding-right: 10px;
+}
+
+.padding-right_10 {
+  padding-right: 10px;
+}

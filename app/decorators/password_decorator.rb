@@ -1,13 +1,16 @@
 class PasswordDecorator < Draper::Decorator
   delegate_all
 
-  # Define presentation-specific methods here. Helpers are accessed through
-  # `helpers` (aka `h`). You can override attributes, for example:
-  #
-  #   def created_at
-  #     helpers.content_tag :span, class: 'time' do
-  #       object.created_at.strftime("%a %m/%d/%y")
-  #     end
-  #   end
+  def status_button
+    if object.active?
+      h.content_tag(:button, class: 'btn btn-success', id: 'password_status') do
+        h.fa_icon('unlock')
+      end
+    else
+      h.content_tag(:button, class: 'btn btn-danger', id: 'password_status') do
+        h.fa_icon('lock')
+      end
+    end
+  end
 
 end

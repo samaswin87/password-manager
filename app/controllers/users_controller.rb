@@ -15,6 +15,7 @@ class UsersController < BaseController
 
   def show
     add_breadcrumb 'Show', :resource_path
+    @user = @user.decorate
   end
 
   def new
@@ -38,6 +39,13 @@ class UsersController < BaseController
     add_breadcrumb 'Edit', :edit_resource_path
 
     resource.build_address if resource.address.blank?
+  end
+
+  def status
+    user = User.find(params[:id])
+    if user
+      user.active!
+    end
   end
 
   private

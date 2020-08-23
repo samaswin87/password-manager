@@ -14,6 +14,7 @@ class PasswordsController < BaseController
 
   def show
     add_breadcrumb 'Show', :resource_path
+    @password = @password.decorate
   end
 
   def new
@@ -35,6 +36,13 @@ class PasswordsController < BaseController
 
   def edit
     add_breadcrumb 'Edit', :edit_resource_path
+  end
+
+  def status
+    password = Password.find(params[:id])
+    if password
+      password.active!
+    end
   end
 
   private

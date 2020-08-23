@@ -5,6 +5,19 @@
       isAdmin = app.getUser().is_admin
     }
 
+    $('#password_status').click(function() {
+      var url = window.location.pathname;
+      var id = url.substring(url.lastIndexOf('/') + 1);
+      $.ajax({
+          type: "PUT",
+          url: id+'/status',
+          dataType: 'JSON',
+          complete: function() {
+            location.reload();
+          }
+      });
+    });
+
     $( "#show_password" ).click(function() {
       var $pwd = $("#copy-password");
       if ($pwd.attr('type') === undefined) {
