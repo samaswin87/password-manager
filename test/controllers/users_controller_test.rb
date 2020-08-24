@@ -82,6 +82,22 @@ class UsersControllerTest < ActionController::TestCase
     end
   end
 
+  def test_status_with_admin
+    sign_in(users(:john))
+    kart = users(:kart)
+    assert_true(kart.active)
+    put(:status, params: {id: users(:kart).id, user_id: users(:john).id})
+    assert_response(:success)
+    assert_false(kart.reload.active)
+  end
+
+  def test_status_with_user
+    sign_in(users(:kart))
+    assert_raise CanCan::AccessDenied do
+      put(:status, params: {id: users(:kart).id, user_id: users(:john).id})
+    end
+  end
+
   private
 
   def user_params

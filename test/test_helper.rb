@@ -14,4 +14,12 @@ class ActiveSupport::TestCase
     end
   end
 
+  def assert_true(act, msg = nil)
+    assert_equal(true, act, msg)
+  end
+
+  def assert_false(act, msg = nil)
+    assert_equal(false, act, msg)
+  end
+
 end
