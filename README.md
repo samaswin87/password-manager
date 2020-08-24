@@ -2,24 +2,15 @@
 
 Password Manager to maintain the user passwords
 
-### Installed features
-- Devise (with invitable module)
-- CanCanCan
-- Inherited Resources
-- Paperclip
-- Data Migrator
-- Simple Form
-- Slim
-- AdminLTE
-- Bootstrap
-- FontAwesome
-- Simple Navigation
-- Toastr
-- Notify.js
-- jQuery Mask
-- SweetAlert
-- LazyLoad (pictures)
+## Pages
+- Users
+- Password
+- Settings
+
+## User Type
+- Admin
+- User
 
 ## Screenshots
 
-![screencapture-localhost-3000-passwords-2-2020-08-21-08_15_32](https://user-images.githubusercontent.com/50949606/90846763-8aadf300-e386-11ea-8d0b-b9aecf1f06d8.png)
+![screencapture-localhost-3000-passwords-1-2020-08-24-05_59_53](https://user-images.githubusercontent.com/50949606/90992710-1fa32d00-e5cf-11ea-9080-da658754b091.png)
