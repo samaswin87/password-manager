@@ -230,3 +230,45 @@
   color: white;
   cursor: pointer;
 }
+
+.active-passwords {
+  color: #2196F3;
+  background-color: #c9cdc9;
+  margin-right: 2px;
+  border-radius: 4px;
+}
+
+.active-passwords:hover {
+  color: #2196F3;
+  background-color: #6c757d;
+}
+
+.active-passwords.active {
+    color: #2196F3 !important;
+    background-color: #6c757d !important;
+}
+
+.in-active-passwords {
+  color: #6c757d;
+  background-color: #c9cdc9;
+  border-radius: 4px;
+}
+
+.in-active-passwords:hover {
+  color: #c9cdc9;
+  background-color: #6c757d;
+}
+
+.in-active-passwords.active {
+  color: #6c757d !important;
+  background-color: #c9cdc9 !important;
+}
+
+.group-right {
+  margin-right: 10px;
+}
+
+.buttons-csv {
+  color: green;
+  background-color: #3434;
+}

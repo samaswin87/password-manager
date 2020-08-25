@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/samaswin87/simple-navigation.git
-  revision: 3979b449226bff544ab083608b5845b75566628f
+  revision: 8af3e06e39cd6c53278eebd2e3a3ac1e2fe0778d
   branch: master
   specs:
     simple-navigation (4.1.0)
