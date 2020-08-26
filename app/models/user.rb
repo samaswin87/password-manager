@@ -87,7 +87,8 @@ class User < ApplicationRecord
 
   # ---- scope ----
 
-  scope :valid, -> { where(active: true) }
+  scope :active, -> { where(active: true) }
+  scope :in_active, -> { where(active: false) }
 
   # ---- aliases ----
 

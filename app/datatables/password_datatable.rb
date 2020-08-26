@@ -48,7 +48,6 @@ class PasswordDatatable < ApplicationDatatable
   def get_raw_records
     passwords = @current_user.admin? ? Password.all : @current_user.passwords
     status_params = params.fetch('columns',{}).fetch('3', {}).fetch('search', {}).permit(:value)
-    puts status_params
     if status_params['value'] == 'active'
       passwords = passwords.active
     elsif status_params['value'] == 'in-active'

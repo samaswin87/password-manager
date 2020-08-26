@@ -52,6 +52,7 @@
           action: function ( e, dt, node, config ) {
             $('.active-passwords').toggleClass("active");
             if ($('.active-passwords').hasClass('active')) {
+              $('.in-active-passwords').removeClass('active');
               dt.column(3).search('active').draw();
             } else {
               dt.column(3).search('').draw();
@@ -64,12 +65,21 @@
           action: function ( e, dt, node, config ) {
             $('.in-active-passwords').toggleClass("active");
             if ($('.in-active-passwords').hasClass('active')) {
+              $('.active-passwords').removeClass('active');
               dt.column(3).search('in-active').draw();
             } else {
               dt.column(3).search('').draw();
             }
           }
-        }
+        },
+        {
+            extend: 'csv',
+            title: 'Passwords',
+            className: 'btn-space',
+            exportOptions: {
+              columns: [ 0, 1, 2, 3 ]
+            }
+        },
       ],
       initComplete: function() {
        $('.active-passwords').html('<i class="fa fa-square" />');
@@ -97,18 +107,6 @@
       ],
     });
 
-    new $.fn.dataTable.Buttons( $passwordsDatatable, {
-        name: 'commands',
-        buttons: [
-          {
-              extend: 'csv',
-              title: 'Passwords',
-              exportOptions: {
-                columns: [ 0, 1, 2, 3 ]
-              }
-          },
-        ]
-    });
 
     $passwordsDatatable
     .buttons( 'commands', null )

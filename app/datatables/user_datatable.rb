@@ -13,7 +13,7 @@ class UserDatatable < ApplicationDatatable
       phone: { source: "User.phone", cond: :like },
       gender: { source: "Gender.name", searchable: false},
       type: { source: "UserType.name", searchable: false},
-      status: { source: "Password.active", searchable: false},
+      status: { source: "User.active", searchable: false},
       action: { source: nil, searchable: false, orderable: false }
     }
   end
@@ -53,7 +53,14 @@ class UserDatatable < ApplicationDatatable
   end
 
   def get_raw_records
-    User.includes(:user_type, :gender).all
+    users = User.includes(:user_type, :gender).all
+    status_params = params.fetch('columns',{}).fetch('6', {}).fetch('search', {}).permit(:value)
+    if status_params['value'] == 'active'
+      users = users.active
+    elsif status_params['value'] == 'in-active'
+      users = users.in_active
+    end
+    users
   end
 
 end

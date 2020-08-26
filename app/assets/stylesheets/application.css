@@ -231,11 +231,25 @@
   cursor: pointer;
 }
 
+.group-right {
+  margin-right: 10px;
+}
+
+.buttons-csv {
+  color: green;
+  background-color: #3434;
+}
+
+button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
+  margin-left: 1em;
+  border-radius: 6px;
+}
+
 .active-passwords {
   color: #2196F3;
   background-color: #c9cdc9;
   margin-right: 2px;
-  border-radius: 4px;
+  border-radius: 6px !important;
 }
 
 .active-passwords:hover {
@@ -244,14 +258,14 @@
 }
 
 .active-passwords.active {
-    color: #2196F3 !important;
-    background-color: #6c757d !important;
+  color: #2196F3 !important;
+  background-color: #6c757d !important;
 }
 
 .in-active-passwords {
   color: #6c757d;
   background-color: #c9cdc9;
-  border-radius: 4px;
+  border-radius: 6px !important;
 }
 
 .in-active-passwords:hover {
@@ -264,11 +278,36 @@
   background-color: #c9cdc9 !important;
 }
 
-.group-right {
-  margin-right: 10px;
+
+.active-users {
+  color: #2196F3;
+  background-color: #c9cdc9;
+  margin-right: 2px;
+  border-radius: 6px !important;
 }
 
-.buttons-csv {
-  color: green;
-  background-color: #3434;
+.active-users:hover {
+  color: #2196F3;
+  background-color: #6c757d;
+}
+
+.active-users.active {
+  color: #2196F3 !important;
+  background-color: #6c757d !important;
+}
+
+.in-active-users {
+  color: #6c757d;
+  background-color: #c9cdc9;
+  border-radius: 6px !important;
+}
+
+.in-active-users:hover {
+  color: #c9cdc9;
+  background-color: #6c757d;
+}
+
+.in-active-users.active {
+  color: #6c757d !important;
+  background-color: #c9cdc9 !important;
 }
