@@ -122,6 +122,11 @@
           }
         },
       });
+
+      $('#fileupload').bind('fileuploaddone', function(e, data){
+        $("#user-file-modal").modal("hide");
+        location.reload();
+      });
     });
   });
 

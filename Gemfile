@@ -62,6 +62,8 @@ end
 gem 'aasm'
 gem 'sidekiq'
 gem 'redis-rails'
+gem 'activerecord-import'
+gem 'smarter_csv'
 gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
 gem 'data_migrate'
 gem 'rails-controller-testing'

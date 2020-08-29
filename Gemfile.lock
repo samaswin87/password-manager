@@ -54,6 +54,8 @@ GEM
       activemodel (= 5.2.4.3)
       activesupport (= 5.2.4.3)
       arel (>= 9.0)
+    activerecord-import (1.0.6)
+      activerecord (>= 3.2)
     activestorage (5.2.4.3)
       actionpack (= 5.2.4.3)
       activerecord (= 5.2.4.3)
@@ -351,6 +353,7 @@ GEM
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
+    smarter_csv (1.2.6)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -402,6 +405,7 @@ PLATFORMS
 DEPENDENCIES
   aasm
   actionpack (~> 5.2, >= 5.2.4.3)
+  activerecord-import
   acts_as_tree
   after_commit_everywhere (~> 0.1, >= 0.1.5)
   ajax-datatables-rails
@@ -460,6 +464,7 @@ DEPENDENCIES
   simple-navigation!
   simple_form
   slim
+  smarter_csv
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

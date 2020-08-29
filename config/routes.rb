@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   #
   root 'application#go_home'
 
+  authenticate :user do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+
   devise_for :users, path: '',
                      controllers: {
                       sessions: 'users/sessions',
