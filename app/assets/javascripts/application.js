@@ -22,9 +22,11 @@
 //= require momentjs
 //= require notifyjs
 //= require toastr
+//= require jquery-fileupload/basic
 //= require_tree .
 
 $(document).ready(function(){
+
   var clipboard;
   if (typeof ClipboardJS !== 'undefined')
     clipboard = new ClipboardJS('.clipboard-btn');

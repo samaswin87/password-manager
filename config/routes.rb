@@ -29,5 +29,6 @@ Rails.application.routes.draw do
 
   resources :states
   resources :cities
+  post 'upload/users' => 'upload#users'
   get 'current_user' => 'application#user'
 end

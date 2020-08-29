@@ -1,5 +1,6 @@
 (function() {
   $(function() {
+
     $('#user_status').click(function() {
       var isAdmin = false;
       if (app.getUser() != undefined) {
@@ -20,10 +21,10 @@
       });
     });
 
-    $('#users-datatable').dataTable({
+    var $usersDatatable = $('#users-datatable').DataTable({
       processing: true,
       serverSide: true,
-      dom: "<'row'<'col-sm-3'l><'col-sm-6 text-center'B><'col-sm-3'f>>" +
+      dom: "<'row'<'col-sm-6 text-right'B><'col-sm-6'f>>" +
             "<'row'<'col-sm-12'tr>>" +
             "<'row'<'col-sm-5'i><'col-sm-7'p>>",
       ajax: {
@@ -95,6 +96,32 @@
        $('.in-active-users').html('<i class="fa fa-square" />');
        $('.buttons-csv').html('<i class="fa fa-file-excel-o" />');
       }
+    })
+    .on("init.dt", function (e, settings) {
+      $button = $("<button type='button' name='upload_file' id='upload_file' class='btn btn-file btn-primary btn-sm'><i class='fa fa-upload fa-lg btn-file'></i>Import CSV</button>");
+      $('#users-datatable_filter').prepend($button);
+      $('#upload_file').click(function() {
+        $("#user-file-modal").modal("show");
+      });
+
+      $('#fileupload').fileupload({
+        maxNumberOfFiles: 1,
+        url: '/upload/users',
+        add: function (e, data) {
+          $('.custom-file-label').html(data.files[0].name);
+          var extension = data.files[0].name.split('.').pop();
+          if(data.files[0].size > 10000000) {
+            $('.message > code').html('Warning: Not a valid file. Please import file less than 10 MB');
+            return false;
+          }
+          if (extension === 'csv'){
+            data.submit();
+          } else {
+            $('.message > code').html('Warning: Not a valid file. Please import csv file');
+            return false;
+          }
+        },
+      });
     });
   });
 

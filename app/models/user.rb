@@ -38,8 +38,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :invitable, :recoverable, :registerable,
          :trackable, :timeoutable
 
-  # ---- relationships ----
+  # ---- concerns ----
+  importable
 
+  # ---- relationships ----
   belongs_to :user_type
   belongs_to :gender
   has_one :address, as: :linkable, dependent: :destroy
@@ -101,7 +103,7 @@ class User < ApplicationRecord
   end
 
   def send_mail
-    UserMailer.send_new_user_message(self).deliver
+    UserMailer.send_new_user_message(self).deliver_now
   end
 
   def invite

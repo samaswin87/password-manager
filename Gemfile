@@ -27,7 +27,7 @@ group :development do
   gem 'guard'
   gem 'guard-shell'
   gem 'dotenv-rails'
-  gem 'pry'
+  gem 'pry-rails'
   gem 'faker'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
   gem 'web-console', '>= 3.3.0'
@@ -59,11 +59,16 @@ group :development, :test do
 end
 
 # others
+gem 'aasm'
+gem 'sidekiq'
+gem 'redis-rails'
+gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
 gem 'data_migrate'
 gem 'rails-controller-testing'
 gem 'acts_as_tree'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap_flash_messages', git: 'https://github.com/useruby/bootstrap_flash_messages.git'
+gem "jquery-fileupload-rails"
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
 gem 'has_scope', '~> 0.7.2'

@@ -1,0 +1,18 @@
+.modal.fade id="#{id}-file-modal" tabindex='-1' role='dialog'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type='button' data-dismiss='modal' aria-label="Close"
+          span aria-hidden='true' &times;
+        h4.modal-title File Import
+      .modal-body
+        p.message
+          code.alert-message Max 10MB allwed. Please import CSV only
+        div.input-group
+          div.input-group-prepend
+            span.input-group-text Upload
+          div.custom-file
+            input.custom-file-input type="file" id="fileupload"
+            label.custom-file-label for="file-upload" Choose file
+      .modal-footer
+        button.btn.btn-danger type='button' data-dismiss='modal' Close

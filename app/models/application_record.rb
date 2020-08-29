@@ -1,4 +1,7 @@
 class ApplicationRecord < ActiveRecord::Base
+  include AASM
+  include Importable
+
   self.abstract_class = true
 
   def created_on
@@ -15,11 +18,4 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
-  def destroy
-    if self.active
-      self.active!
-    else
-      super()
-    end
-  end
 end

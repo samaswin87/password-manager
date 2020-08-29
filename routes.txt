@@ -55,6 +55,7 @@
                           PATCH  /cities/:id(.:format)                                                                    cities#update
                           PUT    /cities/:id(.:format)                                                                    cities#update
                           DELETE /cities/:id(.:format)                                                                    cities#destroy
+             upload_users POST   /upload/users(.:format)                                                                  upload#users
              current_user GET    /current_user(.:format)                                                                  application#user
        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
