@@ -8,18 +8,19 @@ class UserImportService < ApplicationService
   def call
     import = FileImport.find(@import_id)
     csv_processed = SmarterCSV.process(import.data.path, options)
+    users = []
     csv_processed.each do |batch|
-      users = []
       batch.each do |row|
         users << {
           first_name: row[field_mapper[:first_name]],
           last_name: row[field_mapper[:last_name]],
-          gender: row[field_mapper[:gender]],
+          gender: Gender.find_gender(row[field_mapper[:gender]]),
           email: row[field_mapper[:email]],
         }
       end
-      puts users
     end
+    User.import(users, on_duplicate_key_update: {conflict_target: [:email], columns: [:first_name, :last_name, :gender, :email]},
+        batch_size: 100)
   end
 
   private
