@@ -1,17 +1,24 @@
 class UserImportService < ApplicationService
 
-  def initialize(import_id, fiel_maps)
+  def initialize(import_id, field_maps)
     @import_id = import_id
-    @fiel_maps = fiel_maps
+    @field_maps = JSON.parse(field_maps.gsub('=>', ':'))
   end
 
   def call
     import = FileImport.find(@import_id)
     csv_processed = SmarterCSV.process(import.data.path, options)
     csv_processed.each do |batch|
+      users = []
       batch.each do |row|
-        puts row
+        users << {
+          first_name: row[field_mapper[:first_name]],
+          last_name: row[field_mapper[:last_name]],
+          gender: row[field_mapper[:gender]],
+          email: row[field_mapper[:email]],
+        }
       end
+      puts users
     end
   end
 
@@ -24,10 +31,10 @@ class UserImportService < ApplicationService
 
   def field_mapper
     {
-      first_name: :first_name,
-      last_name: :last_name,
-      gender: :gender,
-      email: :email
+      first_name: @field_maps['first_name'].to_symbol,
+      last_name: @field_maps['last_name'].to_symbol,
+      gender: @field_maps['gender'].to_symbol,
+      email: @field_maps['email'].to_symbol
     }
   end
 end

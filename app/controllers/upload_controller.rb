@@ -19,6 +19,7 @@ class UploadController < ApplicationController
 
   private
 
+
   def file_params
     params.permit({files: []}, :type)
   end

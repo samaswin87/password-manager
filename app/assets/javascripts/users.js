@@ -4,7 +4,7 @@
     $('#submit-file-user').click(function() {
       putData('/upload/'+$('#import_id').val()+'/import', { fieldMap: {
         first_name: $("select[name='first_name']").val(),
-        last_name: $("select[name='first_name']").val(),
+        last_name: $("select[name='last_name']").val(),
         gender: $("select[name='gender']").val(),
         email: $("select[name='email']").val(),
       }});
