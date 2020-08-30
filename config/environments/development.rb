@@ -52,6 +52,10 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Compress JavaScripts and CSS.
+  config.assets.js_compressor = Uglifier.new(:harmony => true)
+  # config.assets.css_compressor = :sass
+
   # Compress JavaScripts and CSS
   config.assets.compress = true
 

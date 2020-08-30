@@ -26,16 +26,12 @@ class UsersController < BaseController
   end
 
   def create
-    if params[:files].present?
-      puts files
-    else
-      create! do  |success, failure|
-        success.html {redirect_to user_url(@user)}
-        failure.html {
-          flash[:alert] = @user.errors.full_messages.join(', ') if @user.errors.present?
-          render 'new'
-        }
-      end
+    create! do  |success, failure|
+      success.html {redirect_to user_url(@user)}
+      failure.html {
+        flash[:alert] = @user.errors.full_messages.join(', ') if @user.errors.present?
+        render 'new'
+      }
     end
   end
 

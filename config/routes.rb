@@ -33,8 +33,14 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :upload, only: [:create] do
+    member do
+      put :import
+    end
+  end
+
   resources :states
   resources :cities
-  post 'upload/users' => 'upload#users'
+
   get 'current_user' => 'application#user'
 end
