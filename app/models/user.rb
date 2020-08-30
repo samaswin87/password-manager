@@ -103,7 +103,7 @@ class User < ApplicationRecord
   end
 
   def send_mail
-    UserMailer.send_new_user_message(self).deliver_now
+    UserMailer.send_new_user_message(self).deliver
   end
 
   def invite

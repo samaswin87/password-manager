@@ -15,7 +15,7 @@ class UserImportService < ApplicationService
         users << {
           first_name: row[field_mapper[:first_name]],
           last_name: row[field_mapper[:last_name]],
-          gender_id: Gender.find_gender(row[field_mapper[:gender]]).id,
+          gender_id: find_gender(row[field_mapper[:gender]]).id,
           email: row[field_mapper[:email]],
           user_type_id: user_type.id
         }
