@@ -111,21 +111,42 @@
           $('.custom-file-label').html(data.files[0].name);
           var extension = data.files[0].name.split('.').pop();
           if(data.files[0].size > 10000000) {
-            $('.message > code').html('Warning: Not a valid file. Please import file less than 10 MB');
+            $('.message > code').html('Error: Not a valid file. Please import file less than 10 MB');
             return false;
           }
           if (extension === 'csv'){
             data.submit();
           } else {
-            $('.message > code').html('Warning: Not a valid file. Please import csv file');
+            $('.message > code').html('Error: Not a valid file. Please import csv file');
             return false;
           }
+
+          Papa.parse(data.files[0], {
+            header: true,
+            skipEmptyLines: true,
+            complete: function (results) {
+              if ( results.errors.length ) {
+                $('.message > code').html('CSV Error: '+ results.errors[0].message);
+              }
+              else {
+                $.each($('select.form-control'), function( index, field ) {
+                  $($(field)).find('option').get(0).remove();
+                  $.each(results.meta.fields, function(indexOption, option) {
+                    if (index === indexOption) {
+                      $(field).append(`<option value="${option}" selected> ${option} </option>`);
+                    } else {
+                      $(field).append(`<option value="${option}"> ${option} </option>`);
+                    }
+                  });
+                });
+              }
+            }
+          });
         },
       });
 
       $('#fileupload').bind('fileuploaddone', function(e, data){
-        $("#user-file-modal").modal("hide");
-        location.reload();
+        $('#import_id').val(data.result);
       });
     });
   });

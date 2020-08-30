@@ -23,6 +23,7 @@
 //= require notifyjs
 //= require toastr
 //= require jquery-fileupload/basic
+//= require papaparse
 //= require_tree .
 
 $(document).ready(function(){

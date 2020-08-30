@@ -321,3 +321,11 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
 .alert-message {
   color: red !important;
 }
+
+.list-field-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+}
