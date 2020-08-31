@@ -24,10 +24,11 @@ en:
   states:
     index:
       title: "States"
-    show:
-      title: "State %{name}"
     new:
       title: "New State"
+  file_imports:
+    index:
+      title: "Imports"
   resources:
     user:
       title: "Users"

@@ -96,7 +96,8 @@
           'orderable': false,
           bSortable: false
         }, {
-          data: 'status'
+          data: 'status',
+          bSortable: false
         }, {
           "data": "action",
           bSortable: false

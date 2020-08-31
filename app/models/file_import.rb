@@ -38,7 +38,7 @@ class FileImport < ApplicationRecord
     end
 
     event :complete do
-      transitions from: [:processing], to: :completed
+      transitions from: [:processing], to: :completed, after: Proc.new { set_date }
     end
   end
 
@@ -52,5 +52,9 @@ class FileImport < ApplicationRecord
 
   def success_count(count)
     self.update_attribute(:success_count, count)
+  end
+
+  def set_date
+    self.update_attribute(:completed_at, Time.now)
   end
 end

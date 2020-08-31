@@ -12,6 +12,7 @@ SimpleNavigation::Configuration.run do |navigation|
         sub_nav.dom_class = 'treeview-menu'
         sub_nav.item :states, menu_label_icon('States', 'globe'), states_path, class: 'treeview-menu', highlights_on: %r{/states}
         sub_nav.item :cities, menu_label_icon('Cities', 'building-o'), cities_path, class: 'treeview-menu', highlights_on: %r{/cities}
+        sub_nav.item :file_imports, menu_label_icon('File Imports', 'file-excel-o'), file_imports_path, class: 'treeview-menu', highlights_on: %r{/file_imports}
       end
     end
   end
