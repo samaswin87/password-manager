@@ -15,6 +15,12 @@
         }, {
           data: 'source_type'
         }, {
+          data: 'data_updated_on'
+        }, {
+          data: 'completed_on'
+        }, {
+          data: 'status'
+        }, {
           "data": "counts",
           bSortable: false
         }
