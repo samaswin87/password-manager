@@ -1,4 +1,4 @@
-#       Column       |            Type             | Collation | Nullable |                 Default
+#      Column       |            Type             | Collation | Nullable |                 Default
 # -------------------+-----------------------------+-----------+----------+------------------------------------------
 #  id                | bigint                      |           | not null | nextval('file_imports_id_seq'::regclass)
 #  state             | character varying           |           |          |
@@ -9,8 +9,12 @@
 #  completed_at      | timestamp without time zone |           |          |
 #  source_type       | character varying           |           |          |
 #  source_id         | bigint                      |           |          |
+#  error_messages    | text                        |           |          |
+#  parsed_count      | integer                     |           |          | 0
+#  failed_count      | integer                     |           |          | 0
+#  success_count     | integer                     |           |          | 0
 #  created_at        | timestamp without time zone |           | not null |
-#  updated_at   | timestamp without time zone |           | not null |
+#  updated_at        | timestamp without time zone |           | not null |
 class FileImport < ApplicationRecord
 
   # ---- relationships ----
@@ -33,8 +37,20 @@ class FileImport < ApplicationRecord
       transitions from: [:pending, :processing], to: :falied
     end
 
-    event :end do
+    event :complete do
       transitions from: [:processing], to: :completed
     end
+  end
+
+  def parsed_count(count)
+    self.update_attribute(:parsed_count, count)
+  end
+
+  def failed_count(count)
+    self.update_attribute(:failed_count, count)
+  end
+
+  def success_count(count)
+    self.update_attribute(:success_count, count)
   end
 end

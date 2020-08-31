@@ -53,6 +53,10 @@ ActiveRecord::Schema.define(version: 2020_08_28_162631) do
     t.datetime "completed_at"
     t.string "source_type"
     t.bigint "source_id"
+    t.text "error_messages"
+    t.integer "parsed_count", default: 0
+    t.integer "failed_count", default: 0
+    t.integer "success_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["source_type", "source_id"], name: "index_file_imports_on_source_type_and_source_id"

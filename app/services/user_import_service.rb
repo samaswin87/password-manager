@@ -7,6 +7,7 @@ class UserImportService < ApplicationService
 
   def call
     import = FileImport.find(@import_id)
+    import.parse!
     csv_processed = SmarterCSV.process(import.data.path, options)
     users = []
     user_type = UserType.user
@@ -22,10 +23,15 @@ class UserImportService < ApplicationService
       end
     end
     begin
-      User.import(users, on_duplicate_key_update: {conflict_target: [:email], columns: [:first_name, :last_name, :gender_id, :email]},
-          batch_size: 100, raise_error: true )
+      import.parsed_count(users.count)
+      imports = User.import(users, on_duplicate_key_update: {conflict_target: [:email], columns: [:first_name, :last_name, :gender_id, :email]},
+          batch_size: 100, raise_error: true)
+      import.complete!
+      import.success_count(imports.ids.count)
+      import.failed_count(imports.failed_instances.count)
     rescue StandardError => e
-      puts "Errors: #{e}"
+      import.update_attribute(:error_messages, e.message)
+      import.abort!
     end
   end
 
