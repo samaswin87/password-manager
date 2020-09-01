@@ -42,15 +42,15 @@ class FileImport < ApplicationRecord
     end
   end
 
-  def parsed_count(count)
+  def parsed_count!(count)
     self.update_attribute(:parsed_count, count)
   end
 
-  def failed_count(count)
+  def failed_count!(count)
     self.update_attribute(:failed_count, count)
   end
 
-  def success_count(count)
+  def success_count!(count)
     self.update_attribute(:success_count, count)
   end
 

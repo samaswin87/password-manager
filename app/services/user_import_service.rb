@@ -23,12 +23,12 @@ class UserImportService < ApplicationService
       end
     end
     begin
-      import.parsed_count(users.count)
+      import.parsed_count!(users.count)
       imports = User.import(users, on_duplicate_key_update: {conflict_target: [:email], columns: [:first_name, :last_name, :gender_id, :email]},
           batch_size: 100, raise_error: true)
       import.complete!
-      import.success_count(imports.ids.count)
-      import.failed_count(imports.failed_instances.count)
+      import.success_count!(imports.ids.count)
+      import.failed_count!(imports.failed_instances.count)
     rescue StandardError => e
       import.update_attribute(:error_messages, e.message)
       import.abort!

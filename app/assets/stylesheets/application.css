@@ -329,3 +329,9 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   margin-bottom: -1px;
   background-color: #fff;
 }
+
+.list-count {
+  position: relative;
+  display: block;
+  background-color: #fff;
+}

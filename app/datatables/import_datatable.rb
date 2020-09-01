@@ -24,11 +24,34 @@ class ImportDatatable < ApplicationDatatable
         data_content_type: record.data_content_type,
         source_type: record.source_type,
         data_updated_on: record.data_updated_at.date_only,
-        completed_on: record.completed_at.date_only,
-        status: record.state,
+        completed_on: record.completed_at.try(:date_only),
+        status: status(record.state),
         DT_RowId: record.id,
-        counts: ''
+        counts: content_tag(:ul, class: 'list-group') do
+          concat(content_tag(:li, "Total: #{record.parsed_count}", class: "list-count"))
+          concat(content_tag(:li, "Processed: #{record.success_count}", class: "list-count"))
+          concat(content_tag(:li, "Error: #{record.failed_count}", class: "list-count"))
+        end
       }
+    end
+  end
+
+  def status(state)
+    case state
+    when 'pending'
+      content(state, 'label-warning')
+    when 'processing'
+      content(state, 'label-primary')
+    when 'falied'
+      content(state, 'label-danger')
+    when 'completed'
+      content(state, 'label-success')
+    end
+  end
+
+  def content(state, label)
+    content_tag(:span, class: "label #{label}") do
+      state.humanize
     end
   end
 
