@@ -1,0 +1,5 @@
+en:
+  link: here
+  file_imports:
+    alerts:
+      success: "Started the file %{file_name} import process. You can track the file status in %{link}"

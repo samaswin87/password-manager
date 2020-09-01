@@ -7,6 +7,7 @@ class UsersController < BaseController
   # ---- methods ----
 
   def index
+    @import = FileImport.where("state IN (?)", ['processing', 'peding']).last
     respond_to do |format|
       format.html
       format.json { render json: UserDatatable.new(params, view_context: view_context, current_user: current_user) }
