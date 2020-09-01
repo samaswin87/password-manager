@@ -8,6 +8,7 @@ class CreateFileImport < ActiveRecord::Migration[5.2]
       t.datetime :completed_at
       t.references :source, index: true, polymorphic: true
       t.text :error_messages
+      t.integer :total_count, default: 0
       t.integer :parsed_count, default: 0
       t.integer :failed_count, default: 0
       t.integer :success_count, default: 0

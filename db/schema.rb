@@ -54,6 +54,7 @@ ActiveRecord::Schema.define(version: 2020_08_28_162631) do
     t.string "source_type"
     t.bigint "source_id"
     t.text "error_messages"
+    t.integer "total_count", default: 0
     t.integer "parsed_count", default: 0
     t.integer "failed_count", default: 0
     t.integer "success_count", default: 0

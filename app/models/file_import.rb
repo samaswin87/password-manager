@@ -10,6 +10,7 @@
 #  source_type       | character varying           |           |          |
 #  source_id         | bigint                      |           |          |
 #  error_messages    | text                        |           |          |
+#  total_count       | integer                     |           |          | 0
 #  parsed_count      | integer                     |           |          | 0
 #  failed_count      | integer                     |           |          | 0
 #  success_count     | integer                     |           |          | 0
@@ -52,6 +53,10 @@ class FileImport < ApplicationRecord
 
   def success_count!(count)
     self.update_attribute(:success_count, count)
+  end
+
+  def total_count!(count)
+    self.update_attribute(:total_count, count)
   end
 
   def set_date

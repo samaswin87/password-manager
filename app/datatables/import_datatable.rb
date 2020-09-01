@@ -28,7 +28,8 @@ class ImportDatatable < ApplicationDatatable
         status: status(record.state),
         DT_RowId: record.id,
         counts: content_tag(:ul, class: 'list-group') do
-          concat(content_tag(:li, "Total: #{record.parsed_count}", class: "list-count"))
+          concat(content_tag(:li, "Total: #{record.total_count}", class: "list-count"))
+          concat(content_tag(:li, "Parsed: #{record.parsed_count}", class: "list-count"))
           concat(content_tag(:li, "Processed: #{record.success_count}", class: "list-count"))
           concat(content_tag(:li, "Error: #{record.failed_count}", class: "list-count"))
         end
@@ -56,7 +57,7 @@ class ImportDatatable < ApplicationDatatable
   end
 
   def get_raw_records
-    FileImport
+    FileImport.all.order("created_at DESC")
   end
 
 end
