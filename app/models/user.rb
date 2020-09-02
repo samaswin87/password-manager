@@ -38,8 +38,10 @@ class User < ApplicationRecord
   devise :database_authenticatable, :invitable, :recoverable, :registerable,
          :trackable, :timeoutable
 
-  # ---- relationships ----
+  # ---- concerns ----
+  importable
 
+  # ---- relationships ----
   belongs_to :user_type
   belongs_to :gender
   has_one :address, as: :linkable, dependent: :destroy

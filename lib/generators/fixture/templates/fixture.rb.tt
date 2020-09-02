@@ -1,0 +1,8 @@
+one:
+<% columns.each do |column| -%>
+  <%= column %>:
+<% end %>
+two:
+<% columns.each do |column| -%>
+  <%= column %>:
+<% end %>

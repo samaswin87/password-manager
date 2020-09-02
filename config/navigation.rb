@@ -6,6 +6,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :header, 'MAIN NAVIGATION', nil, html: { class: 'header'}
     primary.item :passwords, menu_label_icon('Passwords', 'key'), passwords_path, html: { class: 'root-level'}, highlights_on: %r{/passwords} if can?(:manage, Password)
     primary.item :admin_users, menu_label_icon('Users', 'user'), users_path, html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:manage, User)
+    primary.item :file_imports, menu_label_icon('Imports', 'file-excel-o'), file_imports_path, html: { class: 'root-level'}, highlights_on: %r{/file_imports} if can?(:manage, FileImport)
     primary.item :profile, menu_label_icon('Profile', 'user'), user_path(current_user), html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:show, User) & !current_user.admin?
     if can?(:manage, State)
       primary.item :settings, menu_label_icon('Settings', 'globe'), '#',html: { class: 'treeview'}, parent_menu: {class: 'pull-right-container', icon_class: 'fa fa-angle-left pull-right'} do |sub_nav|

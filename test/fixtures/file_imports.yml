@@ -1,0 +1,9 @@
+file1:
+  state: pending
+  source: john
+  source_type: User
+
+file2:
+  state: pending
+  source: kart
+  source_type: User

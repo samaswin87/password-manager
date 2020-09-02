@@ -1,5 +1,6 @@
                    Prefix Verb   URI Pattern                                                                              Controller#Action
                      root GET    /                                                                                        application#go_home
+              sidekiq_web        /sidekiq                                                                                 Sidekiq::Web
          new_user_session GET    /login(.:format)                                                                         users/sessions#new
              user_session POST   /login(.:format)                                                                         users/sessions#create
      destroy_user_session DELETE /logout(.:format)                                                                        users/sessions#destroy
@@ -39,6 +40,8 @@
                           PATCH  /passwords/:id(.:format)                                                                 passwords#update
                           PUT    /passwords/:id(.:format)                                                                 passwords#update
                           DELETE /passwords/:id(.:format)                                                                 passwords#destroy
+            import_upload PUT    /upload/:id/import(.:format)                                                             upload#import
+             upload_index POST   /upload(.:format)                                                                        upload#create
                    states GET    /states(.:format)                                                                        states#index
                           POST   /states(.:format)                                                                        states#create
                 new_state GET    /states/new(.:format)                                                                    states#new
@@ -55,6 +58,14 @@
                           PATCH  /cities/:id(.:format)                                                                    cities#update
                           PUT    /cities/:id(.:format)                                                                    cities#update
                           DELETE /cities/:id(.:format)                                                                    cities#destroy
+             file_imports GET    /file_imports(.:format)                                                                  file_imports#index
+                          POST   /file_imports(.:format)                                                                  file_imports#create
+          new_file_import GET    /file_imports/new(.:format)                                                              file_imports#new
+         edit_file_import GET    /file_imports/:id/edit(.:format)                                                         file_imports#edit
+              file_import GET    /file_imports/:id(.:format)                                                              file_imports#show
+                          PATCH  /file_imports/:id(.:format)                                                              file_imports#update
+                          PUT    /file_imports/:id(.:format)                                                              file_imports#update
+                          DELETE /file_imports/:id(.:format)                                                              file_imports#destroy
              current_user GET    /current_user(.:format)                                                                  application#user
        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show

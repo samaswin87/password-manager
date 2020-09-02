@@ -6,4 +6,5 @@
 #  created_at | timestamp without time zone |           | not null |
 #  updated_at | timestamp without time zone |           | not null |
 class Gender < ApplicationRecord
+
 end

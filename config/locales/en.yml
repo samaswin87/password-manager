@@ -1,4 +1,34 @@
 en:
+  title: "Password Manager"
+  users:
+    index:
+      title: "Users"
+    show:
+      title: "User %{name}"
+    new:
+      title: "New User"
+  passwords:
+    index:
+      title: "Passwords"
+    show:
+      title: "Password %{name}"
+    new:
+      title: "New Password"
+  cities:
+    index:
+      title: "Cities"
+    show:
+      title: "City %{name}"
+    new:
+      title: "New City"
+  states:
+    index:
+      title: "States"
+    new:
+      title: "New State"
+  file_imports:
+    index:
+      title: "Imports"
   resources:
     user:
       title: "Users"

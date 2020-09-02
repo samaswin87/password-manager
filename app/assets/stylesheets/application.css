@@ -19,6 +19,8 @@
  *= require bootstrap
  *= require font-awesome
  *= require adminlte
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
  *= require_tree .
  *= require_self
  */
@@ -310,4 +312,30 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
 .in-active-users.active {
   color: #6c757d !important;
   background-color: #c9cdc9 !important;
+}
+
+.btn-file {
+  margin-right: 5px;
+}
+
+.alert-message {
+  color: red !important;
+}
+
+.list-field-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+}
+
+.list-count {
+  position: relative;
+  display: block;
+  background-color: #fff;
+}
+
+.alert-import {
+  padding: 3px 12px 0px 22px;
 }

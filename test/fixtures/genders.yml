@@ -2,8 +2,8 @@
 
 male:
   name: Male
-  alias: Male
+  alias: male
 
 female:
   name: Female
-  alias: Female
+  alias: female

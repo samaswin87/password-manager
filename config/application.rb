@@ -24,5 +24,7 @@ module PasswordManager
     I18n.locale = "en"
 
     config.generators.javascript_engine = :js
+    config.active_job.queue_adapter = :sidekiq
+
   end
 end

@@ -102,4 +102,17 @@ module ApplicationHelper
 
     flash_messages.join("\n").html_safe
   end
+
+  # Note: https://coderwall.com/p/a1pj7w/rails-page-titles-with-the-right-amount-of-magic
+  def title
+    if content_for?(:title)
+      # allows the title to be set in the view by using t(".title")
+      content_for :title
+    else
+      # look up translation key based on controller path, action name and .title
+      # this works identical to the built-in lazy lookup
+      t("#{ controller_path.tr('/', '.') }.#{ action_name }.title", default: :title)
+    end
+  end
+
 end

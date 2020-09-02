@@ -9,4 +9,8 @@ class UserType < ApplicationRecord
   # ---- relationships ----
 
   has_many :users
+
+  def self.user
+    UserType.find_by(alias: 'user');
+  end
 end
