@@ -8,7 +8,7 @@ class FixtureGeneratorTest < Rails::Generators::TestCase
 
   test "generator runs without errors" do
     assert_nothing_raised do
-      run_generator ["arguments"]
+      run_generator ["user"]
     end
   end
 end
