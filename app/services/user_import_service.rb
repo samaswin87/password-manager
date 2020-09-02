@@ -17,9 +17,7 @@ class UserImportService < ApplicationService
     users = []
     user_type = UserType.user
     total_records = 0
-    import.percentage!(10)
     csv_processed.each do |batch|
-      import.percentage!(30)
       total_records = total_records + batch.count
       batch.each do |row|
         row_hash = {
@@ -31,19 +29,15 @@ class UserImportService < ApplicationService
         }
         users << row_hash if validate_fields(row_hash)
       end
-      import.percentage!(50)
     end
     begin
       import.total_count!(total_records)
       import.parsed_count!(users.count)
-      import.percentage!(70)
       imports = User.import(users, on_duplicate_key_update: {conflict_target: [:email], columns: [:first_name, :last_name, :gender_id, :email]},
           batch_size: 100, raise_error: true)
       import.complete!
-      import.percentage!(90)
       import.success_count!(imports.ids.count)
       import.failed_count!(imports.failed_instances.count + @errors.count)
-      import.percentage!(100)
     rescue StandardError => e
       import.update_attribute(:error_messages, e.message)
       import.abort!

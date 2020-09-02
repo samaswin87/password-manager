@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_050355) do
+ActiveRecord::Schema.define(version: 2020_09_02_052856) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -60,22 +60,13 @@ ActiveRecord::Schema.define(version: 2020_09_02_050355) do
     t.integer "success_count", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "job_status_id"
-    t.index ["job_status_id"], name: "index_file_imports_on_job_status_id"
+    t.string "job_id"
     t.index ["source_type", "source_id"], name: "index_file_imports_on_source_type_and_source_id"
   end
 
   create_table "genders", force: :cascade do |t|
     t.string "name"
     t.string "alias"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "job_statuses", force: :cascade do |t|
-    t.string "job_id"
-    t.text "error_messages"
-    t.integer "percentage", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

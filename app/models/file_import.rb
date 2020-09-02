@@ -16,13 +16,12 @@
 #  success_count     | integer                     |           |          | 0
 #  created_at        | timestamp without time zone |           | not null |
 #  updated_at        | timestamp without time zone |           | not null |
-#  job_status_id     | bigint                      |           |          |
+# job_id             | character varying           |           |          |
 class FileImport < ApplicationRecord
 
   has_paper_trail
   # ---- relationships ----
   belongs_to :source, polymorphic: true
-  belongs_to :job_status, optional: true
 
   # ---- paperclip ----
   has_attached_file :data
@@ -66,10 +65,4 @@ class FileImport < ApplicationRecord
     self.update_attribute(:completed_at, Time.now)
   end
 
-  def percentage!(count)
-    @job_status ||= self.job_status
-    if @job_status
-      @job_status.update_attribute(:percentage, count)
-    end
-  end
 end
