@@ -335,3 +335,7 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   display: block;
   background-color: #fff;
 }
+
+.alert-import {
+  padding: 3px 12px 0px 22px;
+}

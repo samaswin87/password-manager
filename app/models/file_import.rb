@@ -30,8 +30,8 @@ class FileImport < ApplicationRecord
     state :pending, initial: true
     state :processing, :falied, :completed
 
-    event :parse do
-      transitions from: :pending, to: :processing
+    event :process do
+      transitions from: [:pending], to: :processing
     end
 
     event :abort do

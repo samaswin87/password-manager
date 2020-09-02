@@ -22,4 +22,8 @@ class ActiveSupport::TestCase
     assert_equal(false, act, msg)
   end
 
+  def assert_count(exp_count, act_count, msg = nil)
+    assert_equal(exp_count, act_count, msg)
+  end
+
 end

@@ -6,13 +6,13 @@ class UserImportService < ApplicationService
 
   def initialize(import_id, field_maps)
     @import_id = import_id
-    @field_maps = JSON.parse(field_maps.gsub('=>', ':'))
+    @field_maps = field_maps.is_a?(Hash) ? field_maps.symbolize_keys : JSON.parse(field_maps.gsub('=>', ':')).symbolize_keys
     @errors = []
   end
 
   def call
     import = FileImport.find(@import_id)
-    import.parse!
+    import.process!
     csv_processed = SmarterCSV.process(import.data.path, options)
     users = []
     user_type = UserType.user
@@ -53,10 +53,10 @@ class UserImportService < ApplicationService
 
   def field_mapper
     {
-      first_name: @field_maps['first_name'].to_symbol,
-      last_name: @field_maps['last_name'].to_symbol,
-      gender: @field_maps['gender'].to_symbol,
-      email: @field_maps['email'].to_symbol
+      first_name: @field_maps[:first_name].to_symbol,
+      last_name: @field_maps[:last_name].to_symbol,
+      gender: @field_maps[:gender].to_symbol,
+      email: @field_maps[:email].to_symbol
     }
   end
 

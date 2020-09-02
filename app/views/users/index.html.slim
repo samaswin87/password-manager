@@ -3,12 +3,13 @@
 = bootstrap_box 'Users', 'table', bootstrap_button_new do
   .box-body
     .row
-      .col-md-12.alert-imports
-        div.alert.alert-success.alert-dismissible
-          button.close type="button" data-dismiss="alert" aria-hidden="true" ×
-          h4
-            i.icon.fa.fa-check Alert!
-          p = t("file_imports.alerts.success", file_name: @import.try(:data_file_name), link: link_to(t('link'), file_imports_path)).html_safe
+      - if @import.present?
+        .col-md-12.alert-imports
+          div.alert.alert-warning.alert-dismissible.alert-import
+            button.close type="button" data-dismiss="alert" aria-hidden="true" ×
+            h4
+              i.icon.fa.fa-warning Alert!
+            p = t("file_imports.alerts.success", file_name: @import.try(:data_file_name), link: link_to(t('link'), file_imports_path)).html_safe
       .col-md-12
         table#users-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
           thead

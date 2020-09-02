@@ -18,4 +18,7 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
+  def to_s
+    self.attributes.map { |key, value| "#{key}=#{value}" }.join(', ')
+  end
 end

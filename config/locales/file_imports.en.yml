@@ -2,4 +2,4 @@ en:
   link: here
   file_imports:
     alerts:
-      success: "Started the file %{file_name} import process. You can track the file status in %{link}"
+      success: "File %{file_name} is in process. You can track the file status in %{link}"
