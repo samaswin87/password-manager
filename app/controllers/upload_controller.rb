@@ -13,7 +13,10 @@ class UploadController < ApplicationController
   end
 
   def import
-    UserImportWorker.perform_async(params[:id], params[:fieldMap])
+    job_id = UserImportWorker.perform_async(params[:id], params[:fieldMap])
+    file_import = FileImport.find(params[:id])
+    job_status = JobStatus.create(job_id: job_id)
+    file_import.update_attribute(:job_status_id, job_status.id)
     render json: {success: true} ,status: :ok and return
   end
 

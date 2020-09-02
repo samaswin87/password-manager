@@ -61,6 +61,8 @@ end
 # others
 gem 'aasm'
 gem 'sidekiq'
+gem 'sidekiq-status'
+gem 'paper_trail'
 gem 'redis-rails'
 gem 'activerecord-import'
 gem 'smarter_csv'
