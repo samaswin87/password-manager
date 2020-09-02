@@ -61,6 +61,8 @@ class FileImport < ApplicationRecord
     self.update_attribute(:total_count, count)
   end
 
+  private
+
   def set_date
     self.update_attribute(:completed_at, Time.now)
   end
