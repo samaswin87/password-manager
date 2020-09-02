@@ -10,7 +10,7 @@ async function putData(url = '', data = {}) {
     },
     body: JSON.stringify(data)
   });
-  return response;
+  return response.json();
 }
 
 async function postData(url = '', data = {}) {

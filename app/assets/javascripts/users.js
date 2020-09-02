@@ -7,9 +7,13 @@
         last_name: $("select[name='last_name']").val(),
         gender: $("select[name='gender']").val(),
         email: $("select[name='email']").val(),
-      }});
+      }})
+      .then(data => {
+        var searchParams = new URLSearchParams(window.location.search);
+        searchParams.set("job", data.job_id);
+        window.location.search = searchParams.toString();
+      });
       $("#user-file-modal").modal("hide");
-      location.reload();
     });
 
     $('#user_status').click(function() {

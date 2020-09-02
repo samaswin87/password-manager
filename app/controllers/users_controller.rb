@@ -7,7 +7,9 @@ class UsersController < BaseController
   # ---- methods ----
 
   def index
-    @import = FileImport.where("state IN (?)", ['processing', 'pending']).last
+    if params[:job].present?
+      @import = FileImport.find_by(job_id: params[:job_id])
+    end
     respond_to do |format|
       format.html
       format.json { render json: UserDatatable.new(params, view_context: view_context, current_user: current_user) }
