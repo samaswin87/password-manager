@@ -16,7 +16,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(genders(:male), john.gender)
     assert_equal(addresses(:john), john.address)
     passwords = Password.all.order(:id)
-    john.passwords.each_with_index do |address, index|
+    john.passwords.order(:id).each_with_index do |address, index|
       assert_equal(passwords[index], address)
     end
   end
