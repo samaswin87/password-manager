@@ -25,6 +25,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'guard'
   gem 'guard-shell'
   gem 'dotenv-rails'

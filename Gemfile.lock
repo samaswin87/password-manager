@@ -74,6 +74,9 @@ GEM
     ajax-datatables-rails (1.2.0)
       railties (>= 5.0)
       zeitwerk
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     archive-zip (0.12.0)
       io-like (~> 0.3.0)
     arel (9.0.0)
@@ -466,6 +469,7 @@ DEPENDENCIES
   acts_as_tree
   after_commit_everywhere (~> 0.1, >= 0.1.5)
   ajax-datatables-rails
+  annotate
   bootstrap-wysihtml5-rails
   bootstrap_flash_messages!
   breadcrumbs_on_rails

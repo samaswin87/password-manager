@@ -1,37 +1,39 @@
-#          Column         |            Type             | Collation | Nullable |              Default
-# ------------------------+-----------------------------+-----------+----------+-----------------------------------
-#  id                     | bigint                      |           | not null | nextval('users_id_seq'::regclass)
-#  email                  | character varying           |           | not null | ''::character varying
-#  encrypted_password     | character varying           |           | not null | ''::character varying
-#  reset_password_token   | character varying           |           |          |
-#  reset_password_sent_at | timestamp without time zone |           |          |
-#  sign_in_count          | integer                     |           | not null | 0
-#  current_sign_in_at     | timestamp without time zone |           |          |
-#  last_sign_in_at        | timestamp without time zone |           |          |
-#  current_sign_in_ip     | inet                        |           |          |
-#  last_sign_in_ip        | inet                        |           |          |
-#  failed_attempts        | integer                     |           | not null | 0
-#  unlock_token           | character varying           |           |          |
-#  locked_at              | timestamp without time zone |           |          |
-#  invitation_token       | character varying           |           |          |
-#  invitation_created_at  | timestamp without time zone |           |          |
-#  invitation_sent_at     | timestamp without time zone |           |          |
-#  invitation_accepted_at | timestamp without time zone |           |          |
-#  invitation_limit       | integer                     |           |          |
-#  invited_by_id          | integer                     |           |          |
-#  invited_by_type        | integer                     |           |          |
-#  first_name             | character varying           |           |          |
-#  last_name              | character varying           |           |          |
-#  phone                  | character varying           |           |          |
-#  gender_id              | bigint                      |           |          |
-#  user_type_id           | bigint                      |           |          |
-#  avatar_file_name       | character varying           |           |          |
-#  avatar_content_type    | character varying           |           |          |
-#  avatar_file_size       | integer                     |           |          |
-#  avatar_updated_at      | timestamp without time zone |           |          |
-#  created_at             | timestamp without time zone |           | not null |
-#  updated_at             | timestamp without time zone |           | not null |
-#  active                 | boolean                     |           |          | true
+# == Schema Information
+#
+# Table name: users
+#
+#  id                     :bigint           not null, primary key
+#  email                  :string           default(""), not null
+#  encrypted_password     :string           default(""), not null
+#  reset_password_token   :string
+#  reset_password_sent_at :datetime
+#  sign_in_count          :integer          default(0), not null
+#  current_sign_in_at     :datetime
+#  last_sign_in_at        :datetime
+#  current_sign_in_ip     :inet
+#  last_sign_in_ip        :inet
+#  failed_attempts        :integer          default(0), not null
+#  unlock_token           :string
+#  locked_at              :datetime
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_id          :integer
+#  invited_by_type        :integer
+#  first_name             :string
+#  last_name              :string
+#  phone                  :string
+#  gender_id              :bigint
+#  user_type_id           :bigint
+#  avatar_file_name       :string
+#  avatar_content_type    :string
+#  avatar_file_size       :integer
+#  avatar_updated_at      :datetime
+#  created_at             :datetime         not null
+#  updated_at             :datetime         not null
+#  active                 :boolean          default(TRUE)
 class User < ApplicationRecord
   # ---- devise ----
 
