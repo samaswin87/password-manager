@@ -16,7 +16,7 @@
 #  success_count     | integer                     |           |          | 0
 #  created_at        | timestamp without time zone |           | not null |
 #  updated_at        | timestamp without time zone |           | not null |
-# job_id             | character varying           |           |          |
+#  job_id            | character varying           |           |          |
 class FileImport < ApplicationRecord
 
   has_paper_trail
