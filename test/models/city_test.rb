@@ -4,6 +4,7 @@ class CityTest < ActiveSupport::TestCase
 
   def test_associations
     assert_equal(states(:tamil_nadu), cities(:chennai).state)
+    assert_equal(addresses(:john), cities(:chennai).addresses.first)
   end
 
   def test_create
