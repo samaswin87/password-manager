@@ -27,15 +27,17 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_status
+    assert_equal('Active', users(:kart).status)
+    assert_equal('In Active', users(:jack).status)
   end
 
   def test_admin?
-  end
-
-  def test_to_hash
+    assert_true(users(:john).admin?)
+    assert_false(users(:kart).admin?)
   end
 
   def test_member_since
+    assert_equal(Time.now.strftime("%b, %Y"),users(:john).member_since)
   end
 
   def test_create

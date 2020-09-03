@@ -13,13 +13,13 @@ class UserImportServiceTest < ActiveSupport::TestCase
 
   def test_file_import
     service = UserImportService.new(@file1.id, field_maps)
-    assert_count(2, User.count)
+    assert_count(3, User.count)
     assert_equal('pending', @file1.state)
     assert_nil(@file1.completed_at)
     assert_difference('User.count', 10) do
       service.call
     end
-    assert_count(12, User.count)
+    assert_count(13, User.count)
 
     assert_equal('completed', @file1.reload.state)
     assert_count(0, @file1.failed_count)
@@ -31,12 +31,12 @@ class UserImportServiceTest < ActiveSupport::TestCase
 
   def test_file_import_with_errors
     service = UserImportService.new(@file2.id, field_maps)
-    assert_count(2, User.count)
+    assert_count(3, User.count)
     assert_nil(@file2.completed_at)
     assert_difference('User.count', 10) do
       service.call
     end
-    assert_count(12, User.count)
+    assert_count(13, User.count)
     assert_equal('completed', @file2.reload.state)
     assert_count(3, @file2.failed_count)
     assert_count(13, @file2.total_count)
