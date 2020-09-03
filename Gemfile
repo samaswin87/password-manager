@@ -1,9 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.4.4'
+ruby '2.7.0'
 gem 'rails', '~> 5.2.0'
-gem 'actionpack', '~> 5.2', '>= 5.2.4.3'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.3'
 # Use SCSS for stylesheets
@@ -25,6 +24,7 @@ group :development, :test do
 end
 
 group :development do
+  gem 'annotate'
   gem 'guard'
   gem 'guard-shell'
   gem 'dotenv-rails'
@@ -43,10 +43,11 @@ group :test do
   gem 'capybara', '>= 2.15', '< 4.0'
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
-  gem 'chromedriver-helper'
+  gem 'webdrivers', '~> 4.0'
   gem 'cucumber-rails', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
+  gem 'simplecov', require: false
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -89,7 +90,7 @@ gem 'humanize_boolean'
 gem 'iconv'
 gem 'inherited_resources', '~> 1.11'
 gem 'lazyload-rails'
-gem 'paperclip', '~> 5.2.0'
+gem 'paperclip'
 gem 'paranoia', '~> 2.0'
 gem 'responders'
 gem 'scoped_search'

@@ -74,8 +74,9 @@ GEM
     ajax-datatables-rails (1.2.0)
       railties (>= 5.0)
       zeitwerk
-    archive-zip (0.12.0)
-      io-like (~> 0.3.0)
+    annotate (3.1.1)
+      activerecord (>= 3.2, < 7.0)
+      rake (>= 10.4, < 14.0)
     arel (9.0.0)
     bcrypt (3.1.15)
     bindex (0.8.1)
@@ -86,7 +87,7 @@ GEM
     builder (3.2.4)
     byebug (11.1.3)
     cancancan (3.1.0)
-    capybara (3.32.2)
+    capybara (3.33.0)
       addressable
       mini_mime (>= 0.1.3)
       nokogiri (~> 1.8)
@@ -95,55 +96,49 @@ GEM
       regexp_parser (~> 1.5)
       xpath (~> 3.2)
     childprocess (3.0.0)
-    chromedriver-helper (2.1.1)
-      archive-zip (~> 0.10)
-      nokogiri (~> 1.8)
     chronic_duration (0.10.6)
       numerizer (~> 0.1.1)
     climate_control (0.2.0)
-    cocaine (0.5.8)
-      climate_control (>= 0.0.3, < 1.0)
     coderay (1.1.3)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
     crass (1.0.6)
-    cucumber (4.1.0)
-      builder (~> 3.2, >= 3.2.3)
-      cucumber-core (~> 7.1, >= 7.1.0)
-      cucumber-create-meta (~> 1.0.0, >= 1.0.0)
-      cucumber-cucumber-expressions (~> 10.1, >= 10.1.0)
-      cucumber-gherkin (~> 14.0, >= 14.0.1)
-      cucumber-html-formatter (~> 7.0, >= 7.0.0)
-      cucumber-messages (~> 12.2, >= 12.2.0)
-      cucumber-wire (~> 3.1, >= 3.1.0)
-      diff-lcs (~> 1.3, >= 1.3, < 1.4)
+    cucumber (5.1.0)
+      builder (~> 3.2, >= 3.2.4)
+      cucumber-core (~> 8.0, >= 8.0.1)
+      cucumber-create-meta (~> 2.0, >= 2.0.1)
+      cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
+      cucumber-gherkin (~> 15.0, >= 15.0.2)
+      cucumber-html-formatter (~> 9.0, >= 9.0.0)
+      cucumber-messages (~> 13.0, >= 13.0.1)
+      cucumber-wire (~> 4.0, >= 4.0.1)
+      diff-lcs (~> 1.4, >= 1.4.4)
       multi_test (~> 0.1, >= 0.1.2)
-      sys-uname (~> 1.0, >= 1.0.2)
-    cucumber-core (7.1.0)
-      cucumber-gherkin (~> 14.0, >= 14.0.1)
-      cucumber-messages (~> 12.2, >= 12.2.0)
+      sys-uname (~> 1.2, >= 1.2.1)
+    cucumber-core (8.0.1)
+      cucumber-gherkin (~> 15.0, >= 15.0.2)
+      cucumber-messages (~> 13.0, >= 13.0.1)
       cucumber-tag-expressions (~> 2.0, >= 2.0.4)
-    cucumber-create-meta (1.0.0)
-      cucumber-messages (~> 12.2, >= 12.2.0)
+    cucumber-create-meta (2.0.2)
+      cucumber-messages (~> 13.0, >= 13.0.1)
       sys-uname (~> 1.2, >= 1.2.1)
     cucumber-cucumber-expressions (10.3.0)
-    cucumber-gherkin (14.2.0)
-      cucumber-messages (~> 12.4, >= 12.4.0)
-    cucumber-html-formatter (7.2.0)
-      cucumber-messages (~> 12.4, >= 12.4.0)
-    cucumber-messages (12.4.0)
+    cucumber-gherkin (15.0.2)
+      cucumber-messages (~> 13.0, >= 13.0.1)
+    cucumber-html-formatter (9.0.0)
+      cucumber-messages (~> 13.0, >= 13.0.1)
+    cucumber-messages (13.0.1)
       protobuf-cucumber (~> 3.10, >= 3.10.8)
-    cucumber-rails (2.1.0)
-      capybara (>= 2.12, < 4)
-      cucumber (>= 3.0.2, < 5)
-      mime-types (>= 2.0, < 4)
-      nokogiri (~> 1.8)
-      rails (>= 4.2, < 7)
+    cucumber-rails (1.4.0)
+      capybara (>= 1.1.2)
+      cucumber (>= 1.2.0)
+      nokogiri (>= 1.5.0)
+      rails (>= 3.0.0)
     cucumber-tag-expressions (2.0.4)
-    cucumber-wire (3.1.0)
-      cucumber-core (~> 7.1, >= 7.1.0)
-      cucumber-cucumber-expressions (~> 10.1, >= 10.1.0)
-      cucumber-messages (~> 12.2, >= 12.2.0)
+    cucumber-wire (4.0.1)
+      cucumber-core (~> 8.0, >= 8.0.1)
+      cucumber-cucumber-expressions (~> 10.3, >= 10.3.0)
+      cucumber-messages (~> 13.0, >= 13.0.1)
     data_migrate (6.3.0)
       rails (>= 5.0)
     database_cleaner (1.8.5)
@@ -156,7 +151,8 @@ GEM
     devise_invitable (2.0.2)
       actionmailer (>= 5.0)
       devise (>= 4.6)
-    diff-lcs (1.3)
+    diff-lcs (1.4.4)
+    docile (1.3.2)
     dotenv (2.7.6)
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
@@ -177,7 +173,7 @@ GEM
       multi_json
     erubi (1.9.0)
     execjs (2.7.0)
-    faker (2.12.0)
+    faker (2.13.0)
       i18n (>= 1.6, < 2)
     faraday (1.0.1)
       multipart-post (>= 1.2, < 3)
@@ -214,7 +210,6 @@ GEM
       has_scope (~> 0.6)
       railties (>= 5.0, < 6.1)
       responders (>= 2, < 4)
-    io-like (0.3.1)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     jquery-datatables (1.10.20)
@@ -234,10 +229,10 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
       ruby_dep (~> 1.2)
-    loofah (2.6.0)
+    loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
-    lumberjack (1.2.7)
+    lumberjack (1.2.8)
     mail (2.7.1)
       mini_mime (>= 0.1.1)
     marcel (0.3.3)
@@ -250,7 +245,7 @@ GEM
     mimemagic (0.3.5)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
-    minitest (5.14.1)
+    minitest (5.14.2)
     multi_json (1.15.0)
     multi_test (0.1.2)
     multipart-post (2.1.1)
@@ -266,12 +261,12 @@ GEM
     paper_trail (11.0.0)
       activerecord (>= 5.2)
       request_store (~> 1.1)
-    paperclip (5.2.1)
+    paperclip (6.1.0)
       activemodel (>= 4.2.0)
       activesupport (>= 4.2.0)
-      cocaine (~> 0.5.5)
       mime-types
       mimemagic (~> 0.3.0)
+      terrapin (~> 0.6.0)
     paranoia (2.4.2)
       activerecord (>= 4.0, < 6.1)
     pg (0.21.0)
@@ -285,12 +280,10 @@ GEM
       method_source (~> 1.0)
     pry-rails (0.3.9)
       pry (>= 0.10.4)
-    public_suffix (4.0.5)
+    public_suffix (4.0.6)
     puma (4.3.5)
       nio4r (~> 2.0)
     rack (2.2.3)
-    rack-protection (2.0.8.1)
-      rack
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -342,7 +335,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rdoc (6.2.1)
-    redis (4.1.4)
+    redis (4.2.1)
     redis-actionpack (5.2.0)
       actionpack (>= 5, < 7)
       redis-rack (>= 2.1.0, < 3)
@@ -380,7 +373,7 @@ GEM
       tilt (>= 1.1, < 3)
     sassc (2.4.0)
       ffi (~> 1.9)
-    scoped_search (4.1.8)
+    scoped_search (4.1.9)
       activerecord (>= 4.2.0)
     sdoc (1.1.0)
       rdoc (>= 5.0)
@@ -394,22 +387,25 @@ GEM
       rubyzip (>= 1.2.2)
     semantic_range (2.3.0)
     shellany (0.0.1)
-    sidekiq (5.2.9)
-      connection_pool (~> 2.2, >= 2.2.2)
+    sidekiq (6.1.1)
+      connection_pool (>= 2.2.2)
       rack (~> 2.0)
-      rack-protection (>= 1.5.0)
-      redis (>= 3.3.5, < 4.2)
+      redis (>= 4.2.0)
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
     simple_form (5.0.2)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    simplecov (0.19.0)
+      docile (~> 1.1)
+      simplecov-html (~> 0.11)
+    simplecov-html (0.12.2)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
     smarter_csv (1.2.6)
-    spring (2.1.0)
+    spring (2.1.1)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
       spring (>= 1.2, < 3.0)
@@ -423,6 +419,8 @@ GEM
     sys-uname (1.2.1)
       ffi (>= 1.0.0)
     temple (0.8.2)
+    terrapin (0.6.0)
+      climate_control (>= 0.0.3, < 1.0)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -433,13 +431,17 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    warden (1.2.8)
-      rack (>= 2.0.6)
+    warden (1.2.9)
+      rack (>= 2.0.9)
     web-console (3.7.0)
       actionview (>= 5.0)
       activemodel (>= 5.0)
       bindex (>= 0.4.0)
       railties (>= 5.0)
+    webdrivers (4.4.1)
+      nokogiri (~> 1.6)
+      rubyzip (>= 1.3.0)
+      selenium-webdriver (>= 3.0, < 4.0)
     webpacker (5.1.1)
       activesupport (>= 5.2)
       rack-proxy (>= 0.6.1)
@@ -461,18 +463,17 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  actionpack (~> 5.2, >= 5.2.4.3)
   activerecord-import
   acts_as_tree
   after_commit_everywhere (~> 0.1, >= 0.1.5)
   ajax-datatables-rails
+  annotate
   bootstrap-wysihtml5-rails
   bootstrap_flash_messages!
   breadcrumbs_on_rails
   byebug
   cancancan
   capybara (>= 2.15, < 4.0)
-  chromedriver-helper
   cucumber
   cucumber-rails
   data_migrate
@@ -497,7 +498,7 @@ DEPENDENCIES
   lazyload-rails
   listen (>= 3.0.5, < 3.2)
   paper_trail
-  paperclip (~> 5.2.0)
+  paperclip
   paranoia (~> 2.0)
   pg (~> 0.21)
   pry-rails
@@ -525,6 +526,7 @@ DEPENDENCIES
   sidekiq-status
   simple-navigation!
   simple_form
+  simplecov
   slim
   smarter_csv
   spring
@@ -533,12 +535,13 @@ DEPENDENCIES
   tzinfo-data
   uglifier (>= 1.3.0)
   web-console (>= 3.3.0)
+  webdrivers (~> 4.0)
   webpacker (~> 5.1.1)
   will_paginate-bootstrap
   yajl-ruby
 
 RUBY VERSION
-   ruby 2.4.4p296
+   ruby 2.7.0p0
 
 BUNDLED WITH
    2.1.4

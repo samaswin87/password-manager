@@ -1,11 +1,13 @@
-#    Column   |            Type             | Collation | Nullable |              Default
-# ------------+-----------------------------+-----------+----------+------------------------------------
-#  id         | bigint                      |           | not null | nextval('cities_id_seq'::regclass)
-#  name       | character varying           |           |          |
-#  state_id   | bigint                      |           |          |
-#  created_at | timestamp without time zone |           | not null |
-#  updated_at | timestamp without time zone |           | not null |
-#  active     | boolean                     |           |          | true
+# == Schema Information
+#
+# Table name: cities
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  state_id   :bigint
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  active     :boolean          default(TRUE)
 class City < ApplicationRecord
   # ---- relationships ----
 

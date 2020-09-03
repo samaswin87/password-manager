@@ -1,22 +1,24 @@
-#      Column       |            Type             | Collation | Nullable |                 Default
-# -------------------+-----------------------------+-----------+----------+------------------------------------------
-#  id                | bigint                      |           | not null | nextval('file_imports_id_seq'::regclass)
-#  state             | character varying           |           |          |
-#  data_file_name    | character varying           |           |          |
-#  data_content_type | character varying           |           |          |
-#  data_file_size    | integer                     |           |          |
-#  data_updated_at   | timestamp without time zone |           |          |
-#  completed_at      | timestamp without time zone |           |          |
-#  source_type       | character varying           |           |          |
-#  source_id         | bigint                      |           |          |
-#  error_messages    | text                        |           |          |
-#  total_count       | integer                     |           |          | 0
-#  parsed_count      | integer                     |           |          | 0
-#  failed_count      | integer                     |           |          | 0
-#  success_count     | integer                     |           |          | 0
-#  created_at        | timestamp without time zone |           | not null |
-#  updated_at        | timestamp without time zone |           | not null |
-#  job_id            | character varying           |           |          |
+# == Schema Information
+#
+# Table name: file_imports
+#
+#  id                :bigint           not null, primary key
+#  state             :string
+#  data_file_name    :string
+#  data_content_type :string
+#  data_file_size    :integer
+#  data_updated_at   :datetime
+#  completed_at      :datetime
+#  source_type       :string
+#  source_id         :bigint
+#  error_messages    :text
+#  total_count       :integer          default(0)
+#  parsed_count      :integer          default(0)
+#  failed_count      :integer          default(0)
+#  success_count     :integer          default(0)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  job_id            :string
 class FileImport < ApplicationRecord
 
   has_paper_trail

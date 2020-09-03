@@ -1,22 +1,25 @@
-#         Column          |            Type             | Collation | Nullable |                Default
-# -------------------------+-----------------------------+-----------+----------+---------------------------------------
-#  id                      | bigint                      |           | not null | nextval('passwords_id_seq'::regclass)
-#  name                    | character varying           |           |          |
-#  url                     | character varying           |           |          |
-#  username                | character varying           |           |          |
-#  text_password           | character varying           |           |          |
-#  key                     | character varying           |           |          |
-#  ssh_private_key         | text                        |           |          |
-#  details                 | text                        |           |          |
-#  attachment_file_name    | character varying           |           |          |
-#  attachment_content_type | character varying           |           |          |
-#  attachment_file_size    | integer                     |           |          |
-#  attachment_updated_at   | timestamp without time zone |           |          |
-#  user_id                 | bigint                      |           |          |
-#  created_at              | timestamp without time zone |           | not null |
-#  updated_at              | timestamp without time zone |           | not null |
-#  active                  | boolean                     |           |          | true
-#  ssh_public_key          | text                        |           |          |
+# == Schema Information
+#
+# Table name: passwords
+#
+#  id                      :bigint           not null, primary key
+#  name                    :string
+#  url                     :string
+#  username                :string
+#  text_password           :string
+#  key                     :string
+#  ssh_private_key         :text
+#  details                 :text
+#  attachment_file_name    :string
+#  attachment_content_type :string
+#  attachment_file_size    :integer
+#  attachment_updated_at   :datetime
+#  user_id                 :bigint
+#  created_at              :datetime         not null
+#  updated_at              :datetime         not null
+#  active                  :boolean          default(TRUE)
+#  ssh_public_key          :text
+#  ssh_finger_print        :string
 class Password < ApplicationRecord
   # ---- relationships ----
   belongs_to :user

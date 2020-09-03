@@ -1,10 +1,12 @@
-#    Column   |            Type             | Collation | Nullable |              Default
-# ------------+-----------------------------+-----------+----------+------------------------------------
-#  id         | bigint                      |           | not null | nextval('states_id_seq'::regclass)
-#  name       | character varying           |           |          |
-#  created_at | timestamp without time zone |           | not null |
-#  updated_at | timestamp without time zone |           | not null |
-#  active     | boolean                     |           |          | true
+# == Schema Information
+#
+# Table name: states
+#
+#  id         :bigint           not null, primary key
+#  name       :string
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  active     :boolean          default(TRUE)
 class State < ApplicationRecord
   # ---- relationships ----
 
