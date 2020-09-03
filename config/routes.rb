@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   #
   root 'application#go_home'
 
+  authenticate :user do
+    require 'sidekiq/web'
+    mount Sidekiq::Web => '/sidekiq'
+  end
+
+
   devise_for :users, path: '',
                      controllers: {
                       sessions: 'users/sessions',
@@ -27,7 +33,15 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :upload, only: [:create] do
+    member do
+      put :import
+    end
+  end
+
   resources :states
   resources :cities
+  resources :file_imports
+
   get 'current_user' => 'application#user'
 end

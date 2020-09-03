@@ -19,6 +19,8 @@
  *= require bootstrap
  *= require font-awesome
  *= require adminlte
+ *= require jquery.fileupload
+ *= require jquery.fileupload-ui
  *= require_tree .
  *= require_self
  */
@@ -27,8 +29,20 @@
 }
 
 .main-header .logo {
-  line-height: 69px;
+  line-height: 54px;
   height: auto;
+}
+
+.navbar {
+  padding: 0px 0px !important;
+}
+
+.navbar-nav {
+  margin-right: 10px;
+}
+
+.navbar-custom-menu > .navbar-nav > li > .dropdown-menu {
+  margin-top: 15px;
 }
 
 .content-header > .breadcrumb > li + li:before {
@@ -93,15 +107,12 @@
   background: #3c8dbc !important;
 }
 
-.user-panel {
-  background-color: #00BCD4;
-}
 
 .password_name,
 .password_url,
 .password_key,
 .password_username,
-.password_password,
+.password_text_password,
 .password_ssh_public_key,
 .password_ssh_private_key,
 .password_ssh_finger_print,
@@ -111,7 +122,7 @@
 
 .password_name > span.help-block,
 .password_url > span.help-block,
-.password_url > span.help-block {
+.password_text_password > span.help-block {
   display: none;
 }
 
@@ -185,7 +196,7 @@
 }
 
 .nav > li > a.dropdown-toggle {
-  padding: 10px 10px 10px 10px;
+  padding: 15px 11px 15px 10px;
   border-radius: 4px;
 }
 
@@ -213,4 +224,118 @@
 
 .padding-right_10 {
   padding-right: 10px;
+}
+
+.eye-btn {
+  padding-top: 11px;
+  background-color: #404040;
+  color: white;
+  cursor: pointer;
+}
+
+.group-right {
+  margin-right: 10px;
+}
+
+.buttons-csv {
+  color: green;
+  background-color: #3434;
+}
+
+button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
+  margin-left: 1em;
+  border-radius: 6px;
+}
+
+.active-passwords {
+  color: #2196F3;
+  background-color: #c9cdc9;
+  margin-right: 2px;
+  border-radius: 6px !important;
+}
+
+.active-passwords:hover {
+  color: #2196F3;
+  background-color: #6c757d;
+}
+
+.active-passwords.active {
+  color: #2196F3 !important;
+  background-color: #6c757d !important;
+}
+
+.in-active-passwords {
+  color: #6c757d;
+  background-color: #c9cdc9;
+  border-radius: 6px !important;
+}
+
+.in-active-passwords:hover {
+  color: #c9cdc9;
+  background-color: #6c757d;
+}
+
+.in-active-passwords.active {
+  color: #6c757d !important;
+  background-color: #c9cdc9 !important;
+}
+
+
+.active-users {
+  color: #2196F3;
+  background-color: #c9cdc9;
+  margin-right: 2px;
+  border-radius: 6px !important;
+}
+
+.active-users:hover {
+  color: #2196F3;
+  background-color: #6c757d;
+}
+
+.active-users.active {
+  color: #2196F3 !important;
+  background-color: #6c757d !important;
+}
+
+.in-active-users {
+  color: #6c757d;
+  background-color: #c9cdc9;
+  border-radius: 6px !important;
+}
+
+.in-active-users:hover {
+  color: #c9cdc9;
+  background-color: #6c757d;
+}
+
+.in-active-users.active {
+  color: #6c757d !important;
+  background-color: #c9cdc9 !important;
+}
+
+.btn-file {
+  margin-right: 5px;
+}
+
+.alert-message {
+  color: red !important;
+}
+
+.list-field-item {
+  position: relative;
+  display: block;
+  padding: 0.75rem 1.25rem;
+  margin-bottom: -1px;
+  background-color: #fff;
+}
+
+.list-count {
+  position: relative;
+  display: block;
+  background-color: #fff;
+}
+
+.alert-import {
+  padding: 3px 12px 0px 22px;
 }

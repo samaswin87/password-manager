@@ -1,3 +1,4 @@
+= content_for :title, t(".title")
 = render 'shared/modal', title: 'State', id: 'state'
 = bootstrap_box 'States', 'table', bootstrap_button_new(page: '#', id: 'add-state') do
   .box-body

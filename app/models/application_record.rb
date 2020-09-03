@@ -1,12 +1,15 @@
 class ApplicationRecord < ActiveRecord::Base
+  include AASM
+  include Importable
+
   self.abstract_class = true
 
   def created_on
-    self.created_at.strftime("%Y-%m-%d")
+    self.created_at.date_only
   end
 
   def updated_on
-    self.updated_at.strftime("%Y-%m-%d")
+    self.updated_at.date_only
   end
 
   def active!
@@ -15,11 +18,7 @@ class ApplicationRecord < ActiveRecord::Base
     end
   end
 
-  def destroy
-    if self.active
-      self.active!
-    else
-      super()
-    end
+  def to_s
+    self.attributes.map { |key, value| "#{key}=#{value}" }.join(', ')
   end
 end

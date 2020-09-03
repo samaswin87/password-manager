@@ -45,4 +45,8 @@ class String
     return false if self.blank?
     true if self.to_date rescue false
   end
+
+  def to_symbol
+    self.parameterize.underscore.to_sym
+  end
 end

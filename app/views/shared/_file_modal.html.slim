@@ -1,0 +1,48 @@
+.modal.fade id="#{id}-file-modal" tabindex='-1' role='dialog'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close type='button' data-dismiss='modal' aria-label="Close"
+          span aria-hidden='true' &times;
+        h4.modal-title File Import
+      .modal-body
+        p.message
+          code.alert-message Max 10MB allwed. Please import CSV only
+        div.input-group
+          div.input-group-prepend
+            span.input-group-text Upload
+          div.custom-file
+            input.custom-file-input type="file" id="fileupload"
+            label.custom-file-label for="file-upload" Choose file
+        .row.form-group.mt-5
+          .col-md-12.text-center
+            code Select the CSV column you want to use the data from for each field.
+          .col-md-6.input-group
+            ul.list-group
+              li.list-field-item
+                span.input-group-text.map-label First name
+              li.list-field-item
+                span.input-group-text Last name
+              li.list-field-item
+                span.input-group-text Email
+              li.list-field-item
+                span.input-group-text Gender
+          .col-md-6.input-group
+            ul.list-group
+              li.list-field-item
+                select.form-control name='first_name'
+                  option CSV Fields
+              li.list-field-item
+                select.form-control name='last_name'
+                  option CSV Fields
+              li.list-field-item
+                select.form-control name='email'
+                  option CSV Fields
+              li.list-field-item
+                select.form-control name='gender'
+                  option CSV Fields
+              li.list-field-item
+                input id='import_id' type='text' hidden=true
+      .modal-footer
+        button.btn.btn-danger type='button' data-dismiss='modal' Close
+        button.btn.btn-primary id="submit-file-#{id}" type='button' Submit

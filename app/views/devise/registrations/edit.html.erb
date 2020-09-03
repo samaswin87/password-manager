@@ -9,9 +9,9 @@
       <p>Aguardando confirmação para: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, autocomplete: "off", hint: "deixe em branco caso não queira alterar", required: false %>
+    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change", required: false %>
     <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "precisamos que confirme a senha para gravar as alterações", required: true %>
+    <%= f.input :current_password, hint: "we need you to confirm the password to save the changes", required: true %>
   </div>
 
   <div class="form-actions">

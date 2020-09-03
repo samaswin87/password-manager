@@ -2,6 +2,7 @@
 
 class Users::SessionsController < Devise::SessionsController
   # before_action :configure_sign_in_params, only: [:create]
+  skip_before_action :set_paper_trail_whodunnit
 
   # GET /resource/sign_in
   # def new
@@ -9,9 +10,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create
+    super do |resource|
+       unless resource.active?
+        sign_out
+        flash[:alert] = 'User is in in active. Please contact admin'
+        redirect_to new_user_session_path
+        return
+      end
+    end
+  end
 
   # DELETE /resource/sign_out
   # def destroy
