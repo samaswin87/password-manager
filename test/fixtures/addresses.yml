@@ -5,7 +5,8 @@ john:
   number: 5528
   street: Nathalie Radial
   additional_details:
-  linkable: admin
+  linkable_type: User
+  linkable: john
   city: chennai
   state: tamil_nadu
   zipcode: 29729
@@ -15,7 +16,8 @@ kart:
   number: 28477
   street: Ward Squares
   additional_details:
-  linkable: user
+  linkable_type: User
+  linkable: kart
   city: madurai
   state: tamil_nadu
   zipcode: 44742

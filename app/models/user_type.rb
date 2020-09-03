@@ -6,8 +6,8 @@
 #  created_at | timestamp without time zone |           | not null |
 #  updated_at | timestamp without time zone |           | not null |
 class UserType < ApplicationRecord
-  # ---- relationships ----
 
+  # ---- relationships ----
   has_many :users
 
   def self.user

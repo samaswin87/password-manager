@@ -16,7 +16,7 @@
 #  success_count     | integer                     |           |          | 0
 #  created_at        | timestamp without time zone |           | not null |
 #  updated_at        | timestamp without time zone |           | not null |
-# job_id             | character varying           |           |          |
+#  job_id            | character varying           |           |          |
 class FileImport < ApplicationRecord
 
   has_paper_trail
@@ -60,6 +60,8 @@ class FileImport < ApplicationRecord
   def total_count!(count)
     self.update_attribute(:total_count, count)
   end
+
+  private
 
   def set_date
     self.update_attribute(:completed_at, Time.now)
