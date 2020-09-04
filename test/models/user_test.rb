@@ -135,6 +135,18 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(16113, john.avatar_file_size)
   end
 
+  def test_to_hash
+    john = users(:john)
+    expected = {
+      id: john.id,
+      first_name: 'John',
+      last_name: 'Daphine',
+      email: 'john@admin.com',
+      is_admin: true
+    }
+    assert_equal(expected, john.to_hash)
+  end
+
   private
 
   def user_params

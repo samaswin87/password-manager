@@ -42,6 +42,15 @@ class UserTypeTest < ActiveSupport::TestCase
     assert_equal(user_types(:user), UserType.user)
   end
 
+  def test_time
+    assert_equal('2020-10-10', user_types(:user).created_on)
+    assert_equal('2020-10-13', user_types(:user).updated_on)
+  end
+
+  def test_to_s
+    assert_equal("id=2, name=User, alias=user, created_at=2020-10-10 13:10:00 UTC, updated_at=2020-10-13 10:11:00 UTC", user_types(:user).to_s)
+  end
+
   private
 
   def user_type_params

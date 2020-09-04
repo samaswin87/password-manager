@@ -119,7 +119,7 @@ class User < ApplicationRecord
   # ---- user types ----
 
   def admin?
-    user_type_id == UserType.where(alias: 'administrator').first.id
+    self.user_type_id == UserType.where(alias: 'administrator').first.id
   end
 
   def to_hash
