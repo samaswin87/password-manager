@@ -20,4 +20,8 @@ class State < ApplicationRecord
   # ---- scope ----
 
   scope :valid, -> { where(active: true) }
+
+  # ---- validates ----
+
+  validates :name, presence: true, uniqueness: true
 end

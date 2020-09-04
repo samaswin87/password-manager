@@ -8,7 +8,7 @@ class UsersController < BaseController
 
   def index
     if params[:job].present?
-      @import = FileImport.find_by(job_id: params[:job_id])
+      @import = FileImport.find_by(job_id: params[:job])
     end
     respond_to do |format|
       format.html

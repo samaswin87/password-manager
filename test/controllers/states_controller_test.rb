@@ -51,6 +51,18 @@ class StatesControllerTest < ActionController::TestCase
     assert_redirected_to(state_path(State.last))
   end
 
+  def test_create_with_error
+    sign_in(users(:john))
+    state_param = {
+      state: {
+        name: 'Tamil Nadu',
+      }
+    }
+    post(:create, params: state_param)
+    assert_equal('Name already in use', flash[:alert])
+    assert_template :new
+  end
+
   def test_create_with_user
     sign_in(users(:kart))
     assert_raise CanCan::AccessDenied do

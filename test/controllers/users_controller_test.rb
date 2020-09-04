@@ -10,6 +10,14 @@ class UsersControllerTest < ActionController::TestCase
     assert_not_nil assigns(:users)
   end
 
+  def test_index_with_file_job
+    sign_in(users(:john))
+    get(:index, params: {job: 1})
+    assert_response(:success)
+    assert_equal(file_imports(:file1), @controller.view_assigns['import'])
+    assert_not_nil assigns(:users)
+  end
+
   def test_index_with_user
     sign_in(users(:kart))
     assert_raise CanCan::AccessDenied do
@@ -55,6 +63,15 @@ class UsersControllerTest < ActionController::TestCase
       post(:create, params: user_params)
     end
     assert_redirected_to(user_path(User.last))
+  end
+
+  def test_create_with_error
+    sign_in(users(:john))
+    params = user_params
+    params[:user][:email] = 'john@admin.com'
+    post(:create, params: params)
+    assert_equal('Email already in use', flash[:alert])
+    assert_template :new
   end
 
   def test_create_with_user
