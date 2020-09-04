@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_02_052856) do
+ActiveRecord::Schema.define(version: 2020_09_04_232525) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,10 @@ ActiveRecord::Schema.define(version: 2020_09_02_052856) do
     t.boolean "active", default: true
     t.text "ssh_public_key"
     t.string "ssh_finger_print"
+    t.string "logo_file_name"
+    t.string "logo_content_type"
+    t.bigint "logo_file_size"
+    t.datetime "logo_updated_at"
     t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 

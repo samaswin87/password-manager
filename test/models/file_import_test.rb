@@ -1,25 +1,3 @@
-# == Schema Information
-#
-# Table name: file_imports
-#
-#  id                :bigint           not null, primary key
-#  state             :string
-#  data_file_name    :string
-#  data_content_type :string
-#  data_file_size    :integer
-#  data_updated_at   :datetime
-#  completed_at      :datetime
-#  source_type       :string
-#  source_id         :bigint
-#  error_messages    :text
-#  total_count       :integer          default(0)
-#  parsed_count      :integer          default(0)
-#  failed_count      :integer          default(0)
-#  success_count     :integer          default(0)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
-#  job_id            :string
-#
 require 'test_helper'
 
 class FileImportTest < ActiveSupport::TestCase

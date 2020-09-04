@@ -1,14 +1,3 @@
-# == Schema Information
-#
-# Table name: cities
-#
-#  id         :bigint           not null, primary key
-#  name       :string
-#  state_id   :bigint
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  active     :boolean          default(TRUE)
-#
 require 'test_helper'
 
 class CityTest < ActiveSupport::TestCase

@@ -20,6 +20,11 @@
 #  active                  :boolean          default(TRUE)
 #  ssh_public_key          :text
 #  ssh_finger_print        :string
+#  logo_file_name          :string
+#  logo_content_type       :string
+#  logo_file_size          :bigint
+#  logo_updated_at         :datetime
+#
 class Password < ApplicationRecord
   # ---- relationships ----
   belongs_to :user

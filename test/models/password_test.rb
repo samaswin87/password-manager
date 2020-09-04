@@ -1,26 +1,3 @@
-# == Schema Information
-#
-# Table name: passwords
-#
-#  id                      :bigint           not null, primary key
-#  name                    :string
-#  url                     :string
-#  username                :string
-#  text_password           :string
-#  key                     :string
-#  ssh_private_key         :text
-#  details                 :text
-#  attachment_file_name    :string
-#  attachment_content_type :string
-#  attachment_file_size    :integer
-#  attachment_updated_at   :datetime
-#  user_id                 :bigint
-#  created_at              :datetime         not null
-#  updated_at              :datetime         not null
-#  active                  :boolean          default(TRUE)
-#  ssh_public_key          :text
-#  ssh_finger_print        :string
-#
 require 'test_helper'
 
 class PasswordTest < ActiveSupport::TestCase
