@@ -22,7 +22,9 @@
     h3 Attachments
   .box-body
     - if resource.attachment.present?
-      =link_to resource.attachment.original_filename, resource.attachment.url, download: resource.attachment.original_filename
+      =truncate(resource.attachment.original_filename, length: 25)
+      p.pull-right = link_to (fa_icon('download')), resource.attachment.original_filename,
+      'data-toggle' => 'tooltip', 'data-placement' => 'top', title: resource.attachment.original_filename
     - else
       p= deal_value ''
 

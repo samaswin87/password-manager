@@ -13,10 +13,28 @@ section.content
           li =link_to 'Additional Details', '#details', data: {toggle: 'tab'}
         .tab-content
           .active.tab-pane id="fields"
-            .h3 Password Fields
+            .row
+              .col-md-6
+                label.control-label Credentials
+                =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
+                =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
+                =render 'shared/copy_password', value: resource.text_password, field: 'text_password', title: 'Password'
+                =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
           .tab-pane id="ssh"
-            .h3 SSH Keys
+            .row
+              .col-md-6
+                label.control-label Private Key
+                =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
+              .col-md-6
+                label.control-label Public Key
+                =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
+            .row
+              .col-md-6
+                =render 'shared/copy_text', value: resource.ssh_finger_print, field: 'ssh_finger_print', title: 'Finger Print'
           .tab-pane id="details"
-            .h3 Additional Details
+            .row
+              .col-md-6
+                label.control-label Notes
+                =render 'shared/copy_text_area', value: resource.details, field: 'details'
 
 
