@@ -1,5 +1,8 @@
 require 'simplecov'
 SimpleCov.start 'rails' do
+  add_group "Services", "app/services"
+  add_group "Data Tables", "app/datatables"
+  add_group "Decorators", "app/decorators"
   add_filter '/bin/'
   add_filter '/db/'
   add_filter '/spec/' # for rspec

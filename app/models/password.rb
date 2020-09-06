@@ -40,8 +40,6 @@ class Password < ApplicationRecord
   has_attached_file :attachment
   validates_attachment_content_type :attachment, :content_type => ['application/pdf', /\Aimage\/.*\z/, "application/zip", "application/x-zip"]
 
-  before_post_process :skip_for_zip
-
   has_attached_file :logo, styles: {
     thumb:  '60x60#',
     medium: '120x120#',
@@ -57,12 +55,6 @@ class Password < ApplicationRecord
 
   def status
     self.active ? 'Active' : 'In Active'
-  end
-
-  private
-
-  def skip_for_zip
-     ! %w(application/zip application/x-zip).include?(attachment_content_type)
   end
 
 end
