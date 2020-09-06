@@ -47,7 +47,7 @@ en:
       edit: "Edit City"
     password:
       title: "Passwords"
-      description: "Maintain Password"
+      description: "Password Details"
       new: "New Password"
       edit: "Edit Password"
   activerecord:

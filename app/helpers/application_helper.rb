@@ -73,7 +73,7 @@ module ApplicationHelper
     end
 
     icon = options.delete(:icon) || 'plus'
-    css_class = options.delete(:class) || 'btn btn-default btn-xs pull-right'
+    css_class = options.delete(:class) || 'btn btn-default pull-right'
     id = options.delete(:id)
 
     options[:class] = css_class

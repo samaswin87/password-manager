@@ -114,7 +114,7 @@
       }
     })
     .on("init.dt", function (e, settings) {
-      $button = $("<button type='button' name='upload_file' id='upload_file' class='btn btn-file btn-primary btn-sm'><i class='fa fa-upload fa-lg btn-file'></i>Import CSV</button>");
+      $button = $("<button type='button' name='upload_file' id='upload_file' data-targe='#user-file-modal' class='btn btn-file btn-primary btn-sm'><i class='fa fa-upload fa-lg btn-file'></i>Import CSV</button>");
       $('#users-datatable_filter').prepend($button);
       $('#upload_file').click(function() {
         $(".row.form-group.mt-5").addClass('d-none');

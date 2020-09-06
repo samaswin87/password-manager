@@ -339,3 +339,22 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
 .alert-import {
   padding: 3px 12px 0px 22px;
 }
+
+.img-circle {
+  display: block !important;
+  border-radius: 50%;
+}
+
+.nav-tabs>li.active>a, .nav-tabs>li.active>a:focus, .nav-tabs>li.active>a:hover {
+  color: #555;
+  cursor: default;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-bottom-color: transparent;
+}
+
+.nav>li>a {
+  position: relative;
+  display: block;
+  padding: 10px 15px;
+}

@@ -42,6 +42,14 @@ class Password < ApplicationRecord
 
   before_post_process :skip_for_zip
 
+  has_attached_file :logo, styles: {
+    thumb:  '60x60#',
+    medium: '120x120#',
+    large:  '230x230#'
+  }, default_url: '/vendor/images/img_placeholder.png'
+
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
+
   # ---- scope ----
 
   scope :active, -> { where(active: true) }

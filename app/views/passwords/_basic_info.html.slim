@@ -1,0 +1,28 @@
+.box.box-primary
+  .box-body.box-profile
+    = image_tag resource.logo.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
+    h3.profile-username.text-center =deal_value resource.name
+    p.text-muted.text-center =deal_value resource.user.name
+    ul.list-group.list-group-unbordered
+      li.list-group-item
+        b Created on
+        a.pull-right =resource.created_on
+      li.list-group-item
+        b Last Updated on
+        a.pull-right =resource.updated_on
+      li.list-group-item
+        b Password Updated Days
+        a.pull-right 290
+      li.list-group-item
+        b Password Expired Days
+        a.pull-right 200
+
+.box.box-primary
+  .box-header.with-border
+    h3 Attachments
+  .box-body
+    - if resource.attachment.present?
+      =link_to resource.attachment.original_filename, resource.attachment.url, download: resource.attachment.original_filename
+    - else
+      p= deal_value ''
+
