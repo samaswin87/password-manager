@@ -1,6 +1,6 @@
 class PasswordDatatable < ApplicationDatatable
 
-  def_delegators :@view, :check_box_tag, :link_to, :edit_password_path, :resource_path, :content_tag, :concat
+  def_delegators :@view, :check_box_tag, :link_to, :edit_password_path, :resource_path, :content_tag, :concat, :image_tag
 
   def view_columns
     # Declare strings in this format: ModelName.column_name
@@ -11,6 +11,7 @@ class PasswordDatatable < ApplicationDatatable
       username: { source: "Password.username", cond: :like },
       url: { source: "Password.url", cond: :like },
       status: { source: "Password.active", searchable: false},
+      logo: { source: nil, searchable: false, orderable: false },
       action: { source: nil, searchable: false, orderable: false }
     }
   end
@@ -24,6 +25,7 @@ class PasswordDatatable < ApplicationDatatable
         url: record.url,
         status: status(record.status),
         DT_RowId: record.id,
+        logo: logo(record),
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_password_path(record)))
@@ -31,6 +33,10 @@ class PasswordDatatable < ApplicationDatatable
         end
       }
     end
+  end
+
+  def logo(record)
+    image_tag(record.logo.url(:icon), size: '32x32')
   end
 
   def status(status)

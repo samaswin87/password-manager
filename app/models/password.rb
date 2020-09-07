@@ -41,6 +41,7 @@ class Password < ApplicationRecord
   validates_attachment_content_type :attachment, :content_type => ['application/pdf', /\Aimage\/.*\z/, "application/zip", "application/x-zip"]
 
   has_attached_file :logo, styles: {
+    icon:  '32x32#',
     thumb:  '60x60#',
     medium: '120x120#',
     large:  '230x230#'
