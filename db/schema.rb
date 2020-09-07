@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_140137) do
+ActiveRecord::Schema.define(version: 2020_09_07_141408) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -71,6 +71,17 @@ ActiveRecord::Schema.define(version: 2020_09_07_140137) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "password_attachments", force: :cascade do |t|
+    t.string "attachment_file_name"
+    t.string "attachment_content_type"
+    t.bigint "attachment_file_size"
+    t.datetime "attachment_updated_at"
+    t.bigint "password_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["password_id"], name: "index_password_attachments_on_password_id"
+  end
+
   create_table "passwords", force: :cascade do |t|
     t.string "name"
     t.string "url"
@@ -79,10 +90,6 @@ ActiveRecord::Schema.define(version: 2020_09_07_140137) do
     t.string "key"
     t.text "ssh_private_key"
     t.text "details"
-    t.string "attachment_file_name"
-    t.string "attachment_content_type"
-    t.integer "attachment_file_size"
-    t.datetime "attachment_updated_at"
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -168,6 +175,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_140137) do
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "states"
   add_foreign_key "cities", "states"
+  add_foreign_key "password_attachments", "passwords"
   add_foreign_key "passwords", "users"
   add_foreign_key "users", "genders"
   add_foreign_key "users", "user_types"

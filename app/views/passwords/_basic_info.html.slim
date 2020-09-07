@@ -21,10 +21,11 @@
   .box-header.with-border
     h3 Attachments
   .box-body
-    - if resource.attachment.present?
-      =truncate(resource.attachment.original_filename, length: 25)
-      p.pull-right = link_to (fa_icon('download')), resource.attachment.original_filename,
-      'data-toggle' => 'tooltip', 'data-placement' => 'top', title: resource.attachment.original_filename
+    - if resource.attachments.present?
+      - resource.attachments.each do |attachment|
+        =truncate(attachment.original_filename, length: 25)
+        p.pull-right = link_to (fa_icon('download')), attachment.original_filename,
+        'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.original_filename
     - else
       p= deal_value ''
 
