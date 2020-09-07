@@ -3,30 +3,30 @@ require 'test_helper'
 class PasswordTest < ActiveSupport::TestCase
 
   def test_validation
-    passwords(:facebook).url = nil
-    assert_false(passwords(:facebook).valid?)
-    passwords(:twitter).text_password = nil
-    assert_false(passwords(:twitter).valid?)
-    passwords(:insta).name = nil
-    assert_false(passwords(:insta).valid?)
+    passwords(:john_facebook).url = nil
+    assert_false(passwords(:john_facebook).valid?)
+    passwords(:john_twitter).text_password = nil
+    assert_false(passwords(:john_twitter).valid?)
+    passwords(:john_insta).name = nil
+    assert_false(passwords(:john_insta).valid?)
   end
 
   def test_associations
-    assert_equal(users(:john), passwords(:facebook).user)
+    assert_equal(users(:john), passwords(:john_facebook).user)
   end
 
   def test_scopes
-    assert_equal([passwords(:facebook), passwords(:twitter)], Password.active)
-    assert_equal([passwords(:insta)], Password.in_active)
+    assert_equal([passwords(:john_facebook), passwords(:john_twitter), passwords(:kart_facebook), passwords(:kart_twitter)], Password.active)
+    assert_equal([passwords(:john_insta), passwords(:kart_insta)], Password.in_active)
   end
 
   def test_delegates
-    assert_equal('John Daphine', passwords(:facebook).user_name)
+    assert_equal('John Daphine', passwords(:john_facebook).user_name)
   end
 
   def test_status
-    assert_equal('Active', passwords(:facebook).status)
-    assert_equal('In Active', passwords(:insta).status)
+    assert_equal('Active', passwords(:john_facebook).status)
+    assert_equal('In Active', passwords(:john_insta).status)
   end
 
   def test_create
@@ -52,7 +52,7 @@ class PasswordTest < ActiveSupport::TestCase
   end
 
   def test_attachment
-    facebook = passwords(:facebook)
+    facebook = passwords(:john_facebook)
     image = File.new(File.join(Rails.root, "/test/files", "image.png"))
     facebook.update_attribute(:attachment, image)
     assert_not_nil(facebook.reload.attachment_updated_at)
