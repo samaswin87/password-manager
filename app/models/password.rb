@@ -24,6 +24,9 @@
 #  logo_content_type       :string
 #  logo_file_size          :bigint
 #  logo_updated_at         :datetime
+#  password_changed_at     :datetime
+#  password_copied_at      :datetime
+#  password_viwed_at       :datetime
 #
 class Password < ApplicationRecord
   # ---- relationships ----

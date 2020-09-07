@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_232525) do
+ActiveRecord::Schema.define(version: 2020_09_07_140137) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -93,6 +93,9 @@ ActiveRecord::Schema.define(version: 2020_09_04_232525) do
     t.string "logo_content_type"
     t.bigint "logo_file_size"
     t.datetime "logo_updated_at"
+    t.datetime "password_changed_at"
+    t.datetime "password_copied_at"
+    t.datetime "password_viwed_at"
     t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 
