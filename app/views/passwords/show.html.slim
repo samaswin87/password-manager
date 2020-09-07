@@ -2,62 +2,39 @@
 = render 'form_header'
 
 section.content
-  .box.box-default
-    .box-header.with-border
-      span.padding-right_10
-        =@password.status_button
-      h3.box-title
-        | Password Details
-    .box-body
-      .row
-        .col-md-6
-          .h3 Title
-      .row
-        .col-md-4
-          label.control-label= t 'simple_form.labels.password.name'
-          p= deal_value resource.name
-        .col-md-4
-          label.control-label= t 'simple_form.labels.password.user'
-          p= deal_value resource.user.name
+  .row
+    .col-md-3
+      = render 'basic_info'
+    .col-md-9
+      .nav-tabs-custom
+        ul.nav.nav-tabs
+          li.active =link_to 'Password Fields', '#fields', data: {toggle: 'tab'}
+          li =link_to 'SSH Keys', '#ssh', data: {toggle: 'tab'}
+          li =link_to 'Additional Details', '#details', data: {toggle: 'tab'}
+        .tab-content
+          .active.tab-pane id="fields"
+            .row
+              .col-md-6
+                label.control-label Credentials
+                =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
+                =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
+                =render 'shared/copy_password', value: resource.text_password, field: 'text_password', title: 'Password'
+                =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
+          .tab-pane id="ssh"
+            .row
+              .col-md-6
+                label.control-label Private Key
+                =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
+              .col-md-6
+                label.control-label Public Key
+                =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
+            .row
+              .col-md-6
+                =render 'shared/copy_text', value: resource.ssh_finger_print, field: 'ssh_finger_print', title: 'Finger Print'
+          .tab-pane id="details"
+            .row
+              .col-md-6
+                label.control-label Notes
+                =render 'shared/copy_text_area', value: resource.details, field: 'details'
 
-      .row
-        .col-md-6
-          .h3 Password Fields
-      .row
-        .col-md-6
-          =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
-          =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
-          =render 'shared/copy_password', value: resource.text_password, field: 'text_password', title: 'Password'
-          =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
-      .row
-        .col-md-6
-          .h3 SSH Keys
-      .row
-        .col-md-6
-          label.control-label Private Key
-          =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
-        .col-md-6
-          label.control-label Public Key
-          =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
-      .row
-        .col-md-6
-          =render 'shared/copy_text', value: resource.ssh_finger_print, field: 'ssh_finger_print', title: 'Finger Print'
-      .row
-        .col-md-6
-          .h3 Additional Details
-      .row
-        .col-md-6
-          =render 'shared/copy_text_area', value: resource.details, field: 'details'
-      .row
-        .col-md-6
-          .h3 Attachment
-      .row
-        .col-md-4
-          - if resource.attachment.present?
-            =link_to resource.attachment.original_filename, resource.attachment.url, download: resource.attachment.original_filename
-          - else
-            p= deal_value ''
-    .box-footer
-      .row
-        .col-md-6
-          = link_to 'Back', collection_path(resource), class: 'btn btn-default btn-sm'
+

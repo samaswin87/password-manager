@@ -1,13 +1,3 @@
-# == Schema Information
-#
-# Table name: user_types
-#
-#  id         :bigint           not null, primary key
-#  name       :string
-#  alias      :string
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#
 require 'test_helper'
 
 class UserTypeTest < ActiveSupport::TestCase

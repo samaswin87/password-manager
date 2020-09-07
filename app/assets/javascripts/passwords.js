@@ -89,6 +89,10 @@
       pagingType: 'full_numbers',
       columns: [
         {
+          "data": "logo",
+          sortable: false,
+          searchable: false
+        },{
           data: 'name'
         }, {
           data: 'username'

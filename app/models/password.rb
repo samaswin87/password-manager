@@ -20,6 +20,11 @@
 #  active                  :boolean          default(TRUE)
 #  ssh_public_key          :text
 #  ssh_finger_print        :string
+#  logo_file_name          :string
+#  logo_content_type       :string
+#  logo_file_size          :bigint
+#  logo_updated_at         :datetime
+#
 class Password < ApplicationRecord
   # ---- relationships ----
   belongs_to :user
@@ -35,7 +40,14 @@ class Password < ApplicationRecord
   has_attached_file :attachment
   validates_attachment_content_type :attachment, :content_type => ['application/pdf', /\Aimage\/.*\z/, "application/zip", "application/x-zip"]
 
-  before_post_process :skip_for_zip
+  has_attached_file :logo, styles: {
+    icon:  '32x32#',
+    thumb:  '60x60#',
+    medium: '120x120#',
+    large:  '230x230#'
+  }, default_url: '/vendor/images/img_placeholder.png'
+
+  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
 
   # ---- scope ----
 
@@ -44,12 +56,6 @@ class Password < ApplicationRecord
 
   def status
     self.active ? 'Active' : 'In Active'
-  end
-
-  private
-
-  def skip_for_zip
-     ! %w(application/zip application/x-zip).include?(attachment_content_type)
   end
 
 end

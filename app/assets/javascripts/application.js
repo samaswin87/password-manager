@@ -31,6 +31,11 @@ $(document).ready(function(){
   var clipboard;
   if (typeof ClipboardJS !== 'undefined')
     clipboard = new ClipboardJS('.clipboard-btn');
+
+  $('.nav-tabs > li').on('click', function(event){
+    $(".nav-tabs > li").removeClass("active");
+    $(event.target).parent().addClass('active');
+  });
 });
 
 var app = (function(){
