@@ -37,8 +37,16 @@
                 = form.button :button, class: "btn btn-success pull-right"
                 = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
         .tab-pane id="details"
-          .row
-            .col-md-6
-              label.control-label Notes
-              =render 'shared/copy_text_area', value: resource.details, field: 'details'
+          = simple_form_for resource do |form|
+            .row
+              .col-md-6
+                label.control-label.mr-3 Logo
+                = image_tag resource.logo.url(:icon), class: 'img-crud img-responsive img-logo mr-3', lazy: true
+                = form.input :logo, as: :file, label: false
+            .row
+              .col-md-6
+                label.control-label Notes
+                =render 'shared/text_area_form', form: form, field: :details
+                = form.button :button, class: "btn btn-success pull-right"
+                = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
 

@@ -59,7 +59,7 @@ class PasswordDatatable < ApplicationDatatable
     elsif status_params['value'] == 'in-active'
       passwords = passwords.in_active
     end
-    passwords.order(:updated_at)
+    passwords.order('updated_at desc')
   end
 
 end

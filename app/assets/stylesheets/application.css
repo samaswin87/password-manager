@@ -116,14 +116,13 @@
 .password_key,
 .password_username,
 .password_text_password,
-.password_ssh_finger_print,
-.password_details {
+.password_ssh_finger_print {
   width: 80% !important;
 }
 
 .password_ssh_public_key,
-.password_ssh_private_key
- {
+.password_ssh_private_key,
+.password_details {
   width: 100% !important;
 }
 
@@ -364,5 +363,15 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   position: relative;
   display: block;
   padding: 10px 15px;
+}
+
+.password_logo {
+  display: contents;
+}
+
+.img-logo {
+  width: 20%;
+  height: 70%;
+  object-fit: contain;
 }
 
