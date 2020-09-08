@@ -23,16 +23,19 @@
                 =button_tag 'Generate Password', :type => 'button', class: 'btn btn-info generate-password pull-right mr-3', onclick: "genPassword()"
                 = link_to 'Cancel', collection_path, class: 'btn btn-default mr-3 pull-right'
         .tab-pane id="ssh"
-          .row
-            .col-md-6
-              label.control-label Private Key
-              =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
-            .col-md-6
-              label.control-label Public Key
-              =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
-          .row
-            .col-md-6
-              =render 'shared/copy_text', value: resource.ssh_finger_print, field: 'ssh_finger_print', title: 'Finger Print'
+          = simple_form_for resource do |form|
+            .row
+              .col-md-6
+                label.control-label Private Key
+                =render 'shared/text_area_form', form: form, field: :ssh_private_key
+              .col-md-6
+                label.control-label Public Key
+                =render 'shared/text_area_form', form: form, field: :ssh_public_key
+            .row
+              .col-md-6
+                =render 'shared/text_form', form: form, title: 'Finger Print', field: :ssh_finger_print
+                = form.button :button, class: "btn btn-success pull-right"
+                = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
         .tab-pane id="details"
           .row
             .col-md-6

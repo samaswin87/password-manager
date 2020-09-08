@@ -116,11 +116,15 @@
 .password_key,
 .password_username,
 .password_text_password,
-.password_ssh_public_key,
-.password_ssh_private_key,
 .password_ssh_finger_print,
 .password_details {
   width: 80% !important;
+}
+
+.password_ssh_public_key,
+.password_ssh_private_key
+ {
+  width: 100% !important;
 }
 
 .password_name > span.help-block,
