@@ -35,7 +35,7 @@
       });
     });
 
-    var $passwordsDatatable = $('#passwords-datatable').DataTable({
+    var $passwordsDatatable = $('#passwords-datatable').dataTable({
       processing: true,
       serverSide: true,
       autoWidth: false,
@@ -90,7 +90,7 @@
       columns: [
         {
           "data": "logo",
-          sortable: false,
+          bSort: false,
           searchable: false
         },{
           data: 'name'
