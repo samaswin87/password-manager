@@ -35,7 +35,7 @@
       });
     });
 
-    var $passwordsDatatable = $('#passwords-datatable').dataTable({
+    var $passwordsDatatable = $('#passwords-datatable').DataTable({
       processing: true,
       serverSide: true,
       autoWidth: false,
