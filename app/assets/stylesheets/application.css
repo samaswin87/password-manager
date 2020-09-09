@@ -375,3 +375,6 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   object-fit: contain;
 }
 
+.width-10 {
+  width: 10px;
+}

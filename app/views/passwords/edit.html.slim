@@ -49,4 +49,25 @@
                 =render 'shared/text_area_form', form: form, field: :details
                 = form.button :button, class: "btn btn-success pull-right"
                 = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
+        .tab-pane id="attachments"
+          = simple_form_for resource do |form|
+            .row
+              .col-md-6
+                = form.input :attchment, as: :file, label: false
+                  span.btn.btn-success.fileinput-button
+                    i.fa.fa-plus
+                      | Add files
+                    input type="file" id="file_attachments" multiple=true
+
+            .row
+              .col-md-6
+                table.table.table-bordered role="presentation" id='files_preview'
+                  tbody.files
+                    tr
+                      th.width-10 #
+                      th File Name
+                      th.width-10
+                = form.button :button, class: "btn btn-success pull-right"
+                = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
+
 

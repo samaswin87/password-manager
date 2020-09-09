@@ -9,6 +9,28 @@
       $("#password_text_password").val(generatePassword(true, true, true, false, 20));
     };
 
+    $('#file_attachments').change(function(e) {
+      e.target.files.forEach( function(element, index) {
+        var row = '<tr class="template-upload">'+
+        '  <td>'+
+        '    <p class="id">'+(index + 1)+
+        '    </p>'+
+        '  </td>'+
+        '  <td>'+
+        '    <p class="name">'+element.name+
+        '    </p>'+
+        '    <strong class="error text-danger"></strong>'+
+        '  </td>'+
+        '  <td>'+
+        '    <button class="btn btn-warning cancel pull-right">'+
+        '        <i class="fa fa-minus-circle"></i>'+
+        '    </button>'+
+        '  </td>'+
+        '</tr>';
+        $('#files_preview > tbody').append(row);
+      });
+    });
+
     $('.eye-btn').click(function() {
       $(this).toggleClass("fa-eye fa-eye-slash");
       var $pwd = $("#copy-text_password");
