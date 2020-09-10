@@ -23,9 +23,9 @@
   .box-body
     - if resource.attachments.present?
       - resource.attachments.each do |attachment|
-        =truncate(attachment.original_filename, length: 25)
-        p.pull-right = link_to (fa_icon('download')), attachment.original_filename,
-        'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.original_filename
+        =truncate(attachment.attachment_file_name, length: 25)
+        p.pull-right = link_to (fa_icon('download')), attachment.attachment_file_name,
+        'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
     - else
       p= deal_value ''
 

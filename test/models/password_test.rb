@@ -51,16 +51,6 @@ class PasswordTest < ActiveSupport::TestCase
     end
   end
 
-  def test_attachment
-    facebook = passwords(:john_facebook)
-    image = File.new(File.join(Rails.root, "/test/files", "image.png"))
-    facebook.update_attribute(:attachment, image)
-    assert_not_nil(facebook.reload.attachment_updated_at)
-    assert_equal('image.png', facebook.attachment_file_name)
-    assert_equal('image/png', facebook.attachment_content_type)
-    assert_equal(16113, facebook.attachment_file_size)
-  end
-
   private
 
   def password_params
