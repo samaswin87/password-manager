@@ -61,10 +61,6 @@ gem 'jquery-ui-rails'
 gem 'pg', '~> 0.21'
 gem 'sdoc', '~> 1.1', group: :doc
 
-group :development, :test do
-  gem 'byebug'
-end
-
 # others
 gem 'aasm'
 gem 'sidekiq'

@@ -10,45 +10,11 @@
         li =link_to 'Attachments', '#attachments', data: {toggle: 'tab'}
       .tab-content
         .active.tab-pane id="fields"
-          .row
-            .col-md-6
-              label.control-label Credentials
-              = simple_form_for resource do |form|
-                =render 'shared/text_form', form: form, title: 'Name', field: :name
-                =render 'shared/text_form', form: form, title: 'URL', field: :url
-                =render 'shared/text_form', form: form, title: 'User Name', field: :username
-                =render 'shared/text_form', form: form, title: 'Key Phrase', field: :key
-                =render 'shared/password_form', f: form, title: 'Password', field: :text_password
-                = form.button :button, class: "btn btn-success pull-right"
-                =button_tag 'Generate Password', :type => 'button', class: 'btn btn-info generate-password pull-right mr-3', onclick: "genPassword()"
-                = link_to 'Cancel', collection_path, class: 'btn btn-default mr-3 pull-right'
+          = render 'password_fields'
         .tab-pane id="ssh"
-          = simple_form_for resource do |form|
-            .row
-              .col-md-6
-                label.control-label Private Key
-                =render 'shared/text_area_form', form: form, field: :ssh_private_key
-              .col-md-6
-                label.control-label Public Key
-                =render 'shared/text_area_form', form: form, field: :ssh_public_key
-            .row
-              .col-md-6
-                =render 'shared/text_form', form: form, title: 'Finger Print', field: :ssh_finger_print
-                = form.button :button, class: "btn btn-success pull-right"
-                = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
+          = render 'keys'
         .tab-pane id="details"
-          = simple_form_for resource do |form|
-            .row
-              .col-md-6
-                label.control-label.mr-3 Logo
-                = image_tag resource.logo.url(:icon), class: 'img-crud img-responsive img-logo mr-3', lazy: true
-                = form.input :logo, as: :file, label: false
-            .row
-              .col-md-6
-                label.control-label Notes
-                =render 'shared/text_area_form', form: form, field: :details
-                = form.button :button, class: "btn btn-success pull-right"
-                = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
+          = render 'details'
         .tab-pane id="attachments"
           = simple_form_for resource do |form|
             .row
@@ -67,7 +33,7 @@
                       th.width-10 #
                       th File Name
                       th.width-10
-                = form.button :button, class: "btn btn-success pull-right"
+                = form.button :button, 'Update Attachments',class: "btn btn-success pull-right"
                 = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
 
 

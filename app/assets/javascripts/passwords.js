@@ -1,17 +1,21 @@
 (function() {
   $(function() {
     var isAdmin = true;
+    let files = [];
     if (app.getUser() != undefined) {
       isAdmin = app.getUser().is_admin
     }
 
-    genPassword = function() {
+    genPassword = function(e) {
       $("#password_text_password").val(generatePassword(true, true, true, false, 20));
     };
 
     $('#file_attachments').change(function(e) {
-      e.target.files.forEach( function(element, index) {
-        var row = '<tr class="template-upload">'+
+      let filesArray = $.merge(files, e.target.files);
+
+      $('.template-upload').remove();
+      filesArray.forEach( function(element, index) {
+        const row = '<tr class="template-upload">'+
         '  <td>'+
         '    <p class="id">'+(index + 1)+
         '    </p>'+
@@ -22,12 +26,18 @@
         '    <strong class="error text-danger"></strong>'+
         '  </td>'+
         '  <td>'+
-        '    <button class="btn btn-warning cancel pull-right">'+
+        '    <button class="btn btn-warning cancel pull-right remove-file" id="remove_'+index+'">'+
         '        <i class="fa fa-minus-circle"></i>'+
         '    </button>'+
         '  </td>'+
         '</tr>';
         $('#files_preview > tbody').append(row);
+        $('#remove_'+index).click(function(e) {
+          e.preventDefault();
+          let removableArray = filesArray.splice(index, 1);
+          console.log(removableArray);
+          $(this).parent().parent().remove();
+        });
       });
     });
 
