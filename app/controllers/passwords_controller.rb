@@ -57,6 +57,15 @@ class PasswordsController < BaseController
     render json: {status: 'Success'}, status: :ok and return
   end
 
+  def attachment
+    password = Password.find(params[:id])
+    if password
+      attachment = password.attachments.find(params[:attachment_id])
+      attachment.destroy
+    end
+    redirect_to action: 'show'
+  end
+
   private
 
   def password_params

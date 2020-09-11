@@ -1,5 +1,8 @@
 .box.box-primary
   .box-body.box-profile
+    span.padding-right_10
+      = @password.edit_icon
+      = @password.status_button
     = image_tag resource.logo.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
     h3.profile-username.text-center =deal_value resource.name
     p.text-muted.text-center =deal_value resource.user.name
@@ -20,16 +23,15 @@
 .box.box-primary
   .box-header.with-border
     h3 Attachments
-  .box-body
     - if resource.attachments.present?
-      table.table.table-condensed role="presentation" id='files_preview'
+      table.table.table-borderless
         tbody.files
           - resource.attachments.each do |attachment|
             tr
               td =truncate(attachment.attachment_file_name, length: 25)
               td
                 = link_to (fa_icon('download')), attachment.attachment_file_name, 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
-                = link_to (fa_icon('minus-circle')), attachment.attachment_file_name, class:'pull-right'
+                = @password.delete_attachment(attachment.id)
     - else
       p= deal_value ''
 
