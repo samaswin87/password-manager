@@ -22,10 +22,14 @@
     h3 Attachments
   .box-body
     - if resource.attachments.present?
-      - resource.attachments.each do |attachment|
-        =truncate(attachment.attachment_file_name, length: 25)
-        p.pull-right = link_to (fa_icon('download')), attachment.attachment_file_name,
-        'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
+      table.table.table-condensed role="presentation" id='files_preview'
+        tbody.files
+          - resource.attachments.each do |attachment|
+            tr
+              td =truncate(attachment.attachment_file_name, length: 25)
+              td
+                = link_to (fa_icon('download')), attachment.attachment_file_name, 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
+                = link_to (fa_icon('minus-circle')), attachment.attachment_file_name, class:'pull-right'
     - else
       p= deal_value ''
 

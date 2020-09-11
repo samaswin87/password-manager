@@ -1,7 +1,7 @@
 (function() {
   $(function() {
     var isAdmin = true;
-    let files = [];
+    let fileArray = [];
     if (app.getUser() != undefined) {
       isAdmin = app.getUser().is_admin
     }
@@ -10,8 +10,19 @@
       $("#password_text_password").val(generatePassword(true, true, true, false, 20));
     };
 
+    $('#file_upload').click(function(e) {
+      e.preventDefault();
+      var formData = new FormData();
+      for (var i = 0; i < fileArray.length; i++) {
+        formData.append("attachments[]", fileArray[i]);
+      }
+      putFiles('uploads', formData).then(data => {
+        location.reload();
+      });
+    });
+
     $('#file_attachments').change(function(e) {
-      let filesArray = $.merge(files, e.target.files);
+      let filesArray = $.merge(fileArray, e.target.files);
 
       $('.template-upload').remove();
       filesArray.forEach( function(element, index) {
@@ -34,8 +45,7 @@
         $('#files_preview > tbody').append(row);
         $('#remove_'+index).click(function(e) {
           e.preventDefault();
-          let removableArray = filesArray.splice(index, 1);
-          console.log(removableArray);
+          fileArray.remove(element);
           $(this).parent().parent().remove();
         });
       });
@@ -151,5 +161,13 @@
     .insertBefore('.dt-buttons');
 
   });
+
+  Array.prototype.remove = function (v) {
+      if (this.indexOf(v) != -1) {
+          this.splice(this.indexOf(v), 1);
+          return true;
+      }
+      return false;
+  }
 
 }).call(this);

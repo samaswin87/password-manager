@@ -45,9 +45,22 @@ class PasswordsController < BaseController
     end
   end
 
+  def uploads
+    if params['attachments'].present?
+      password = Password.find(params[:id])
+      if password.present?
+        params['attachments'].each do |attachment|
+          password.attachments.create(attachment: attachment)
+        end
+      end
+    end
+    render json: {status: 'Success'}, status: :ok and return
+  end
+
   private
 
   def password_params
     params.require(:password).permit!
   end
+
 end
