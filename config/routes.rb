@@ -44,6 +44,7 @@ Rails.application.routes.draw do
   resources :states
   resources :cities
   resources :file_imports
+  resources :field_mappings
 
   get 'current_user' => 'application#user'
 end

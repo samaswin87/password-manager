@@ -1,0 +1,2 @@
+class FieldMappingsController < ApplicationController
+end

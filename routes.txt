@@ -68,6 +68,14 @@
                           PATCH  /file_imports/:id(.:format)                                                              file_imports#update
                           PUT    /file_imports/:id(.:format)                                                              file_imports#update
                           DELETE /file_imports/:id(.:format)                                                              file_imports#destroy
+           field_mappings GET    /field_mappings(.:format)                                                                field_mappings#index
+                          POST   /field_mappings(.:format)                                                                field_mappings#create
+        new_field_mapping GET    /field_mappings/new(.:format)                                                            field_mappings#new
+       edit_field_mapping GET    /field_mappings/:id/edit(.:format)                                                       field_mappings#edit
+            field_mapping GET    /field_mappings/:id(.:format)                                                            field_mappings#show
+                          PATCH  /field_mappings/:id(.:format)                                                            field_mappings#update
+                          PUT    /field_mappings/:id(.:format)                                                            field_mappings#update
+                          DELETE /field_mappings/:id(.:format)                                                            field_mappings#destroy
              current_user GET    /current_user(.:format)                                                                  application#user
        rails_service_blob GET    /rails/active_storage/blobs/:signed_id/*filename(.:format)                               active_storage/blobs#show
 rails_blob_representation GET    /rails/active_storage/representations/:signed_blob_id/:variation_key/*filename(.:format) active_storage/representations#show
