@@ -30,6 +30,8 @@ Rails.application.routes.draw do
   resources :passwords do
     member do
       put :status
+      put :uploads
+      delete :attachment
     end
   end
 

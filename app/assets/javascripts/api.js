@@ -13,6 +13,20 @@ async function putData(url = '', data = {}) {
   return response.json();
 }
 
+async function putFiles(url = '', data) {
+  const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+  const response = await fetch(url, {
+    method: 'PUT',
+    credentials: 'same-origin',
+    mode: 'same-origin',
+    headers: {
+      'X-CSRF-Token': csrf
+    },
+    body: data
+  });
+  return response.json();
+}
+
 async function postData(url = '', data = {}) {
   const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
   const response = await fetch(url, {

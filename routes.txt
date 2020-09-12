@@ -32,6 +32,8 @@
                           PUT    /users/:id(.:format)                                                                     users#update
                           DELETE /users/:id(.:format)                                                                     users#destroy
           status_password PUT    /passwords/:id/status(.:format)                                                          passwords#status
+         uploads_password PUT    /passwords/:id/uploads(.:format)                                                         passwords#uploads
+      attachment_password DELETE /passwords/:id/attachment(.:format)                                                      passwords#attachment
                 passwords GET    /passwords(.:format)                                                                     passwords#index
                           POST   /passwords(.:format)                                                                     passwords#create
              new_password GET    /passwords/new(.:format)                                                                 passwords#new

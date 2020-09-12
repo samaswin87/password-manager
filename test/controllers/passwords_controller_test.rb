@@ -3,6 +3,10 @@ require 'test_helper'
 class PasswordsControllerTest < ActionController::TestCase
   include Devise::Test::ControllerHelpers
 
+  def setup
+    @file = fixture_file_upload(File.join(Rails.root, "/test/files", "user.csv"))
+  end
+
   def test_index_with_user
     sign_in(users(:kart))
     get(:index)
@@ -98,6 +102,23 @@ class PasswordsControllerTest < ActionController::TestCase
     put(:status, params: {id: passwords(:kart_facebook).id, user_id: users(:kart).id})
     assert_response(:success)
     assert_false(facebook.reload.active)
+  end
+
+  def test_uploads
+    sign_in(users(:john))
+    assert_difference "PasswordAttachment.count", 1 do
+      put(:uploads, params: {id: passwords(:john_facebook).id, attachments: [@file]})
+    end
+    body = JSON.parse(response.body)
+    assert_equal('Success', body["status"])
+  end
+
+  def test_attachment
+    sign_in(users(:john))
+    assert_difference "PasswordAttachment.count", -1 do
+      delete(:attachment, params: {id: passwords(:john_facebook).id, attachment_id: 1})
+    end
+    assert_redirected_to(action: "show")
   end
 
   private

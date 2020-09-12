@@ -1,0 +1,39 @@
+= render 'form_header'
+
+= bootstrap_box edit_resource_label, nil do
+  .box-body
+    .nav-tabs-custom
+      ul.nav.nav-tabs
+        li.active =link_to 'Password Fields', '#fields', data: {toggle: 'tab'}
+        li =link_to 'SSH Keys', '#ssh', data: {toggle: 'tab'}
+        li =link_to 'Additional Details', '#details', data: {toggle: 'tab'}
+        li =link_to 'Attachments', '#attachments', data: {toggle: 'tab'}
+      .tab-content
+        .active.tab-pane id="fields"
+          = render 'password_fields'
+        .tab-pane id="ssh"
+          = render 'keys'
+        .tab-pane id="details"
+          = render 'details'
+        .tab-pane id="attachments"
+          = simple_form_for resource do |form|
+            .row
+              .col-md-6
+                = form.input :attchment, as: :file, label: false
+                  span.btn.btn-success.fileinput-button
+                    i.fa.fa-plus
+                      | Add files
+                    input type="file" id="file_attachments" multiple=true
+
+            .row
+              .col-md-6
+                table.table.table-bordered role="presentation" id='files_preview'
+                  tbody.files
+                    tr
+                      th.width-10 #
+                      th File Name
+                      th.width-10
+                = form.button :button, 'Update Attachments',class: "btn btn-success pull-right", id: 'file_upload'
+                = link_to 'Cancel', collection_path, class: 'btn btn-default  mr-3 pull-right'
+
+

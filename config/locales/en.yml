@@ -12,6 +12,8 @@ en:
       title: "Passwords"
     show:
       title: "Password %{name}"
+    edit:
+      title: "Edit Password"
     new:
       title: "New Password"
   cities:
