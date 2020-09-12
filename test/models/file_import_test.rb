@@ -3,8 +3,8 @@ require 'test_helper'
 class FileImportTest < ActiveSupport::TestCase
 
   def setup
-    @file_without_error = File.new(File.join(Rails.root, "/test/files", "usercsv.csv"))
-    @file_with_error = File.new(File.join(Rails.root, "/test/files", "usercsv-error.csv"))
+    @file_without_error = File.new(File.join(Rails.root, "/test/files", "user.csv"))
+    @file_with_error = File.new(File.join(Rails.root, "/test/files", "user-error.csv"))
   end
 
   def test_associations
