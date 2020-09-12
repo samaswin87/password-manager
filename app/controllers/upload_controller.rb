@@ -4,12 +4,20 @@ class UploadController < ApplicationController
   def create
     attr = file_params
     if (attr[:type] == 'user').present?
+      source_type = 'User'
+    elsif (attr[:type] == 'password').present?
+      source_type = 'Password'
+    end
+
+    if source_type
       file_import = FileImport.create({
         data: attr[:files].first,
-        source: current_user
+        source_type: source_type
       });
+      render json: file_import.id and return
     end
-    render json: file_import.id and return
+
+    render json: 'Wrong type', status: 400 and return
   end
 
   def import
