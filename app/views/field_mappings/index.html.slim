@@ -2,5 +2,15 @@
 = bootstrap_box t("field_mappings.title"), 'table', bootstrap_button_new do
   .box-body
     .row
-      .col-md-12
-
+      .col-md-4
+        .box.box-solid
+          .box-header.with-border
+            h3.box-title Tables
+            .box-tools
+              button.btn.btn-box-tool type="button" data-widget="collapse"
+                = fa_icon('fa-minus')
+          .box-body.no-padding
+            ul.nav.nav-pills.nav-stacked
+              li Test
+      .col-md-8
+        .row

@@ -6,10 +6,6 @@ class FieldMappingsController < BaseController
 
   # ---- methods ----
   def index
-    respond_to do |format|
-      format.html
-      format.json { render json: CityDatatable.new(params, view_context: view_context, current_user: current_user) }
-    end
   end
 
   def show
