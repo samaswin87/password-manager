@@ -1,8 +1,0 @@
-en:
-  field_mapping:
-    title: Field Mappings
-    fields:
-      name: Name
-      fields: Fields
-    errors:
-    messages:

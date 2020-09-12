@@ -1,0 +1,6 @@
+en:
+  field_mappings:
+    title: "Field Mappings"
+    fields:
+      name: "Name"
+      fields: "Fields"
