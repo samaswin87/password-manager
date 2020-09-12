@@ -20,6 +20,8 @@ module PasswordManager
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.default_locale = "en"
 
+    config.autoload_paths << "#{Rails.root}/lib"
+
     I18n.config.enforce_available_locales = false
     I18n.locale = "en"
 

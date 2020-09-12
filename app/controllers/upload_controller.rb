@@ -17,14 +17,14 @@ class UploadController < ApplicationController
       render json: file_import.id and return
     end
 
-    render json: 'Wrong type', status: 400 and return
+    render json: 'Wrong type', status: HTTP::BAD_REQUEST and return
   end
 
   def import
     job_id = UserImportWorker.perform_async(params[:id], params[:fieldMap])
     file_import = FileImport.find(params[:id])
     file_import.update_attribute(:job_id, job_id)
-    render json: {job_id: job_id}, status: :ok and return
+    render json: {job_id: job_id}, status: HTTP::OK and return
   end
 
   private

@@ -54,7 +54,7 @@ class PasswordsController < BaseController
         end
       end
     end
-    render json: {status: 'Success'}, status: :ok and return
+    render json: {status: 'Success'}, status: HTTP::OK and return
   end
 
   def attachment
