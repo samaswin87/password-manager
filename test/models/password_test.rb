@@ -13,6 +13,7 @@ class PasswordTest < ActiveSupport::TestCase
 
   def test_associations
     assert_equal(users(:john), passwords(:john_facebook).user)
+    assert_equal([password_attachments(:attachment_1)], passwords(:john_facebook).attachments)
   end
 
   def test_scopes
