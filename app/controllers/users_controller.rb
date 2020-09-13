@@ -7,6 +7,7 @@ class UsersController < BaseController
   # ---- methods ----
 
   def index
+    @field_mapper = FieldMapping.find_by(name: 'users')
     if params[:job].present?
       @import = FileImport.find_by(job_id: params[:job])
     end

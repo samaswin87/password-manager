@@ -27,7 +27,7 @@
               table.table.table-hover.table-striped
                 tbody
                   - @columns.each do |column|
-                    - if @available_fields&.include?(column)
+                    - if @available_fields&.include?(column.to_s)
                       - icon = fa_icon_with_class('times-circle fa-2x', 'text-danger')
                       - text = 'mapped'
                     - else

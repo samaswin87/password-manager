@@ -1,0 +1,11 @@
+en:
+  passwords:
+    title: "Passwords"
+    fields:
+      email: Email
+      password: Password
+      first_name: First name
+      last_name: Last name
+      phone: Phone
+      gender: Gender
+      user_type: User type

@@ -6,6 +6,7 @@ class PasswordsController < BaseController
 
   # ---- methods ----
   def index
+    @field_mapper = FieldMapping.find_by(name: 'passwords')
     respond_to do |format|
       format.html
       format.json { render json: PasswordDatatable.new(params, view_context: view_context, current_user: current_user) }

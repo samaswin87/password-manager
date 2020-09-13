@@ -41,7 +41,7 @@ class FieldMappingsController < BaseController
     columns = []
     klass_name = table.camelize.singularize(:en)
     if klass_name.constantize
-      columns = klass_name.constantize.column_names
+      columns = klass_name.constantize.importable_columns
     end
     columns
   end

@@ -54,4 +54,8 @@ class Password < ApplicationRecord
     self.active ? 'Active' : 'In Active'
   end
 
+  def self.importable_columns
+    [:name, :url, :username, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print]
+  end
+
 end
