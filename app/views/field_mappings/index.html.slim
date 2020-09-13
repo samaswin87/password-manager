@@ -18,5 +18,27 @@
                 - else
                   li.list-group-item.li-mapping
                     = link_to supported_table.to_s.titleize, url_for(type: supported_table)
-      .col-md-8
-        .row
+      .col-md-6
+        .box.box-primary
+          .box-header.with-border
+            h3.box-title Importable Fields
+          .box-body.no-padding
+            .table-responsive.mailbox-messages
+              table.table.table-hover.table-striped
+                tbody
+                  - @columns.each do |column|
+                    tr
+                      td.mailbox-star
+                        = fa_icon_with_class('star', 'text-red')
+                      td.mailbox-subject
+                        b =column
+                      td.mailbox-attachment
+                        = link_to (fa_icon('plus-square')), url_for(type: @type, field: column), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: t('field_mappings.add')
+
+javascript:
+  document.addEventListener("DOMContentLoaded", function(event) {
+    urls = {
+      field_path: "#{url_for(type: @type)}",
+    };
+    $.mapper.init(urls);
+  });

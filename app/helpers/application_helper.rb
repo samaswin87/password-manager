@@ -12,6 +12,10 @@ module ApplicationHelper
       end
   end
 
+  def fa_icon_with_class(icon, klass)
+    content_tag(:i, class: "fa fa-#{icon} #{klass}") {}
+  end
+
   # ---- simple form ----
 
   def deal_value(value, format = :default)
