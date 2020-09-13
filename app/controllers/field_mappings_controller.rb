@@ -9,7 +9,7 @@ class FieldMappingsController < BaseController
     @supported_tables = supported_tables
     @name = params[:name]
     unless @name.blank?
-      field_mapping = FieldMapping.find_or_create_by(name: params[:name])
+      field_mapping = FieldMapping.find_by(name: params[:name])
       @available_fields = field_mapping.available_fields if field_mapping
     end
     @columns = columns(@name)
