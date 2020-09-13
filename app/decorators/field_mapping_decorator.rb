@@ -1,10 +1,6 @@
 class FieldMappingDecorator < Draper::Decorator
   delegate_all
 
-  def supported_tables
-    [:passwords, :users, :state, :city]
-  end
-
   def columns(table)
     columns = []
     klass_name = table.camelize.singularize(:en)

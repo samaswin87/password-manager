@@ -3,14 +3,20 @@
   .box-body
     .row
       .col-md-4
-        .box.box-solid
+        .box.box-primary
           .box-header.with-border
             h3.box-title Tables
             .box-tools
               button.btn.btn-box-tool type="button" data-widget="collapse"
-                = fa_icon('fa-minus')
+                = fa_icon('minus')
           .box-body.no-padding
-            ul.nav.nav-pills.nav-stacked
-              li Test
+            ul.nav.nav-pills.nav-stacked.table-mapping
+              - @supported_tables.each do |supported_table|
+                - if @type == supported_table.to_s
+                  li.mapping-active.list-group-item.li-mapping
+                    = link_to supported_table.to_s.titleize, url_for(type: supported_table)
+                - else
+                  li.list-group-item.li-mapping
+                    = link_to supported_table.to_s.titleize, url_for(type: supported_table)
       .col-md-8
         .row

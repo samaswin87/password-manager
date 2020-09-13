@@ -6,10 +6,16 @@ class FieldMappingsController < BaseController
 
   # ---- methods ----
   def index
+    @supported_tables = supported_tables
+    @type = params[:type]
   end
 
   def show
     add_breadcrumb 'Show', :resource_path
+  end
+
+  def supported_tables
+    [:passwords, :users, :states, :cities]
   end
 
 end
