@@ -7,11 +7,26 @@ class FieldMappingsController < BaseController
   # ---- methods ----
   def index
     @supported_tables = supported_tables
-    @type = params[:type]
-    @columns = columns(@type)
+    @name = params[:name]
+    @columns = columns(@name)
+  end
+
+  def create_or_update
+    field_mapping = FieldMapping.find_or_create_by(name: field_params[:name])
+    if field_mapping && field_params[:field]
+      fields = field_mapping.fields || {}
+      fields[field_params[:field]] = !fields[field_params[:field]].present?
+      field_mapping.update_attribute(:fields, fields)
+      render json: {status: 'Success'}, status: HTTP::OK and return
+    end
+    render json: {errors: field_mapping.errors}, status: HTTP::BAD_REQUEST and return
   end
 
   private
+
+  def field_params
+     params.require(:field_mapping).permit(:name, :field)
+  end
 
   def supported_tables
     [:passwords, :users, :states, :cities]

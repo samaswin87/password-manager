@@ -1,4 +1,4 @@
 en:
   field_mappings:
-    add: "Add Field"
+    add: "Map %{field}"
     mapped: "Field Mapped"

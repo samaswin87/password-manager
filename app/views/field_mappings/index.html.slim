@@ -12,12 +12,12 @@
           .box-body.no-padding
             ul.nav.nav-pills.nav-stacked.table-mapping
               - @supported_tables.each do |supported_table|
-                - if @type == supported_table.to_s
+                - if @name == supported_table.to_s
                   li.mapping-active.list-group-item.li-mapping
-                    = link_to supported_table.to_s.titleize, url_for(type: supported_table)
+                    = link_to supported_table.to_s.titleize, url_for(name: supported_table)
                 - else
                   li.list-group-item.li-mapping
-                    = link_to supported_table.to_s.titleize, url_for(type: supported_table)
+                    = link_to supported_table.to_s.titleize, url_for(name: supported_table)
       .col-md-6
         .box.box-primary
           .box-header.with-border
@@ -33,12 +33,12 @@
                       td.mailbox-subject
                         b =column
                       td.mailbox-attachment
-                        = link_to (fa_icon('plus-square')), url_for(type: @type, field: column), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: t('field_mappings.add')
+                        = link_to (fa_icon('plus-square 2x')), '#', id: column, class: 'add-field','data-toggle': 'tooltip', 'data-placement': 'top', title: t('field_mappings.add', field: column)
 
 javascript:
   document.addEventListener("DOMContentLoaded", function(event) {
-    urls = {
-      field_path: "#{url_for(type: @type)}",
+    params = {
+      name: "#{@name}",
     };
-    $.mapper.init(urls);
+    $.mapper.init(params);
   });

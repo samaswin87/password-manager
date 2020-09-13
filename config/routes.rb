@@ -44,7 +44,11 @@ Rails.application.routes.draw do
   resources :states
   resources :cities
   resources :file_imports
-  resources :field_mappings
+  resources :field_mappings do
+    collection do
+      post :create_or_update
+    end
+  end
 
   get 'current_user' => 'application#user'
 end

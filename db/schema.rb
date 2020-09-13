@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2020_09_12_131244) do
 
   create_table "field_mappings", force: :cascade do |t|
     t.json "fields"
-    t.string "type"
+    t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
