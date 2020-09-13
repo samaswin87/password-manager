@@ -18,7 +18,7 @@
                 - else
                   li.list-group-item.li-mapping
                     = link_to supported_table.to_s.titleize, url_for(name: supported_table)
-      .col-md-6
+      .col-md-4
         .box.box-primary
           .box-header.with-border
             h3.box-title Importable Fields
@@ -27,13 +27,17 @@
               table.table.table-hover.table-striped
                 tbody
                   - @columns.each do |column|
+                    - if @available_fields&.include?(column)
+                      - icon = fa_icon_with_class('times-circle fa-2x', 'text-danger')
+                      - text = 'mapped'
+                    - else
+                      - icon = fa_icon('plus-square 2x')
+                      - text = 'add'
                     tr
-                      td.mailbox-star
-                        = fa_icon_with_class('star', 'text-red')
                       td.mailbox-subject
                         b =column
                       td.mailbox-attachment
-                        = link_to (fa_icon('plus-square 2x')), '#', id: column, class: 'add-field','data-toggle': 'tooltip', 'data-placement': 'top', title: t('field_mappings.add', field: column)
+                        = link_to icon, '#', id: column, class: 'add-field','data-toggle': 'tooltip', 'data-placement': 'top', title: t("field_mappings.#{text}", field: column)
 
 javascript:
   document.addEventListener("DOMContentLoaded", function(event) {

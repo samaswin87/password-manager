@@ -12,4 +12,9 @@ class FieldMapping < ApplicationRecord
 
   # ---- validates ----
   validates :name, presence: true, uniqueness: true
+
+  def available_fields
+    self.fields.map {|field| field[0] if field[1]}.compact
+  end
+
 end
