@@ -17,4 +17,12 @@ class FieldMapping < ApplicationRecord
     self.fields&.map {|field| field[0] if field[1]}&.compact
   end
 
+  def field_hash
+    field_hash = available_fields.inject({}) do |hash, field|
+      hash[field] = I18n.t("#{self.name}.fields.#{field}")
+      hash
+    end
+    field_hash || {}
+  end
+
 end

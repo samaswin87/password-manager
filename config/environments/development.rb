@@ -53,7 +53,7 @@ Rails.application.configure do
   config.assets.quiet = true
 
   # Compress JavaScripts and CSS.
-  config.assets.js_compressor = Uglifier.new(:harmony => true)
+  # config.assets.js_compressor = :uglifier
   # config.assets.css_compressor = :sass
 
   # Compress JavaScripts and CSS

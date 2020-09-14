@@ -15,3 +15,15 @@
               th.all width="*" Actions
         tbody
 
+javascript:
+  document.addEventListener("DOMContentLoaded", function(event) {
+    let params = {
+      isAdmin: #{current_user.admin?},
+      fieldArray: #{raw(@field_mapper.available_fields)},
+    };
+
+    let url = {
+      home: "#{passwords_path}"
+    };
+    $.password.init(params, url);
+  });
