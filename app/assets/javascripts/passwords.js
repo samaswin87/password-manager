@@ -23,21 +23,6 @@
     $("#password_text_password").val(generatePassword(true, true, true, false, 20));
   };
 
-  $('#submit-file-password').click(function() {
-    let fieldMap = {};
-    params.fieldArray.forEach( key => {
-      fieldMap[key] = $("select[name='"+key+"']").val();
-    });
-
-    putData('/upload/'+$('#import_id').val()+'/import', { fieldMap: fieldMap })
-    .then(data => {
-      var searchParams = new URLSearchParams(window.location.search);
-      searchParams.set("job", data.job_id);
-      window.location.search = searchParams.toString();
-    });
-    $("#password-file-modal").modal("hide");
-  });
-
   $('#file_upload').click(function(e) {
     e.preventDefault();
     var formData = new FormData();
@@ -183,7 +168,6 @@
     $button = $("<button type='button' name='upload_file' id='upload_file' data-targe='#password-file-modal' class='btn btn-file btn-primary btn-sm'><i class='fa fa-upload fa-lg btn-file'></i>Import CSV</button>");
     $('#passwords-datatable_filter').prepend($button);
     $('#upload_file').click(function() {
-      $(".row.form-group.mt-5").addClass('d-none');
       $("#password-file-modal").modal("show");
     });
 
@@ -191,7 +175,7 @@
       maxNumberOfFiles: 1,
       url: '/upload',
       formData: {
-        type: 'password'
+        type: 'passwords'
       },
       add: function (e, data) {
         $('.custom-file-label').html(data.files[0].name);
@@ -206,34 +190,18 @@
           $('.message > code').html('Error: Not a valid file. Please import csv file');
           return false;
         }
-
-        Papa.parse(data.files[0], {
-          header: true,
-          skipEmptyLines: true,
-          complete: function (results) {
-            if ( results.errors.length ) {
-              $('.message > code').html('CSV Error: '+ results.errors[0].message);
-            }
-            else {
-              $.each($('select.form-control'), function( index, field ) {
-                $($(field)).find('option').get(0).remove();
-                $.each(results.meta.fields, function(indexOption, option) {
-                  if (index === indexOption) {
-                    $(field).append(`<option value="${option}" selected> ${option} </option>`);
-                  } else {
-                    $(field).append(`<option value="${option}"> ${option} </option>`);
-                  }
-                });
-              });
-            }
-          }
-        });
       },
     });
 
-    $('#fileupload').bind('fileuploaddone', function(e, data){
-      $(".row.form-group.mt-5").removeClass('d-none');
-      $('#import_id').val(data.result);
+    $('#fileupload').bind('fileuploaddone', function(e, data) {
+      window.location.replace("/file_imports/"+data.result.import_id);
+    });
+
+    $('#fileupload').bind('fileuploadfail', function(e, data) {
+      if(data.jqXHR.responseText) {
+        $("#password-file-modal").modal("hide");
+        $.notify.autoHideNotify('error', 'top right', 'Alert', data.jqXHR.responseText);
+      }
     });
   });
 

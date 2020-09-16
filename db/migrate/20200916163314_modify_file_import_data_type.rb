@@ -1,0 +1,8 @@
+# rake db:migrate:down VERSION=20200916163314
+class ModifyFileImportDataType < ActiveRecord::Migration[5.2]
+  def change
+    remove_reference :file_imports, :source
+    remove_column :file_imports, :source_type
+    add_column :file_imports, :data_type, :string
+  end
+end

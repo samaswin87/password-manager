@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_16_034659) do
+ActiveRecord::Schema.define(version: 2020_09_16_163314) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,8 +72,6 @@ ActiveRecord::Schema.define(version: 2020_09_16_034659) do
     t.integer "data_file_size"
     t.datetime "data_updated_at"
     t.datetime "completed_at"
-    t.string "source_type"
-    t.bigint "source_id"
     t.text "error_messages"
     t.integer "total_count", default: 0
     t.integer "parsed_count", default: 0
@@ -82,7 +80,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_034659) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "job_id"
-    t.index ["source_type", "source_id"], name: "index_file_imports_on_source_type_and_source_id"
+    t.string "data_type"
   end
 
   create_table "genders", force: :cascade do |t|

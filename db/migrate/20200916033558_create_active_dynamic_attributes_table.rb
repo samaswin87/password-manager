@@ -1,3 +1,4 @@
+# rake db:migrate:down VERSION=20200916033558
 class CreateActiveDynamicAttributesTable < ActiveRecord::Migration[4.2]
 
   def change

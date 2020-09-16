@@ -9,8 +9,6 @@
 #  data_file_size    :integer
 #  data_updated_at   :datetime
 #  completed_at      :datetime
-#  source_type       :string
-#  source_id         :bigint
 #  error_messages    :text
 #  total_count       :integer          default(0)
 #  parsed_count      :integer          default(0)
@@ -19,11 +17,10 @@
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
 #  job_id            :string
+#  data_type         :string
+#
 class FileImport < ApplicationRecord
-
   has_paper_trail
-  # ---- relationships ----
-  belongs_to :source, polymorphic: true
 
   # ---- paperclip ----
   has_attached_file :data
@@ -47,6 +44,27 @@ class FileImport < ApplicationRecord
     end
   end
 
+  # ----- callbacks ----
+  validate :supported_type?
+
+  # ----- scopes ----
+  scope :for_type, lambda { |data_type|
+    where('file_imports.data_type = ?', data_type)
+  }
+
+  # ----- statics ----
+  PASSWORDS = :passwords
+  USERS = :users
+  STATES = :states
+  CITIES = :cities
+
+  SUPPORTED_TYPES = [
+    PASSWORDS,
+    USERS,
+    STATES,
+    CITIES
+  ]
+
   def parsed_count!(count)
     self.update_attribute(:parsed_count, count)
   end
@@ -67,6 +85,12 @@ class FileImport < ApplicationRecord
 
   def set_date
     self.update_attribute(:completed_at, Time.now)
+  end
+
+  def supported_type?
+    unless SUPPORTED_TYPES.include?(self.data_type.to_sym)
+      errors.add(self.data_type, "not valid data type")
+    end
   end
 
 end

@@ -1,3 +1,4 @@
+# rake db:migrate:down VERSION=20200916034659
 class CreateImportFieldAttributes < ActiveRecord::Migration[5.2]
   def change
     create_table :import_field_attributes do |t|
