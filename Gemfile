@@ -19,6 +19,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cucumber'
 gem 'therubyracer'
 gem 'less-rails'
+gem 'active_dynamic'
 
 
 group :development, :test do
