@@ -119,4 +119,8 @@ module ApplicationHelper
     end
   end
 
+  def show_image(record)
+    "<img src=#{ current_user.avatar.url(:thumb) } class='img-circle profile-user-img' />"
+  end
+
 end

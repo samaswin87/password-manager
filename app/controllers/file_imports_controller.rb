@@ -12,4 +12,8 @@ class FileImportsController < BaseController
     end
   end
 
+  def show
+    add_breadcrumb 'Show', :resource_path
+  end
+
 end

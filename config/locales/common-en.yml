@@ -1,0 +1,9 @@
+en:
+  common:
+    notifications:
+      alert: Alert
+      warning: Warning
+      note: Note
+      alert_with_dot: 'Alert:'
+      warning_with_dot: 'Warning:'
+      note_with_dot: 'Note:'

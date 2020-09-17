@@ -5,21 +5,10 @@ class BaseController < InheritedResources::Base
 
   # ---- layout ----
 
-  layout :resolve_layout
+  layout "admin"
   # ---- devise ----
 
   before_action :authenticate_user!
   load_and_authorize_resource
 
-
-  private
-
-  def resolve_layout
-    case action_name
-    when "index"
-      "admin_table"
-    else
-      "admin"
-    end
-  end
 end

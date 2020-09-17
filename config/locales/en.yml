@@ -31,6 +31,8 @@ en:
   file_imports:
     index:
       title: "Imports"
+    show:
+      title: "File Import"
   resources:
     user:
       title: "Users"
@@ -52,6 +54,9 @@ en:
       description: "Password Details"
       new: "New Password"
       edit: "Edit Password"
+    file_imports:
+      title: "File Imports"
+      description: "File Imports"
   activerecord:
     models:
       user: "Users"

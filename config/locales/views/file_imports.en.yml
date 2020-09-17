@@ -1,0 +1,6 @@
+en:
+  view:
+    file_imports:
+      alert:
+        message: This page will show the list of records and you can remove the unwanted records.
+

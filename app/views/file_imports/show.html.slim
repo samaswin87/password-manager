@@ -1,0 +1,46 @@
+= content_for :title, t(".title")
+= render 'form_header'
+
+.pad.margin.no-print
+  .callout.callout-info.mb-0
+    h5
+      = fa_icon('info')
+      = ' '
+      = t('common.notifications.note_with_dot')
+    = t('view.file_imports.alert.message')
+
+section
+  .row
+    .col-sm-12
+      .bs-stepper#file_upload
+        .bs-stepper-header role="tablist"
+          .step.active data-target="#upload-part"
+            button.step-trigger type="button" role="tab" aria-controls="upload-part" id="upload-part-trigger"
+              span.bs-stepper-circle 1
+              span.bs-stepper-label File Upload
+          .line
+          .step data-target="#mapper-part"
+            button.step-trigger type="button" role="tab" aria-controls="mapper-part" id="mapper-part-trigger"
+              span.bs-stepper-circle 2
+              span.bs-stepper-label Field Mapping
+          .line
+          .step data-target="#preview-part"
+            button.step-trigger type="button" role="tab" aria-controls="preview-part" id="preview-part-trigger"
+              span.bs-stepper-circle 3
+              span.bs-stepper-label Preview and Upload
+
+section.invoice
+  .row.invoice-info
+    .col-sm-4.invoice-col
+      strong =resource.data_file_name
+      p =resource.data_content_type
+    .col-sm-4
+    .col-sm-4
+
+javascript:
+  $(document).ready(function() {
+    var stepper = new Stepper(document.querySelector('#file_imports'), {
+      linear: true,
+      animation: true
+    });
+  });
