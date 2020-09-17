@@ -108,9 +108,9 @@
           $('.active-passwords').toggleClass("active");
           if ($('.active-passwords').hasClass('active')) {
             $('.in-active-passwords').removeClass('active');
-            dt.column(3).search('active').draw();
+            dt.column(4).search(true).draw();
           } else {
-            dt.column(3).search('').draw();
+            dt.column(4).search('').draw();
           }
         }
       },
@@ -121,9 +121,9 @@
           $('.in-active-passwords').toggleClass("active");
           if ($('.in-active-passwords').hasClass('active')) {
             $('.active-passwords').removeClass('active');
-            dt.column(3).search('in-active').draw();
+            dt.column(4).search(false).draw();
           } else {
-            dt.column(3).search('').draw();
+            dt.column(4).search('').draw();
           }
         }
       },
