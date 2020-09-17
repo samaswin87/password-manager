@@ -16,7 +16,7 @@
         tbody
 
 javascript:
-  document.addEventListener("DOMContentLoaded", function(event) {
+  $(document).ready(function() {
     let params = {
       isAdmin: #{current_user.admin?},
       fieldArray: #{raw(@field_mapper.available_fields)},
