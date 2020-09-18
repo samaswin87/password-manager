@@ -15,7 +15,7 @@
               th.all width="*" Actions
         tbody
 
-= javascript_include_tag 'passwords'
+= javascript_include_tag 'passwords/index'
 javascript:
   $(document).ready(function() {
     let params = {
@@ -26,5 +26,5 @@ javascript:
     let url = {
       home: "#{passwords_path}"
     };
-    $.password.init(params, url);
+    $.password_index.init(params, url);
   });
