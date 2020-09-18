@@ -23,6 +23,7 @@
  *= require jquery.fileupload-ui
  *= require device
  *= require bs-stepper
+ *= require bs-extend
  *= require_tree .
  *= require_self
  */

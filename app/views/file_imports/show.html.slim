@@ -31,16 +31,35 @@ section
 
 section.invoice
   .row.invoice-info
-    .col-sm-4.invoice-col
-      strong =resource.data_file_name
-      p =resource.data_content_type
+    .col-sm-6.invoice-col
+      .pb-3
+        strong.pr-10p File Name:
+        =resource.data_file_name
+      .pb-3
+        strong Content Type:
+        =resource.data_file_name
+      .pb-3
+        strong File Size:
+        =resource.data_file_name
+      .pb-3
+        strong.mr-5 Total rows:
+        =resource.data_file_name
+      .pb-5
+        strong.mr-5 Headers:
+        =resource.data_file_name
+      .pull-right
+        button.btn.btn-danger.mr-2#upload-cancel Cancel
+        button.btn.btn-primary#upload-next Next
     .col-sm-4
     .col-sm-4
 
+= javascript_include_tag 'file_imports/show'
 javascript:
   $(document).ready(function() {
-    var stepper = new Stepper(document.querySelector('#file_imports'), {
-      linear: true,
-      animation: true
-    });
+    let params = {
+    };
+
+    let url = {
+    };
+    $.file_imports_show.init(params, url);
   });
