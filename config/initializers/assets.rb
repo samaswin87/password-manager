@@ -19,4 +19,4 @@ Rails.application.config.assets.paths += [
 js_prefix    = 'app/assets/javascripts/'
 javascripts = Dir["#{js_prefix}**/*.js"].map      { |x| x.gsub(js_prefix,    '') }
 Rails.application.config.assets.precompile +=(javascripts)
-Rails.application.config.assets.precompile += %w( api.js datatables.css jquery-fileupload )
+Rails.application.config.assets.precompile += %w( api.js datatables.css )

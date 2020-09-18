@@ -22,8 +22,9 @@
 //= require momentjs
 //= require notifyjs
 //= require toastr
-//=require jquery-fileupload/basic
+//= require jquery-fileupload/basic
 //= require papaparse
+//= require vendor/notifyset
 //= require datatables
 //= require bs-stepper
 // require_tree .
