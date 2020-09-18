@@ -14,7 +14,12 @@ class FileImportsController < BaseController
 
   def show
     add_breadcrumb 'Show', :resource_path
-    @file_import_hash = resource.attributes.except('id', 'data_type', 'created_at', 'updated_at', 'job_id', 'data_updated_at')
+    if params[:page] && params[:page] == 'mapper'
+      @page = params[:page]
+      @field_mapper = FieldMapping.find_by(name: resource.data_type)
+    else
+      @file_import_hash = resource.attributes.except('id', 'data_type', 'created_at', 'updated_at', 'job_id', 'data_updated_at')
+    end
   end
 
 end
