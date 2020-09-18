@@ -4,5 +4,6 @@ class ModifyFileImportDataType < ActiveRecord::Migration[5.2]
     remove_reference :file_imports, :source
     remove_column :file_imports, :source_type
     add_column :file_imports, :data_type, :string
+    add_column :file_imports, :headers, :string, array: true, default: []
   end
 end

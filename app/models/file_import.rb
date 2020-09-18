@@ -18,6 +18,7 @@
 #  updated_at        :datetime         not null
 #  job_id            :string
 #  data_type         :string
+#  headers           :string           default([]), is an Array
 #
 class FileImport < ApplicationRecord
   has_paper_trail

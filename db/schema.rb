@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2020_09_16_163314) do
     t.datetime "updated_at", null: false
     t.string "job_id"
     t.string "data_type"
+    t.string "headers", default: [], array: true
   end
 
   create_table "genders", force: :cascade do |t|
