@@ -19,8 +19,7 @@
 javascript:
   $(document).ready(function() {
     let params = {
-      isAdmin: #{current_user.admin?},
-      fieldArray: #{raw(@field_mapper.available_fields)},
+      isAdmin: #{current_user.admin?}
     };
 
     let url = {

@@ -15,3 +15,8 @@
               th.all width="*" Counts
         tbody
 
+= javascript_include_tag 'file_imports/index'
+javascript:
+  $(document).ready(function() {
+    $.file_imports_index.init();
+  });

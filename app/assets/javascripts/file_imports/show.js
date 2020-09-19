@@ -11,6 +11,10 @@
     window.location.href = url.home_path + '?page=mapper'
   });
 
+  $('#upload-cancel').click(function(event) {
+    window.location.href = url.redirect_path
+  });
+
   $.file_imports_show = {
     init: init,
   }
