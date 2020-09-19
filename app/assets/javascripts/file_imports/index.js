@@ -27,6 +27,7 @@
       }
     ]
   });
+
   $.file_imports_show = {
     init: init,
   }

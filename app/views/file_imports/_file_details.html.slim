@@ -1,0 +1,16 @@
+- if @file_import_hash
+  section.invoice
+    - @file_import_hash.each do |key, value|
+      .row.invoice-info
+        .col-sm-6.invoice-col
+          .pb-3.pull-right
+            strong.pr-10p =t("view.file_imports.fields.#{key}")
+        .col-sm-6.invoice-col
+          .pb-3.pull-left
+            =value
+
+    .row.invoice-info.pt-5
+      .col-sm-6.invoice-col
+        button.btn.btn-danger.mr-2.pull-right#upload-cancel Cancel
+      .col-sm-6.invoice-col.pull-left
+        button.btn.btn-primary#upload-next Next

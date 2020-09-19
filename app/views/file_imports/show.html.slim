@@ -29,53 +29,28 @@ section
               span.bs-stepper-circle 3
               span.bs-stepper-label Preview and Upload
 
-- if @file_import_hash
-  section.invoice
-    - @file_import_hash.each do |key, value|
-      .row.invoice-info
-        .col-sm-6.invoice-col
-          .pb-3.pull-right
-            strong.pr-10p =t("view.file_imports.fields.#{key}")
-        .col-sm-6.invoice-col
-          .pb-3.pull-left
-            =value
-
-    .row.invoice-info.pt-5
-      .col-sm-6.invoice-col
-        button.btn.btn-danger.mr-2.pull-right#upload-cancel Cancel
-      .col-sm-6.invoice-col.pull-left
-        button.btn.btn-primary#upload-next Next
-
-- if @page == 'mapper'
+= render('file_details')
+= render('field_mapper')
+- if @page == 'records'
   section.invoice
     .row.invoice-info
-      .col-md-6
-        ul.list-group.pull-right
-          - @field_mapper.available_fields.each do |field|
-            li.list-field-item
-              span.input-group-text.map-label =t("field_mappings.fields.#{field}")
-      .col-md-6.input-group
-        ul.list-group
-          - @field_mapper.available_fields.each_with_index do |field, index|
-            li.list-field-item.pull-left
-              select.form-control name=field
-                - resource.headers.each_with_index do |header, indexOptions|
-                  - if indexOptions == index
-                    option selected=true =header
-                  - else
-                    option =header
-
-    .row.invoice-info.pt-5
-      .col-sm-6.invoice-col
-        button.btn.btn-primary.mr-2.pull-right#mapper-prev Previous
-      .col-sm-6.invoice-col.pull-left
-        button.btn.btn-primary#mapper-next Next
+      .col-md-12
+        table
+          .box-body
+            .row
+              .col-md-12
+                table#import-records-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= file_import_path(resource, form: 'json', page: 'records')
+                  thead
+                    tr
+                      th.all width="*" ID
+                tbody
 
 
 = javascript_include_tag 'file_imports/show'
 javascript:
   $(document).ready(function() {
     let params = {
+      fields: #{raw @field_mapper&.available_fields || []}
     };
 
     let url = {

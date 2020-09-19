@@ -1,0 +1,24 @@
+- if @page == 'mapper'
+  section.invoice
+    .row.invoice-info
+      .col-md-6
+        ul.list-group.pull-right
+          - @field_mapper.available_fields.each do |field|
+            li.list-field-item
+              span.input-group-text.map-label =t("field_mappings.fields.#{field}")
+      .col-md-6.input-group
+        ul.list-group
+          - @field_mapper.available_fields.each_with_index do |field, index|
+            li.list-field-item.pull-left
+              select.form-control name=field
+                - resource.headers.each_with_index do |header, indexOptions|
+                  - if indexOptions == index
+                    option selected=true =header
+                  - else
+                    option =header
+
+    .row.invoice-info.pt-5
+      .col-sm-6.invoice-col
+        button.btn.btn-primary.mr-2.pull-right#mapper-prev Previous
+      .col-sm-6.invoice-col.pull-left
+        button.btn.btn-primary#mapper-next Next

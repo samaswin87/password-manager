@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class ImportFieldTest < ActiveSupport::TestCase
+class ImportDataTableTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

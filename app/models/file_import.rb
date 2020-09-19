@@ -19,9 +19,13 @@
 #  job_id            :string
 #  data_type         :string
 #  headers           :string           default([]), is an Array
+#  mappings          :jsonb            not null
 #
 class FileImport < ApplicationRecord
   has_paper_trail
+
+  # ---- relationships ----
+  has_many :import_data_tables, dependent: :delete_all
 
   # ---- paperclip ----
   has_attached_file :data
@@ -93,5 +97,6 @@ class FileImport < ApplicationRecord
       errors.add(self.data_type, "not valid data type")
     end
   end
+
 
 end

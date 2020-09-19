@@ -27,6 +27,7 @@
 //= require vendor/notifyset
 //= require datatables
 //= require bs-stepper
+//= require api
 // require_tree .
 
 $(document).ready(function(){
