@@ -1,5 +1,13 @@
 - if @file_import_hash
   section.invoice
+    .row.invoice-info.pb-5
+      .col-sm-6.invoice-col
+        button.btn.btn-danger.mr-2.pull-right#upload-cancel
+          = menu_label_icon_with_class('Cancel', 'times-circle', 'pr-1')
+      .col-sm-6.invoice-col.pull-left
+        button.btn.btn-primary#upload-next
+          = menu_label_icon_with_class('Next', 'arrow-circle-right', 'pr-1')
+
     - @file_import_hash.each do |key, value|
       .row.invoice-info
         .col-sm-6.invoice-col
@@ -9,8 +17,3 @@
           .pb-3.pull-left
             =value
 
-    .row.invoice-info.pt-5
-      .col-sm-6.invoice-col
-        button.btn.btn-danger.mr-2.pull-right#upload-cancel Cancel
-      .col-sm-6.invoice-col.pull-left
-        button.btn.btn-primary#upload-next Next

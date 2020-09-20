@@ -24,7 +24,7 @@ section
               span.bs-stepper-circle 2
               span.bs-stepper-label Field Mapping
           .line
-          .step id="preview-part"
+          .step id="preview-part" class="#{@page == 'records' ? 'active' : ''}"
             button.step-trigger type="button" role="tab" aria-controls="preview-part" id="preview-part-trigger"
               span.bs-stepper-circle 3
               span.bs-stepper-label Preview and Upload
@@ -33,6 +33,13 @@ section
 = render('field_mapper')
 - if @page == 'records'
   section.invoice
+    .row.invoice-info
+      .col-sm-6.invoice-col
+        button.btn.btn-primary.mr-2.pull-right#preview-prev
+          = menu_label_icon_with_class('Previous', 'arrow-circle-left', 'pr-1')
+      .col-sm-6.invoice-col.pull-left
+        button.btn.btn-primary#preview-submit
+          = menu_label_icon_with_class('Submit' ,'arrow-circle-right', 'pr-1')
     .row.invoice-info
       .col-md-12
         table

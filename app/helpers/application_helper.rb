@@ -12,6 +12,13 @@ module ApplicationHelper
       end
   end
 
+  def menu_label_icon_with_class(text, icon, klass)
+    content_tag(:i, class: "fa fa-#{icon} #{klass}") {} +
+      content_tag(:span) do
+        text
+      end
+  end
+
   def fa_icon_with_class(icon, klass)
     content_tag(:i, class: "fa fa-#{icon} #{klass}") {}
   end

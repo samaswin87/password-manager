@@ -12,7 +12,10 @@
         data: header
       })
     })
+    loadDataTable()
+  }
 
+  loadDataTable = function() {
     $('#import-records-datatable').dataTable({
       processing: true,
       serverSide: true,
@@ -21,10 +24,8 @@
       },
       pagingType: 'full_numbers',
       columns: column_haders || []
-    });
-
+    })
   }
-
 
   $('#upload-next').click(function(event) {
     window.location.href = url.home_path + '?page=mapper'
@@ -45,7 +46,11 @@
     });
   });
 
-  $('#mapper-cancel').click(function(event) {
+  $('#mapper-prev').click(function(event) {
+    window.location.href = url.home_path
+  });
+
+  $('#preview-prev').click(function(event) {
     window.location.href = url.home_path + '?page=mapper'
   });
 

@@ -408,3 +408,10 @@ li.list-group-item:hover {
   padding: 3px;
   border: 3px solid #d2d6de;
 }
+
+.list-field-mapping {
+  position: relative;
+  display: block;
+  padding: 0 0 1.15rem 0;
+  background-color: #fff;
+}
