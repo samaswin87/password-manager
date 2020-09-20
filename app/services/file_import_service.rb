@@ -11,7 +11,7 @@ class FileImportService < ApplicationService
     import.process!
     rows = []
     csv_processed.each do |row|
-      rows << { columns: row, file_import_id: @import_id }
+      rows << { dynamic_fields: row, file_import_id: @import_id }
     end
     begin
       ImportDataTable.import(rows, batch_size: 100, raise_error: true)

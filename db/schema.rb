@@ -79,11 +79,11 @@ ActiveRecord::Schema.define(version: 2020_09_19_171028) do
   end
 
   create_table "import_data_tables", force: :cascade do |t|
-    t.jsonb "columns"
+    t.jsonb "dynamic_fields"
     t.bigint "file_import_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["columns"], name: "index_import_data_tables_on_columns", using: :gin
+    t.index ["dynamic_fields"], name: "index_import_data_tables_on_dynamic_fields", using: :gin
     t.index ["file_import_id"], name: "index_import_data_tables_on_file_import_id"
   end
 

@@ -3,7 +3,7 @@
 # Table name: import_data_tables
 #
 #  id             :bigint           not null, primary key
-#  columns        :jsonb            not null
+#  dynamic_fields :jsonb
 #  file_import_id :bigint
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null

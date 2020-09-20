@@ -26,7 +26,7 @@ class ImportRecordsDatatable < ApplicationDatatable
         DT_RowId:   record.id
       }
       custom_columns.each do |column|
-        record_hash[column] = record.columns[column]
+        record_hash[column] = record.dynamic_fields[column]
       end
 
       record_hash
@@ -36,16 +36,16 @@ class ImportRecordsDatatable < ApplicationDatatable
   def get_raw_records
     records = @resource.import_data_tables || []
     order = params.fetch('order', {})
-    if order.present? && order['0']['column'] != '0'
+    if order.present?
       column = params.fetch('columns', {}).fetch(order['0']['column'], {})
-      records = records.order("(columns ->> '#{column['data']}') #{order['0']['dir']}")
+      records = records.order("dynamic_fields ->> '#{column['data']}' #{order['0']['dir']}")
     end
 
     search = params.fetch('search', {})
     if search && search['value'].present?
       record_ids = []
-      custom_columns.each do |column|
-        record_ids << records.where("columns ->> '#{column}' LIKE ?", "%#{search['value']}%").map(&:id)
+      custom_columns.each do |column_name|
+        record_ids << records.where("dynamic_fields ->> '#{column_name}' LIKE ?", "%#{search['value']}%").map(&:id)
       end
       records = records.where('id IN (?)', record_ids.flatten.uniq)
     end
