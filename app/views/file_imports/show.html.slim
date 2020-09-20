@@ -42,7 +42,8 @@ section
                 table#import-records-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= file_import_path(resource, form: 'json', page: 'records')
                   thead
                     tr
-                      th.all width="*" ID
+                      - resource.table_headers.each do |table_header|
+                        th.all width="*" =table_header
                 tbody
 
 
@@ -50,12 +51,14 @@ section
 javascript:
   $(document).ready(function() {
     let params = {
-      fields: #{raw @field_mapper&.available_fields || []}
+      fields: #{raw @field_mapper&.available_fields || []},
+      headers: #{raw resource.headers || []},
     };
 
     let url = {
       home_path: "#{file_import_path(resource)}",
       redirect_path: "/#{resource.data_type}",
     };
+
     $.file_imports_show.init(params, url);
   });

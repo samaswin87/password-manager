@@ -1,11 +1,30 @@
 (function ($) {
   let params = {};
   let url = {};
+  let column_haders = [];
 
   function init(_params, _url){
     params = _params;
     url = _url;
+
+    (params.headers || []).forEach(header => {
+      column_haders.push({
+        data: header
+      })
+    })
+
+    $('#import-records-datatable').dataTable({
+      processing: true,
+      serverSide: true,
+      ajax: {
+        url: $('#import-records-datatable').data('source')
+      },
+      pagingType: 'full_numbers',
+      columns: column_haders || []
+    });
+
   }
+
 
   $('#upload-next').click(function(event) {
     window.location.href = url.home_path + '?page=mapper'
@@ -28,20 +47,6 @@
 
   $('#mapper-cancel').click(function(event) {
     window.location.href = url.home_path + '?page=mapper'
-  });
-
-  $('#import-records-datatable').dataTable({
-    processing: true,
-    serverSide: true,
-    ajax: {
-      url: $('#import-records-datatable').data('source')
-    },
-    pagingType: 'full_numbers',
-    columns: [
-      {
-        data: 'data_file_name'
-      }
-    ]
   });
 
   $.file_imports_show = {

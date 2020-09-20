@@ -13,5 +13,5 @@ class ImportDataTable < ApplicationRecord
   serialize :columns, HashSerializer
 
   # ---- relationships ----
-  belongs_to :file_import
+  belongs_to :file_import, polymorphic: true
 end

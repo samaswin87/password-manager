@@ -86,6 +86,15 @@ class FileImport < ApplicationRecord
     self.update_attribute(:total_count, count)
   end
 
+  def table_headers
+    table_headers = []
+    self.mappings.keys.each do |header|
+      table_headers << I18n.t("model.#{self.data_type}.fields.#{header}")
+    end
+
+    table_headers
+  end
+
   private
 
   def set_date
