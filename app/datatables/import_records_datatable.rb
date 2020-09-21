@@ -12,10 +12,15 @@ class ImportRecordsDatatable < ApplicationDatatable
   end
 
   def view_columns
-    view_columns_hash = { id: { source: 'ImportDataTable.id', searchable: false } }
+    view_columns_hash = {
+      id: { source: 'ImportDataTable.id', searchable: false },
+      action: { source: nil, searchable: false, orderable: false }
+    }
+
     custom_columns.each do |column|
       view_columns_hash[column.to_sym] = { source: 'ImportDataTable.#{column}', searchable: false, orderable: false }
     end
+
     @view_columns ||= view_columns_hash
   end
 
@@ -23,7 +28,10 @@ class ImportRecordsDatatable < ApplicationDatatable
     records.map do |record|
       record_hash = {
         id:         record.id,
-        DT_RowId:   record.id
+        DT_RowId:   record.id,
+        action:     content_tag(:div, class: 'btn-group') do
+          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
+        end
       }
       custom_columns.each do |column|
         record_hash[column] = record.dynamic_fields[column]

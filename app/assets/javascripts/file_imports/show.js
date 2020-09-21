@@ -12,6 +12,12 @@
         data: header
       })
     })
+
+    column_haders.push({
+        data: 'action',
+        bSortable: false
+    })
+
     loadDataTable()
   }
 
