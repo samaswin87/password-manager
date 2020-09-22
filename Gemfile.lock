@@ -41,8 +41,6 @@ GEM
       erubi (~> 1.4)
       rails-dom-testing (~> 2.0)
       rails-html-sanitizer (~> 1.0, >= 1.0.3)
-    active_dynamic (0.5.9)
-      activerecord (>= 4.0)
     activejob (5.2.4.3)
       activesupport (= 5.2.4.3)
       globalid (>= 0.3.6)
@@ -477,7 +475,6 @@ PLATFORMS
 
 DEPENDENCIES
   aasm
-  active_dynamic
   activerecord-import
   acts_as_tree
   after_commit_everywhere (~> 0.1, >= 0.1.5)
