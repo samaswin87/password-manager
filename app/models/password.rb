@@ -55,7 +55,7 @@ class Password < ApplicationRecord
   end
 
   def self.importable_columns
-    [:name, :url, :username, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print]
+    [:name, :url, :username, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print, :imported_for]
   end
 
 end

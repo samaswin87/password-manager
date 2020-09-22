@@ -8,11 +8,13 @@ class FieldMappingsController < BaseController
   def index
     @supported_tables = supported_tables
     @name = params[:name]
-    unless @name.blank?
+    if @name.present?
       field_mapping = FieldMapping.find_by(name: params[:name])
-      @available_fields = field_mapping.available_fields if field_mapping
+    else
+      field_mapping = FieldMapping.find_by(name: 'passwords')
     end
-    @columns = columns(@name)
+    @available_fields = field_mapping.available_fields if field_mapping
+    @columns = columns(@name || 'passwords')
   end
 
   def create_or_update
