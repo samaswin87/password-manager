@@ -65,6 +65,7 @@ javascript:
 
     let url = {
       home_path: "#{file_import_path(resource)}",
+      submit_path: "#{import_passwords_path(import_id: resource.id)}",
       redirect_path: "/#{resource.data_type}",
     };
 

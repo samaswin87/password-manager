@@ -1,6 +1,6 @@
 class ImportRecordsDatatable < ApplicationDatatable
 
-  def_delegators :@view, :check_box_tag, :link_to, :resource_path, :content_tag, :concat
+  def_delegators :@view, :check_box_tag, :link_to, :resource_path, :content_tag, :concat, :remove_record_file_imports_path
 
   def initialize(params, opts = {})
     @resource = opts[:resource]
@@ -30,7 +30,7 @@ class ImportRecordsDatatable < ApplicationDatatable
         id:         record.id,
         DT_RowId:   record.id,
         action:     content_tag(:div, class: 'btn-group') do
-          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
+          concat(link_to(fa_icon('trash-o padding-right'), remove_record_file_imports_path(record_id: record.id), method: :delete, data: {confirm_swal: 'Are you sure?'}))
         end
       }
       custom_columns.each do |column|

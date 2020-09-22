@@ -10,7 +10,7 @@
 #
 class ImportDataTable < ApplicationRecord
   # ---- serialize ----
-  serialize :columns, HashSerializer
+  serialize :dynamic_fields, HashSerializer
 
   # ---- relationships ----
   belongs_to :file_import, polymorphic: true

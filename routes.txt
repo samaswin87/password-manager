@@ -33,7 +33,8 @@
                                 DELETE /users/:id(.:format)                                                                     users#destroy
                 status_password PUT    /passwords/:id/status(.:format)                                                          passwords#status
                uploads_password PUT    /passwords/:id/uploads(.:format)                                                         passwords#uploads
-            attachment_password DELETE /passwords/:id/attachment(.:format)                                                      passwords#attachment
+     remove_attachment_password DELETE /passwords/:id/remove_attachment(.:format)                                               passwords#remove_attachment
+               import_passwords PUT    /passwords/import(.:format)                                                              passwords#import
                       passwords GET    /passwords(.:format)                                                                     passwords#index
                                 POST   /passwords(.:format)                                                                     passwords#create
                    new_password GET    /passwords/new(.:format)                                                                 passwords#new
@@ -60,6 +61,7 @@
                                 PATCH  /cities/:id(.:format)                                                                    cities#update
                                 PUT    /cities/:id(.:format)                                                                    cities#update
                                 DELETE /cities/:id(.:format)                                                                    cities#destroy
+     remove_record_file_imports DELETE /file_imports/remove_record(.:format)                                                    file_imports#remove_record
                    file_imports GET    /file_imports(.:format)                                                                  file_imports#index
                                 POST   /file_imports(.:format)                                                                  file_imports#create
                 new_file_import GET    /file_imports/new(.:format)                                                              file_imports#new

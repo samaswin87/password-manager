@@ -13,6 +13,11 @@ class FieldMapping < ApplicationRecord
   # ---- validates ----
   validates :name, presence: true, uniqueness: true
 
+  # ---- scopes ----
+  scope :password_mapper, -> { where(name: :passwords) }
+  scope :user_mapper, -> { where(name: :users) }
+
+
   def available_fields
     self.fields&.map {|field| field[0] if field[1]}&.compact
   end

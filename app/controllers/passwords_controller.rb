@@ -57,13 +57,18 @@ class PasswordsController < BaseController
     render json: {status: 'Success'}, status: HTTP::OK and return
   end
 
-  def attachment
+  def remove_attachment
     password = Password.find(params[:id])
     if password
       attachment = password.attachments.find(params[:attachment_id])
       attachment.destroy
     end
     redirect_to action: 'show'
+  end
+
+  def import
+    ImportWorker.perform_async(params[:import_id], FileImport::PASSWORDS)
+    render json: {status: 'Success'}, status: HTTP::OK and return
   end
 
   private

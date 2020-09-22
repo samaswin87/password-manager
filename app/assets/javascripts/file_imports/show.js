@@ -60,6 +60,11 @@
     window.location.href = url.home_path + '?page=mapper'
   });
 
+  $('#preview-submit').click(function(event) {
+    putData(url.submit_path);
+  });
+
+
   $.file_imports_show = {
     init: init,
   }

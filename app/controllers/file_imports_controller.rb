@@ -1,7 +1,7 @@
 class FileImportsController < BaseController
+  actions :all, :except => [ :remove_record ]
 
   # ---- breadcrumbs ----
-
   add_breadcrumb 'File Imports', :collection_path
 
   # ---- methods ----
@@ -36,6 +36,12 @@ class FileImportsController < BaseController
     end
 
     render json: {status: 'Success'}, status: HTTP::OK and return
+  end
+
+  def remove_record
+    importable = ImportDataTable.find(params[:record_id])
+    importable.destroy
+    redirect_back(fallback_location: root_path)
   end
 
 end
