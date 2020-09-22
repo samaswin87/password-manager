@@ -12,12 +12,13 @@
           .box-body.no-padding
             ul.nav.nav-pills.nav-stacked.table-mapping
               - @supported_tables.each do |supported_table|
-                - if @name == supported_table.to_s
+                - if @name == supported_table.to_s || (supported_table.to_s == 'passwords' && @name.nil?)
                   li.mapping-active.list-group-item.li-mapping
                     = link_to supported_table.to_s.titleize, url_for(name: supported_table)
                 - else
                   li.list-group-item.li-mapping
                     = link_to supported_table.to_s.titleize, url_for(name: supported_table)
+      .col-md-1
       .col-md-4
         .box.box-primary
           .box-header.with-border
@@ -39,10 +40,12 @@
                       td.mailbox-attachment
                         = link_to icon, '#', id: column, class: 'add-field','data-toggle': 'tooltip', 'data-placement': 'top', title: t("field_mappings.#{text}", field: column)
 
+= javascript_include_tag 'field_mappings/index'
 javascript:
-  document.addEventListener("DOMContentLoaded", function(event) {
-    params = {
+  $(document).ready(function() {
+    let params = {
       name: "#{@name}",
     };
     $.mapper.init(params);
   });
+

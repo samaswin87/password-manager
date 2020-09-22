@@ -19,6 +19,7 @@ gem 'jbuilder', '~> 2.5'
 gem 'cucumber'
 gem 'therubyracer'
 gem 'less-rails'
+gem 'email_validator'
 
 
 group :development, :test do

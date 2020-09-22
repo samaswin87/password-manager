@@ -18,7 +18,8 @@ class FieldMappingsController < BaseController
   end
 
   def create_or_update
-    field_mapping = FieldMapping.find_or_create_by(name: field_params[:name])
+    field_name = field_params[:name].present? ? field_params[:name] : 'passwords'
+    field_mapping = FieldMapping.find_or_create_by(name: field_name)
     if field_mapping && field_params[:field]
       fields = field_mapping.fields || {}
       fields[field_params[:field]] = !fields[field_params[:field]].present?

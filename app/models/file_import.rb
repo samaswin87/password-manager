@@ -33,11 +33,19 @@ class FileImport < ApplicationRecord
 
   # ---- aasm ----
   aasm column: :state do
-    state :pending, initial: true
-    state :processing, :falied, :completed
+    state :uploading, initial: true
+    state :pending, :importing, :mapping, :processing, :falied, :completed
+
+    event :import do
+      transitions from:[:uploading], to: :importing
+    end
+
+    event :map do
+      transitions from: [:importing], to: :mapping
+    end
 
     event :process do
-      transitions from: [:pending], to: :processing
+      transitions from: [:mapping, :pending], to: :processing
     end
 
     event :abort do

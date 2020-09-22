@@ -23,6 +23,7 @@
 #  password_changed_at :datetime
 #  password_copied_at  :datetime
 #  password_viwed_at   :datetime
+#  email               :string
 #
 class Password < ApplicationRecord
   # ---- relationships ----
@@ -34,7 +35,9 @@ class Password < ApplicationRecord
 
   # ---- validates ----
   validates :url, :text_password, presence: true
-  validates :name, presence: true, uniqueness: true
+  validates :name, :email, presence: true, uniqueness: true
+  validates :email, email: true
+
   # ---- paperclip ----
   has_attached_file :logo, styles: {
     icon:  '32x32#',
@@ -50,6 +53,9 @@ class Password < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :in_active, -> { where(active: false) }
 
+  # ---- callbacks ----
+  before_save :set_email
+
   def status
     self.active ? 'Active' : 'In Active'
   end
@@ -58,4 +64,11 @@ class Password < ApplicationRecord
     [:name, :url, :username, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print, :imported_for]
   end
 
+  private
+
+  def set_email
+    if EmailValidator.valid?(self.username)
+      self.email = self.username
+    end
+  end
 end
