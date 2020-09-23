@@ -8,7 +8,6 @@ class FileImportService < ApplicationService
   def call
     import = FileImport.find(@import_id)
     csv_processed = SmarterCSV.process(import.data.path, options)
-    import.process!
     rows = []
     csv_processed.each do |row|
       rows << { dynamic_fields: row, file_import_id: @import_id }

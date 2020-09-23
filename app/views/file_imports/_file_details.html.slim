@@ -1,4 +1,4 @@
-- if @file_import_hash
+- if @file_import_decorator&.file_import_hash
   section.invoice
     .row.invoice-info.pb-5
       .col-sm-6.invoice-col
@@ -8,7 +8,8 @@
         button.btn.btn-primary#upload-next
           = menu_label_icon_with_class('Next', 'arrow-circle-right', 'pr-1')
 
-    - @file_import_hash.each do |key, value|
+    - @file_import_decorator.file_import_hash.each do |key, value|
+      - next unless value.present?
       .row.invoice-info
         .col-sm-6.invoice-col
           .pb-3.pull-right

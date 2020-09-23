@@ -17,6 +17,7 @@ class FileImportsController < BaseController
     if params[:page]
       @page = params[:page]
       if params[:page] == 'mapper'
+        resource.map!
         @field_mapper = FieldMapping.find_by(name: resource.data_type)
       elsif params[:page] == 'records'
         respond_to do |format|
@@ -25,7 +26,8 @@ class FileImportsController < BaseController
         end
       end
     else
-      @file_import_hash = resource.attributes.except('id', 'data_type', 'created_at', 'updated_at', 'job_id', 'data_updated_at')
+      resource.import! if resource.state == 'uploading'
+      @file_import_decorator = resource.decorate
     end
   end
 
