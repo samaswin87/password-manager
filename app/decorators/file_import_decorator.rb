@@ -16,9 +16,9 @@ class FileImportDecorator < Draper::Decorator
 
   def status(state)
     case state
-    when 'pending' || 'uploading' || 'importing'
+    when 'pending',  'uploading',  'importing'
       content(state, 'label-warning')
-    when 'processing' || 'mapping'
+    when 'processing', 'mapping'
       content(state, 'label-primary')
     when 'falied'
       content(state, 'label-danger')

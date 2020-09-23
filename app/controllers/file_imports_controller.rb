@@ -17,16 +17,16 @@ class FileImportsController < BaseController
     if params[:page]
       @page = params[:page]
       if params[:page] == 'mapper'
-        resource.map!
+        resource.import! if resource.state == 'uploading'
         @field_mapper = FieldMapping.find_by(name: resource.data_type)
       elsif params[:page] == 'records'
+        resource.map! if resource.state == 'importing'
         respond_to do |format|
           format.html
           format.json { render json: ImportRecordsDatatable.new(params, view_context: view_context, current_user: current_user, resource: resource) }
         end
       end
     else
-      resource.import! if resource.state == 'uploading'
       @file_import_decorator = resource.decorate
     end
   end
