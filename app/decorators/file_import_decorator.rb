@@ -39,20 +39,6 @@ class FileImportDecorator < Draper::Decorator
             end
           end
         )
-
-        # h.concat(
-        #   h.content_tag(:span, class: "ml-10 label label-primary") do
-        #     h.menu_label_icon_with_class(value, 'file-text-o', 'mr-5')
-        #   end
-        # )
-
-        # h.concat(
-        #   h.content_tag(:span, class: "ml-10 label label-primary") do
-        #     h.menu_label_icon_with_class(key, 'database', 'mr-3')
-        #   end
-        # )
-
-        # h.concat(h.content_tag(:br))
       end
     end
   end
