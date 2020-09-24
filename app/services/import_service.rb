@@ -1,8 +1,9 @@
 class ImportService < ApplicationService
 
-  def initialize(import_id, klass)
+  def initialize(import_id, user_id, klass)
     @import_id = import_id
     @klass = klass
+    @user_id = user_id
     @errors = []
   end
 
@@ -14,7 +15,7 @@ class ImportService < ApplicationService
 
     instance = "#{@klass.to_s.singularize}_concrete_factory".classify.constantize.new.instance
     if instance.present?
-      instance.import(@import_id)
+      instance.import(@import_id, @user_id)
     end
   end
 

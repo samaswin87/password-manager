@@ -1,8 +1,8 @@
 class PasswordImportService < AbstractPasswordImportService
 
-  def import(import_id)
+  def import(import_id, user_id)
     import = FileImport.find(import_id)
-    field_mapper = FieldMapping.password_mapper.first
+    import.process!
     passwords = []
     import.import_data_tables.find_in_batches(batch_size: 100) do |batch|
       batch.each do |import_data|
@@ -11,7 +11,7 @@ class PasswordImportService < AbstractPasswordImportService
           password_hash[key] = import_data.dynamic_fields[field]
         end
 
-        password_hash[:user_id] = user
+        password_hash[:user_id] = user_id
         passwords << password_hash
       end
     end
@@ -20,7 +20,6 @@ class PasswordImportService < AbstractPasswordImportService
     begin
       imports = Password.import(passwords,
                                 on_duplicate_key_update: {
-                                  conflict_target: [:name],
                                   columns: import.mappings.keys},
                                   batch_size: 100,
                                   raise_error: true)

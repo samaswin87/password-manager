@@ -53,22 +53,12 @@ class Password < ApplicationRecord
   scope :active, -> { where(active: true) }
   scope :in_active, -> { where(active: false) }
 
-  # ---- callbacks ----
-  before_save :set_email
-
   def status
     self.active ? 'Active' : 'In Active'
   end
 
   def self.importable_columns
-    [:name, :url, :username, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print, :imported_for]
+    [:name, :url, :username, :email, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print]
   end
 
-  private
-
-  def set_email
-    if EmailValidator.valid?(self.username)
-      self.email = self.username
-    end
-  end
 end

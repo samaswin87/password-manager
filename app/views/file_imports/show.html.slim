@@ -38,7 +38,7 @@ javascript:
   $(document).ready(function() {
     let params = {
       fields: #{raw @field_mapper&.available_fields || []},
-      headers: #{raw resource.headers || []},
+      headers: #{raw resource.mappings.values || []},
     };
 
     let url = {

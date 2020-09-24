@@ -67,7 +67,7 @@ class PasswordsController < BaseController
   end
 
   def import
-    ImportWorker.perform_async(params[:import_id], FileImport::PASSWORDS)
+    ImportWorker.perform_async(params[:import_id], current_user.id, FileImport::PASSWORDS)
     render json: {status: 'Success'}, status: HTTP::OK and return
   end
 
