@@ -6,7 +6,7 @@ class FileImportDecorator < Draper::Decorator
     file_import_hash = {}
     attributes.each do |key, value|
       if key == 'state'
-        file_import_hash[key] = status(value)
+        file_import_hash[key] = status
       else
         file_import_hash[key] = value
       end
@@ -14,22 +14,22 @@ class FileImportDecorator < Draper::Decorator
     file_import_hash
   end
 
-  def status(state)
-    case state
+  def status
+    case object.state
     when 'pending',  'uploading',  'importing'
-      content(state, 'label-warning')
+      content('label-warning')
     when 'processing', 'mapping'
-      content(state, 'label-primary')
+      content('label-primary')
     when 'falied'
-      content(state, 'label-danger')
+      content('label-danger')
     when 'completed'
-      content(state, 'label-success')
+      content('label-success')
     end
   end
 
-  def content(state, label)
+  def content(label)
     h.content_tag(:span, class: "label #{label}") do
-      state.humanize
+      object.state.humanize
     end
   end
 
