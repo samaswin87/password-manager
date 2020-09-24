@@ -1,0 +1,22 @@
+- if @page == 'records'
+  section.invoice
+    .row.invoice-info
+      .col-sm-6.invoice-col
+        button.btn.btn-primary.mr-2.pull-right#preview-prev
+          = menu_label_icon_with_class('Previous', 'arrow-circle-left', 'pr-1')
+      .col-sm-6.invoice-col.pull-left
+        button.btn.btn-primary#preview-submit
+          = menu_label_icon_with_class('Submit' ,'arrow-circle-right', 'pr-1')
+    .row.invoice-info
+      .col-md-12
+        table
+          .box-body
+            .row
+              .col-md-12
+                table#import-records-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= file_import_path(resource, form: 'json', page: 'records')
+                  thead
+                    tr
+                      - resource.table_headers.each do |table_header|
+                        th.all width="*" =table_header
+                      th.all.w-5 width="*" Actions
+                tbody

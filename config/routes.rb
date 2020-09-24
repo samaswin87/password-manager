@@ -26,12 +26,20 @@ Rails.application.routes.draw do
     member do
       put :status
     end
+
+    collection do
+      put :import
+    end
   end
   resources :passwords do
     member do
       put :status
       put :uploads
-      delete :attachment
+      delete :remove_attachment
+    end
+
+    collection do
+      put :import
     end
   end
 
@@ -43,7 +51,17 @@ Rails.application.routes.draw do
 
   resources :states
   resources :cities
-  resources :file_imports
+  resources :file_imports do
+    collection do
+      delete :remove_record
+    end
+  end
+
+  resources :field_mappings do
+    collection do
+      post :create_or_update
+    end
+  end
 
   get 'current_user' => 'application#user'
 end

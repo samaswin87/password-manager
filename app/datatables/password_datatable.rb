@@ -10,7 +10,7 @@ class PasswordDatatable < ApplicationDatatable
       name: { source: "Password.name", cond: :like },
       username: { source: "Password.username", cond: :like },
       url: { source: "Password.url", cond: :like },
-      status: { source: "Password.active", searchable: false},
+      status: { source: "Password.active", cond: filter_status_condition },
       logo: { source: nil, searchable: false, orderable: false },
       action: { source: nil, searchable: false, orderable: false }
     }
@@ -53,13 +53,19 @@ class PasswordDatatable < ApplicationDatatable
 
   def get_raw_records
     passwords = @current_user.admin? ? Password.all : @current_user.passwords
-    status_params = params.fetch('columns',{}).fetch('3', {}).fetch('search', {}).permit(:value)
-    if status_params['value'] == 'active'
-      passwords = passwords.active
-    elsif status_params['value'] == 'in-active'
-      passwords = passwords.in_active
-    end
+    # status_params = params.fetch('columns',{}).fetch('3', {}).fetch('search', {}).permit(:value)
+    # if status_params['value'] == 'active'
+    #   passwords = passwords.active
+    # elsif status_params['value'] == 'in-active'
+    #   passwords = passwords.in_active
+    # end
     passwords.order('updated_at desc')
+  end
+
+  def filter_status_condition
+    ->(column, value) {
+      column.table[column.field].eq(value)
+    }
   end
 
 end

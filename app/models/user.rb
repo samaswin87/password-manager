@@ -136,4 +136,8 @@ class User < ApplicationRecord
     self.created_at.strftime("%b, %Y")
   end
 
+  def self.importable_columns
+    [:email, :password, :first_name, :last_name, :phone, :gender_id, :user_type]
+  end
+
 end

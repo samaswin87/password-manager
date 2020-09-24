@@ -41,3 +41,18 @@ async function postData(url = '', data = {}) {
   });
   return response.json();
 }
+
+// need to fix params
+async function getData(url = '', params = {}) {
+  const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+  const response = await fetch(url, {
+    method: 'GET',
+    credentials: 'same-origin',
+    mode: 'same-origin',
+    headers: {
+      'Content-Type': 'application/json',
+      'X-CSRF-Token': csrf
+    },
+  });
+  return response.json();
+}

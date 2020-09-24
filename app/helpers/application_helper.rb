@@ -12,6 +12,17 @@ module ApplicationHelper
       end
   end
 
+  def menu_label_icon_with_class(text, icon, klass)
+    content_tag(:i, class: "fa fa-#{icon} #{klass}") {} +
+      content_tag(:span) do
+        text
+      end
+  end
+
+  def fa_icon_with_class(icon, klass)
+    content_tag(:i, class: "fa fa-#{icon} #{klass}") {}
+  end
+
   # ---- simple form ----
 
   def deal_value(value, format = :default)
@@ -113,6 +124,10 @@ module ApplicationHelper
       # this works identical to the built-in lazy lookup
       t("#{ controller_path.tr('/', '.') }.#{ action_name }.title", default: :title)
     end
+  end
+
+  def show_image(record)
+    "<img src=#{ current_user.avatar.url(:thumb) } class='img-circle profile-user-img' />"
   end
 
 end

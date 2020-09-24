@@ -1,7 +1,7 @@
 .user-panel
   br
   .pull-left.image
-    = image_tag current_user.avatar.url(:thumb), class: 'img-circle profile-user-img', lazy: true
+    =raw show_image(current_user)
   .pull-left.info
     p.text-ajust
       = current_user.name

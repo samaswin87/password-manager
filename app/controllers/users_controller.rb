@@ -7,6 +7,7 @@ class UsersController < BaseController
   # ---- methods ----
 
   def index
+    @field_mapper = FieldMapping.find_by(name: 'users')
     if params[:job].present?
       @import = FileImport.find_by(job_id: params[:job])
     end
@@ -49,6 +50,11 @@ class UsersController < BaseController
     if user
       user.active!
     end
+  end
+
+  def import
+    ImportWorker.perform_async(params[:import_id], current_user.id, FileImport::USERS)
+    render json: {status: 'Success'}, status: HTTP::OK and return
   end
 
   private

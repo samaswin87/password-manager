@@ -1,5 +1,9 @@
-(function() {
-  $(function() {
+(function ($) {
+  function init() {
+    initDataTable();
+  }
+
+  initDataTable = function() {
     $('#file_imports-datatable').dataTable({
       processing: true,
       serverSide: true,
@@ -26,6 +30,10 @@
         }
       ]
     });
-  });
+  }
 
-}).call(this);
+  $.file_imports_index = {
+    init: init,
+  }
+
+})(jQuery);

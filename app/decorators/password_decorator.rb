@@ -20,7 +20,7 @@ class PasswordDecorator < Draper::Decorator
   end
 
   def delete_attachment(id)
-    h.link_to(h.fa_icon('minus-circle pull-right'), h.attachment_password_path(object, {attachment_id: id}), method: :delete, data: {confirm_swal: 'Are you sure?'})
+    h.link_to(h.fa_icon('minus-circle'), h.attachment_password_path(object, {attachment_id: id}), class: 'attachment-remove', method: :delete, data: {confirm_swal: 'Are you sure?'})
   end
 
 end

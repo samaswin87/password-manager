@@ -21,4 +21,10 @@ class ApplicationRecord < ActiveRecord::Base
   def to_s
     self.attributes.map { |key, value| "#{key}=#{value}" }.join(', ')
   end
+
+  # Must override by child classes
+  def self.importable_columns
+    []
+  end
+
 end

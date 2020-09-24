@@ -6,9 +6,10 @@
     <meta name="robots" content="noindex, nofollow" />
     <title><%= title %></title>
 
+    <%= javascript_pack_tag 'app' %>
     <%= favicon_link_tag 'favicon.ico' %>
     <%= stylesheet_link_tag 'application', media: 'all' %>
-    <%= stylesheet_pack_tag 'app', media: 'all' %>
+    <%= javascript_include_tag 'application' %>
     <%= csrf_meta_tags %>
   </head>
 
@@ -22,8 +23,6 @@
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js"></script>
-    <%= javascript_include_tag 'application' %>
-    <%= javascript_pack_tag 'app' %>
     <%= custom_bootstrap_flash %>
   </body>
 

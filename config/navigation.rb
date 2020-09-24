@@ -13,6 +13,7 @@ SimpleNavigation::Configuration.run do |navigation|
         sub_nav.dom_class = 'treeview-menu'
         sub_nav.item :states, menu_label_icon('States', 'globe'), states_path, class: 'treeview-menu', highlights_on: %r{/states}
         sub_nav.item :cities, menu_label_icon('Cities', 'building-o'), cities_path, class: 'treeview-menu', highlights_on: %r{/cities}
+        sub_nav.item :field_mappings, menu_label_icon('Field Mappings', 'sitemap'), field_mappings_path, class: 'treeview-menu', highlights_on: %r{/field_mappings}
       end
     end
   end

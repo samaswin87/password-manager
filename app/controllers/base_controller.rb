@@ -5,21 +5,16 @@ class BaseController < InheritedResources::Base
 
   # ---- layout ----
 
-  layout :resolve_layout
+  layout "admin"
   # ---- devise ----
 
   before_action :authenticate_user!
   load_and_authorize_resource
 
+  protected
 
-  private
-
-  def resolve_layout
-    case action_name
-    when "index"
-      "admin_table"
-    else
-      "admin"
-    end
+  def csv_options
+    { force_utf8: true,  convert_values_to_numeric: true }
   end
+
 end

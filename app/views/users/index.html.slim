@@ -24,5 +24,16 @@
               th.all width="*" Action
         tbody
 
-= javascript_include_tag 'api'
+= javascript_include_tag 'users/index'
+javascript:
+  $(document).ready(function() {
+    let params = {
+      isAdmin: #{current_user.admin?}
+    };
+
+    let url = {
+      home: "#{users_path}"
+    };
+    $.users_index.init(params, url);
+  });
 

@@ -172,6 +172,8 @@ GEM
     elasticsearch-transport (7.9.0)
       faraday (~> 1)
       multi_json
+    email_validator (2.0.1)
+      activemodel
     erubi (1.9.0)
     execjs (2.7.0)
     faker (2.13.0)
@@ -494,6 +496,7 @@ DEPENDENCIES
   devise_invitable
   dotenv-rails
   draper (~> 4.0, >= 4.0.1)
+  email_validator
   faker
   font-awesome-rails (~> 4.7, >= 4.7.0.5)
   guard

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_07_141408) do
+ActiveRecord::Schema.define(version: 2020_09_22_172252) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,13 @@ ActiveRecord::Schema.define(version: 2020_09_07_141408) do
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
   end
 
+  create_table "field_mappings", force: :cascade do |t|
+    t.json "fields"
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "file_imports", force: :cascade do |t|
     t.string "state"
     t.string "data_file_name"
@@ -51,8 +58,6 @@ ActiveRecord::Schema.define(version: 2020_09_07_141408) do
     t.integer "data_file_size"
     t.datetime "data_updated_at"
     t.datetime "completed_at"
-    t.string "source_type"
-    t.bigint "source_id"
     t.text "error_messages"
     t.integer "total_count", default: 0
     t.integer "parsed_count", default: 0
@@ -61,7 +66,10 @@ ActiveRecord::Schema.define(version: 2020_09_07_141408) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "job_id"
-    t.index ["source_type", "source_id"], name: "index_file_imports_on_source_type_and_source_id"
+    t.string "data_type"
+    t.string "headers", default: [], array: true
+    t.jsonb "mappings", default: {}, null: false
+    t.jsonb "parsed_data"
   end
 
   create_table "genders", force: :cascade do |t|
@@ -69,6 +77,15 @@ ActiveRecord::Schema.define(version: 2020_09_07_141408) do
     t.string "alias"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "import_data_tables", force: :cascade do |t|
+    t.jsonb "dynamic_fields"
+    t.bigint "file_import_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["dynamic_fields"], name: "index_import_data_tables_on_dynamic_fields", using: :gin
+    t.index ["file_import_id"], name: "index_import_data_tables_on_file_import_id"
   end
 
   create_table "password_attachments", force: :cascade do |t|
@@ -103,6 +120,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_141408) do
     t.datetime "password_changed_at"
     t.datetime "password_copied_at"
     t.datetime "password_viwed_at"
+    t.string "email"
     t.index ["user_id"], name: "index_passwords_on_user_id"
   end
 
@@ -175,6 +193,7 @@ ActiveRecord::Schema.define(version: 2020_09_07_141408) do
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "states"
   add_foreign_key "cities", "states"
+  add_foreign_key "import_data_tables", "file_imports"
   add_foreign_key "password_attachments", "passwords"
   add_foreign_key "passwords", "users"
   add_foreign_key "users", "genders"

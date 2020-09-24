@@ -9,8 +9,8 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//
 //= require jquery
+//= require jquery_ujs
 //= require bootstrap
 //= require adminlte
 //= require bootstrap-wysihtml5
@@ -24,7 +24,11 @@
 //= require toastr
 //= require jquery-fileupload/basic
 //= require papaparse
-//= require_tree .
+//= require vendor/notifyset
+//= require datatables
+//= require bs-stepper
+//= require api
+// require_tree .
 
 $(document).ready(function(){
 

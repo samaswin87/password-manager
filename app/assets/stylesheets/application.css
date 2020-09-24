@@ -22,6 +22,8 @@
  *= require jquery.fileupload
  *= require jquery.fileupload-ui
  *= require device
+ *= require bs-stepper
+ *= require bs-extend
  *= require_tree .
  *= require_self
  */
@@ -377,4 +379,39 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
 
 .width-10 {
   width: 10px;
+}
+
+li.list-group-item:hover {
+  background: #f4f4f4 !important;
+}
+
+.attachment-remove {
+  display: inline-flex;
+  margin-left: 1.3rem;
+}
+
+.table-mapping {
+  display: block;
+}
+
+.li-mapping {
+  border: 0px;
+}
+
+.mapping-active {
+  background: #dee2e6 !important;
+}
+
+.profile-user-img {
+  margin: 0 auto;
+  width: 100px !important;
+  padding: 3px;
+  border: 3px solid #d2d6de;
+}
+
+.list-field-mapping {
+  position: relative;
+  display: block;
+  padding: 0 0 1.15rem 0;
+  background-color: #fff;
 }
