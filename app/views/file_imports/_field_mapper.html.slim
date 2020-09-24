@@ -11,12 +11,12 @@
     .row.invoice-info
       .col-md-6
         ul.list-group.pull-right
-          - @field_mapper.available_fields.each do |field|
+          - @field_mapper&.available_fields&.each do |field|
             li.list-field-mapping
               span.input-group-text.map-label =t("field_mappings.fields.#{field}")
       .col-md-6.input-group
         ul.list-group
-          - @field_mapper.available_fields.each_with_index do |field, index|
+          - @field_mapper&.available_fields&.each_with_index do |field, index|
             li.list-field-mapping.pull-left
               select.form-control name=field
                 - resource.headers.each_with_index do |header, indexOptions|

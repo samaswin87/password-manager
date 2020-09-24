@@ -64,7 +64,9 @@
   });
 
   $('#preview-submit').click(function(event) {
-    putData(url.submit_path);
+    putData(url.submit_path).then(data => {
+      window.location.href = url.redirect_path
+    });
   });
 
 
