@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 2020_09_22_172252) do
     t.string "data_type"
     t.string "headers", default: [], array: true
     t.jsonb "mappings", default: {}, null: false
+    t.jsonb "parsed_data"
   end
 
   create_table "genders", force: :cascade do |t|

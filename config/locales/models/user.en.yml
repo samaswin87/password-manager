@@ -26,6 +26,7 @@ en:
         last_name: Last name
         phone: Phone
         gender: Gender
+        gender_id: Gender
         user_type: User type
         avatar_file_name: File name
         avatar_content_type: Content type

@@ -15,7 +15,7 @@ class PasswordImportService < AbstractPasswordImportService
         passwords << password_hash
       end
     end
-
+    import.update_attribute(:parsed_data, passwords)
     import.parsed_count!(passwords.count)
     begin
       imports = Password.import(passwords,
@@ -24,8 +24,8 @@ class PasswordImportService < AbstractPasswordImportService
                                   batch_size: 100,
                                   raise_error: true)
       import.complete!
-      import.success_count!(imports.ids.try(:count) || 0)
-      import.failed_count!((imports.failed_instances.try(:count) || 0) + @errors.count)
+      import.success_count!(imports.ids.try(:count))
+      import.failed_count!(imports.failed_instances.try(:count))
     rescue StandardError => e
       import.update_attribute(:error_messages, e.message)
       import.abort!

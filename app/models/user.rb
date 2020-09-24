@@ -137,7 +137,7 @@ class User < ApplicationRecord
   end
 
   def self.importable_columns
-    [:email, :password, :first_name, :last_name, :phone, :gender, :user_type]
+    [:email, :password, :first_name, :last_name, :phone, :gender_id, :user_type]
   end
 
 end

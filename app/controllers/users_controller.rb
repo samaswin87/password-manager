@@ -52,6 +52,11 @@ class UsersController < BaseController
     end
   end
 
+  def import
+    ImportWorker.perform_async(params[:import_id], current_user.id, FileImport::USERS)
+    render json: {status: 'Success'}, status: HTTP::OK and return
+  end
+
   private
 
   def user_params

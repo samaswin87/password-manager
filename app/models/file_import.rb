@@ -20,6 +20,7 @@
 #  data_type         :string
 #  headers           :string           default([]), is an Array
 #  mappings          :jsonb            not null
+#  parsed_data       :jsonb
 #
 class FileImport < ApplicationRecord
   has_paper_trail
@@ -59,6 +60,10 @@ class FileImport < ApplicationRecord
 
   # ----- callbacks ----
   validate :supported_type?
+
+  # ---- serialize ----
+  serialize :parsed_data
+
 
   # ----- scopes ----
   scope :for_type, lambda { |data_type|
@@ -102,6 +107,7 @@ class FileImport < ApplicationRecord
 
     table_headers
   end
+
 
   private
 

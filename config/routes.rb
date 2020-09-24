@@ -26,6 +26,10 @@ Rails.application.routes.draw do
     member do
       put :status
     end
+
+    collection do
+      put :import
+    end
   end
   resources :passwords do
     member do
