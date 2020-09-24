@@ -36,9 +36,11 @@ section
 = javascript_include_tag 'file_imports/show'
 javascript:
   $(document).ready(function() {
+
     let params = {
       fields: #{raw @field_mapper&.available_fields || []},
       headers: #{raw resource.mappings.values || []},
+      mappings: #{raw (resource.mappings || {}).to_json},
     };
 
     let url = {

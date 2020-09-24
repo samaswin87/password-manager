@@ -16,5 +16,8 @@
             strong.pr-10p =t("view.file_imports.fields.#{key}")
         .col-sm-6.invoice-col
           .pb-3.pull-left class="#{key}"
-            =value
+            - if key == 'error_messages' || key == 'mappings'
+              =render 'shared/copy_text_area', value: value, field: key, rows: 10, cols:60
+            - else
+              =value
 

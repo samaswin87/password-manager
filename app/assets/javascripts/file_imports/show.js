@@ -19,6 +19,8 @@
     })
 
     loadDataTable()
+
+    $('#copy-mappings').val(JSON.stringify(params.mappings, undefined, 4))
   }
 
 
