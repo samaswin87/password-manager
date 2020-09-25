@@ -1,0 +1,9 @@
+en:
+  view:
+    locations:
+      title: Location Details
+      fields:
+        country: 'Country:'
+        state: 'State:'
+        city: 'City:'
+
