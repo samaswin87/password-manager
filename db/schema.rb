@@ -38,17 +38,17 @@ ActiveRecord::Schema.define(version: 2020_09_25_041910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_cities_on_country_id"
     t.index ["state_id"], name: "index_cities_on_state_id"
   end
 
   create_table "countries", force: :cascade do |t|
     t.string "name", null: false
-    t.bigint "state_id"
-    t.bigint "city_id"
+    t.string "alias", null: false
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_countries_on_city_id"
-    t.index ["state_id"], name: "index_countries_on_state_id"
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
@@ -139,6 +139,8 @@ ActiveRecord::Schema.define(version: 2020_09_25_041910) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_states_on_country_id"
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -203,8 +205,6 @@ ActiveRecord::Schema.define(version: 2020_09_25_041910) do
   add_foreign_key "addresses", "cities"
   add_foreign_key "addresses", "states"
   add_foreign_key "cities", "states"
-  add_foreign_key "countries", "cities"
-  add_foreign_key "countries", "states"
   add_foreign_key "import_data_tables", "file_imports"
   add_foreign_key "password_attachments", "passwords"
   add_foreign_key "passwords", "users"

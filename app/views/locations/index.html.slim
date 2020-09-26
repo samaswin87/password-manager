@@ -3,11 +3,22 @@
   .box-body
     .row
       .col-md-12
-        table
-          thead#locations-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
+        table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
+          thead
             tr
               th.all width="*" Country
               th.all width="*" State
               th.all width="*" City
               th.all width="*" Action
-        tbody
+          tbody
+            - @locations.each do |location|
+              tr
+                td = location.country.name
+                td = location.state.name
+                td = location.name
+                td
+      .col-md-12
+        .pull-right
+          ==pagy_bootstrap_nav(@pagy)
+
+
