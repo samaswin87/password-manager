@@ -1,0 +1,11 @@
+en:
+  view:
+    locations:
+      title: Location
+      fields:
+        country_name: 'Country:'
+        country_alias: 'Country short name:'
+        state_name: 'State:'
+        city_name: 'City:'
+      alert:
+

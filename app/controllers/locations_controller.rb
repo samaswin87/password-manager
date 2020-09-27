@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   layout "admin"
   # ---- devise ----
   before_action :authenticate_user!
-  before_action :set_location, only: [:destroy, :update]
+  before_action :set_location, only: [:destroy, :edit, :show, :update]
 
 
   def index
@@ -30,6 +30,8 @@ class LocationsController < ApplicationController
   end
 
   def show
+    add_breadcrumb 'Show', :locations_path
+    @resource = @location.decorate
   end
 
   def edit

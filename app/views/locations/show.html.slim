@@ -1,0 +1,40 @@
+= content_for :title, t("view.locations.title")
+= render 'form_header'
+
+section.content
+  .box.box-default
+    .box-header.with-border
+      span.padding-right_10
+        =@resource.status_button
+      h3.box-title
+        | Location Details
+    .box-body
+      .row
+        .col-md-6
+          .pb-3.pull-right
+            strong.pr-10p =t("view.locations.fields.country_name")
+        .col-md-6
+          .pb-3.pull-left
+            = @location.country.name
+      .row
+        .col-md-6
+          .pb-3.pull-right
+            strong.pr-10p =t("view.locations.fields.country_alias")
+        .col-md-6
+          .pb-3.pull-left
+            = @location.country.alias
+      .row
+        .col-md-6
+          .pb-3.pull-right
+            strong.pr-10p =t("view.locations.fields.state_name")
+        .col-md-6
+          .pb-3.pull-left
+            = @location.state.name
+      .row
+        .col-md-6
+          .pb-3.pull-right
+            strong.pr-10p =t("view.locations.fields.city_name")
+        .col-md-6
+          .pb-3.pull-left
+            = @location.name
+

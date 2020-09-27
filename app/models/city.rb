@@ -28,4 +28,5 @@ class City < ApplicationRecord
   # ---- validates ----
 
   validates :name, presence: true, uniqueness: true
+
 end

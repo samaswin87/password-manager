@@ -9,4 +9,7 @@ class CityDecorator < Draper::Decorator
     end
   end
 
+  def status_button
+  end
+
 end
