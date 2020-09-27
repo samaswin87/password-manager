@@ -3,22 +3,56 @@
   .box-body
     .row
       .col-md-12
+        .form-group.has-search.pull-right.mb-10
+          span.fa.fa-search.form-control-feedback
+          form.search action="#"
+            input.form-control.input-sm name='location' value="#{@search}" type="search" placeholder="Search" pattern=".{3,}" minlength="3" title="minimum 3 characters need to be entered"
         table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
           thead
             tr
               th.all width="*" Country
               th.all width="*" State
               th.all width="*" City
-              th.all width="*" Action
+              th.all.w-10 Action
           tbody
             - @locations.each do |location|
               tr
                 td = location.country.name
                 td = location.state.name
                 td = location.name
-                td
+                td = location.decorate.actions
       .col-md-12
+        .pull-left
+          = "Total #{@pagy.count} records"
         .pull-right
           ==pagy_bootstrap_nav(@pagy)
 
+//Referred: https://stackoverflow.com/a/35047611/2634405
+javascript:
+  $(document).ready(function() {
+    $(".search").submit( function(event) {
+      event.preventDefault();
+      window.location.href =  '/locations?search='+ $("input[name=location]").val()
+    });
+
+    $("input[name=location]").keyup( function(event) {
+      if (event.keyCode === 8 && !$("input[name=location]").val()) {
+        window.location.href =  '/locations'
+      }
+    });
+
+
+    $('input[type=search]').on('click', function(){
+      $('input[type=search]').on('search', function(){
+        if(!this.value){
+          window.location.href =  '/locations'
+        }
+      });
+      setTimeout(function() {
+        $('input[type=search]').off('search');
+      }, 1);
+    });
+
+
+  });
 
