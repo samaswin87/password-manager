@@ -4,14 +4,15 @@ class LocationsController < ApplicationController
   layout "admin"
   # ---- devise ----
   before_action :authenticate_user!
-  before_action :set_location, only: [:destroy]
+  before_action :set_location, only: [:destroy, :update]
 
 
   def index
     @search = params[:search]
     if @search
       cities = City.joins(:state, :country)
-                   .where('cities.name LIKE ? OR states.name LIKE ? OR countries.name LIKE ?', "%#{@search}%", "%#{@search}%", "%#{@search}%")
+                   .where('LOWER(cities.name) LIKE ? OR LOWER(states.name) LIKE ? OR LOWER(countries.name) LIKE ?',
+                          "%#{@search.downcase}%", "%#{@search.downcase}%", "%#{@search.downcase}%")
       @pagy, @locations = pagy(cities, items: 10)
     else
       @pagy, @locations = pagy(City.includes(:state, :country).all, items: 10)
@@ -26,6 +27,15 @@ class LocationsController < ApplicationController
       flash[:alert] = "You can not delete the location"
     end
     redirect_to locations_path
+  end
+
+  def show
+  end
+
+  def edit
+  end
+
+  def update
   end
 
   private
