@@ -1,13 +1,17 @@
 = content_for :title, t("view.locations.title")
-= render 'form_header'
+section.content-header
+  h1
+    = t("view.locations.discription")
+
+  ol.breadcrumb
+    = render_breadcrumbs tag: :li, separator: ''
 
 section.content
   .box.box-default
     .box-header.with-border
       span.padding-right_10
         =@resource.status_button
-      h3.box-title
-        | Location Details
+      h3.box-title =t("view.locations.title")
     .box-body
       .row
         .col-md-6
@@ -37,4 +41,7 @@ section.content
         .col-md-6
           .pb-3.pull-left
             = @location.name
-
+    .box-footer
+      .row
+        .col-md-6
+          = link_to 'Back', locations_path, class: 'btn btn-default btn-sm'

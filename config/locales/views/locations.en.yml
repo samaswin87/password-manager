@@ -2,6 +2,7 @@ en:
   view:
     locations:
       title: Location
+      discription: Location Details
       fields:
         country_name: 'Country:'
         country_alias: 'Country short name:'

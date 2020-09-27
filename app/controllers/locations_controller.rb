@@ -6,6 +6,8 @@ class LocationsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_location, only: [:destroy, :edit, :show, :update]
 
+  add_breadcrumb 'Locations', :locations_path
+
 
   def index
     @search = params[:search]
@@ -30,7 +32,7 @@ class LocationsController < ApplicationController
   end
 
   def show
-    add_breadcrumb 'Show', :locations_path
+    add_breadcrumb 'Show', :location_path
     @resource = @location.decorate
   end
 
