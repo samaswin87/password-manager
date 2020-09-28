@@ -1,0 +1,21 @@
+= content_for :title, t("view.locations.title")
+section.content-header
+  h1
+    = t("view.locations.discription")
+
+  ol.breadcrumb
+    = render_breadcrumbs tag: :li, separator: ''
+
+section.content
+  .box.box-default
+    .box-header.with-border
+      h3.box-title =t("view.locations.title")
+    .box-body
+      = simple_form_for(@location, url: location_path(@location)) do |form|
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong.pr-10p =t("view.locations.fields.country_name")
+          .col-sm-6
+            .pb-3.pull-left
+              = form.input :name, label: false

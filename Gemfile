@@ -103,6 +103,7 @@ gem 'ajax-datatables-rails'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
 gem 'webpacker', '~> 5.1.1'
+gem "select2-rails"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-adminlte'

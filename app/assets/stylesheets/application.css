@@ -24,6 +24,8 @@
  *= require device
  *= require bs-stepper
  *= require bs-extend
+ *= require select2
+ *= require select2-bootstrap
  *= require_tree .
  *= require_self
  */
