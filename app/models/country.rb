@@ -15,4 +15,8 @@ class Country < ApplicationRecord
   has_many :states
   has_many :cities
 
+  # ---- scope ----
+
+  scope :valid, -> { where(active: true) }
+
 end

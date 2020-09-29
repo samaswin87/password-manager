@@ -50,6 +50,7 @@ Rails.application.routes.draw do
   end
 
   resources :locations
+
   resources :file_imports do
     collection do
       delete :remove_record

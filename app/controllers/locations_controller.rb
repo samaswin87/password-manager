@@ -37,6 +37,9 @@ class LocationsController < ApplicationController
   end
 
   def edit
+    @countries = Country.valid.pluck(:id, :name, :alias)
+    @states = State.valid.pluck(:id, :name)
+    @cities = City.valid.pluck(:id, :name)
   end
 
   def update

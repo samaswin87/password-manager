@@ -11,11 +11,44 @@ section.content
     .box-header.with-border
       h3.box-title =t("view.locations.title")
     .box-body
-      = simple_form_for(@location, url: location_path(@location)) do |form|
+      =form_for :city, url: location_path(@location) do |form|
         .row
           .col-sm-6
             .pb-3.pull-right
               strong.pr-10p =t("view.locations.fields.country_name")
           .col-sm-6
-            .pb-3.pull-left
-              = form.input :name, label: false
+            .pb-3.pull-left.w-100
+              select.w-30#country_name
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong.pr-10p =t("view.locations.fields.country_alias")
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#country_alias
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong.pr-10p =t("view.locations.fields.state_name")
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#state_name
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong.pr-10p =t("view.locations.fields.city_name")
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#city_name
+
+= javascript_include_tag 'locations/edit'
+javascript:
+  $(document).ready(function() {
+    let params = {
+      states: #{raw @states || []},
+      countries: #{raw @countries || []},
+      cities: #{raw @cities || []}
+    }
+    $.locations_edit.init(params);
+  });
+
