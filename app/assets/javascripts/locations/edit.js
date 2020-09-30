@@ -8,58 +8,74 @@
   }
 
   loadData = function() {
-    let country_names = [];
-    params.countries.forEach( function(element, index) {
-      country_names.push({
-        id: element[0],
-        text: element[1]
-      });
-    });
 
-    let country_alias = [];
-    params.countries.forEach( function(element, index) {
-      country_alias.push({
-        id: element[0],
-        text: element[2]
-      });
-    });
-
-    let states = [];
-    params.states.forEach( function(element, index) {
-      states.push({
-        id: element[0],
-        text: element[1]
-      });
-    });
-
-    let cities = [];
-    params.cities.forEach( function(element, index) {
-      cities.push({
-        id: element[0],
-        text: element[1]
-      });
-    });
-
-    $( "#country_name" ).select2({
+    let countryNameSelect = $("#country_name");
+    countryNameSelect.select2({
       theme: "bootstrap",
       tags: true,
-      data: country_names
+      ajax: {
+        url: '/locations/countries?type=name',
+        processResults: function (data) {
+          return {
+            results: data.records
+          };
+        }
+      }
     });
-    $( "#country_alias" ).select2({
+
+    var option = new Option(params.country.name, params.country.id, true, true);
+    countryNameSelect.append(option).trigger('change');
+
+    let countryAliasSelect = $("#country_alias");
+    countryAliasSelect.select2({
       theme: "bootstrap",
       tags: true,
-      data: country_alias
+      ajax: {
+        url: '/locations/countries?type=alias',
+        processResults: function (data) {
+          return {
+            results: data.records
+          };
+        }
+      }
     });
-    $( "#state_name" ).select2({
+
+    var option = new Option(params.country.alias, params.country.id, true, true);
+    countryAliasSelect.append(option).trigger('change');
+
+    let stateSelect = $("#state_name");
+    stateSelect.select2({
       theme: "bootstrap",
       tags: true,
-      data: states
+      ajax: {
+        url: '/locations/states',
+        processResults: function (data) {
+          return {
+            results: data.records
+          };
+        }
+      }
     });
-    $( "#city_name" ).select2({
+
+    var option = new Option(params.state.name, params.state.id, true, true);
+    stateSelect.append(option).trigger('change');
+
+    let citySelect = $("#city_name");
+    citySelect.select2({
       theme: "bootstrap",
       tags: true,
-      data: cities
+      ajax: {
+        url: '/locations/cities',
+        processResults: function (data) {
+          return {
+            results: data.records
+          };
+        }
+      }
     });
+
+    var option = new Option(params.city.name, params.state.id, true, true);
+    citySelect.append(option).trigger('change');
   }
 
   $.locations_edit = {

@@ -49,7 +49,13 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :locations
+  resources :locations do
+    collection do
+      get :countries
+      get :states
+      get :cities
+    end
+  end
 
   resources :file_imports do
     collection do

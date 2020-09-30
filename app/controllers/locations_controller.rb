@@ -37,12 +37,52 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @countries = Country.valid.pluck(:id, :name, :alias)
-    @states = State.valid.pluck(:id, :name)
-    @cities = City.valid.pluck(:id, :name)
   end
 
   def update
+  end
+
+  def countries
+    countries = Country.valid
+    if params[:type] == 'name'
+      countries = countries.map do |country|
+        {
+          id: country.id,
+          text: country.name
+        }
+      end
+    elsif params[:type] == 'alias'
+      countries = countries.map do |country|
+        {
+          id: country.id,
+          text: country.alias
+        }
+      end
+    end
+
+    render json: {records: countries}, status: HTTP::OK and return
+  end
+
+  def states
+    states = State.valid
+    states = states.map do |state|
+      {
+        id: state.id,
+        text: state.name
+      }
+    end
+    render json: {records: states}, status: HTTP::OK and return
+  end
+
+  def cities
+    cities = City.valid
+    cities = cities.map do |city|
+      {
+        id: city.id,
+        text: city.name
+      }
+    end
+    render json: {records: cities}, status: HTTP::OK and return
   end
 
   private

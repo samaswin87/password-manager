@@ -45,9 +45,9 @@ section.content
 javascript:
   $(document).ready(function() {
     let params = {
-      states: #{raw @states || []},
-      countries: #{raw @countries || []},
-      cities: #{raw @cities || []}
+      state: { id: "#{@location.state.id}", name: "#{@location.state.name}" },
+      country: { id: "#{@location.country.id}", name: "#{@location.country.name}", alias: "#{@location.country.alias}" },
+      city: { id: "#{@location.id}", name: "#{@location.name}" },
     }
     $.locations_edit.init(params);
   });
