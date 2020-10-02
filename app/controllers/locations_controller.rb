@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   layout "admin"
   # ---- devise ----
   before_action :authenticate_user!
-  before_action :set_location, only: [:destroy, :edit, :show, :update]
+  before_action :set_location, only: [:destroy]
 
   add_breadcrumb 'Locations', :locations_path
 
@@ -40,8 +40,8 @@ class LocationsController < ApplicationController
   end
 
   def create
-    LocationService.call(location_params, @location)
-    redirect_to location_path(@location)
+    location = LocationService.call(location_params)
+    redirect_to locations_path
   end
 
   def countries

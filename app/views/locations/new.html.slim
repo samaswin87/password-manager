@@ -11,7 +11,7 @@ section.content
     .box-header.with-border
       h3.box-title =t("view.locations.title")
     .box-body
-      =form_for :city, url: new_location_path, method: :put do |form|
+      =form_for :city, url: locations_path, method: :post do |form|
         .row
           .col-sm-6
             .pb-3.pull-right
