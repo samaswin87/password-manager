@@ -49,4 +49,20 @@ class String
   def to_symbol
     self.parameterize.underscore.to_sym
   end
+
+  def to_us
+    self.tableize
+  end
+
+  def to_cam
+    self.camelize
+  end
+
+  def klass
+    self.constantize
+  end
+
+  def to_read(force = false)
+    force ? self.humanize(keep_id_suffix: true) : self.humanize
+  end
 end

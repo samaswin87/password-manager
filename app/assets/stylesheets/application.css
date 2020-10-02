@@ -516,3 +516,11 @@ li.list-group-item:hover {
     pointer-events: none;
     color: #aaa;
 }
+
+.editor-label > label:after {
+  content: ": "
+}
+
+.editor-strong > strong:after {
+  content: ": "
+}

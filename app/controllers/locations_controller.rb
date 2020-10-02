@@ -40,6 +40,8 @@ class LocationsController < ApplicationController
   end
 
   def update
+    LocationService.call(location_params, @location)
+    redirect_to location_path(@location)
   end
 
   def countries
@@ -89,6 +91,10 @@ class LocationsController < ApplicationController
 
   def set_location
     @location = City.find(params[:id])
+  end
+
+  def location_params
+    params.permit(:country_name, :country_alias, :state_name, :city_name)
   end
 
 end

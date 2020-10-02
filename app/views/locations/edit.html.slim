@@ -15,35 +15,39 @@ section.content
         .row
           .col-sm-6
             .pb-3.pull-right
-              strong.pr-10p =t("view.locations.fields.country_name")
+              strong.editor-strong =t("view.locations.fields.country_name")
+              span.pr-10.text-danger *
           .col-sm-6
             .pb-3.pull-left.w-100
-              select.w-30#country_name name='country_name'
+              select.w-30#country_name required=true name='country_name'
         .row
           .col-sm-6
             .pb-3.pull-right
-              strong.pr-10p =t("view.locations.fields.country_alias")
+              strong =t("view.locations.fields.country_alias")
+              span.pr-10.text-danger *
           .col-sm-6
             .pb-3.pull-left.w-100
-              select.w-30#country_alias name='country_alias'
+              select.w-30#country_alias required=true name='country_alias'
         .row
           .col-sm-6
             .pb-3.pull-right
-              strong.pr-10p =t("view.locations.fields.state_name")
+              strong =t("view.locations.fields.state_name")
+              span.pr-10.text-danger *
           .col-sm-6
             .pb-3.pull-left.w-100
-              select.w-30#state_name name='state_name'
+              select.w-30#state_name required=true name='state_name'
         .row
           .col-sm-6
             .pb-3.pull-right
-              strong.pr-10p =t("view.locations.fields.city_name")
+              strong =t("view.locations.fields.city_name")
+              span.pr-10.text-danger *
           .col-sm-6
             .pb-3.pull-left.w-100
-              select.w-30#city_name name='city_name'
+              select.w-30#city_name required=true name='city_name'
         .row
           .col-sm-6
           .col-sm-6
-            button.btn.btn-danger.mr-2 Cancel
+            button.btn.btn-danger.mr-15 Cancel
             button.btn.btn-primary Submit
 
 = javascript_include_tag 'locations/edit'
