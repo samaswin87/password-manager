@@ -36,10 +36,10 @@ class LocationsController < ApplicationController
     @resource = @location.decorate
   end
 
-  def edit
+  def new
   end
 
-  def update
+  def create
     LocationService.call(location_params, @location)
     redirect_to location_path(@location)
   end

@@ -1,0 +1,63 @@
+= content_for :title, t("view.locations.title")
+section.content-header
+  h1
+    = t("view.locations.discription")
+
+  ol.breadcrumb
+    = render_breadcrumbs tag: :li, separator: ''
+
+section.content
+  .box.box-default
+    .box-header.with-border
+      h3.box-title =t("view.locations.title")
+    .box-body
+      =form_for :city, url: location_path(@location), method: :put do |form|
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong.editor-strong =t("view.locations.fields.country_name")
+              span.pr-10.text-danger *
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#country_name required=true name='country_name'
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong =t("view.locations.fields.country_alias")
+              span.pr-10.text-danger *
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#country_alias required=true name='country_alias'
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong =t("view.locations.fields.state_name")
+              span.pr-10.text-danger *
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#state_name required=true name='state_name'
+        .row
+          .col-sm-6
+            .pb-3.pull-right
+              strong =t("view.locations.fields.city_name")
+              span.pr-10.text-danger *
+          .col-sm-6
+            .pb-3.pull-left.w-100
+              select.w-30#city_name required=true name='city_name'
+        .row
+          .col-sm-6
+          .col-sm-6
+            button.btn.btn-danger.mr-15 Cancel
+            button.btn.btn-primary Submit
+
+= javascript_include_tag 'locations/edit'
+javascript:
+  $(document).ready(function() {
+    let params = {
+      state: { id: "#{@location.state.id}", name: "#{@location.state.name}" },
+      country: { id: "#{@location.country.id}", name: "#{@location.country.name}", alias: "#{@location.country.alias}" },
+      city: { id: "#{@location.id}", name: "#{@location.name}" },
+    }
+    $.locations_edit.init(params);
+  });
+

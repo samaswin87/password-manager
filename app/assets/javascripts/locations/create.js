@@ -23,9 +23,6 @@
       }
     });
 
-    var option = new Option(params.country.name, params.country.id, true, true);
-    countryNameSelect.append(option).trigger('change');
-
     let countryAliasSelect = $("#country_alias");
     countryAliasSelect.select2({
       theme: "bootstrap",
@@ -39,9 +36,6 @@
         }
       }
     });
-
-    var option = new Option(params.country.alias, params.country.id, true, true);
-    countryAliasSelect.append(option).trigger('change');
 
     let stateSelect = $("#state_name");
     stateSelect.select2({
@@ -57,9 +51,6 @@
       }
     });
 
-    var option = new Option(params.state.name, params.state.id, true, true);
-    stateSelect.append(option).trigger('change');
-
     let citySelect = $("#city_name");
     citySelect.select2({
       theme: "bootstrap",
@@ -74,8 +65,6 @@
       }
     });
 
-    var option = new Option(params.city.name, params.state.id, true, true);
-    citySelect.append(option).trigger('change');
   }
 
   $.locations_edit = {
