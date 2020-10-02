@@ -10,15 +10,17 @@
         table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
           thead
             tr
-              th.all width="*" Country
+              th.all width="*" Country name
+              th.all width="*" Country alias
               th.all width="*" State
               th.all width="*" City
-              th.all.w-10 Action
+              th.all.w-5 Action
           tbody
             - @locations.each do |location|
               tr
-                td = location.country.name
-                td = location.state.name
+                td = location.country_name
+                td = location.country_alias
+                td = location.state_name
                 td = location.name
                 td = location.decorate.actions
       .col-md-12

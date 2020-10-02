@@ -17,6 +17,12 @@ class City < ApplicationRecord
   has_many :addresses
   belongs_to :country
 
+  # ---- delegates ----
+
+  delegate :name, to: :country, prefix: true
+  delegate :alias, to: :country, prefix: true
+  delegate :name, to: :state, prefix: true
+
   # ---- scoped search ----
 
   scoped_search on: [:name]
