@@ -11,7 +11,7 @@ section.content
     .box-header.with-border
       h3.box-title =t("view.locations.title")
     .box-body
-      =form_for :city, url: location_path(@location), method: :put do |form|
+      =form_for :city, url: new_location_path, method: :put do |form|
         .row
           .col-sm-6
             .pb-3.pull-right
@@ -50,14 +50,9 @@ section.content
             button.btn.btn-danger.mr-15 Cancel
             button.btn.btn-primary Submit
 
-= javascript_include_tag 'locations/edit'
+= javascript_include_tag 'locations/create'
 javascript:
   $(document).ready(function() {
-    let params = {
-      state: { id: "#{@location.state.id}", name: "#{@location.state.name}" },
-      country: { id: "#{@location.country.id}", name: "#{@location.country.name}", alias: "#{@location.country.alias}" },
-      city: { id: "#{@location.id}", name: "#{@location.name}" },
-    }
-    $.locations_edit.init(params);
+    $.location_create.init();
   });
 

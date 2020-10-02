@@ -1,9 +1,6 @@
 (function ($) {
-  let params = {};
 
   function init(_params) {
-    params = _params;
-
     loadData();
   }
 
@@ -67,7 +64,7 @@
 
   }
 
-  $.locations_edit = {
+  $.location_create = {
     init: init,
   }
 
