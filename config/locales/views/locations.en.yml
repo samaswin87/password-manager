@@ -3,9 +3,12 @@ en:
     locations:
       title: Location
       discription: Location Details
+      actions:
+        new: New Location
+        delete: Delete Location
       fields:
         country_name: 'Country'
-        country_alias: 'Country short name'
+        country_alias: 'Country Short Name'
         state_name: 'State'
         city_name: 'City'
       alert:

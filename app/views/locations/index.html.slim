@@ -1,5 +1,5 @@
 = content_for :title, t("view.locations.title")
-= bootstrap_box t("view.locations.title"), 'table', bootstrap_button_new({title: 'New Location', url: new_location_path, class: 'btn btn-primary'}) do
+= bootstrap_box t("view.locations.title"), 'table', bootstrap_button_new({title: t("view.locations.actions.new"), url: new_location_path, class: 'btn btn-primary'}) do
   .box-body
     .row
       .col-md-12
@@ -10,10 +10,10 @@
         table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
           thead
             tr
-              th.all width="*" Country name
-              th.all width="*" Country alias
-              th.all width="*" State
-              th.all width="*" City
+              th.all width="*" =t("view.locations.fields.country_name")
+              th.all width="*" =t("view.locations.fields.country_alias")
+              th.all width="*" =t("view.locations.fields.state_name")
+              th.all width="*" =t("view.locations.fields.city_name")
               th.all.w-5 Action
           tbody
             - @locations.each do |location|
