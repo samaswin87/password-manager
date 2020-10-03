@@ -1,5 +1,8 @@
 en:
   common:
+    buttons:
+      cancel: Cancel
+      submit: Submit
     notifications:
       alert: Alert
       warning: Warning

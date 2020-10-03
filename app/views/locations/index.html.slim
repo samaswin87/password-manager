@@ -6,7 +6,7 @@
         .form-group.has-search.pull-right.mb-10
           span.fa.fa-search.form-control-feedback
           form.search action="#"
-            input.form-control.input-sm name='location' value="#{@search}" type="search" placeholder="Search" pattern=".{3,}" minlength="3" title="minimum 3 characters need to be entered"
+            input.form-control.input-sm name='location' value="#{@search}" type="search" placeholder=t("view.locations.placeholder") pattern=".{3,}" minlength="3" title=t("view.locations.alert.search_length")
         table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
           thead
             tr

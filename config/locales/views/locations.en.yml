@@ -11,5 +11,7 @@ en:
         country_alias: 'Country Short Name'
         state_name: 'State'
         city_name: 'City'
+      placeholder: Search
       alert:
+        search_length: Minimum 3 characters need to be entered
 
