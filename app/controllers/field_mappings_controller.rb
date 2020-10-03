@@ -36,15 +36,19 @@ class FieldMappingsController < BaseController
   end
 
   def supported_tables
-    [:passwords, :users, :states, :cities]
+    [:passwords, :users, :locations]
   end
 
   def columns(table)
     return [] unless table.present?
     columns = []
-    klass_name = table.camelize.singularize(:en)
-    if klass_name.constantize
-      columns = klass_name.constantize.importable_columns
+    if ['locations'].include?(table)
+      columns = ['country_name', 'country_alias', 'state_name', 'city_name']
+    else
+      klass_name = table.camelize.singularize(:en)
+      if klass_name.constantize
+        columns = klass_name.constantize.importable_columns
+      end
     end
     columns
   end

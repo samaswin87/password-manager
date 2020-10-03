@@ -1,11 +1,11 @@
 = content_for :title, t("field_mappings.title")
-= bootstrap_box t("field_mappings.title"), 'table', bootstrap_button_new do
+= bootstrap_box t("field_mappings.title"), 'table', nil do
   .box-body
     .row
       .col-md-4
         .box.box-primary
           .box-header.with-border
-            h3.box-title Tables
+            h3.box-title =t("view.field_mappings.tables.title")
             .box-tools
               button.btn.btn-box-tool type="button" data-widget="collapse"
                 = fa_icon('minus')
@@ -14,15 +14,15 @@
               - @supported_tables.each do |supported_table|
                 - if @name == supported_table.to_s || (supported_table.to_s == 'passwords' && @name.nil?)
                   li.mapping-active.list-group-item.li-mapping
-                    = link_to supported_table.to_s.titleize, url_for(name: supported_table)
+                    = link_to t("view.#{supported_table.to_s}.title"), url_for(name: supported_table)
                 - else
                   li.list-group-item.li-mapping
-                    = link_to supported_table.to_s.titleize, url_for(name: supported_table)
+                    = link_to t("view.#{supported_table.to_s}.title"), url_for(name: supported_table)
       .col-md-1
       .col-md-4
         .box.box-primary
           .box-header.with-border
-            h3.box-title Importable Fields
+            h3.box-title =t("view.field_mappings.import_fields")
           .box-body.no-padding
             .table-responsive.mailbox-messages
               table.table.table-hover.table-striped
@@ -38,7 +38,7 @@
                       td.mailbox-subject
                         b =column
                       td.mailbox-attachment
-                        = link_to icon, '#', id: column, class: 'add-field','data-toggle': 'tooltip', 'data-placement': 'top', title: t("field_mappings.#{text}", field: column)
+                        = link_to icon, '#', id: column, class: 'add-field','data-toggle': 'tooltip', 'data-placement': 'top', title: t("view.field_mappings.#{text}", field: column)
 
 = javascript_include_tag 'field_mappings/index'
 javascript:
