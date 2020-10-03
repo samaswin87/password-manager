@@ -12,4 +12,10 @@ class UserDecorator < Draper::Decorator
       end
     end
   end
+
+  def edit_icon
+    h.link_to(h.edit_user_path(object), class: 'btn btn-success') do
+      h.fa_icon('edit')
+    end
+  end
 end

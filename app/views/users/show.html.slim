@@ -2,56 +2,37 @@
 = render 'form_header'
 
 section.content
-  .box.box-default
-    .box-header.with-border
-      span.padding-right_10
-        =@user.status_button
-      h3.box-title
-        | User Information
-    .box-body
-      .row
-        .col-md-6
-          strong
-            label.control-label
-              | Photo:
-          = image_tag resource.avatar.url(:large), class: 'img-crud img-responsive', lazy: true
-        .col-md-6
-          strong
-            label.control-label.status_button Status:
+  .row
+    .col-md-3
+      .box.box-primary
+        .box-body.box-profile
+          span
+            = @user.edit_icon
+          span.pull-right.pr-10p
+            = @user.status_button
+          = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
+          h3.profile-username.text-center =deal_value resource.name
+          ul.list-group.list-group-unbordered
+            li.list-group-item
+              b.ml-2 First Name
+              a.mr-2.pull-right =resource.created_on
+            li.list-group-item
+              b.ml-2 Last Name
+              a.mr-2.pull-right =resource.updated_on
+            li.list-group-item
+              b.ml-2 Gender
+              a.mr-2.pull-right 200
+            li.list-group-item
+              b.ml-2 Email
+              a.mr-2.pull-right 290
+            li.list-group-item
+              b.ml-2 Phone
+              a.mr-2.pull-right 200
+            li.list-group-item
+              b.ml-2 User Type
+              a.mr-2.pull-right 200
 
-
-      hr
-
-      .row
-        .col-md-4
-          strong
-            label.control-label= t 'simple_form.labels.user.first_name'
-          p= deal_value resource.first_name
-        .col-md-4
-          strong
-            label.control-label= t 'simple_form.labels.user.last_name'
-          p= deal_value resource.last_name
-        .col-md-4
-          strong
-            label.control-label= t 'simple_form.labels.user.user_type'
-          p= deal_value resource.user_type_name
-      .row
-        .col-md-4
-          strong
-            label.control-label= t 'simple_form.labels.user.email'
-          p= deal_value resource.email
-        .col-md-5
-          strong
-            label.control-label= t 'simple_form.labels.user.phone'
-          p= deal_value resource.phone
-        .col-md-3
-          strong
-            label.control-label= t 'simple_form.labels.user.gender'
-          p= deal_value resource.gender_name
-
-      = render 'shared/address_fields'
-
-    .box-footer
-      .row
-        .col-md-6
-          = link_to 'Back', collection_path(resource), class: 'btn btn-default btn-sm'
+    .col-md-3
+      .box.box-primary
+        .box-header.with-border
+          h3 Address
