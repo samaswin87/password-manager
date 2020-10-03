@@ -1,7 +1,7 @@
 en:
   view:
     locations:
-      title: Location
+      title: Locations
       discription: Location Details
       actions:
         new: New Location

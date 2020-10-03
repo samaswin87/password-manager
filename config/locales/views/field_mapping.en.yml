@@ -1,4 +1,8 @@
 en:
-  field_mappings:
-    add: "Map %{field}"
-    mapped: "%{field} Mapped"
+  view:
+    field_mappings:
+      tables:
+        title: Table Names
+      import_fields: Importable Fields
+      add: "Map %{field}"
+      mapped: "%{field} Mapped"
