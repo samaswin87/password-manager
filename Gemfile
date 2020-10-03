@@ -98,12 +98,12 @@ gem 'selectize-rails'
 gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.git', branch: 'master'
 gem 'simple_form'
 gem 'slim'
-gem 'will_paginate-bootstrap'
-
+gem 'pagy'
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
 gem 'webpacker', '~> 5.1.1'
+gem "select2-rails"
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-adminlte'

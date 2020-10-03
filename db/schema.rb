@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_22_172252) do
+ActiveRecord::Schema.define(version: 2020_09_25_041910) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -38,7 +38,17 @@ ActiveRecord::Schema.define(version: 2020_09_22_172252) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_cities_on_country_id"
     t.index ["state_id"], name: "index_cities_on_state_id"
+  end
+
+  create_table "countries", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "alias", null: false
+    t.boolean "active", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "data_migrations", primary_key: "version", id: :string, force: :cascade do |t|
@@ -129,6 +139,8 @@ ActiveRecord::Schema.define(version: 2020_09_22_172252) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "active", default: true
+    t.bigint "country_id"
+    t.index ["country_id"], name: "index_states_on_country_id"
   end
 
   create_table "user_types", force: :cascade do |t|
