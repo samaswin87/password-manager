@@ -9,7 +9,7 @@ SimpleNavigation::Configuration.run do |navigation|
     primary.item :file_imports, menu_label_icon('Imports', 'file-excel-o'), file_imports_path, html: { class: 'root-level'}, highlights_on: %r{/file_imports} if can?(:manage, FileImport)
     primary.item :profile, menu_label_icon('Profile', 'user'), user_path(current_user), html: { class: 'root-level'}, highlights_on: %r{/users} if can?(:show, User) & !current_user.admin?
     if can?(:manage, State)
-      primary.item :settings, menu_label_icon('Settings', 'globe'), '#',html: { class: 'treeview'}, parent_menu: {class: 'pull-right-container', icon_class: 'fa fa-angle-left pull-right'} do |sub_nav|
+      primary.item :settings, menu_label_icon('Settings', 'gears'), '#',html: { class: 'treeview'}, parent_menu: {class: 'pull-right-container', icon_class: 'fa fa-angle-left pull-right'} do |sub_nav|
         sub_nav.dom_class = 'treeview-menu'
         sub_nav.item :states, menu_label_icon('Locations', 'globe'), locations_path, class: 'treeview-menu', highlights_on: %r{/locations}
         sub_nav.item :field_mappings, menu_label_icon('Field Mappings', 'sitemap'), field_mappings_path, class: 'treeview-menu', highlights_on: %r{/field_mappings}

@@ -10,11 +10,11 @@
         table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
           thead
             tr
-              th.all width="*" =t("view.locations.fields.country_name")
-              th.all width="*" =t("view.locations.fields.country_alias")
-              th.all width="*" =t("view.locations.fields.state_name")
-              th.all width="*" =t("view.locations.fields.city_name")
-              th.all.w-5 Action
+              th.all width="*" = t("view.locations.fields.country_name")
+              th.all width="*" = t("view.locations.fields.country_alias")
+              th.all width="*" = t("view.locations.fields.state_name")
+              th.all width="*" = t("view.locations.fields.city_name")
+              th.all.w-5 = t("common.table.action")
           tbody
             - @locations.each do |location|
               tr

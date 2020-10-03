@@ -1,8 +1,11 @@
 en:
   common:
+    table:
+      action: Action
+      actions: Actions
     buttons:
-      cancel: Cancel
       submit: Submit
+      cancel: Cancel
     notifications:
       alert: Alert
       warning: Warning

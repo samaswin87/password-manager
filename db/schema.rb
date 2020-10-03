@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_041910) do
+ActiveRecord::Schema.define(version: 2020_10_03_165023) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,15 +21,17 @@ ActiveRecord::Schema.define(version: 2020_09_25_041910) do
     t.string "street"
     t.string "additional_details"
     t.string "zipcode"
-    t.string "linkable_type"
-    t.bigint "linkable_id"
     t.bigint "city_id"
     t.bigint "state_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.bigint "country_id"
+    t.integer "type", default: 1
     t.index ["city_id"], name: "index_addresses_on_city_id"
-    t.index ["linkable_type", "linkable_id"], name: "index_addresses_on_linkable_type_and_linkable_id"
+    t.index ["country_id"], name: "index_addresses_on_country_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
+    t.index ["user_id"], name: "index_addresses_on_user_id"
   end
 
   create_table "cities", force: :cascade do |t|
@@ -203,7 +205,9 @@ ActiveRecord::Schema.define(version: 2020_09_25_041910) do
   end
 
   add_foreign_key "addresses", "cities"
+  add_foreign_key "addresses", "countries"
   add_foreign_key "addresses", "states"
+  add_foreign_key "addresses", "users"
   add_foreign_key "cities", "states"
   add_foreign_key "import_data_tables", "file_imports"
   add_foreign_key "password_attachments", "passwords"

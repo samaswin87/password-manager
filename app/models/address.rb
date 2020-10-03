@@ -8,20 +8,24 @@
 #  street             :string
 #  additional_details :string
 #  zipcode            :string
-#  linkable_type      :string
-#  linkable_id        :bigint
 #  city_id            :bigint
 #  state_id           :bigint
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
+#  user_id            :bigint
+#  country_id         :bigint
+#  type               :integer          default(1)
+#
 class Address < ApplicationRecord
   # ---- relationships ----
-  belongs_to :linkable, polymorphic: true
-  belongs_to :city
+  belongs_to :user
+  belongs_to :country
   belongs_to :state
+  belongs_to :city
 
   # ---- delegates ----
 
-  delegate :name, to: :city, prefix: true, allow_nil: true
-  delegate :name, to: :state, prefix: true, allow_nil: true
+  delegate :name, to: :country
+  delegate :name, to: :state
+  delegate :name, to: :city
 end
