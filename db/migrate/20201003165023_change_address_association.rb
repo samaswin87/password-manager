@@ -7,7 +7,7 @@ class ChangeAddressAssociation < ActiveRecord::Migration[5.2]
     add_foreign_key :addresses, :users
     add_reference :addresses, :country, index: true
     add_foreign_key :addresses, :countries
-    add_column :addresses, :type, :integer, default: 1
+    add_column :addresses, :address_type, :string
   end
 
 end

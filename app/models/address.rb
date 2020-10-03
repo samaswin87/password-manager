@@ -14,7 +14,7 @@
 #  updated_at         :datetime         not null
 #  user_id            :bigint
 #  country_id         :bigint
-#  type               :integer          default(1)
+#  address_type       :string
 #
 class Address < ApplicationRecord
   # ---- relationships ----
@@ -28,4 +28,7 @@ class Address < ApplicationRecord
   delegate :name, to: :country
   delegate :name, to: :state
   delegate :name, to: :city
+
+  # ---- enum ----
+  enum type: [:current, :home, :postal]
 end

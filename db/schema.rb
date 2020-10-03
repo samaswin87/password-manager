@@ -27,7 +27,7 @@ ActiveRecord::Schema.define(version: 2020_10_03_165023) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.bigint "country_id"
-    t.integer "type", default: 1
+    t.string "address_type"
     t.index ["city_id"], name: "index_addresses_on_city_id"
     t.index ["country_id"], name: "index_addresses_on_country_id"
     t.index ["state_id"], name: "index_addresses_on_state_id"
