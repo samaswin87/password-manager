@@ -1,5 +1,9 @@
 class UploadController < ApplicationController
 
+  # ---- devise ----
+  before_action :authenticate_user!
+
+
   # ---- methods ----
   def create
     attr = file_params

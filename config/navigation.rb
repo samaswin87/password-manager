@@ -11,8 +11,7 @@ SimpleNavigation::Configuration.run do |navigation|
     if can?(:manage, State)
       primary.item :settings, menu_label_icon('Settings', 'globe'), '#',html: { class: 'treeview'}, parent_menu: {class: 'pull-right-container', icon_class: 'fa fa-angle-left pull-right'} do |sub_nav|
         sub_nav.dom_class = 'treeview-menu'
-        sub_nav.item :states, menu_label_icon('States', 'globe'), states_path, class: 'treeview-menu', highlights_on: %r{/states}
-        sub_nav.item :cities, menu_label_icon('Cities', 'building-o'), cities_path, class: 'treeview-menu', highlights_on: %r{/cities}
+        sub_nav.item :states, menu_label_icon('Locations', 'globe'), locations_path, class: 'treeview-menu', highlights_on: %r{/locations}
         sub_nav.item :field_mappings, menu_label_icon('Field Mappings', 'sitemap'), field_mappings_path, class: 'treeview-menu', highlights_on: %r{/field_mappings}
       end
     end

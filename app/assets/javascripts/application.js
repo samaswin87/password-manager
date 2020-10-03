@@ -26,6 +26,7 @@
 //= require papaparse
 //= require vendor/notifyset
 //= require datatables
+//= require select2-full
 //= require bs-stepper
 //= require api
 // require_tree .

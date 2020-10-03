@@ -23,6 +23,7 @@
                                 PUT    /invitation(.:format)                                                                    devise/invitations#update
                                 POST   /invitation(.:format)                                                                    devise/invitations#create
                     status_user PUT    /users/:id/status(.:format)                                                              users#status
+                   import_users PUT    /users/import(.:format)                                                                  users#import
                           users GET    /users(.:format)                                                                         users#index
                                 POST   /users(.:format)                                                                         users#create
                        new_user GET    /users/new(.:format)                                                                     users#new
@@ -45,22 +46,14 @@
                                 DELETE /passwords/:id(.:format)                                                                 passwords#destroy
                   import_upload PUT    /upload/:id/import(.:format)                                                             upload#import
                    upload_index POST   /upload(.:format)                                                                        upload#create
-                         states GET    /states(.:format)                                                                        states#index
-                                POST   /states(.:format)                                                                        states#create
-                      new_state GET    /states/new(.:format)                                                                    states#new
-                     edit_state GET    /states/:id/edit(.:format)                                                               states#edit
-                          state GET    /states/:id(.:format)                                                                    states#show
-                                PATCH  /states/:id(.:format)                                                                    states#update
-                                PUT    /states/:id(.:format)                                                                    states#update
-                                DELETE /states/:id(.:format)                                                                    states#destroy
-                         cities GET    /cities(.:format)                                                                        cities#index
-                                POST   /cities(.:format)                                                                        cities#create
-                       new_city GET    /cities/new(.:format)                                                                    cities#new
-                      edit_city GET    /cities/:id/edit(.:format)                                                               cities#edit
-                           city GET    /cities/:id(.:format)                                                                    cities#show
-                                PATCH  /cities/:id(.:format)                                                                    cities#update
-                                PUT    /cities/:id(.:format)                                                                    cities#update
-                                DELETE /cities/:id(.:format)                                                                    cities#destroy
+                      locations GET    /locations(.:format)                                                                     locations#index
+                                POST   /locations(.:format)                                                                     locations#create
+                   new_location GET    /locations/new(.:format)                                                                 locations#new
+                  edit_location GET    /locations/:id/edit(.:format)                                                            locations#edit
+                       location GET    /locations/:id(.:format)                                                                 locations#show
+                                PATCH  /locations/:id(.:format)                                                                 locations#update
+                                PUT    /locations/:id(.:format)                                                                 locations#update
+                                DELETE /locations/:id(.:format)                                                                 locations#destroy
      remove_record_file_imports DELETE /file_imports/remove_record(.:format)                                                    file_imports#remove_record
                    file_imports GET    /file_imports(.:format)                                                                  file_imports#index
                                 POST   /file_imports(.:format)                                                                  file_imports#create

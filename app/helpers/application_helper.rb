@@ -1,4 +1,5 @@
 module ApplicationHelper
+  include Pagy::Frontend
   # ---- icons and labels -----
 
   def fa_icon(icon)
