@@ -15,22 +15,23 @@ section.content
           ul.list-group.list-group-unbordered
             li.list-group-item
               b.ml-2 First Name
-              a.mr-2.pull-right =resource.created_on
+              a.mr-2.pull-right =resource.first_name
             li.list-group-item
               b.ml-2 Last Name
-              a.mr-2.pull-right =resource.updated_on
+              a.mr-2.pull-right =resource.last_name
             li.list-group-item
               b.ml-2 Gender
-              a.mr-2.pull-right 200
+              a.mr-2.pull-right =resource.gender_name
             li.list-group-item
               b.ml-2 Email
-              a.mr-2.pull-right 290
+              a.mr-2.pull-right =resource.email
             li.list-group-item
               b.ml-2 Phone
-              a.mr-2.pull-right 200
+              a.mr-2.pull-right =resource.phone
             li.list-group-item
               b.ml-2 User Type
-              a.mr-2.pull-right 200
+              a.mr-2.pull-right
+                = resource.toggle_user_type
 
     .col-md-9
       .box.box-primary

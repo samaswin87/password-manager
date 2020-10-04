@@ -18,4 +18,9 @@ class UserDecorator < Draper::Decorator
       h.fa_icon('edit')
     end
   end
+
+  def toggle_user_type
+    h.check_box_tag(:usertype, false, false, disabled: true, data: { toggle: 'toggle' } )
+    #type="checkbox" checked=true data-toggle="toggle" disabled=true data-on="Admin" data-off="User" data-onstyle="primary" data-offstyle="warning"
+  end
 end
