@@ -37,9 +37,19 @@ section.content
     .col-md-9
       .box.box-primary
         .box-header.with-border
-          h3 Addresses
-        table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap
+          h3.pull-left Addresses
+          .form-group.has-search.pull-right.mr-10.mb-10.mt-10
+            span.fa.fa-search.form-control-feedback
+            form.search action="#"
+              input.form-control.input-sm name='location' value="#{@search}" type="search" placeholder=t("view.locations.placeholder") pattern=".{3,}" minlength="3" title=t("view.locations.alert.search_length")
+        table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap.mr-15.mr-15
           thead
             tr
-              th.all.w-5 Actions
+              th.all width="*" = t("view.addresses.fields.house_name")
+              th.all.w-5 = t("view.addresses.fields.number")
+              th.all width="*" = t("view.addresses.fields.city")
+              th.all width="*" = t("view.addresses.fields.state")
+              th.all width="*" = t("view.addresses.fields.country")
+              th.all width="*" = t("view.addresses.fields.address_type")
+              th.all.w-5 = t("common.table.actions")
           tbody

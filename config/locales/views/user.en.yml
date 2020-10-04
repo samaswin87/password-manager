@@ -2,3 +2,10 @@ en:
   view:
     users:
       title: Users
+      fields:
+        first_name:
+        last_name:
+        gender:
+        user_type:
+        phone:
+        email:
