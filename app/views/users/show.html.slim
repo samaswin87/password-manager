@@ -53,3 +53,12 @@ section.content
               th.all width="*" = t("view.addresses.fields.address_type")
               th.all.w-5 = t("common.table.actions")
           tbody
+            - resource.addresses.each do |address|
+              tr
+                td = address.house_name
+                td = address.number
+                td = address.city.name
+                td = address.state.name
+                td = address.country.name
+                td = address.address_type
+                td
