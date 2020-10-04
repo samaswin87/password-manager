@@ -20,7 +20,11 @@ class UserDecorator < Draper::Decorator
   end
 
   def toggle_user_type
-    h.check_box_tag(:usertype, false, false, disabled: true, data: { toggle: 'toggle' } )
-    #type="checkbox" checked=true data-toggle="toggle" disabled=true data-on="Admin" data-off="User" data-onstyle="primary" data-offstyle="warning"
+    user_type = object.admin? ? 'Admin' : 'User'
+    h.check_box_tag(:usertype, user_type, object.admin?, disabled: true, data: { toggle: 'toggle', onstyle: 'primary', offstyle: 'warning', on: 'Admin', off: 'User' } )
+  end
+
+  def toggle_gender
+    h.check_box_tag(:usertype, object.gender_name, object.gender_name == 'Male', disabled: true, data: { toggle: 'toggle', onstyle: 'primary', offstyle: 'warning', on: 'Male', off: 'Female' } )
   end
 end

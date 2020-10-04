@@ -21,7 +21,8 @@ section.content
               a.mr-2.pull-right =resource.last_name
             li.list-group-item
               b.ml-2 Gender
-              a.mr-2.pull-right =resource.gender_name
+              a.mr-2.pull-right
+                = resource.toggle_gender
             li.list-group-item
               b.ml-2 Email
               a.mr-2.pull-right =resource.email
