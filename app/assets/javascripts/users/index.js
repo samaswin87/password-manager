@@ -23,10 +23,12 @@
       },
       buttons: [
         {
+          extend: 'copyHtml5',
           text: params.active,
-          className: 'active-users',
+          titleAttr: params.active,
+          className: 'filter-button active-users',
           action: function ( e, dt, node, config ) {
-            $('.active-users').toggleClass("active");
+            $('..active-users').toggleClass("active");
             if ($('.active-users').hasClass('active')) {
               $('.in-active-users').removeClass('active');
               dt.column(6).search('active').draw();
@@ -36,8 +38,10 @@
           }
         },
         {
+          extend: 'copyHtml5',
           text: params.in_active,
-          className: 'in-active-users',
+          titleAttr: params.in_active,
+          className: 'filter-button in-active-users',
           action: function ( e, dt, node, config ) {
             $('.in-active-users').toggleClass("active");
             if ($('.in-active-users').hasClass('active')) {
@@ -90,7 +94,7 @@
       }
     })
     .on("init.dt", function (e, settings) {
-      $button = $("<button type='button' name='upload_file' id='upload_file' data-targe='#user-file-modal' class='btn btn-file btn-primary btn-sm'>"+
+      $button = $("<button type='button' name='upload_file' id='upload_file' data-target='#user-file-modal' class='btn btn-file btn-primary btn-sm'>"+
         "<i class='fa fa-upload fa-lg btn-file'></i>"+params.import_csv+"</button>");
       $('#users-datatable_filter').prepend($button);
       $('#upload_file').click(function() {
