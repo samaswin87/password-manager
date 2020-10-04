@@ -3,9 +3,9 @@ en:
     users:
       title: Users
       fields:
-        first_name:
-        last_name:
-        gender:
-        user_type:
-        phone:
-        email:
+        first_name: First Name
+        last_name: Last Name
+        gender: Gender
+        user_type: User Type
+        phone: Phone
+        email: Email

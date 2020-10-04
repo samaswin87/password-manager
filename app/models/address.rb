@@ -25,9 +25,9 @@ class Address < ApplicationRecord
 
   # ---- delegates ----
 
-  delegate :name, to: :country
-  delegate :name, to: :state
-  delegate :name, to: :city
+  delegate :name, to: :country, prefix: true
+  delegate :name, to: :state, prefix: true
+  delegate :name, to: :city, prefix: true
 
   # ---- enum ----
   enum type: [:current, :home, :postal]

@@ -3,6 +3,10 @@ en:
     addresses:
       title: Addresses
       fields:
+        types:
+          home: Home
+          current: Current
+          postal: Postal
         house_name: House Name
         number: Number
         street: Street

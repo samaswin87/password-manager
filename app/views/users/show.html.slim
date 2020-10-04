@@ -14,33 +14,33 @@ section.content
           h3.profile-username.text-center =deal_value resource.name
           ul.list-group.list-group-unbordered
             li.list-group-item
-              b.ml-2 First Name
+              b.ml-2 = t("view.users.fields.first_name")
               a.mr-2.pull-right =resource.first_name
             li.list-group-item
-              b.ml-2 Last Name
+              b.ml-2 = t("view.users.fields.last_name")
               a.mr-2.pull-right =resource.last_name
             li.list-group-item
-              b.ml-2 Gender
+              b.ml-2 = t("view.users.fields.gender")
               a.mr-2.pull-right
                 = resource.toggle_gender
             li.list-group-item
-              b.ml-2 Email
+              b.ml-2 = t("view.users.fields.email")
               a.mr-2.pull-right =resource.email
             li.list-group-item
-              b.ml-2 Phone
+              b.ml-2 = t("view.users.fields.phone")
               a.mr-2.pull-right =resource.phone
             li.list-group-item
-              b.ml-2 User Type
+              b.ml-2 = t("view.users.fields.user_type")
               a.mr-2.pull-right
                 = resource.toggle_user_type
 
     .col-md-9
       .box.box-primary
         .box-header.with-border
-          h3.pull-left Addresses
+          h3.pull-left = t("view.addresses.title")
         - resource.addresses.each do |address|
           .box-header.with-border.bg-info
-            h6.pull-left.text-white = address.address_type
+            h6.pull-left.text-white = t("view.addresses.types.#{address.address_type}")
             btn-group.pull-right
               a.pr-10p href="#"
                 i.fa.fa-pencil.text-white
@@ -48,27 +48,42 @@ section.content
                 i.fa.fa-trash-o.text-white
           .box-body
             .row
+              .col-md-3.font-weight-bold
+                = t("view.addresses.fields.house_name")
+                | :
               .col-md-3
-                = 'House Name:'
+                = address.house_name
+              .col-md-3.font-weight-bold
+                = t("view.addresses.fields.number")
+                | :
               .col-md-3
+                = address.number
+              .col-md-3.font-weight-bold
+                = t("view.addresses.fields.street")
+                | :
               .col-md-3
-                = 'House Number:'
+                = address.street
+              .col-md-3.font-weight-bold
+                = t("view.addresses.fields.details")
+                | :
               .col-md-3
+                = address.additional_details
+              .col-md-3.font-weight-bold
+                = t("view.addresses.fields.country")
+                | :
               .col-md-3
-                = 'Street:'
+                = address.country_name
+              .col-md-3.font-weight-bold
+                = t("view.addresses.state")
+                | :
               .col-md-3
+                = address.state_name
+              .col-md-3.font-weight-bold
+                = t("view.addresses.city")
+                | :
               .col-md-3
-                = 'Country:'
-              .col-md-3
-              .col-md-3
-                = 'State:'
-              .col-md-3
-              .col-md-3
-                = 'City:'
-              .col-md-3
-              .col-md-3
-                = 'Zip:'
-              .col-md-3
-              .col-md-3
-                = 'Details:'
+                = address.city_name
+              .col-md-3.font-weight-bold
+                = t("view.addresses.zip")
+                | :
               .col-md-3
