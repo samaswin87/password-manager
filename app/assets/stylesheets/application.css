@@ -255,7 +255,6 @@
 
 button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   margin-left: 1em;
-  border-radius: 6px;
 }
 
 .active-passwords {
@@ -302,7 +301,8 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
 }
 
 .filter-button:hover {
-  color: #99aebf;
+  color: inherit;
+  text-decoration: none;
   background-color: #9e9e9ea3 !important;
 }
 

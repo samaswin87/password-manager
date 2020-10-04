@@ -55,7 +55,7 @@
         {
             extend: 'csv',
             title: params.title,
-            className: 'btn-space',
+            className: 'filter-button btn-space',
             exportOptions: {
               columns: [ 0, 1, 2, 3, 4]
             }
