@@ -4,12 +4,15 @@ en:
     active: Active
     in_active: In Active
     import_csv: Import CSV
+    upload: Upload
+    choose_file: Choose file
     table:
       action: Action
       actions: Actions
     buttons:
       submit: Submit
       cancel: Cancel
+      close: Close
     notifications:
       alert: Alert
       warning: Warning
