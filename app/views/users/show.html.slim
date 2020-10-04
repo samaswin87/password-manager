@@ -38,27 +38,37 @@ section.content
       .box.box-primary
         .box-header.with-border
           h3.pull-left Addresses
-          .form-group.has-search.pull-right.mr-10.mb-10.mt-10
-            span.fa.fa-search.form-control-feedback
-            form.search action="#"
-              input.form-control.input-sm name='location' value="#{@search}" type="search" placeholder=t("view.locations.placeholder") pattern=".{3,}" minlength="3" title=t("view.locations.alert.search_length")
-        table.table.table-bordered.datatable.dataTable.dt-responsive.nowrap.mr-15.mr-15
-          thead
-            tr
-              th.all width="*" = t("view.addresses.fields.house_name")
-              th.all.w-5 = t("view.addresses.fields.number")
-              th.all width="*" = t("view.addresses.fields.city")
-              th.all width="*" = t("view.addresses.fields.state")
-              th.all width="*" = t("view.addresses.fields.country")
-              th.all width="*" = t("view.addresses.fields.address_type")
-              th.all.w-5 = t("common.table.actions")
-          tbody
-            - resource.addresses.each do |address|
-              tr
-                td = address.house_name
-                td = address.number
-                td = address.city.name
-                td = address.state.name
-                td = address.country.name
-                td = address.address_type
-                td
+        - resource.addresses.each do |address|
+          .box-header.with-border.bg-info
+            h6.pull-left.text-white = address.address_type
+            btn-group.pull-right
+              a.pr-10p href="#"
+                i.fa.fa-pencil.text-white
+              a.pr-10p
+                i.fa.fa-trash-o.text-white
+          .box-body
+            .row
+              .col-md-3
+                = 'House Name:'
+              .col-md-3
+              .col-md-3
+                = 'House Number:'
+              .col-md-3
+              .col-md-3
+                = 'Street:'
+              .col-md-3
+              .col-md-3
+                = 'Country:'
+              .col-md-3
+              .col-md-3
+                = 'State:'
+              .col-md-3
+              .col-md-3
+                = 'City:'
+              .col-md-3
+              .col-md-3
+                = 'Zip:'
+              .col-md-3
+              .col-md-3
+                = 'Details:'
+              .col-md-3
