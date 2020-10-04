@@ -9,3 +9,6 @@ en:
         user_type: User Type
         phone: Phone
         email: Email
+      alerts:
+        file_size_error: Please import file less than 10 MB
+        file_type_error: Not a valid file. Please import csv file

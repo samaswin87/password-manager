@@ -1,5 +1,9 @@
 en:
   common:
+    status: Status
+    active: Active
+    in_active: In Active
+    import_csv: Import CSV
     table:
       action: Action
       actions: Actions
