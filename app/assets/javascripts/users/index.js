@@ -28,7 +28,7 @@
           titleAttr: params.active,
           className: 'filter-button active-users',
           action: function ( e, dt, node, config ) {
-            $('..active-users').toggleClass("active");
+            $('.active-users').toggleClass("active");
             if ($('.active-users').hasClass('active')) {
               $('.in-active-users').removeClass('active');
               dt.column(6).search('active').draw();
@@ -88,8 +88,7 @@
         }
       ],
       initComplete: function() {
-       $('.active-users').html('<i class="fa fa-square" />');
-       $('.in-active-users').html('<i class="fa fa-square" />');
+       $('.filter-button').html('<i class="fa fa-square" />');
        $('.buttons-csv').html('<i class="fa fa-file-excel-o" />');
       }
     })

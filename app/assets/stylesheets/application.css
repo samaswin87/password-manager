@@ -290,29 +290,34 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   background-color: #c9cdc9 !important;
 }
 
-
 .filter-button {
   background-color: #ffff !important;
   border-color: #80808047 !important;
 }
 
-.active-users {
-  color: #2196F3;
+.active-users,
+.active-users:hover {
+  color: #2196F3 !important;
 }
 
 .filter-button:hover {
-  color: inherit;
   text-decoration: none;
   background-color: #9e9e9ea3 !important;
 }
 
-.filter-button.active {
+.active-users.active {
   color: #2196F3 !important;
-  background-color: #6c757d !important;
+  background-color: #9e9e9ea3 !important;
 }
 
-.in-active-users {
+.in-active-users,
+.in-active-users:hover {
   color: #c9cdc9;
+}
+
+.in-active-users.active {
+  color: #c9cdc9;
+  background-color: #9e9e9ea3 !important;
 }
 
 .btn-file {
