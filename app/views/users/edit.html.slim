@@ -10,26 +10,11 @@
               = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
               h3.profile-username.text-center = form.input :avatar, as: :file, label: false, input_html: {class: 'btn bt-sm btn-primary'}
               ul.list-group.list-group-unbordered
-                li.list-group-item
-                  b.ml-2 = t("view.users.fields.first_name")
-                  a.mr-2.pull-right =resource.first_name
-                li.list-group-item
-                  b.ml-2 = t("view.users.fields.last_name")
-                  a.mr-2.pull-right =resource.last_name
-                li.list-group-item
-                  b.ml-2 = t("view.users.fields.gender")
-                  a.mr-2.pull-right
-                    = resource.toggle_gender
-                li.list-group-item
-                  b.ml-2 = t("view.users.fields.email")
-                  a.mr-2.pull-right =resource.email
-                li.list-group-item
-                  b.ml-2 = t("view.users.fields.phone")
-                  a.mr-2.pull-right =resource.phone
-                li.list-group-item
-                  b.ml-2 = t("view.users.fields.user_type")
-                  a.mr-2.pull-right
-                    = resource.toggle_user_type
+                = form.input :first_name, required: true, autofocus: true
+                = form.input :last_name, required: true
+                = form.input :email, required: true
+                = form.input :phone, required: false
+                = form.input :gender, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'danger', on: 'Male', off: 'Female'}, class: 'ml-0'}
       .col-md-9
 javascript:
   $(document).ready(function() {

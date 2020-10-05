@@ -520,3 +520,7 @@ li.list-group-item:hover {
 .editor-strong > strong:after {
   content: ": "
 }
+
+.toggle.btn.btn-success {
+    margin-left: 0;
+}
