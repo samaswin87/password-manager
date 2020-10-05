@@ -26,6 +26,7 @@
  *= require bs-extend
  *= require select2
  *= require select2-bootstrap
+ *= require bootstrap-toggle
  *= require_tree .
  *= require_self
  */
@@ -254,7 +255,6 @@
 
 button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   margin-left: 1em;
-  border-radius: 6px;
 }
 
 .active-passwords {
@@ -290,38 +290,34 @@ button.btn.btn-secondary.buttons-csv.buttons-html5.btn-space {
   background-color: #c9cdc9 !important;
 }
 
-
-.active-users {
-  color: #2196F3;
-  background-color: #c9cdc9;
-  margin-right: 2px;
-  border-radius: 6px !important;
+.filter-button {
+  background-color: #ffff !important;
+  border-color: #80808047 !important;
 }
 
+.active-users,
 .active-users:hover {
-  color: #2196F3;
-  background-color: #6c757d;
+  color: #2196F3 !important;
+}
+
+.filter-button:hover {
+  text-decoration: none;
+  background-color: #9e9e9ea3 !important;
 }
 
 .active-users.active {
   color: #2196F3 !important;
-  background-color: #6c757d !important;
+  background-color: #9e9e9ea3 !important;
 }
 
-.in-active-users {
-  color: #6c757d;
-  background-color: #c9cdc9;
-  border-radius: 6px !important;
-}
-
+.in-active-users,
 .in-active-users:hover {
   color: #c9cdc9;
-  background-color: #6c757d;
 }
 
 .in-active-users.active {
-  color: #6c757d !important;
-  background-color: #c9cdc9 !important;
+  color: #c9cdc9;
+  background-color: #9e9e9ea3 !important;
 }
 
 .btn-file {

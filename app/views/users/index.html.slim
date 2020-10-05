@@ -14,21 +14,27 @@
         table#users-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
           thead
             tr
-              th.all width="*" First Name
-              th width="*" Last Name
-              th.all width="*" E-mail
-              th width="*" Phone
-              th width="*" Gender
-              th width="*" User Type
-              th width="*" Status
-              th.all width="*" Action
+              th.all width="*" = t("view.users.fields.first_name")
+              th width="*" = t("view.users.fields.last_name")
+              th.all width="*" = t("view.users.fields.email")
+              th width="*" = t("view.users.fields.phone")
+              th width="*" = t("view.users.fields.gender")
+              th width="*" = t("view.users.fields.user_type")
+              th width="*" = t("common.status")
+              th.all width="*" = t("common.table.actions")
         tbody
 
 = javascript_include_tag 'users/index'
 javascript:
   $(document).ready(function() {
     let params = {
-      isAdmin: #{current_user.admin?}
+      isAdmin: #{current_user.admin?},
+      active: "#{t('common.active')}",
+      in_active: "#{t('common.in_active')}",
+      import_csv: "#{t('common.import_csv')}",
+      title: "#{t('view.users.title')}",
+      file_size_error: "#{t('view.users.alerts.file_size_error')}",
+      file_type_error: "#{t('view.users.alerts.file_type_error')}"
     };
 
     let url = {

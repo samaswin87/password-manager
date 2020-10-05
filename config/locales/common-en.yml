@@ -1,8 +1,18 @@
 en:
   common:
+    status: Status
+    active: Active
+    in_active: In Active
+    import_csv: Import CSV
+    upload: Upload
+    choose_file: Choose file
+    table:
+      action: Action
+      actions: Actions
     buttons:
-      cancel: Cancel
       submit: Submit
+      cancel: Cancel
+      close: Close
     notifications:
       alert: Alert
       warning: Warning

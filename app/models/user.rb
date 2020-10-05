@@ -46,7 +46,7 @@ class User < ApplicationRecord
   # ---- relationships ----
   belongs_to :user_type
   belongs_to :gender
-  has_one :address, as: :linkable, dependent: :destroy
+  has_many :addresses, dependent: :delete_all
   has_many :passwords, dependent: :delete_all
 
   # ---- paperclip ----
@@ -72,7 +72,7 @@ class User < ApplicationRecord
 
   # ---- nested values ----
 
-  accepts_nested_attributes_for :address
+  accepts_nested_attributes_for :addresses
 
   # ---- default values ----
 
@@ -82,8 +82,6 @@ class User < ApplicationRecord
 
   delegate :name, to: :user_type, prefix: true, allow_nil: true
   delegate :name, to: :gender, prefix: true, allow_nil: true
-  delegate :street, :number, :additional_details, :house_name, :city_name,
-           :state_name, :zipcode, to: :address, prefix: true, allow_nil: true
 
   # ---- scoped search ----
 

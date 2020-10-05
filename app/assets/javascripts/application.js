@@ -28,6 +28,7 @@
 //= require datatables
 //= require select2-full
 //= require bs-stepper
+//= require bootstrap-toggle
 //= require api
 // require_tree .
 

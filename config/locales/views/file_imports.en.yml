@@ -1,6 +1,7 @@
 en:
   view:
     file_imports:
+      title: File imports
       fields:
         state: 'Status:'
         data_file_name: 'File name:'
@@ -13,6 +14,7 @@ en:
         parsed_count: 'Parsed count:'
         failed_count: 'Failed count:'
         success_count: 'Success count:'
-      alert:
+      alerts:
+        limit: Max 10MB allwed. Please import CSV only
         message: This page will show the list of records and you can remove the unwanted records.
 

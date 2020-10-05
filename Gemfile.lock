@@ -80,6 +80,7 @@ GEM
     arel (9.0.0)
     bcrypt (3.1.15)
     bindex (0.8.1)
+    bootstrap-toggle-rails (2.2.1.0)
     bootstrap-wysihtml5-rails (0.3.3.8)
       railties (>= 3.0)
     breadcrumbs_on_rails (4.0.0)
@@ -481,6 +482,7 @@ DEPENDENCIES
   after_commit_everywhere (~> 0.1, >= 0.1.5)
   ajax-datatables-rails
   annotate
+  bootstrap-toggle-rails
   bootstrap-wysihtml5-rails
   bootstrap_flash_messages!
   breadcrumbs_on_rails
