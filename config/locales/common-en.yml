@@ -14,6 +14,7 @@ en:
       cancel: Cancel
       close: Close
     notifications:
+      _alert: Alert!
       alert: Alert
       warning: Warning
       note: Note
