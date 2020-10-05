@@ -25,6 +25,7 @@
 //= require jquery-fileupload/basic
 //= require papaparse
 //= require vendor/notifyset
+//= require vendor/bootstrap.file-input
 //= require datatables
 //= require select2-full
 //= require bs-stepper
@@ -42,6 +43,8 @@ $(document).ready(function(){
     $(".nav-tabs > li").removeClass("active");
     $(event.target).parent().addClass('active');
   });
+
+  $('input[type=file]').bootstrapFileInput();
 });
 
 var app = (function(){

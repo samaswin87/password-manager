@@ -1,0 +1,34 @@
+= render 'form_header'
+
+= bootstrap_box edit_resource_label, nil do
+  .box-body
+    .row
+      .col-md-3
+        .box.box-primary
+          .box-body.box-profile
+            = simple_form_for resource do |form|
+              = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
+              h3.profile-username.text-center =deal_value resource.name
+              = form.input :avatar, as: :file, label: 'Upload a new avatar', input_html: {class: 'btn btn-primary ml-3'}
+              ul.list-group.list-group-unbordered
+                li.list-group-item
+                  b.ml-2 = t("view.users.fields.first_name")
+                  a.mr-2.pull-right =resource.first_name
+                li.list-group-item
+                  b.ml-2 = t("view.users.fields.last_name")
+                  a.mr-2.pull-right =resource.last_name
+                li.list-group-item
+                  b.ml-2 = t("view.users.fields.gender")
+                  a.mr-2.pull-right
+                    = resource.toggle_gender
+                li.list-group-item
+                  b.ml-2 = t("view.users.fields.email")
+                  a.mr-2.pull-right =resource.email
+                li.list-group-item
+                  b.ml-2 = t("view.users.fields.phone")
+                  a.mr-2.pull-right =resource.phone
+                li.list-group-item
+                  b.ml-2 = t("view.users.fields.user_type")
+                  a.mr-2.pull-right
+                    = resource.toggle_user_type
+      .col-md-9

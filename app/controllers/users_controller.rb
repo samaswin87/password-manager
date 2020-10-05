@@ -26,7 +26,6 @@ class UsersController < BaseController
     add_breadcrumb 'New', :new_resource_path
 
     @user = User.new
-    @user.build_address
   end
 
   def create
@@ -41,8 +40,9 @@ class UsersController < BaseController
 
   def edit
     add_breadcrumb 'Edit', :edit_resource_path
+    @user = @user.decorate
 
-    resource.build_address if resource.address.blank?
+    resource.build_addresses if resource.addresses.blank?
   end
 
   def status
