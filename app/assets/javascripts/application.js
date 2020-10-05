@@ -43,8 +43,6 @@ $(document).ready(function(){
     $(".nav-tabs > li").removeClass("active");
     $(event.target).parent().addClass('active');
   });
-
-  $('input[type=file]').bootstrapFileInput();
 });
 
 var app = (function(){
