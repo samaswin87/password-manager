@@ -14,7 +14,11 @@
                 = form.input :last_name, required: true
                 = form.input :email, required: true
                 = form.input :phone, required: false
+                = 'Gender'
                 = form.input :gender, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'danger', on: 'Male', off: 'Female'}, class: 'ml-0'}
+                = 'User Type'
+                = form.input :user_type, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'warning', on: 'Admin', off: 'User'}, class: 'ml-0'}
+
       .col-md-9
 javascript:
   $(document).ready(function() {
