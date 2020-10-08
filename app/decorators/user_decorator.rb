@@ -19,6 +19,18 @@ class UserDecorator < Draper::Decorator
     end
   end
 
+  def save_icon
+    h.link_to(h.edit_user_path(object), class: 'btn btn-success') do
+      h.fa_icon('save')
+    end
+  end
+
+  def add_icon
+    h.link_to(h.edit_user_path(object), class: 'btn btn-success') do
+      h.fa_icon('plus-square')
+    end
+  end
+
   def toggle_user_type
     user_type = object.admin? ? 'Admin' : 'User'
     h.check_box_tag(:usertype, user_type, object.admin?, disabled: true, data: { toggle: 'toggle', onstyle: 'primary', offstyle: 'warning', on: 'Admin', off: 'User' } )

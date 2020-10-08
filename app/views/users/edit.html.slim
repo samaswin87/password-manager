@@ -6,6 +6,10 @@
       .col-md-3
         .box.box-primary
           .box-body.box-profile
+            span
+              = @user.status_button
+            span.pull-right.pr-10p
+              = @user.save_icon
             = simple_form_for resource do |form|
               = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
               h3.profile-username.text-center = form.input :avatar, as: :file, label: false, input_html: {class: 'btn bt-sm btn-primary'}
@@ -20,6 +24,26 @@
                 = form.input :user_type, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'warning', on: 'Admin', off: 'User'}, class: 'ml-0'}
 
       .col-md-9
+        .box.box-primary
+          .box-header.with-border
+            h3.pull-left = t("view.addresses.title")
+            span.pull-right
+              = @user.add_icon
+          - resource.addresses.each do |address|
+            = simple_form_for address, url: resource_path do |form|
+              .box-header.with-border.bg-info
+                h6.pull-left.text-white = t("view.addresses.types.#{address.address_type}")
+                btn-group.pull-right
+                  a.pr-10p href="#"
+                    i.fa.fa-save.text-white
+                  a.pr-10p
+                    i.fa.fa-trash-o.text-white
+              .box-body
+                = form.input :house_name, required: true, autofocus: true
+                = form.input :number, required: true
+                = form.input :street, required: true
+                = form.input :additional_details, required: true
+
 javascript:
   $(document).ready(function() {
     $('input[type=file]').bootstrapFileInput();
