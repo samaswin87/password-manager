@@ -46,8 +46,8 @@ class UsersController < BaseController
   end
 
   def update
-    params[:user][:user_type_id] = params[:user][:user_type_id].to_i + 1
-    params[:user][:gender_id] = params[:user][:gender_id].to_i + 1
+    params[:user][:user_type_id] = params[:user][:user_type_id].to_i == 0 ? 2 : params[:user][:user_type_id].to_i
+    params[:user][:gender_id] = params[:user][:gender_id].to_i == 0 ? 2 : params[:user][:gender_id].to_i
     super
   end
 

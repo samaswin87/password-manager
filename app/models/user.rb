@@ -120,6 +120,10 @@ class User < ApplicationRecord
     self.user_type_id == UserType.where(alias: 'administrator').first.id
   end
 
+  def male?
+    self.gender_id == Gender.where(alias: 'male').first.id
+  end
+
   def to_hash
     {
       id: self.id,
