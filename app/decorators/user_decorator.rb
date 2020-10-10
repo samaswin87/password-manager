@@ -13,6 +13,10 @@ class UserDecorator < Draper::Decorator
     end
   end
 
+  def show_image
+    "<img src=#{ object.avatar.url(:medium) } class='profile-user-img img-responsive img-circle' />"
+  end
+
   def edit_icon
     h.link_to(h.edit_user_path(object), class: 'btn btn-success') do
       h.fa_icon('edit')

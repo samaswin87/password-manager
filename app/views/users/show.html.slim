@@ -10,7 +10,7 @@ section.content
             = @user.edit_icon
           span.pull-right.pr-10p
             = @user.status_button
-          = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
+          = @user.show_image.html_safe
           h3.profile-username.text-center =deal_value resource.name
           ul.list-group.list-group-unbordered
             li.list-group-item
