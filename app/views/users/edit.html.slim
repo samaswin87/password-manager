@@ -6,11 +6,11 @@
       .col-md-3
         .box.box-primary
           .box-body.box-profile
-            span
-              = @user.status_button
-            span.pull-right.pr-10p
-              = @user.save_icon
             = simple_form_for resource do |form|
+              span
+                = @user.status_button
+              span.pull-right.pr-10p
+                = @user.save_button
               = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
               h3.profile-username.text-center = form.input :avatar, as: :file, label: false, input_html: {class: 'btn bt-sm btn-primary'}
               ul.list-group.list-group-unbordered
@@ -18,10 +18,16 @@
                 = form.input :last_name, required: true
                 = form.input :email, required: true
                 = form.input :phone, required: false
-                = 'Gender'
-                = form.input :gender, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'danger', on: 'Male', off: 'Female'}, class: 'ml-0'}
-                = 'User Type'
-                = form.input :user_type, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'warning', on: 'Admin', off: 'User'}, class: 'ml-0'}
+                .row
+                  .col-md-6
+                    = 'Gender'
+                  .col-md-6
+                    = form.input :gender, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'danger', on: 'Male', off: 'Female'}, class: 'ml-0'}
+                .row
+                  .col-md-6
+                    = 'User Type'
+                  .col-md-6
+                    = form.input :user_type, required: false, label: false, :as => :boolean, :input_html => { :checked => "checked", data: { toggle: 'toggle', onstyle: 'success', offstyle: 'warning', on: 'Admin', off: 'User'}, class: 'ml-0'}
 
       .col-md-9
         .box.box-primary

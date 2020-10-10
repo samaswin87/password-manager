@@ -19,8 +19,8 @@ class UserDecorator < Draper::Decorator
     end
   end
 
-  def save_icon
-    h.link_to(h.edit_user_path(object), class: 'btn btn-success') do
+  def save_button
+    h.content_tag(:button, class: 'btn btn-success') do
       h.fa_icon('save')
     end
   end
