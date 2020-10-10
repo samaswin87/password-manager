@@ -11,7 +11,7 @@
                 = @user.status_button
               span.pull-right.pr-10p
                 = @user.save_button
-              = image_tag resource.avatar.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
+              = @user.show_image.html_safe
               h3.profile-username.text-center = form.input :avatar, as: :file, label: false, input_html: {class: 'btn bt-sm btn-primary'}
               ul.list-group.list-group-unbordered
                 = form.input :first_name, required: true, autofocus: true
@@ -40,10 +40,8 @@
               .box-header.with-border.bg-info
                 h6.pull-left.text-white = t("view.addresses.types.#{address.address_type}")
                 btn-group.pull-right
-                  a.pr-10p href="#"
-                    i.fa.fa-save.text-white
-                  a.pr-10p
-                    i.fa.fa-trash-o.text-white
+                  = href_fa_icon_with_class(:save, edit_resource_path)
+                  = href_fa_icon_with_class('trash-o', resource_path)
               .box-body
                 = form.input :house_name, required: true, autofocus: true
                 = form.input :number, required: true
