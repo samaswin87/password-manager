@@ -45,6 +45,12 @@ class UsersController < BaseController
     resource.build_addresses if resource.addresses.blank?
   end
 
+  def update
+    params[:user][:user_type_id] = params[:user][:user_type_id].to_i + 1
+    params[:user][:gender_id] = params[:user][:gender_id].to_i + 1
+    super
+  end
+
   def status
     user = User.find(params[:id])
     if user
