@@ -25,6 +25,9 @@ Rails.application.routes.draw do
   resources :users do
     member do
       put :status
+      resource :address, controller: :users, as: :address, only: [] do
+        delete :address_destroy, as: :destroy
+      end
     end
 
     collection do

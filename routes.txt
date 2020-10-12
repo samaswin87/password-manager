@@ -23,6 +23,7 @@
                                 PUT    /invitation(.:format)                                                                    devise/invitations#update
                                 POST   /invitation(.:format)                                                                    devise/invitations#create
                     status_user PUT    /users/:id/status(.:format)                                                              users#status
+                destroy_address DELETE /users/:id/address/address_destroy(.:format)                                             users#address_destroy
                    import_users PUT    /users/import(.:format)                                                                  users#import
                           users GET    /users(.:format)                                                                         users#index
                                 POST   /users(.:format)                                                                         users#create
@@ -46,6 +47,9 @@
                                 DELETE /passwords/:id(.:format)                                                                 passwords#destroy
                   import_upload PUT    /upload/:id/import(.:format)                                                             upload#import
                    upload_index POST   /upload(.:format)                                                                        upload#create
+            countries_locations GET    /locations/countries(.:format)                                                           locations#countries
+               states_locations GET    /locations/states(.:format)                                                              locations#states
+               cities_locations GET    /locations/cities(.:format)                                                              locations#cities
                       locations GET    /locations(.:format)                                                                     locations#index
                                 POST   /locations(.:format)                                                                     locations#create
                    new_location GET    /locations/new(.:format)                                                                 locations#new
