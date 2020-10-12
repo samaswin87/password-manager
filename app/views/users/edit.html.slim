@@ -1,0 +1,62 @@
+= render 'form_header'
+
+= bootstrap_box edit_resource_label, nil do
+  .box-body
+    .row
+      .col-md-3
+        .box.box-primary
+          .box-body.box-profile
+            = simple_form_for resource do |form|
+              span
+                = @user.status_button
+              span.pull-right.pr-10p
+                = @user.save_button
+              = @user.show_image.html_safe
+              h3.profile-username.text-center = form.input :avatar, as: :file, label: false, input_html: {class: 'btn bt-sm btn-primary'}
+              ul.list-group.list-group-unbordered
+                = form.input :first_name, required: true, autofocus: true
+                = form.input :last_name, required: true
+                = form.input :email, required: true
+                = form.input :phone, required: false
+                .row
+                  .col-md-6
+                    = 'Gender'
+                  .col-md-6
+                    = form.input :gender_id, required: true, label: false, as: :boolean, input_html: { checked: resource.male?, data: { toggle: 'toggle', onstyle: 'success', offstyle: 'danger', on: 'Male', off: 'Female'}}
+                .row
+                  .col-md-6
+                    = 'User Type'
+                  .col-md-6
+                    = form.input :user_type_id, required: true, label: false, as: :boolean, input_html: { checked: resource.admin?, data: { toggle: 'toggle', onstyle: 'success', offstyle: 'warning', on: 'Admin', off: 'User'}}
+
+      .col-md-9
+        .box.box-primary
+          .box-header.with-border
+            h3.pull-left = t("view.addresses.title")
+          - if resource.addresses.length != 3
+              span.pull-right
+                = @user.add_icon
+          - resource.addresses.each do |address|
+            = simple_form_for address, url: resource_path(address_id: address.id) do |form|
+              .box-header.with-border.bg-info
+                h6.pull-left.text-white = t("view.addresses.types.#{address.address_type}")
+                btn-group.pull-right
+                  = submit_fa_icon_with_class(:save, resource_path)
+                  = href_fa_icon_with_class_delete('trash-o', resource_path)
+              .box-body
+                .row
+                  .col-md-6
+                    = form.input :house_name, required: true, autofocus: true
+                    = form.input :number, required: true
+                    = form.input :street, required: true
+                    = form.input :additional_details, required: false
+                  .col-md-6
+                    = form.association :country, collection: Country.valid, required: true
+                    = form.association :state, collection: State.valid, required: true
+                    = form.association :city, collection: City.valid, required: true
+                    = form.input :zipcode, required: true
+
+javascript:
+  $(document).ready(function() {
+    $('input[type=file]').bootstrapFileInput();
+  });

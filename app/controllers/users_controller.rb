@@ -26,7 +26,6 @@ class UsersController < BaseController
     add_breadcrumb 'New', :new_resource_path
 
     @user = User.new
-    @user.build_address
   end
 
   def create
@@ -41,8 +40,21 @@ class UsersController < BaseController
 
   def edit
     add_breadcrumb 'Edit', :edit_resource_path
+    @user = @user.decorate
 
-    resource.build_address if resource.address.blank?
+    resource.build_addresses if resource.addresses.blank?
+  end
+
+  def update
+    if address_params.present?
+      address = Address.find(params[:address_id])
+      address.update_attributes(address_params)
+      redirect_to action: :edit and return
+    end
+
+    params[:user][:user_type_id] = params[:user][:user_type_id].to_i == 0 ? 2 : params[:user][:user_type_id].to_i
+    params[:user][:gender_id] = params[:user][:gender_id].to_i == 0 ? 2 : params[:user][:gender_id].to_i
+    super
   end
 
   def status
@@ -61,5 +73,9 @@ class UsersController < BaseController
 
   def user_params
     params.require(:user).permit!
+  end
+
+  def address_params
+    params.require(:address).permit!
   end
 end
