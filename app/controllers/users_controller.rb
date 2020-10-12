@@ -46,6 +46,12 @@ class UsersController < BaseController
   end
 
   def update
+    if address_params.present?
+      address = Address.find(params[:address_id])
+      address.update_attributes(address_params)
+      redirect_to action: :edit and return
+    end
+
     params[:user][:user_type_id] = params[:user][:user_type_id].to_i == 0 ? 2 : params[:user][:user_type_id].to_i
     params[:user][:gender_id] = params[:user][:gender_id].to_i == 0 ? 2 : params[:user][:gender_id].to_i
     super
@@ -67,5 +73,9 @@ class UsersController < BaseController
 
   def user_params
     params.require(:user).permit!
+  end
+
+  def address_params
+    params.require(:address).permit!
   end
 end
