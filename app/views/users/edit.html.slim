@@ -40,7 +40,7 @@
               .box-header.with-border.bg-info
                 h6.pull-left.text-white = t("view.addresses.types.#{address.address_type}")
                 btn-group.pull-right
-                  = href_fa_icon_with_class(:save, edit_resource_path)
+                  = submit_fa_icon_with_class(:save, resource_path)
                   = href_fa_icon_with_class('trash-o', resource_path)
               .box-body
                 = form.input :house_name, required: true, autofocus: true

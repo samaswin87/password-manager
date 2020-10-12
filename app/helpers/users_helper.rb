@@ -6,4 +6,10 @@ module UsersHelper
     end
   end
 
+  def submit_fa_icon_with_class(icon, href)
+    content_tag(:a, href: "#{href}", class: "pr-10p", data: { 'submit-form': true }) do
+      content_tag(:i, class: "fa fa-#{icon} text-white") {}
+    end
+  end
+
 end

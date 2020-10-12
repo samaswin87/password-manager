@@ -43,6 +43,12 @@ $(document).ready(function(){
     $(".nav-tabs > li").removeClass("active");
     $(event.target).parent().addClass('active');
   });
+
+  $(document).on('click', '[data-submit-form]', function(e) {
+    e.preventDefault();
+    $(this).closest('form').submit()
+  });
+
 });
 
 var app = (function(){
