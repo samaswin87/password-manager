@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.1.7', '>= 6.1.7.5'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -15,11 +15,11 @@ gem 'uglifier', '>= 1.3.0'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
 gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-gem 'jbuilder', '~> 2.5'
-gem 'cucumber'
+gem 'jbuilder', '~> 2.10', '>= 2.10.1'
+gem 'cucumber', '>= 5.1.1'
 gem 'therubyracer'
 gem 'less-rails'
-gem 'email_validator'
+gem 'email_validator', '>= 2.1.0'
 
 
 group :development, :test do
@@ -28,14 +28,14 @@ group :development, :test do
 end
 
 group :development do
-  gem 'annotate'
+  gem 'annotate', '>= 3.2.0'
   gem 'guard'
   gem 'guard-shell'
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', '>= 2.8.0'
   gem 'pry-rails'
   gem 'faker'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.0.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -48,7 +48,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers', '~> 4.0'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 2.2.0', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov', require: false
@@ -57,7 +57,7 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'jquery-rails'
+gem 'jquery-rails', '>= 4.5.0'
 gem 'jquery-ui-rails'
 gem 'pg', '~> 0.21'
 gem 'sdoc', '~> 1.1', group: :doc
@@ -66,43 +66,43 @@ gem 'sdoc', '~> 1.1', group: :doc
 gem 'aasm'
 gem 'sidekiq'
 gem 'sidekiq-status'
-gem 'paper_trail'
+gem 'paper_trail', '>= 11.1.0'
 gem 'redis-rails'
-gem 'activerecord-import'
+gem 'activerecord-import', '>= 1.0.7'
 gem 'smarter_csv'
-gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
-gem 'data_migrate'
+gem 'after_commit_everywhere', '~> 1.0', '>= 1.0.0'
+gem 'data_migrate', '>= 6.4.0'
 gem 'rails-controller-testing'
 gem 'acts_as_tree'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap_flash_messages', git: 'https://github.com/useruby/bootstrap_flash_messages.git'
 gem "jquery-fileupload-rails"
-gem 'breadcrumbs_on_rails'
+gem 'breadcrumbs_on_rails', '>= 4.1.0'
 gem 'cancancan'
-gem 'has_scope', '~> 0.7.2'
-gem 'devise'
-gem 'devise_invitable'
-gem 'draper', '~> 4.0', '>= 4.0.1'
-gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
-gem 'has_scope', '~> 0.7.2'
+gem 'has_scope', '~> 0.8.0'
+gem 'devise', '>= 4.7.3'
+gem 'devise_invitable', '>= 2.0.3'
+gem 'draper', '~> 4.0', '>= 4.0.2'
+gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.6'
+gem 'has_scope', '~> 0.8.0'
 gem 'humanize_boolean'
 gem 'iconv'
-gem 'inherited_resources', '~> 1.11'
+gem 'inherited_resources', '~> 1.12', '>= 1.12.0'
 gem 'lazyload-rails'
 gem 'paperclip'
-gem 'paranoia', '~> 2.0'
-gem 'responders'
-gem 'scoped_search'
-gem 'searchkick'
+gem 'paranoia', '~> 2.4', '>= 2.4.3'
+gem 'responders', '>= 3.1.0'
+gem 'scoped_search', '>= 4.1.10'
+gem 'searchkick', '>= 4.4.2'
 gem 'selectize-rails'
 gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.git', branch: 'master'
-gem 'simple_form'
+gem 'simple_form', '>= 5.0.3'
 gem 'slim'
 gem 'pagy'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '>= 1.3.0'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
-gem 'webpacker', '~> 5.1.1'
+gem 'webpacker', '~> 5.2.0'
 gem "select2-rails"
 gem 'bootstrap-toggle-rails'
 
