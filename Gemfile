@@ -64,8 +64,8 @@ gem 'sdoc', '~> 1.1', group: :doc
 
 # others
 gem 'aasm'
-gem 'sidekiq'
-gem 'sidekiq-status'
+gem 'sidekiq', '>= 7.1.3'
+gem 'sidekiq-status', '>= 2.0.0'
 gem 'paper_trail'
 gem 'redis-rails'
 gem 'activerecord-import'
