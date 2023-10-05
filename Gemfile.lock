@@ -13,8 +13,24 @@ GIT
     bootstrap_flash_messages (1.0.0)
 
 GEM
-  remote: https://rubygems.org/
   remote: https://rails-assets.org/
+  specs:
+    rails-assets-adminlte (2.3.11)
+    rails-assets-bootstrap (4.3.1)
+    rails-assets-bootstrap-datepicker (1.9.0)
+      rails-assets-jquery (>= 1.7.1, < 4.0.0)
+    rails-assets-bootstrap-switch (3.3.4)
+      rails-assets-bootstrap (>= 2.3.2)
+      rails-assets-jquery (~> 1.9.0)
+    rails-assets-jQuery-Mask-Plugin (1.14.16)
+    rails-assets-jquery.slimscroll (1.3.8)
+    rails-assets-momentjs (2.22.2)
+    rails-assets-notifyjs (0.4.2)
+    rails-assets-toastr (2.1.3)
+      rails-assets-jquery (>= 1.6.3, < 3)
+
+GEM
+  remote: https://rubygems.org/
   specs:
     aasm (5.1.1)
       concurrent-ruby (~> 1.0)
@@ -103,7 +119,7 @@ GEM
     coderay (1.1.3)
     commonjs (0.2.7)
     concurrent-ruby (1.1.7)
-    connection_pool (2.2.3)
+    connection_pool (2.4.1)
     crass (1.0.6)
     cucumber (5.1.0)
       builder (~> 3.2, >= 3.2.4)
@@ -295,7 +311,7 @@ GEM
     public_suffix (4.0.6)
     puma (4.3.5)
       nio4r (~> 2.0)
-    rack (2.2.3)
+    rack (2.2.8)
     rack-proxy (0.6.5)
       rack
     rack-test (1.1.0)
@@ -313,20 +329,7 @@ GEM
       bundler (>= 1.3.0)
       railties (= 5.2.4.3)
       sprockets-rails (>= 2.0.0)
-    rails-assets-adminlte (2.3.11)
-    rails-assets-bootstrap (4.3.1)
-    rails-assets-bootstrap-datepicker (1.9.0)
-      rails-assets-jquery (>= 1.7.1, < 4.0.0)
-    rails-assets-bootstrap-switch (3.3.4)
-      rails-assets-bootstrap (>= 2.3.2)
-      rails-assets-jquery (~> 1.9.0)
-    rails-assets-jQuery-Mask-Plugin (1.14.16)
     rails-assets-jquery (1.9.1)
-    rails-assets-jquery.slimscroll (1.3.8)
-    rails-assets-momentjs (2.22.2)
-    rails-assets-notifyjs (0.4.2)
-    rails-assets-toastr (2.1.3)
-      rails-assets-jquery (>= 1.6.3, < 3)
     rails-controller-testing (1.0.5)
       actionpack (>= 5.0.1.rc1)
       actionview (>= 5.0.1.rc1)
@@ -347,7 +350,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rdoc (6.2.1)
-    redis (4.2.1)
+    redis (4.8.1)
     redis-actionpack (5.2.0)
       actionpack (>= 5, < 7)
       redis-rack (>= 2.1.0, < 3)
@@ -401,10 +404,10 @@ GEM
       rubyzip (>= 1.2.2)
     semantic_range (2.3.0)
     shellany (0.0.1)
-    sidekiq (6.1.1)
-      connection_pool (>= 2.2.2)
+    sidekiq (6.5.10)
+      connection_pool (>= 2.2.5, < 3)
       rack (~> 2.0)
-      redis (>= 4.2.0)
+      redis (>= 4.5.0, < 5)
     sidekiq-status (1.1.4)
       chronic_duration
       sidekiq (>= 3.0)
