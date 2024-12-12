@@ -2,11 +2,11 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 7.0.8', '>= 7.0.8.7'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.3'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
@@ -48,7 +48,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers', '~> 4.0'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov', require: false
@@ -71,13 +71,13 @@ gem 'redis-rails'
 gem 'activerecord-import'
 gem 'smarter_csv'
 gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
-gem 'data_migrate'
+gem 'data_migrate', '>= 7.0.0'
 gem 'rails-controller-testing'
 gem 'acts_as_tree'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap_flash_messages', git: 'https://github.com/useruby/bootstrap_flash_messages.git'
 gem "jquery-fileupload-rails"
-gem 'breadcrumbs_on_rails'
+gem 'breadcrumbs_on_rails', '>= 4.1.0'
 gem 'cancancan'
 gem 'has_scope', '~> 0.7.2'
 gem 'devise'
@@ -87,7 +87,7 @@ gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'has_scope', '~> 0.7.2'
 gem 'humanize_boolean'
 gem 'iconv'
-gem 'inherited_resources', '~> 1.11'
+gem 'inherited_resources', '~> 2.1', '>= 2.1.0'
 gem 'lazyload-rails'
 gem 'paperclip'
 gem 'paranoia', '~> 2.0'
@@ -99,7 +99,7 @@ gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.g
 gem 'simple_form'
 gem 'slim'
 gem 'pagy'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '>= 1.3.0'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
 gem 'webpacker', '~> 5.1.1'
