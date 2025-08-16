@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.7.0'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 7.1.5', '>= 7.1.5.2'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.3'
 # Use SCSS for stylesheets
@@ -28,7 +28,7 @@ group :development, :test do
 end
 
 group :development do
-  gem 'annotate'
+  gem 'annotate', '>= 3.2.0'
   gem 'guard'
   gem 'guard-shell'
   gem 'dotenv-rails'
@@ -48,7 +48,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers', '~> 4.0'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov', require: false
@@ -66,18 +66,18 @@ gem 'sdoc', '~> 1.1', group: :doc
 gem 'aasm'
 gem 'sidekiq'
 gem 'sidekiq-status'
-gem 'paper_trail'
+gem 'paper_trail', '>= 11.1.0'
 gem 'redis-rails'
-gem 'activerecord-import'
+gem 'activerecord-import', '>= 1.0.7'
 gem 'smarter_csv'
-gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
-gem 'data_migrate'
+gem 'after_commit_everywhere', '~> 1.0', '>= 1.0.0'
+gem 'data_migrate', '>= 6.4.0'
 gem 'rails-controller-testing'
 gem 'acts_as_tree'
 gem 'bootstrap-wysihtml5-rails'
 gem 'bootstrap_flash_messages', git: 'https://github.com/useruby/bootstrap_flash_messages.git'
 gem "jquery-fileupload-rails"
-gem 'breadcrumbs_on_rails'
+gem 'breadcrumbs_on_rails', '>= 4.1.0'
 gem 'cancancan'
 gem 'has_scope', '~> 0.7.2'
 gem 'devise'
@@ -90,9 +90,9 @@ gem 'iconv'
 gem 'inherited_resources', '~> 1.11'
 gem 'lazyload-rails'
 gem 'paperclip'
-gem 'paranoia', '~> 2.0'
+gem 'paranoia', '~> 2.6', '>= 2.6.3'
 gem 'responders'
-gem 'scoped_search'
+gem 'scoped_search', '>= 4.1.10'
 gem 'searchkick'
 gem 'selectize-rails'
 gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.git', branch: 'master'
