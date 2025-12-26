@@ -1,10 +1,10 @@
 require 'test_helper'
 
-class PasswordsControllerTest < ActionController::TestCase
+class PasswordsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::ControllerHelpers
 
   def setup
-    @file = fixture_file_upload(File.join(Rails.root, "/test/files", "user.csv"))
+    @file = fixture_file_upload(Rails.root.join('/test/files', 'user.csv'))
   end
 
   def test_index_with_user
@@ -16,14 +16,14 @@ class PasswordsControllerTest < ActionController::TestCase
 
   def test_show_with_admin
     sign_in(users(:john))
-    get(:show,  params: {id: passwords(:john_facebook).id, user_id: users(:john).id})
+    get(:show, params: { id: passwords(:john_facebook).id, user_id: users(:john).id })
     assert_response(:success)
     assert_not_nil assigns(:password)
   end
 
   def test_show_with_user
     sign_in(users(:kart))
-    get(:show,  params: {id: passwords(:kart_facebook).id, user_id: users(:kart).id})
+    get(:show, params: { id: passwords(:kart_facebook).id, user_id: users(:kart).id })
     assert_response(:success)
     assert_not_nil assigns(:password)
   end
@@ -74,14 +74,14 @@ class PasswordsControllerTest < ActionController::TestCase
 
   def test_edit_with_admin
     sign_in(users(:john))
-    get(:edit,  params: {id: passwords(:john_facebook).id, user_id: users(:john).id})
+    get(:edit, params: { id: passwords(:john_facebook).id, user_id: users(:john).id })
     assert_response(:success)
     assert_not_nil assigns(:password)
   end
 
   def test_edit_with_user
     sign_in(users(:kart))
-    get(:edit,  params: {id: passwords(:kart_facebook).id, user_id: users(:kart).id})
+    get(:edit, params: { id: passwords(:kart_facebook).id, user_id: users(:kart).id })
     assert_response(:success)
     assert_not_nil assigns(:password)
   end
@@ -90,7 +90,7 @@ class PasswordsControllerTest < ActionController::TestCase
     sign_in(users(:john))
     facebook = passwords(:kart_facebook)
     assert_true(facebook.active)
-    put(:status, params: {id: passwords(:kart_facebook).id, user_id: users(:john).id})
+    put(:status, params: { id: passwords(:kart_facebook).id, user_id: users(:john).id })
     assert_response(:success)
     assert_false(facebook.reload.active)
   end
@@ -99,42 +99,41 @@ class PasswordsControllerTest < ActionController::TestCase
     sign_in(users(:kart))
     facebook = passwords(:kart_facebook)
     assert_true(facebook.active)
-    put(:status, params: {id: passwords(:kart_facebook).id, user_id: users(:kart).id})
+    put(:status, params: { id: passwords(:kart_facebook).id, user_id: users(:kart).id })
     assert_response(:success)
     assert_false(facebook.reload.active)
   end
 
   def test_uploads
     sign_in(users(:john))
-    assert_difference "PasswordAttachment.count", 1 do
-      put(:uploads, params: {id: passwords(:john_facebook).id, attachments: [@file]})
+    assert_difference 'PasswordAttachment.count', 1 do
+      put(:uploads, params: { id: passwords(:john_facebook).id, attachments: [@file] })
     end
-    body = JSON.parse(response.body)
-    assert_equal('Success', body["status"])
+    body = response.parsed_body
+    assert_equal('Success', body['status'])
   end
 
   def test_attachment
     sign_in(users(:john))
-    assert_difference "PasswordAttachment.count", -1 do
-      delete(:attachment, params: {id: passwords(:john_facebook).id, attachment_id: 1})
+    assert_difference 'PasswordAttachment.count', -1 do
+      delete(:attachment, params: { id: passwords(:john_facebook).id, attachment_id: 1 })
     end
-    assert_redirected_to(action: "show")
+    assert_redirected_to(action: 'show')
   end
 
   private
 
   def password_params
-    {password: {
-      name: "Password",
-      url: "http://test.com",
-      username: "test",
-      text_password: "test",
-      key: "test",
-      ssh_private_key: "--key--",
-      details: "test",
+    { password: {
+      name: 'Password',
+      url: 'http://test.com',
+      username: 'test',
+      text_password: 'test',
+      key: 'test',
+      ssh_private_key: '--key--',
+      details: 'test',
       user_id: users(:john).id,
-      ssh_public_key: "--key--"
-    }}
+      ssh_public_key: '--key--'
+    } }
   end
-
 end

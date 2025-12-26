@@ -1,18 +1,27 @@
-.modal.fade id="#{id}-file-modal" tabindex='-1' role='dialog'
-  .modal-dialog
+.modal.fade id="#{id}-file-modal" tabindex='-1' aria-labelledby="#{id}-file-modal-label" aria-hidden='true'
+  .modal-dialog.modal-dialog-centered
     .modal-content
       .modal-header
-        button.close type='button' data-dismiss='modal' aria-label="Close"
-          span aria-hidden='true' &times;
-        h4.modal-title = t("view.file_imports.title")
+        h5.modal-title id="#{id}-file-modal-label"
+          i.fa-solid.fa-file-import.me-2
+          = t("view.file_imports.title")
+        button.btn-close type='button' data-bs-dismiss='modal' aria-label="Close"
       .modal-body
-        p.message
-          code.alert-message = t("view.file_imports.alerts.limit")
-        div.input-group
-          div.input-group-prepend
-            span.input-group-text = t("common.upload")
-          div.custom-file
-            input.custom-file-input type="file" id="fileupload"
-            label.custom-file-label for="file-upload" = t("common.choose_file")
+        .alert.alert-warning.alert-dismissible.fade.show role="alert"
+          i.fa-solid.fa-circle-info.me-2
+          = t("view.file_imports.alerts.limit")
+          button.btn-close type="button" data-bs-dismiss="alert" aria-label="Close"
+        .mb-3
+          label.form-label = t("common.upload")
+          .input-group
+            span.input-group-text
+              i.fa-solid.fa-upload
+            input.form-control.file-input-display type="text" placeholder=t("common.choose_file") readonly="readonly"
+            button.btn.btn-primary type="button" onclick="document.getElementById('fileupload').click()"
+              i.fa-solid.fa-folder-open.me-2
+              | Browse
+            input#fileupload type="file" style="display: none;" accept=".csv"
       .modal-footer
-        button.btn.btn-danger type='button' data-dismiss='modal' = t("common.buttons.close")
+        button.btn.btn-secondary type='button' data-bs-dismiss='modal'
+          i.fa-solid.fa-xmark.me-2
+          = t("common.buttons.close")

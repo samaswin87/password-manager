@@ -5,8 +5,8 @@ class HashSerializer
   end
 
   def self.load(hash)
-    if hash && hash.is_a?(String)
-      eval(hash).with_indifferent_access
+    if hash.is_a?(String)
+      JSON.parse(hash).with_indifferent_access
     else
       (hash || {}).with_indifferent_access
     end

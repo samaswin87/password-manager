@@ -1,5 +1,9 @@
-# Pagy configuration
-# NOTE: Pagy v43+ has a completely different API structure
-# This initializer is temporarily disabled during Rails upgrade
-# TODO: Update to use new Pagy API after Rails upgrade is complete
-# require 'pagy'
+# Pagy configuration for v9.3
+require 'pagy/extras/overflow'
+require 'pagy/extras/bootstrap'
+require 'pagy/extras/metadata'
+
+# Default configuration
+Pagy::DEFAULT[:items] = 10
+Pagy::DEFAULT[:size] = 7
+Pagy::DEFAULT[:overflow] = :last_page

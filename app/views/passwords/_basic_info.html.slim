@@ -6,7 +6,8 @@
     - if resource.logo.attached?
       = image_tag resource.logo.variant(resize_to_limit: [120, 120]), class: 'profile-user-img img-responsive img-circle', lazy: true
     - else
-      = image_tag '/vendor/images/img_placeholder.png', class: 'profile-user-img img-responsive img-circle', lazy: true
+      .profile-user-img.img-responsive.img-circle.profile-icon-placeholder
+        i.fa.fa-key
     h3.profile-username.text-center =deal_value resource.name
     p.text-muted.text-center =deal_value resource.user.name
     ul.list-group.list-group-unbordered

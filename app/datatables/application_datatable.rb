@@ -13,8 +13,7 @@ class ApplicationDatatable < AjaxDatatablesRails::ActiveRecord
     }
   end
 
-   def fa_icon(icon)
+  def fa_icon(icon)
     content_tag(:i, class: "fa fa-#{icon}") {}
-   end
-
+  end
 end

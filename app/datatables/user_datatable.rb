@@ -1,19 +1,18 @@
 class UserDatatable < ApplicationDatatable
-
   def_delegators :@view, :check_box_tag, :link_to, :edit_user_path, :resource_path, :content_tag, :concat
 
   def view_columns
     # Declare strings in this format: ModelName.column_name
     # or in aliased_join_table.column_name format
     @view_columns ||= {
-      id: { source: "User.id"},
-      first_name: { source: "User.first_name", cond: :like },
-      last_name: { source: "User.last_name", cond: :like },
-      email: { source: "User.email", cond: :like },
-      phone: { source: "User.phone", cond: :like },
-      gender: { source: "Gender.name", searchable: false},
-      type: { source: "UserType.name", searchable: false},
-      status: { source: "User.active", searchable: false},
+      id: { source: 'User.id' },
+      first_name: { source: 'User.first_name', cond: :like },
+      last_name: { source: 'User.last_name', cond: :like },
+      email: { source: 'User.email', cond: :like },
+      phone: { source: 'User.phone', cond: :like },
+      gender: { source: 'Gender.name', searchable: false },
+      type: { source: 'UserType.name', searchable: false },
+      status: { source: 'User.active', searchable: false },
       action: { source: nil, searchable: false, orderable: false }
     }
   end
@@ -33,7 +32,8 @@ class UserDatatable < ApplicationDatatable
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
           unless record.first_name == 'Administrator'
-            concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
+            concat(link_to(fa_icon('trash-o padding-right'), resource_path(record),
+                           method: :delete, data: { confirm_swal: 'Are you sure?' }))
           end
         end
       }
@@ -54,7 +54,7 @@ class UserDatatable < ApplicationDatatable
 
   def get_raw_records
     users = User.includes(:user_type, :gender).all
-    status_params = params.fetch('columns',{}).fetch('6', {}).fetch('search', {}).permit(:value)
+    status_params = params.fetch('columns', {}).fetch('6', {}).fetch('search', {}).permit(:value)
     if status_params['value'] == 'active'
       users = users.active
     elsif status_params['value'] == 'in-active'
@@ -62,5 +62,4 @@ class UserDatatable < ApplicationDatatable
     end
     users
   end
-
 end

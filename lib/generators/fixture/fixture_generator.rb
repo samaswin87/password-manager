@@ -11,10 +11,7 @@ class FixtureGenerator < Rails::Generators::NamedBase
   def columns
     @columns = []
     klass_name = file_name.camelize.singularize(:en)
-    if klass_name.constantize
-      @columns = klass_name.constantize.column_names
-    end
+    @columns = klass_name.constantize.column_names if klass_name.constantize
     @columns
   end
-
 end

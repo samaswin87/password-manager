@@ -8,11 +8,10 @@
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 class UserType < ApplicationRecord
-
   # ---- relationships ----
   has_many :users
 
   def self.user
-    UserType.find_by(alias: 'user');
+    UserType.find_by(alias: 'user')
   end
 end

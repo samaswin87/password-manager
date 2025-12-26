@@ -1,9 +1,9 @@
-desc "Runs all tests in test folder"
-task :test do
+desc 'Runs all tests in test folder'
+task test: :environment do
   Rake::Task[:test].clear
 
   unless ENV['RAILS_ENV'] == 'test'
-    puts "Please run with RAILS_ENV=test"
+    puts 'Please run with RAILS_ENV=test'
     exit
   end
 

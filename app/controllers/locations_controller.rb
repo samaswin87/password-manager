@@ -1,13 +1,11 @@
 class LocationsController < ApplicationController
-
   # ---- layout ----
-  layout "admin"
+  layout 'admin'
   # ---- devise ----
   before_action :authenticate_user!
   before_action :set_location, only: [:destroy]
 
   add_breadcrumb 'Locations', :locations_path
-
 
   def index
     @search = params[:search]
@@ -21,26 +19,25 @@ class LocationsController < ApplicationController
     end
   end
 
-  def destroy
-    if @location.addresses.count == 0
-      @location.destroy
-      flash[:notice] = "Location removed"
-    else
-      flash[:alert] = "You can not delete the location"
-    end
-    redirect_to locations_path
-  end
-
   def show
     add_breadcrumb 'Show', :location_path
     @resource = @location.decorate
   end
 
-  def new
-  end
+  def new; end
 
   def create
-    location = LocationService.call(location_params)
+    LocationService.call(location_params)
+    redirect_to locations_path
+  end
+
+  def destroy
+    if @location.addresses.none?
+      @location.destroy
+      flash[:notice] = 'Location removed'
+    else
+      flash[:alert] = 'You can not delete the location'
+    end
     redirect_to locations_path
   end
 
@@ -62,7 +59,7 @@ class LocationsController < ApplicationController
       end
     end
 
-    render json: {records: countries}, status: HTTP::OK and return
+    render json: { records: countries }, status: HTTP::OK and return
   end
 
   def states
@@ -73,7 +70,7 @@ class LocationsController < ApplicationController
         text: state.name
       }
     end
-    render json: {records: states}, status: HTTP::OK and return
+    render json: { records: states }, status: HTTP::OK and return
   end
 
   def cities
@@ -84,7 +81,7 @@ class LocationsController < ApplicationController
         text: city.name
       }
     end
-    render json: {records: cities}, status: HTTP::OK and return
+    render json: { records: cities }, status: HTTP::OK and return
   end
 
   private
@@ -96,5 +93,4 @@ class LocationsController < ApplicationController
   def location_params
     params.permit(:country_name, :country_alias, :state_name, :city_name)
   end
-
 end

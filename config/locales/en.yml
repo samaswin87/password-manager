@@ -31,3 +31,40 @@
 
 en:
   hello: "Hello world"
+
+  common:
+    upload: "Upload"
+    choose_file: "Choose file"
+    buttons:
+      close: "Close"
+      cancel: "Cancel"
+      save: "Save"
+      delete: "Delete"
+      edit: "Edit"
+      view: "View"
+      back: "Back"
+      submit: "Submit"
+
+  view:
+    file_imports:
+      title: "File Imports"
+      alerts:
+        limit: "Max 10MB allowed. Please import CSV only"
+      success: "File uploaded successfully"
+      error: "Error uploading file"
+
+  passwords:
+    index:
+      title: "Passwords"
+    show:
+      title: "%{name}"
+    new:
+      title: "New Password"
+    edit:
+      title: "Edit Password"
+
+  users:
+    index:
+      title: "Users"
+    show:
+      title: "%{name}"

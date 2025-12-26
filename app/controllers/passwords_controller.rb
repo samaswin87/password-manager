@@ -1,5 +1,4 @@
 class PasswordsController < BaseController
-
   # ---- breadcrumbs ----
 
   add_breadcrumb 'Passwords', :collection_path
@@ -8,7 +7,34 @@ class PasswordsController < BaseController
   def index
     respond_to do |format|
       format.html
-      format.json { render json: PasswordDatatable.new(params, view_context: view_context, current_user: current_user) }
+      format.json do
+        passwords = current_user.admin? ? Password.all : current_user.passwords
+        passwords = passwords.order(updated_at: :desc)
+
+        # Apply search filter if present
+        if params[:search].present?
+          search_term = "%#{params[:search]}%"
+          passwords = passwords.where(
+            'name LIKE ? OR username LIKE ? OR url LIKE ? OR email LIKE ?',
+            search_term, search_term, search_term, search_term
+          )
+        end
+
+        # Apply status filter
+        case params[:filter]
+        when 'active'
+          passwords = passwords.where(active: true)
+        when 'inactive'
+          passwords = passwords.where(active: false)
+        end
+
+        @pagy, @passwords = pagy(passwords, items: 12)
+
+        render json: {
+          data: @passwords.map { |p| PasswordDatatable.format_password(p, view_context) },
+          pagy: pagy_metadata(@pagy)
+        }
+      end
     end
   end
 
@@ -23,26 +49,26 @@ class PasswordsController < BaseController
     @password = Password.new
   end
 
-  def create
-    @password.user_id = current_user.id
-    create! do  |success, failure|
-      success.html {redirect_to password_url(@password)}
-      failure.html {
-        flash[:alert] = @password.errors.full_messages.join(', ') if @password.errors.present?
-        render 'new'
-      }
-    end
-  end
-
   def edit
     add_breadcrumb 'Edit', :edit_resource_path
   end
 
+  def create
+    @password.user_id = current_user.id
+    create! do |success, failure|
+      success.html { redirect_to password_url(@password) }
+      failure.html do
+        flash[:alert] = @password.errors.full_messages.join(', ') if @password.errors.present?
+        render 'new'
+      end
+    end
+  end
+
   def status
     password = Password.find(params[:id])
-    if password
-      password.active!
-    end
+    return unless password
+
+    password.active!
   end
 
   def uploads
@@ -54,7 +80,7 @@ class PasswordsController < BaseController
         end
       end
     end
-    render json: {status: 'Success'}, status: HTTP::OK and return
+    render json: { status: 'Success' }, status: HTTP::OK and return
   end
 
   def remove_attachment
@@ -68,7 +94,7 @@ class PasswordsController < BaseController
 
   def import
     ImportWorker.perform_async(params[:import_id], current_user.id, FileImport::PASSWORDS)
-    render json: {status: 'Success'}, status: HTTP::OK and return
+    render json: { status: 'Success' }, status: HTTP::OK and return
   end
 
   private
@@ -89,5 +115,4 @@ class PasswordsController < BaseController
       :attachment
     )
   end
-
 end

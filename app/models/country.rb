@@ -10,7 +10,6 @@
 #  updated_at :datetime         not null
 #
 class Country < ApplicationRecord
-
   # ---- relationships ----
   has_many :states
   has_many :cities
@@ -18,5 +17,4 @@ class Country < ApplicationRecord
   # ---- scope ----
 
   scope :valid, -> { where(active: true) }
-
 end

@@ -9,10 +9,10 @@ class ServiceGenerator < Rails::Generators::NamedBase
   private
 
   def file_name
-    @_file_name ||= remove_possible_suffix(super)
+    @file_name ||= remove_possible_suffix(super)
   end
 
   def remove_possible_suffix(name)
-    name.sub(/_?service$/i, "")
+    name.sub(/_?service$/i, '')
   end
 end

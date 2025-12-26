@@ -46,9 +46,9 @@ class Password < ApplicationRecord
   private
 
   def logo_content_type
-    if logo.attached? && !logo.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
-      errors.add(:logo, 'must be a JPEG, PNG, or GIF')
-    end
+    return unless logo.attached? && !logo.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
+
+    errors.add(:logo, 'must be a JPEG, PNG, or GIF')
   end
 
   public
@@ -59,11 +59,11 @@ class Password < ApplicationRecord
   scope :in_active, -> { where(active: false) }
 
   def status
-    self.active ? 'Active' : 'In Active'
+    active ? 'Active' : 'In Active'
   end
 
   def self.importable_columns
-    [:name, :url, :username, :email, :text_password, :key, :ssh_private_key, :details, :ssh_public_key, :ssh_finger_print]
+    %i[name url username email text_password key ssh_private_key details ssh_public_key
+       ssh_finger_print]
   end
-
 end

@@ -1,7 +1,6 @@
 require 'test_helper'
 
 class UserTest < ActiveSupport::TestCase
-
   def test_validation
     users(:john).user_type = nil
     assert_false(users(:john).valid?)
@@ -15,7 +14,7 @@ class UserTest < ActiveSupport::TestCase
     assert_equal(user_types(:admin), john.user_type)
     assert_equal(genders(:male), john.gender)
     assert_equal(addresses(:john), john.address)
-    passwords = Password.all.order(:id)
+    passwords = Password.order(:id)
     john.passwords.order(:id).each_with_index do |address, index|
       assert_equal(passwords[index], address)
     end
@@ -63,11 +62,11 @@ class UserTest < ActiveSupport::TestCase
   end
 
   def test_member_since
-    assert_equal(Time.now.strftime("%b, %Y"),users(:john).member_since)
+    assert_equal(Time.zone.now.strftime('%b, %Y'), users(:john).member_since)
   end
 
   def test_create
-    assert_difference("User.count", 1) do
+    assert_difference('User.count', 1) do
       User.create(user_params)
     end
   end
@@ -75,7 +74,7 @@ class UserTest < ActiveSupport::TestCase
   def test_update
     user = User.create(user_params)
     assert_equal('Test User', user.first_name)
-    assert_difference("User.count", 0) do
+    assert_difference('User.count', 0) do
       user.update_attribute(:first_name, 'Tester')
     end
     assert_equal('Tester', user.reload.first_name)
@@ -83,19 +82,19 @@ class UserTest < ActiveSupport::TestCase
 
   def test_delete
     User.create(user_params)
-    assert_difference("User.count", -1) do
+    assert_difference('User.count', -1) do
       User.last.destroy
     end
   end
 
   def test_attachment
     john = users(:john)
-    image = File.new(File.join(Rails.root, "/test/files", "image.png"))
+    image = File.new(Rails.root.join('/test/files', 'image.png'))
     john.update_attribute(:avatar, image)
     assert_not_nil(john.reload.avatar_updated_at)
     assert_equal('image.png', john.avatar_file_name)
     assert_equal('image/png', john.avatar_content_type)
-    assert_equal(16113, john.avatar_file_size)
+    assert_equal(16_113, john.avatar_file_size)
   end
 
   def test_to_hash
@@ -119,7 +118,7 @@ class UserTest < ActiveSupport::TestCase
       email: 'test@admin.com',
       password: 'password',
       password_confirmation: 'password',
-      gender_id: genders(:male).id,
+      gender_id: genders(:male).id
     }
   end
 end

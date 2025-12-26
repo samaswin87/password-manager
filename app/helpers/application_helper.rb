@@ -1,39 +1,39 @@
 module ApplicationHelper
-  # TODO: Re-enable after updating to new Pagy API
-  # include Pagy::Frontend
+  include Pagy::Frontend
+
   # ---- icons and labels -----
 
   def fa_icon(icon)
-    content_tag(:i, class: "fa fa-#{icon}") {}
+    content_tag(:i, class: "fa-solid fa-#{icon}") {}
   end
 
   def menu_label_icon(text, icon)
-    content_tag(:i, class: "fa fa-#{icon}") {} +
+    content_tag(:i, class: "fa-solid fa-#{icon}") {} +
       content_tag(:span) do
         text
       end
   end
 
   def menu_label_icon_with_class(text, icon, klass)
-    content_tag(:i, class: "fa fa-#{icon} #{klass}") {} +
+    content_tag(:i, class: "fa-solid fa-#{icon} #{klass}") {} +
       content_tag(:span) do
         text
       end
   end
 
   def fa_icon_with_class(icon, klass)
-    content_tag(:i, class: "fa fa-#{icon} #{klass}") {}
+    content_tag(:i, class: "fa-solid fa-#{icon} #{klass}") {}
   end
 
   # ---- simple form ----
 
   def deal_value(value, format = :default)
     if [Date, Time, ActiveSupport::TimeWithZone].include?(value.class)
-      value.blank? ? '—' : l(value, format: format)
+      value.blank? ? '-' : l(value, format: format)
     elsif [TrueClass, FalseClass].include?(value.class)
       value.humanize
     else
-      value.blank? ? '-' : value
+      value.presence || '-'
     end
   end
 
@@ -61,29 +61,27 @@ module ApplicationHelper
 
   # ---- block on partial ----
 
-  def block_to_partial(partial_name, options = {}, &block)
-    options[:body] = capture(&block)
+  def block_to_partial(partial_name, options = {}, &)
+    options[:body] = capture(&)
     render(partial: partial_name, locals: options)
   end
 
   # ---- bootstrap defaults ----
 
-  def bootstrap_box(title, icon, actions = nil, options = {}, &block)
-    block_to_partial('shared/bootstrap_box', options.merge(title: title, icon: icon, actions: actions), &block)
+  def bootstrap_box(title, icon, actions = nil, options = {}, &)
+    block_to_partial('shared/bootstrap_box', options.merge(title: title, icon: icon, actions: actions), &)
   end
 
   def bootstrap_button_new(options = {})
     title = options.delete(:title) || new_resource_label
 
-    if defined? parent
-      path = options.delete(:url) || new_resource_path(parent.id)
-    else
-      path = options.delete(:url) || new_resource_path
-    end
+    path = if defined? parent
+             options.delete(:url) || new_resource_path(parent.id)
+           else
+             options.delete(:url) || new_resource_path
+           end
 
-    unless options[:page].nil?
-      path = options[:page]
-    end
+    path = options[:page] unless options[:page].nil?
 
     icon = options.delete(:icon) || 'plus'
     css_class = options.delete(:class) || 'btn btn-default pull-right'
@@ -93,7 +91,7 @@ module ApplicationHelper
     options[:id] = id
 
     link_to(path, options) do
-      fa_icon(icon) + ' ' + title
+      "#{fa_icon(icon)} #{title}"
     end
   end
 
@@ -107,6 +105,7 @@ module ApplicationHelper
 
     flash.each do |type, message|
       next unless types.key?(type)
+
       text = "<script>
       $.notify.autoHideNotify('#{types[type]}', 'top right', '#{titles[type]}','#{message}');
       </script>"
@@ -116,7 +115,7 @@ module ApplicationHelper
     flash_messages.join("\n").html_safe
   end
 
-  # Note: https://coderwall.com/p/a1pj7w/rails-page-titles-with-the-right-amount-of-magic
+  # NOTE: https://coderwall.com/p/a1pj7w/rails-page-titles-with-the-right-amount-of-magic
   def title
     if content_for?(:title)
       # allows the title to be set in the view by using t(".title")
@@ -124,16 +123,18 @@ module ApplicationHelper
     else
       # look up translation key based on controller path, action name and .title
       # this works identical to the built-in lazy lookup
-      t("#{ controller_path.tr('/', '.') }.#{ action_name }.title", default: :title)
+      t("#{controller_path.tr('/', '.')}.#{action_name}.title", default: :title)
     end
   end
 
-  def show_image(record)
+  def show_image(_record)
     if current_user.avatar.attached?
-      "<img src=#{ url_for(current_user.avatar.variant(resize_to_limit: [60, 60])) } class='img-circle profile-user-img' />"
+      variant_url = url_for(current_user.avatar.variant(resize_to_limit: [60, 60]))
+      "<img src=#{variant_url} class='img-circle profile-user-img' loading='lazy' />"
     else
-      "<img src='/vendor/images/img_placeholder.png' class='img-circle profile-user-img' />"
+      "<div class='profile-user-img img-circle profile-icon-placeholder'>
+        <i class='fa fa-user'></i>
+      </div>"
     end
   end
-
 end

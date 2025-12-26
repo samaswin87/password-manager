@@ -1,5 +1,4 @@
 class PasswordImportService < AbstractPasswordImportService
-
   def import(import_id, user_id)
     import = FileImport.find(import_id)
     import.process!
@@ -15,21 +14,21 @@ class PasswordImportService < AbstractPasswordImportService
         passwords << password_hash
       end
     end
-    import.update_attribute(:parsed_data, passwords)
+    import.update!(parsed_data: passwords)
     import.parsed_count!(passwords.count)
     begin
       imports = Password.import(passwords,
                                 on_duplicate_key_update: {
-                                  columns: import.mappings.keys},
-                                  batch_size: 100,
-                                  raise_error: true)
+                                  columns: import.mappings.keys
+                                },
+                                batch_size: 100,
+                                raise_error: true)
       import.complete!
       import.success_count!(imports.ids.try(:count))
       import.failed_count!(imports.failed_instances.try(:count))
     rescue StandardError => e
-      import.update_attribute(:error_messages, e.message)
+      import.update!(error_messages: e.message)
       import.abort!
     end
   end
-
 end

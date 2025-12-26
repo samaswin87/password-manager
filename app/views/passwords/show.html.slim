@@ -1,40 +1,102 @@
 = content_for :title, t(".title", name: @password.name)
-= render 'form_header'
 
-section.content
+section.content.password-detail-page
   .row
-    .col-md-3
-      = render 'basic_info'
-    .col-md-9
-      .nav-tabs-custom
-        ul.nav.nav-tabs
-          li.active =link_to 'Password Fields', '#fields', data: {toggle: 'tab'}
-          li =link_to 'SSH Keys', '#ssh', data: {toggle: 'tab'}
-          li =link_to 'Additional Details', '#details', data: {toggle: 'tab'}
-        .tab-content
-          .active.tab-pane id="fields"
-            .row
-              .col-md-6
-                label.control-label Credentials
-                =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
-                =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
-                =render 'shared/copy_password', value: resource.text_password, field: 'text_password', title: 'Password'
-                =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
-          .tab-pane id="ssh"
-            .row
-              .col-md-6
-                label.control-label Private Key
-                =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
-              .col-md-6
-                label.control-label Public Key
-                =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
-            .row
-              .col-md-6
-                =render 'shared/copy_text', value: resource.ssh_finger_print, field: 'ssh_finger_print', title: 'Finger Print'
-          .tab-pane id="details"
-            .row
-              .col-md-6
-                label.control-label Notes
-                =render 'shared/copy_text_area', value: resource.details, field: 'details'
+    / Back Button
+    .col-xs-12
+      .password-detail-header
+        = link_to passwords_path, class: 'btn btn-default' do
+          i.fa.fa-arrow-left.margin-r-5
+          | Back to Passwords
+
+    / Sidebar - Profile & Info
+    .col-xs-12.col-sm-12.col-md-4.col-lg-3
+      .password-detail-sidebar
+        = render 'basic_info'
+
+    / Main Content - Tabs
+    .col-xs-12.col-sm-12.col-md-8.col-lg-9
+      .password-detail-content
+        .nav-tabs-custom
+          ul.nav.nav-tabs
+            li.active
+              =link_to '#fields', data: {toggle: 'tab'} do
+                i.fa.fa-key.margin-r-5
+                span Password Fields
+            li
+              =link_to '#ssh', data: {toggle: 'tab'} do
+                i.fa.fa-lock.margin-r-5
+                span SSH Keys
+            li
+              =link_to '#details', data: {toggle: 'tab'} do
+                i.fa.fa-file-text.margin-r-5
+                span Additional Details
+
+          .tab-content
+            .active.tab-pane id="fields"
+              .password-fields-section
+                .row
+                  .col-xs-12.col-md-12.col-lg-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-globe.margin-r-5
+                        | URL
+                      =render 'shared/copy_text', value: resource.url, field: 'url', title: 'URL'
+
+                  .col-xs-12.col-md-12.col-lg-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-user.margin-r-5
+                        | User Name
+                      =render 'shared/copy_text', value: resource.username, field: 'username', title: 'User Name'
+
+                  .col-xs-12.col-md-12.col-lg-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-key.margin-r-5
+                        | Password
+                      =render 'shared/copy_password', value: resource.text_password, field: 'text_password', title: 'Password'
+
+                  .col-xs-12.col-md-12.col-lg-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-shield.margin-r-5
+                        | Key Phrase
+                      =render 'shared/copy_text', value: resource.key, field: 'key', title: 'Key Phrase'
+
+            .tab-pane id="ssh"
+              .password-ssh-section
+                .row
+                  .col-xs-12.col-md-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-lock.margin-r-5
+                        | Private Key
+                      =render 'shared/copy_text_area', value: resource.ssh_private_key, field: 'private_ssh'
+
+                  .col-xs-12.col-md-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-unlock.margin-r-5
+                        | Public Key
+                      =render 'shared/copy_text_area', value: resource.ssh_public_key, field: 'public_ssh'
+
+                .row
+                  .col-xs-12.col-md-6
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-fingerprint.margin-r-5
+                        | Finger Print
+                      =render 'shared/copy_text', value: resource.ssh_finger_print, field: 'ssh_finger_print', title: 'Finger Print'
+
+            .tab-pane id="details"
+              .password-details-section
+                .row
+                  .col-xs-12
+                    .form-group.password-field-item
+                      label.control-label.password-field-label
+                        i.fa.fa-file-text.margin-r-5
+                        | Notes
+                      =render 'shared/copy_text_area', value: resource.details, field: 'details'
 
 

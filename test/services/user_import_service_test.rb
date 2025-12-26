@@ -1,10 +1,9 @@
 require 'test_helper'
 
 class UserImportServiceTest < ActiveSupport::TestCase
-
   def setup
-    file_without_error = File.new(File.join(Rails.root, "/test/files", "user.csv"))
-    file_with_error = File.new(File.join(Rails.root, "/test/files", "user-error.csv"))
+    file_without_error = File.new(Rails.root.join('/test/files', 'user.csv'))
+    file_with_error = File.new(Rails.root.join('/test/files', 'user-error.csv'))
     @file1 = file_imports(:file1)
     @file1.update_attribute(:data, file_without_error)
     @file2 = file_imports(:file2)
@@ -55,5 +54,4 @@ class UserImportServiceTest < ActiveSupport::TestCase
       email: 'email'
     }
   end
-
 end

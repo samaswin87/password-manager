@@ -1,29 +1,63 @@
 = content_for :title, t(".title")
 = render 'shared/file_modal', id: 'password'
-= bootstrap_box 'Passwords', 'table', bootstrap_button_new do
-  .box-body
-    .row
-      .col-md-12
-        table#passwords-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
-          thead
-            tr
-              th width="3%"
-              th.all width="*" Name
-              th width="*" User Name
-              th width="*" URL
-              th width="*" Status
-              th.all width="*" Actions
-        tbody
+
+.passwords-header
+  .row
+    .col-md-12
+      .box
+        .box-header.with-border
+          h3.box-title
+            i.fa.fa-key.margin-r-5
+            | Passwords
+          .box-tools.pull-right
+            = link_to new_password_path, class: 'btn btn-primary' do
+              i.fa.fa-plus.margin-r-5
+              | New Password
+
+/ Search and Filter Section
+.passwords-search-section
+  .row
+    .col-md-12
+      .passwords-search-wrapper
+        input#passwords-search.passwords-search-input type="text" placeholder="Search passwords by name, username, URL, or email..." autocomplete="off"
+        i.fa.fa-search.passwords-search-icon
+
+      .passwords-filter-tags
+        span.passwords-filter-label Filters:
+        button.filter-tag.active data-filter="all"
+          i.fa.fa-list
+          | All Passwords
+        button.filter-tag data-filter="active"
+          i.fa.fa-unlock
+          | Active Only
+        button.filter-tag data-filter="inactive"
+          i.fa.fa-lock
+          | Inactive Only
+        button.filter-tag data-filter="strong"
+          i.fa.fa-shield
+          | Strong Passwords
+        button.filter-tag data-filter="weak"
+          i.fa.fa-exclamation-triangle
+          | Weak Passwords
+
+/ Passwords Grid
+#passwords-container
+  .passwords-loading
+    .passwords-loading-spinner
+    .passwords-loading-text Loading passwords...
 
 = javascript_include_tag 'passwords/index'
 javascript:
   $(document).ready(function() {
     let params = {
-      isAdmin: #{current_user.admin?}
+      isAdmin: #{current_user.admin?},
+      passwordsUrl: "#{passwords_path(format: :json)}"
     };
 
     let url = {
       home: "#{passwords_path}"
     };
-    $.password_index.init(params, url);
+
+    // Initialize password cards view
+    $.password_cards.init(params, url);
   });

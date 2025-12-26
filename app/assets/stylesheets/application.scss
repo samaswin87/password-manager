@@ -1,35 +1,22 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
- *= require bootstrap-wysihtml5
- *= require selectize
- *= require selectize.bootstrap3
- *= require bootstrap-datepicker
- *= require bootstrap-switch
- *= require toastr
- *= require bootstrap
- *= require font-awesome
- *= require adminlte
- *= require jquery.fileupload
- *= require jquery.fileupload-ui
- *= require device
- *= require bs-stepper
- *= require bs-extend
- *= require select2
- *= require select2-bootstrap
- *= require bootstrap-toggle
- *= require_tree .
- *= require_self
- */
+/* Bootstrap 5 and Font Awesome 6 */
+@import "bootstrap";
+@import "font-awesome";
+
+/* Third-party libraries */
+@import "selectize";
+@import "toastr";
+@import "jquery.fileupload";
+@import "jquery.fileupload-ui";
+@import "device";
+@import "bs-stepper";
+@import "bs-extend";
+@import "select2";
+
+/* Custom styles */
+@import "admin";
+@import "custom";
+@import "login";
+@import "passwords";
 .main-header {
   max-height: 100% !important;
 }
@@ -109,6 +96,42 @@
 
 .sidebar-menu > li.active > a.active {
   background: rgb(57, 179, 215) !important;
+}
+
+/* Profile Icon Placeholder */
+.profile-icon-placeholder {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+  border: 4px solid #667eea;
+  margin: 0 auto;
+}
+
+.profile-icon-placeholder i {
+  color: white;
+  font-size: 48px;
+}
+
+/* For sidebar/header user image - smaller size */
+.img-circle.profile-user-img.profile-icon-placeholder {
+  width: 60px;
+  height: 60px;
+}
+
+.img-circle.profile-user-img.profile-icon-placeholder i {
+  font-size: 28px;
+}
+
+/* For password detail page - larger size */
+.box-profile .profile-icon-placeholder {
+  width: 120px;
+  height: 120px;
+}
+
+.box-profile .profile-icon-placeholder i {
+  font-size: 48px;
 }
 
 .sidebar-menu > li > a:hover {

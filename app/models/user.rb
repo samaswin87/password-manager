@@ -58,23 +58,21 @@ class User < ApplicationRecord
   private
 
   def avatar_content_type
-    if avatar.attached? && !avatar.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
-      errors.add(:avatar, 'must be a JPEG, PNG, or GIF')
-    end
+    return unless avatar.attached? && !avatar.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
+
+    errors.add(:avatar, 'must be a JPEG, PNG, or GIF')
   end
 
   public
 
   # ---- validates ----
 
-  validates :user_type, presence: true
   validates :email, presence: true, uniqueness: true
 
   # ---- callbacks ----
 
   after_create :invite
   after_create :send_mail
-
 
   # ---- nested values ----
 
@@ -89,24 +87,28 @@ class User < ApplicationRecord
   delegate :name, to: :user_type, prefix: true, allow_nil: true
   delegate :name, to: :gender, prefix: true, allow_nil: true
 
-  # ---- scoped search ----
-
-  scoped_search on: [:first_name, :last_name, :email]
-
   # ---- scope ----
+
+  scope :search, lambda { |query|
+    return all if query.blank?
+
+    where('first_name ILIKE :q OR last_name ILIKE :q OR email ILIKE :q', q: "%#{query}%")
+  }
+
+  # ---- additional scopes ----
 
   scope :active, -> { where(active: true) }
   scope :in_active, -> { where(active: false) }
-
-  # ---- aliases ----
-
-  alias_attribute :name, :full_name
 
   # ---- methods ----
 
   def full_name
     "#{first_name} #{last_name}"
   end
+
+  # ---- aliases ----
+
+  alias_method :name, :full_name
 
   def send_mail
     UserMailer.send_new_user_message(self).deliver
@@ -117,31 +119,30 @@ class User < ApplicationRecord
   end
 
   def status
-    self.active ? 'Active' : 'In Active'
+    active ? 'Active' : 'In Active'
   end
 
   # ---- user types ----
 
   def admin?
-    self.user_type_id == UserType.where(alias: 'administrator').first.id
+    user_type_id == UserType.where(alias: 'administrator').first.id
   end
 
   def to_hash
     {
-      id: self.id,
-      first_name: self.first_name,
-      last_name: self.last_name,
-      email: self.email,
+      id: id,
+      first_name: first_name,
+      last_name: last_name,
+      email: email,
       is_admin: admin?
     }
   end
 
   def member_since
-    self.created_at.strftime("%b, %Y")
+    created_at.strftime('%b, %Y')
   end
 
   def self.importable_columns
-    [:email, :password, :first_name, :last_name, :phone, :gender_id, :user_type]
+    %i[email password first_name last_name phone gender_id user_type]
   end
-
 end

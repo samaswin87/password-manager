@@ -11,7 +11,8 @@
         'font-styles': false
       }
     });
-    $('img').lazyload();
+    // Native lazy loading via HTML attribute: <img loading="lazy">
+    // No JavaScript needed for modern browsers
     $('.cpf').mask('000.000.000-00');
     $('.cnpj').mask('00.000.000/0000-00');
     $('.phone').mask('+91 9999999999');

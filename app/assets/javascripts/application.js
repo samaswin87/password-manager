@@ -10,26 +10,24 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //= require jquery
+//= require jquery-ui
 //= require jquery_ujs
+//= require popper
 //= require bootstrap
-//= require adminlte
-//= require bootstrap-wysihtml5
 //= require selectize
-//= require bootstrap-datepicker
-//= require bootstrap-switch
-//= require jQuery-Mask-Plugin
+//= require jquery.mask.min
 //= require jquery.slimscroll
-//= require momentjs
-//= require notifyjs
+//= require moment
+//= require notifyjs_rails
 //= require toastr
-//= require jquery-fileupload/basic
 //= require papaparse
+//= require vendor/simple-fileupload
 //= require vendor/notifyset
 //= require datatables
 //= require select2-full
 //= require bs-stepper
-//= require bootstrap-toggle
 //= require api
+//= require admin
 // require_tree .
 
 $(document).ready(function(){

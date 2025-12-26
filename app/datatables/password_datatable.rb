@@ -1,75 +1,24 @@
-class PasswordDatatable < ApplicationDatatable
+class PasswordDatatable
+  # Static helper methods for formatting password data
+  # Used by PasswordsController for JSON API responses
 
-  def_delegators :@view, :check_box_tag, :link_to, :edit_password_path, :resource_path, :content_tag, :concat, :image_tag
-
-  def view_columns
-    # Declare strings in this format: ModelName.column_name
-    # or in aliased_join_table.column_name format
-    @view_columns ||= {
-      id: { source: "Password.id"},
-      name: { source: "Password.name", cond: :like },
-      username: { source: "Password.username", cond: :like },
-      url: { source: "Password.url", cond: :like },
-      status: { source: "Password.active", cond: filter_status_condition },
-      logo: { source: nil, searchable: false, orderable: false },
-      action: { source: nil, searchable: false, orderable: false }
+  def self.format_password(record, view_context)
+    {
+      name: record.name,
+      username: record.username,
+      url: record.url,
+      email: record.email,
+      status: record.status,
+      DT_RowId: record.id,
+      logo: format_logo(record, view_context)
     }
   end
 
-  def data
-    records.map do |record|
-      {
-        name: record.name,
-        username: record.username,
-        url: record.url,
-        url: record.url,
-        status: status(record.status),
-        DT_RowId: record.id,
-        logo: logo(record),
-        action: content_tag(:div, class: 'btn-group') do
-          concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
-          concat(link_to(fa_icon('pencil padding-right'), edit_password_path(record)))
-          concat(link_to(fa_icon('trash-o padding-right'), resource_path(record), method: :delete, data: {confirm_swal: 'Are you sure?'}))
-        end
-      }
-    end
-  end
-
-  def logo(record)
+  def self.format_logo(record, view_context)
     if record.logo.attached?
-      image_tag(record.logo.variant(resize_to_limit: [32, 32]), size: '32x32')
+      view_context.image_tag(record.logo.variant(resize_to_limit: [32, 32]), size: '32x32', loading: 'lazy')
     else
-      image_tag('/vendor/images/img_placeholder.png', size: '32x32')
+      view_context.image_tag('/vendor/images/img_placeholder.png', size: '32x32', loading: 'lazy')
     end
   end
-
-  def status(status)
-    if status == 'Active'
-      content_tag(:span, class: 'label label-success') do
-        status
-      end
-    else
-      content_tag(:span, class: 'label label-danger') do
-        status
-      end
-    end
-  end
-
-  def get_raw_records
-    passwords = @current_user.admin? ? Password.all : @current_user.passwords
-    # status_params = params.fetch('columns',{}).fetch('3', {}).fetch('search', {}).permit(:value)
-    # if status_params['value'] == 'active'
-    #   passwords = passwords.active
-    # elsif status_params['value'] == 'in-active'
-    #   passwords = passwords.in_active
-    # end
-    passwords.order('updated_at desc')
-  end
-
-  def filter_status_condition
-    ->(column, value) {
-      column.table[column.field].eq(value)
-    }
-  end
-
 end

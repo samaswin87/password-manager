@@ -1,6 +1,6 @@
-require_relative "boot"
+require_relative 'boot'
 
-require "rails/all"
+require 'rails/all'
 
 # Require the gems listed in Gemfile, including any gems
 # you've limited to :test, :development, or :production.
@@ -26,7 +26,7 @@ module PasswordManager
 
     # Custom locale configuration
     config.i18n.load_path += Dir["#{Rails.root}/config/locales/**/*.{rb,yml}"]
-    config.i18n.default_locale = "en"
+    config.i18n.default_locale = 'en'
 
     # Active Job configuration
     config.active_job.queue_adapter = :sidekiq

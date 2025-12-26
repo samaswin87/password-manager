@@ -1,6 +1,6 @@
 class ImportRecordsDatatable < ApplicationDatatable
-
-  def_delegators :@view, :check_box_tag, :link_to, :resource_path, :content_tag, :concat, :remove_record_file_imports_path
+  def_delegators :@view, :check_box_tag, :link_to, :resource_path, :content_tag, :concat,
+                 :remove_record_file_imports_path
 
   def initialize(params, opts = {})
     @resource = opts[:resource]
@@ -18,7 +18,7 @@ class ImportRecordsDatatable < ApplicationDatatable
     }
 
     custom_columns.each do |column|
-      view_columns_hash[column.to_sym] = { source: 'ImportDataTable.#{column}', searchable: false, orderable: false }
+      view_columns_hash[column.to_sym] = { source: "ImportDataTable.#{column}", searchable: false, orderable: false }
     end
 
     @view_columns ||= view_columns_hash
@@ -27,10 +27,11 @@ class ImportRecordsDatatable < ApplicationDatatable
   def data
     records.map do |record|
       record_hash = {
-        id:         record.id,
-        DT_RowId:   record.id,
-        action:     content_tag(:div, class: 'btn-group') do
-          concat(link_to(fa_icon('trash-o padding-right'), remove_record_file_imports_path(record_id: record.id), method: :delete, data: {confirm_swal: 'Are you sure?'}))
+        id: record.id,
+        DT_RowId: record.id,
+        action: content_tag(:div, class: 'btn-group') do
+          concat(link_to(fa_icon('trash-o padding-right'), remove_record_file_imports_path(record_id: record.id),
+                         method: :delete, data: { confirm_swal: 'Are you sure?' }))
         end
       }
       custom_columns.each do |column|
@@ -51,14 +52,12 @@ class ImportRecordsDatatable < ApplicationDatatable
 
     search = params.fetch('search', {})
     if search && search['value'].present?
-      record_ids = []
-      custom_columns.each do |column_name|
-        record_ids << records.where("dynamic_fields ->> '#{column_name}' LIKE ?", "%#{search['value']}%").map(&:id)
+      record_ids = custom_columns.map do |column_name|
+        records.where("dynamic_fields ->> '#{column_name}' LIKE ?", "%#{search['value']}%").map(&:id)
       end
-      records = records.where('id IN (?)', record_ids.flatten.uniq)
+      records = records.where(id: record_ids.flatten.uniq)
     end
 
     records
   end
-
 end

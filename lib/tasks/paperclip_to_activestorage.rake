@@ -1,8 +1,8 @@
 # lib/tasks/paperclip_to_activestorage.rake
 namespace :paperclip do
-  desc "Migrate Paperclip attachments to ActiveStorage"
+  desc 'Migrate Paperclip attachments to ActiveStorage'
   task migrate: :environment do
-    puts "Starting migration from Paperclip to ActiveStorage..."
+    puts 'Starting migration from Paperclip to ActiveStorage...'
 
     # Migrate User avatars
     migrate_user_avatars
@@ -16,14 +16,14 @@ namespace :paperclip do
     # Migrate FileImport data files
     migrate_file_imports
 
-    puts "Migration complete!"
+    puts 'Migration complete!'
   end
 
   def migrate_user_avatars
     puts "\nMigrating User avatars..."
     User.find_each do |user|
       next if user.avatar.attached?
-      next unless user.avatar_file_name.present?
+      next if user.avatar_file_name.blank?
 
       begin
         # Get the original file path
@@ -40,7 +40,7 @@ namespace :paperclip do
         else
           puts "✗ File not found for User ##{user.id}: #{path}"
         end
-      rescue => e
+      rescue StandardError => e
         puts "✗ Error migrating User ##{user.id}: #{e.message}"
       end
     end
@@ -50,7 +50,7 @@ namespace :paperclip do
     puts "\nMigrating Password logos..."
     Password.find_each do |password|
       next if password.logo.attached?
-      next unless password.logo_file_name.present?
+      next if password.logo_file_name.blank?
 
       begin
         path = password.logo.path
@@ -65,7 +65,7 @@ namespace :paperclip do
         else
           puts "✗ File not found for Password ##{password.id}: #{path}"
         end
-      rescue => e
+      rescue StandardError => e
         puts "✗ Error migrating Password ##{password.id}: #{e.message}"
       end
     end
@@ -75,7 +75,7 @@ namespace :paperclip do
     puts "\nMigrating PasswordAttachment files..."
     PasswordAttachment.find_each do |pa|
       next if pa.attachment.attached?
-      next unless pa.attachment_file_name.present?
+      next if pa.attachment_file_name.blank?
 
       begin
         path = pa.attachment.path
@@ -90,7 +90,7 @@ namespace :paperclip do
         else
           puts "✗ File not found for PasswordAttachment ##{pa.id}: #{path}"
         end
-      rescue => e
+      rescue StandardError => e
         puts "✗ Error migrating PasswordAttachment ##{pa.id}: #{e.message}"
       end
     end
@@ -100,7 +100,7 @@ namespace :paperclip do
     puts "\nMigrating FileImport data files..."
     FileImport.find_each do |fi|
       next if fi.data.attached?
-      next unless fi.data_file_name.present?
+      next if fi.data_file_name.blank?
 
       begin
         path = fi.data.path
@@ -115,7 +115,7 @@ namespace :paperclip do
         else
           puts "✗ File not found for FileImport ##{fi.id}: #{path}"
         end
-      rescue => e
+      rescue StandardError => e
         puts "✗ Error migrating FileImport ##{fi.id}: #{e.message}"
       end
     end

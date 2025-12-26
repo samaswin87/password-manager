@@ -18,17 +18,26 @@ gem 'puma', '~> 6.0'
 gem 'pg', '~> 1.5'
 
 # Asset Pipeline & Frontend
-gem 'cssbundling-rails', '~> 1.4'
-gem 'jsbundling-rails', '~> 1.3'
-gem 'stimulus-rails', '~> 1.3'
-gem 'turbo-rails', '~> 2.0'
+gem 'sprockets-rails', '~> 3.5'
+gem 'sprockets', '4.2.1'
 
-# JavaScript & UI Libraries
+# JavaScript & UI Libraries - Bootstrap 5
+gem 'bootstrap', '~> 5.3'
+gem 'sassc-rails', '~> 2.1'
+gem 'font-awesome-sass', '~> 6.5'
+
+# Keep jQuery for compatibility with existing code
 gem 'jquery-datatables', '~> 1.10'
+gem 'jquery-fileupload-rails', '~> 1.0'
+gem 'jquery-mask-plugin', '~> 1.15'
 gem 'jquery-rails', '~> 4.6'
+gem 'jquery-slimscroll-rails', '~> 1.0'
 gem 'jquery-ui-rails', '~> 7.0'
+gem 'momentjs-rails', '~> 2.29'
+gem 'notifyjs_rails', '~> 0.0.2'
 gem 'select2-rails', '~> 4.0'
 gem 'selectize-rails', '~> 0.12'
+gem 'toastr-rails', '~> 1.0'
 
 # File Uploads & Image Processing
 gem 'image_processing', '~> 1.13'
@@ -77,13 +86,6 @@ gem 'yajl-ruby', '~> 1.4', require: 'yajl'
 # Custom UI Components (from git repos)
 gem 'bootstrap_flash_messages', git: 'https://github.com/useruby/bootstrap_flash_messages.git'
 gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.git', branch: 'master'
-
-# Legacy gems (consider migrating away from these)
-gem 'bootstrap-toggle-rails'
-gem 'font-awesome-rails', '~> 4.7'
-gem 'jquery-fileupload-rails'
-gem 'lazyload-rails'
-gem 'scoped_search'
 
 # Windows timezone data
 gem 'tzinfo-data', platforms: %i[windows jruby]

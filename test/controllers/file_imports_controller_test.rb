@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class FileImportsControllerTest < ActionController::TestCase
+class FileImportsControllerTest < ActionDispatch::IntegrationTest
   include Devise::Test::ControllerHelpers
 
   def test_index

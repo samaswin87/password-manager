@@ -1,5 +1,3 @@
-require 'iconv'
-
 class String
   def remove_non_ascii
     self.mb_chars.normalize(:kd).gsub(/[^\x00-\x7F]/n,'').downcase.to_s.gsub(/[^a-z._0-9 -]/i, "").tr(".", "_")

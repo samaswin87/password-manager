@@ -9,7 +9,6 @@
 #  updated_at :datetime         not null
 #
 class FieldMapping < ApplicationRecord
-
   # ---- validates ----
   validates :name, presence: true, uniqueness: true
 
@@ -17,17 +16,14 @@ class FieldMapping < ApplicationRecord
   scope :password_mapper, -> { where(name: :passwords) }
   scope :user_mapper, -> { where(name: :users) }
 
-
   def available_fields
-    self.fields&.map {|field| field[0] if field[1]}&.compact
+    fields&.filter_map { |field| field[0] if field[1] }
   end
 
   def field_hash
-    field_hash = available_fields.inject({}) do |hash, field|
-      hash[field] = I18n.t("#{self.name}.fields.#{field}")
-      hash
+    field_hash = available_fields.index_with do |field|
+      I18n.t("#{name}.fields.#{field}")
     end
     field_hash || {}
   end
-
 end

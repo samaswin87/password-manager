@@ -1,8 +1,7 @@
-require "application_responder"
+require 'application_responder'
 
 class ApplicationController < ActionController::Base
-  # TODO: Re-enable after updating to new Pagy API
-  # include Pagy::Backend
+  include Pagy::Backend
 
   self.responder = ApplicationResponder
   respond_to :html, :json
@@ -31,6 +30,8 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:email, :first_name, :last_name, :gender_id, :user_type_id, :password, :confirm_password])
+    devise_parameter_sanitizer.permit(:sign_up,
+                                      keys: %i[email first_name last_name gender_id user_type_id password
+                                               confirm_password])
   end
 end

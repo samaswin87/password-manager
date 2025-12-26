@@ -17,19 +17,23 @@ module CsvRowValidator
       field_errors = []
       if self.class.field_maps[:blank].present?
         self.class.field_maps[:blank].each do |field|
-          field_errors << "#{field.to_s.humanize} must not be blank" if row.keys.include?(field) && row[field].blank?
+          field_errors << "#{field.to_s.humanize} must not be blank" if row.key?(field) && row[field].blank?
         end
       end
 
       if self.class.field_maps[:email].present?
         self.class.field_maps[:email].each do |field|
-          field_errors << "#{field.to_s.humanize} must be valid email format" if row.keys.include?(field) && (URI::MailTo::EMAIL_REGEXP =~ row[field].to_s).nil?
+          if row.key?(field) && (URI::MailTo::EMAIL_REGEXP =~ row[field].to_s).nil?
+            field_errors << "#{field.to_s.humanize} must be valid email format"
+          end
         end
       end
 
       if self.class.field_maps[:number].present?
         self.class.field_maps[:number].each do |field|
-          field_errors << "#{field.to_s.humanize} must be valid number" if row.keys.include?(field) && !row[field].to_s.is_number?
+          if row.key?(field) && !row[field].to_s.is_number?
+            field_errors << "#{field.to_s.humanize} must be valid number"
+          end
         end
       end
 
@@ -37,5 +41,4 @@ module CsvRowValidator
       field_errors.blank?
     end
   end
-
 end

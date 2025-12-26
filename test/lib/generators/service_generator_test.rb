@@ -8,7 +8,7 @@ class ServiceGeneratorTest < Rails::Generators::TestCase
 
   def test_generator_runs_without_errors
     assert_nothing_raised do
-      run_generator ["user"]
+      run_generator ['user']
     end
   end
 
@@ -23,6 +23,4 @@ class ServiceGeneratorTest < Rails::Generators::TestCase
       assert test.include? 'UserServiceTest'
     end
   end
-
-
 end

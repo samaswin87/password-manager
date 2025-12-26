@@ -19,6 +19,6 @@
 #   watch(%r{file/path}) { `command(s)` }
 #
 guard :shell do
-  watch(/(.*).txt/) {|m| `tail #{m[0]}` }
-  watch(/^config\/routes\.rb$/) { `bundle exec rake routes > routes.txt` }
+  watch(/(.*).txt/) { |m| `tail #{m[0]}` }
+  watch(%r{^config/routes\.rb$}) { `bundle exec rake routes > routes.txt` }
 end

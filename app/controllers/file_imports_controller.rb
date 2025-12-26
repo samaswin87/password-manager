@@ -1,5 +1,5 @@
 class FileImportsController < BaseController
-  actions :all, :except => [ :remove_record ]
+  actions :all, except: [:remove_record]
 
   # ---- breadcrumbs ----
   add_breadcrumb 'File Imports', :collection_path
@@ -23,7 +23,10 @@ class FileImportsController < BaseController
         resource.map! if resource.state == 'importing'
         respond_to do |format|
           format.html
-          format.json { render json: ImportRecordsDatatable.new(params, view_context: view_context, current_user: current_user, resource: resource) }
+          format.json do
+            render json: ImportRecordsDatatable.new(params, view_context: view_context, current_user: current_user,
+                                                            resource: resource)
+          end
         end
       end
     else
@@ -32,12 +35,12 @@ class FileImportsController < BaseController
   end
 
   def update
-    unless resource.mappings.present?
-      resource.update_attribute(:mappings, field_maps_params)
+    if resource.mappings.blank?
+      resource.update!(mappings: field_maps_params)
       FileImportWorker.perform_async(resource.id)
     end
 
-    render json: {status: 'Success'}, status: HTTP::OK and return
+    render json: { status: 'Success' }, status: HTTP::OK and return
   end
 
   private
@@ -49,7 +52,6 @@ class FileImportsController < BaseController
   def remove_record
     importable = ImportDataTable.find(params[:record_id])
     importable.destroy
-    redirect_back(fallback_location: root_path)
+    redirect_back_or_to(root_path)
   end
-
 end

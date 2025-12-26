@@ -30,5 +30,5 @@ class Address < ApplicationRecord
   delegate :name, to: :city, prefix: true
 
   # ---- enum ----
-  enum type: [:current, :home, :postal]
+  enum :type, { current: 0, home: 1, postal: 2 }
 end

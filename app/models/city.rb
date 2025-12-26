@@ -23,16 +23,19 @@ class City < ApplicationRecord
   delegate :alias, to: :country, prefix: true
   delegate :name, to: :state, prefix: true
 
-  # ---- scoped search ----
-
-  scoped_search on: [:name]
-
   # ---- scope ----
+
+  scope :search, lambda { |query|
+    return all if query.blank?
+
+    where('name ILIKE :q', q: "%#{query}%")
+  }
+
+  # ---- additional scopes ----
 
   scope :valid, -> { where(active: true) }
 
   # ---- validates ----
 
   validates :name, presence: true, uniqueness: true
-
 end

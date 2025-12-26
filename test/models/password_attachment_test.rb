@@ -1,9 +1,8 @@
 require 'test_helper'
 
 class PasswordAttachmentTest < ActiveSupport::TestCase
-
   def setup
-    @file = File.new(File.join(Rails.root, "/test/files", "user.csv"))
+    @file = File.new(Rails.root.join('/test/files', 'user.csv'))
   end
 
   def test_associations
@@ -11,13 +10,13 @@ class PasswordAttachmentTest < ActiveSupport::TestCase
   end
 
   def test_create
-    assert_difference("PasswordAttachment.count", 1) do
+    assert_difference('PasswordAttachment.count', 1) do
       PasswordAttachment.create(attachment_params)
     end
   end
 
   def test_destroy
-    assert_difference("PasswordAttachment.count", -1) do
+    assert_difference('PasswordAttachment.count', -1) do
       PasswordAttachment.last.destroy
     end
   end
@@ -30,5 +29,4 @@ class PasswordAttachmentTest < ActiveSupport::TestCase
       password: passwords(:john_facebook)
     }
   end
-
 end
