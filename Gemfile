@@ -26,7 +26,7 @@ gem 'turbo-rails', '~> 2.0'
 # JavaScript & UI Libraries
 gem 'jquery-datatables', '~> 1.10'
 gem 'jquery-rails', '~> 4.6'
-gem 'jquery-ui-rails', '~> 7.0'
+gem 'jquery-ui-rails', '~> 8.0', '>= 8.0.0'
 gem 'select2-rails', '~> 4.0'
 gem 'selectize-rails', '~> 0.12'
 
@@ -45,7 +45,7 @@ gem 'aasm', '~> 5.5'
 # Background Jobs & Cache
 gem 'redis', '~> 5.3'
 gem 'sidekiq', '~> 7.3'
-gem 'sidekiq-status', '~> 3.0'
+gem 'sidekiq-status', '~> 4.0', '>= 4.0.0'
 
 # Data Management
 gem 'activerecord-import', '~> 1.8'
@@ -102,7 +102,7 @@ group :development, :test do
 
   # Testing
   gem 'factory_bot_rails', '~> 6.4'
-  gem 'rspec-rails', '~> 7.1'
+  gem 'rspec-rails', '~> 8.0', '>= 8.0.0'
 end
 
 group :development do
@@ -127,7 +127,7 @@ group :test do
 
   # BDD Testing
   gem 'cucumber', '~> 9.2'
-  gem 'cucumber-rails', '~> 3.1', require: false
+  gem 'cucumber-rails', '~> 4.0', '>= 4.0.0', require: false
 
   # Test Database Management
   gem 'database_cleaner-active_record', '~> 2.2'
