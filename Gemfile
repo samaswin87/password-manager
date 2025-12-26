@@ -2,19 +2,19 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.5'
-gem 'rails', '~> 7.2.2'
+gem 'rails', '~> 8.0.0'
 gem 'mutex_m' # Required for Ruby 3.4+ compatibility
 gem 'logger' # Required for Ruby 3.3+ compatibility
 gem 'drb' # Required for Ruby 3.4+ compatibility
 # Use Puma as the app server
 gem 'puma', '~> 6.0'
 # Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
+gem 'sass-rails', '~> 6.0', '>= 6.0.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
 # Hotwire's SPA-like page accelerator
-gem 'turbo-rails'
+gem 'turbo-rails', '>= 2.0.13'
 # Hotwire's modest JavaScript framework
 gem 'stimulus-rails'
 # Use JavaScript bundling with esbuild
@@ -43,11 +43,11 @@ group :development do
   gem 'annotate'
   gem 'guard'
   gem 'guard-shell'
-  gem 'dotenv-rails'
+  gem 'dotenv-rails', '>= 3.0.0'
   gem 'pry-rails'
   gem 'faker'
   # Access an interactive console on exception pages or by calling 'console' anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
+  gem 'web-console', '>= 4.0.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
@@ -60,7 +60,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers', '~> 4.0'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov', require: false
@@ -83,7 +83,7 @@ gem 'redis-rails'
 gem 'activerecord-import'
 gem 'smarter_csv'
 gem 'after_commit_everywhere', '~> 0.1', '>= 0.1.5'
-gem 'data_migrate'
+gem 'data_migrate', '>= 9.0.0'
 gem 'rails-controller-testing'
 gem 'acts_as_tree'
 gem 'bootstrap-wysihtml5-rails'
@@ -91,26 +91,26 @@ gem 'bootstrap_flash_messages', git: 'https://github.com/useruby/bootstrap_flash
 gem "jquery-fileupload-rails"
 gem 'breadcrumbs_on_rails'
 gem 'cancancan'
-gem 'has_scope', '~> 0.7.2'
+gem 'has_scope', '~> 0.8.0'
 gem 'devise'
 gem 'devise_invitable'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
 gem 'humanize_boolean'
 gem 'iconv'
-gem 'inherited_resources', '~> 1.11'
+gem 'inherited_resources', '~> 2.0', '>= 2.0.0'
 gem 'lazyload-rails'
 gem 'paperclip'
 gem 'paranoia', '~> 3.0'
-gem 'responders'
+gem 'responders', '>= 3.2.0'
 gem 'scoped_search'
 gem 'searchkick'
 gem 'selectize-rails'
 gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.git', branch: 'master'
-gem 'simple_form'
+gem 'simple_form', '>= 5.4.0'
 gem 'slim'
 gem 'pagy'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '>= 1.5.0'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
 # Webpacker removed in Rails 7.0, replaced with jsbundling-rails
