@@ -33,11 +33,17 @@ class FileImportsController < BaseController
 
   def update
     unless resource.mappings.present?
-      resource.update_attribute(:mappings, params[:field_maps])
+      resource.update_attribute(:mappings, field_maps_params)
       FileImportWorker.perform_async(resource.id)
     end
 
     render json: {status: 'Success'}, status: HTTP::OK and return
+  end
+
+  private
+
+  def field_maps_params
+    params.permit(field_maps: {})[:field_maps]
   end
 
   def remove_record

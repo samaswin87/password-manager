@@ -1,0 +1,62 @@
+require:
+  - rubocop-rails
+  - rubocop-performance
+
+AllCops:
+  TargetRubyVersion: 3.3
+  NewCops: enable
+  Exclude:
+    - 'db/schema.rb'
+    - 'db/migrate/**/*'
+    - 'db/data/**/*'
+    - 'bin/**/*'
+    - 'node_modules/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+    - 'log/**/*'
+    - 'config/environments/**/*'
+    - 'config/initializers/**/*'
+
+# Adjust these based on your preferences
+Metrics/MethodLength:
+  Max: 25
+  Exclude:
+    - 'test/**/*'
+    - 'spec/**/*'
+
+Metrics/ClassLength:
+  Max: 250
+  Exclude:
+    - 'test/**/*'
+    - 'spec/**/*'
+
+Metrics/BlockLength:
+  Exclude:
+    - 'config/**/*'
+    - 'test/**/*'
+    - 'spec/**/*'
+    - 'lib/tasks/**/*'
+
+Metrics/AbcSize:
+  Max: 30
+  Exclude:
+    - 'test/**/*'
+    - 'spec/**/*'
+
+Style/Documentation:
+  Enabled: false
+
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Layout/LineLength:
+  Max: 120
+  Exclude:
+    - 'config/**/*'
+    - 'db/**/*'
+
+Rails:
+  Enabled: true
+
+Rails/FilePath:
+  Enabled: false

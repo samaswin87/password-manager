@@ -1,14 +1,12 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.0'
+ruby '3.3.5'
 gem 'rails', '~> 5.2.0'
 # Use Puma as the app server
 gem 'puma', '~> 4.3.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
@@ -17,14 +15,19 @@ gem 'turbolinks', '~> 5'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'cucumber'
-gem 'therubyracer'
-gem 'less-rails'
 gem 'email_validator'
 
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  # Security tools
+  gem 'brakeman', require: false        # Security vulnerability scanner
+  gem 'bundler-audit', require: false   # Check for vulnerable versions of gems
+  gem 'rubocop', require: false         # Code style checker
+  gem 'rubocop-rails', require: false   # Rails-specific RuboCop rules
+  gem 'rubocop-performance', require: false # Performance-related RuboCop rules
 end
 
 group :development do
@@ -59,7 +62,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
-gem 'pg', '~> 0.21'
+gem 'pg', '~> 1.5'
 gem 'sdoc', '~> 1.1', group: :doc
 
 # others
@@ -84,7 +87,6 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'draper', '~> 4.0', '>= 4.0.1'
 gem 'font-awesome-rails', '~> 4.7', '>= 4.7.0.5'
-gem 'has_scope', '~> 0.7.2'
 gem 'humanize_boolean'
 gem 'iconv'
 gem 'inherited_resources', '~> 1.11'

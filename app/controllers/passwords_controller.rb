@@ -74,7 +74,20 @@ class PasswordsController < BaseController
   private
 
   def password_params
-    params.require(:password).permit!
+    params.require(:password).permit(
+      :name,
+      :url,
+      :username,
+      :email,
+      :text_password,
+      :key,
+      :ssh_private_key,
+      :ssh_public_key,
+      :ssh_finger_print,
+      :details,
+      :logo,
+      :attachment
+    )
   end
 
 end

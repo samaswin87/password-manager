@@ -60,6 +60,25 @@ class UsersController < BaseController
   private
 
   def user_params
-    params.require(:user).permit!
+    params.require(:user).permit(
+      :first_name,
+      :last_name,
+      :email,
+      :phone,
+      :gender_id,
+      :user_type_id,
+      :avatar,
+      address_attributes: [
+        :id,
+        :street,
+        :number,
+        :house_name,
+        :additional_details,
+        :city_id,
+        :state_id,
+        :zipcode,
+        :_destroy
+      ]
+    )
   end
 end
