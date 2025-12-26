@@ -76,3 +76,7 @@ yarn-debug.log*
 yarn-debug.log*
 .yarn-integrity
 coverage
+goal.md
+PAPERCLIP_TO_ACTIVESTORAGE_MIGRATION.md
+RAILS_UPGRADE_PLAN.md
+UPGRADE_SUMMARY.md
