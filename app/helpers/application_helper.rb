@@ -1,5 +1,6 @@
 module ApplicationHelper
-  include Pagy::Frontend
+  # TODO: Re-enable after updating to new Pagy API
+  # include Pagy::Frontend
   # ---- icons and labels -----
 
   def fa_icon(icon)

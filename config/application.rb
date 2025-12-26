@@ -9,21 +9,17 @@ Bundler.require(*Rails.groups)
 module PasswordManager
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 5.0
+    config.load_defaults 6.0
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
 
-    # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
-    # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
-    config.i18n.load_path += Dir["#{Rails.root.to_s}/config/locales/**/*.{rb,yml}"]
-    config.i18n.default_locale = "en"
+    # Use Zeitwerk autoloader (Rails 6.0 default)
+    config.autoloader = :zeitwerk
+
+    # Keep custom autoload paths
     config.autoload_paths << "#{Rails.root}/lib"
-
-    config.generators.javascript_engine = :js
-    config.active_job.queue_adapter = :sidekiq
-
   end
 end

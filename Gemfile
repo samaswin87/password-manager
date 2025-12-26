@@ -2,9 +2,11 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.5'
-gem 'rails', '~> 5.2.0'
+gem 'rails', '~> 6.0.6'
+gem 'mutex_m' # Required for Ruby 3.4+ compatibility
+gem 'logger' # Required for Ruby 3.3+ compatibility
 # Use Puma as the app server
-gem 'puma', '~> 4.3.3'
+gem 'puma', '~> 5.6'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
