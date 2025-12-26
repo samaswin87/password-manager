@@ -19,7 +19,7 @@ gem 'pg', '~> 1.5'
 
 # Asset Pipeline & Frontend
 gem 'sprockets-rails', '~> 3.5'
-gem 'sprockets', '4.2.1'
+gem 'sprockets', '4.2.2'
 
 # JavaScript & UI Libraries - Bootstrap 5
 gem 'bootstrap', '~> 5.3'
