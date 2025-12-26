@@ -2,18 +2,25 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.5'
-gem 'rails', '~> 6.1.7'
+gem 'rails', '~> 7.2.2'
 gem 'mutex_m' # Required for Ruby 3.4+ compatibility
 gem 'logger' # Required for Ruby 3.3+ compatibility
+gem 'drb' # Required for Ruby 3.4+ compatibility
 # Use Puma as the app server
-gem 'puma', '~> 5.6'
+gem 'puma', '~> 6.0'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'mini_racer', platforms: :ruby
 
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# Hotwire's SPA-like page accelerator
+gem 'turbo-rails'
+# Hotwire's modest JavaScript framework
+gem 'stimulus-rails'
+# Use JavaScript bundling with esbuild
+gem 'jsbundling-rails'
+# Use CSS bundling with cssbundling
+gem 'cssbundling-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 gem 'cucumber'
@@ -94,7 +101,7 @@ gem 'iconv'
 gem 'inherited_resources', '~> 1.11'
 gem 'lazyload-rails'
 gem 'paperclip'
-gem 'paranoia', '~> 2.0'
+gem 'paranoia', '~> 3.0'
 gem 'responders'
 gem 'scoped_search'
 gem 'searchkick'
@@ -106,7 +113,8 @@ gem 'pagy'
 gem 'ajax-datatables-rails'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
-gem 'webpacker', '~> 5.1.1'
+# Webpacker removed in Rails 7.0, replaced with jsbundling-rails
+# gem 'webpacker', '~> 5.1.1'
 gem "select2-rails"
 gem 'bootstrap-toggle-rails'
 
