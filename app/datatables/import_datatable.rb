@@ -20,8 +20,8 @@ class ImportDatatable < ApplicationDatatable
   def data
     records.map do |record|
       {
-        data_file_name: link_to(record.data_file_name, resource_path(record)),
-        data_content_type: record.data_content_type,
+        data_file_name: link_to(record.data.attached? ? record.data.filename.to_s : record.data_file_name, resource_path(record)),
+        data_content_type: record.data.attached? ? record.data.content_type : record.data_content_type,
         source_type: record.data_type,
         data_updated_on: record.data_updated_at.date_only,
         completed_on: record.completed_at.try(:date_only),

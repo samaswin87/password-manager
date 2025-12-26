@@ -129,7 +129,11 @@ module ApplicationHelper
   end
 
   def show_image(record)
-    "<img src=#{ current_user.avatar.url(:thumb) } class='img-circle profile-user-img' />"
+    if current_user.avatar.attached?
+      "<img src=#{ url_for(current_user.avatar.variant(resize_to_limit: [60, 60])) } class='img-circle profile-user-img' />"
+    else
+      "<img src='/vendor/images/img_placeholder.png' class='img-circle profile-user-img' />"
+    end
   end
 
 end

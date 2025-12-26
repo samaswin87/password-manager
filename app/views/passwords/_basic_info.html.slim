@@ -3,7 +3,10 @@
     span.padding-right_10
       = @password.edit_icon
       = @password.status_button
-    = image_tag resource.logo.url(:medium), class: 'profile-user-img img-responsive img-circle', lazy: true
+    - if resource.logo.attached?
+      = image_tag resource.logo.variant(resize_to_limit: [120, 120]), class: 'profile-user-img img-responsive img-circle', lazy: true
+    - else
+      = image_tag '/vendor/images/img_placeholder.png', class: 'profile-user-img img-responsive img-circle', lazy: true
     h3.profile-username.text-center =deal_value resource.name
     p.text-muted.text-center =deal_value resource.user.name
     ul.list-group.list-group-unbordered
@@ -28,9 +31,16 @@
         tbody.files
           - resource.attachments.each do |attachment|
             tr
-              td =truncate(attachment.attachment_file_name, length: 25)
               td
-                = link_to (fa_icon('download')), attachment.attachment_file_name, 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
+                - if attachment.attachment.attached?
+                  = truncate(attachment.attachment.filename.to_s, length: 25)
+                - else
+                  = truncate(attachment.attachment_file_name, length: 25) if attachment.attachment_file_name.present?
+              td
+                - if attachment.attachment.attached?
+                  = link_to (fa_icon('download')), rails_blob_path(attachment.attachment, disposition: 'attachment'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment.filename.to_s
+                - elsif attachment.attachment_file_name.present?
+                  = link_to (fa_icon('download')), attachment.attachment_file_name, 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
                 = @password.delete_attachment(attachment.id)
     - else
       p= deal_value ''

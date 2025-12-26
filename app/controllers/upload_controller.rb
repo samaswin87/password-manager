@@ -17,10 +17,13 @@ class UploadController < ApplicationController
       render json: file_import.errors.full_messages.join(', '), status: HTTP::BAD_REQUEST and return
     end
 
-    csv_processed = SmarterCSV.process(file_import.data.path, csv_options)
+    # ActiveStorage: open the file to get the path
+    csv_processed = file_import.data.open do |file|
+      SmarterCSV.process(file.path, csv_options)
+    end
     file_import.total_count!(csv_processed.count)
     file_import.update_attribute(:headers, csv_processed.first.keys)
-    render json: { success:true, import_id: file_import.id } and return
+    render json: { success: true, import_id: file_import.id } and return
   end
 
   def import

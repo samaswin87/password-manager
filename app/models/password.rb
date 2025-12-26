@@ -38,15 +38,20 @@ class Password < ApplicationRecord
   validates :name, :email, presence: true, uniqueness: true
   validates :email, email: true
 
-  # ---- paperclip ----
-  has_attached_file :logo, styles: {
-    icon:  '32x32#',
-    thumb:  '60x60#',
-    medium: '120x120#',
-    large:  '230x230#'
-  }, default_url: '/vendor/images/img_placeholder.png'
+  # ---- active storage ----
+  has_one_attached :logo
 
-  validates_attachment_content_type :logo, content_type: /\Aimage\/.*\z/
+  validate :logo_content_type
+
+  private
+
+  def logo_content_type
+    if logo.attached? && !logo.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
+      errors.add(:logo, 'must be a JPEG, PNG, or GIF')
+    end
+  end
+
+  public
 
   # ---- scope ----
 

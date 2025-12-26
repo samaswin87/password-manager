@@ -36,7 +36,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string     :phone
       t.references :gender, index: true, foreign_key: true
       t.references :user_type, index: true, foreign_key: true
-      t.attachment :avatar
+
+      # Paperclip avatar columns
+      t.string   :avatar_file_name
+      t.string   :avatar_content_type
+      t.integer  :avatar_file_size
+      t.datetime :avatar_updated_at
 
       t.timestamps null: false
     end

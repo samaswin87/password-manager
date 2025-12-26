@@ -36,7 +36,11 @@ class PasswordDatatable < ApplicationDatatable
   end
 
   def logo(record)
-    image_tag(record.logo.url(:icon), size: '32x32')
+    if record.logo.attached?
+      image_tag(record.logo.variant(resize_to_limit: [32, 32]), size: '32x32')
+    else
+      image_tag('/vendor/images/img_placeholder.png', size: '32x32')
+    end
   end
 
   def status(status)

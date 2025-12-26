@@ -28,9 +28,20 @@ class FileImport < ApplicationRecord
   # ---- relationships ----
   has_many :import_data_tables, dependent: :delete_all
 
-  # ---- paperclip ----
-  has_attached_file :data
-  validates_attachment_content_type :data, content_type: ['text/csv', 'text/plain']
+  # ---- active storage ----
+  has_one_attached :data
+
+  validate :data_content_type
+
+  private
+
+  def data_content_type
+    if data.attached? && !data.content_type.in?(%w[text/csv text/plain])
+      errors.add(:data, 'must be a CSV or text file')
+    end
+  end
+
+  public
 
   # ---- aasm ----
   aasm column: :state do

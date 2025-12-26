@@ -4,7 +4,13 @@ class CreateFileImport < ActiveRecord::Migration[5.2]
 
     create_table :file_imports do |t|
       t.string :state
-      t.attachment :data
+
+      # Paperclip data columns
+      t.string   :data_file_name
+      t.string   :data_content_type
+      t.integer  :data_file_size
+      t.datetime :data_updated_at
+
       t.datetime :completed_at
       t.references :source, index: true, polymorphic: true
       t.text :error_messages

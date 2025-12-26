@@ -9,7 +9,7 @@
             button.close type="button" data-dismiss="alert" aria-hidden="true" ×
             h4
               i.icon.fa.fa-warning = t("common.notifications._alert")
-            p = t("file_imports.alerts.success", file_name: @import.try(:data_file_name), link: link_to(t('link'), file_imports_path)).html_safe
+            p = t("file_imports.alerts.success", file_name: (@import.data.attached? ? @import.data.filename.to_s : @import.try(:data_file_name)), link: link_to(t('link'), file_imports_path)).html_safe
       .col-md-12
         table#users-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
           thead

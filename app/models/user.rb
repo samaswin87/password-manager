@@ -49,15 +49,21 @@ class User < ApplicationRecord
   has_many :addresses, dependent: :delete_all
   has_many :passwords, dependent: :delete_all
 
-  # ---- paperclip ----
+  # ---- active storage ----
 
-  has_attached_file :avatar, styles: {
-    thumb:  '60x60#',
-    medium: '120x120#',
-    large:  '230x230#'
-  }, default_url: '/vendor/images/img_placeholder.png'
+  has_one_attached :avatar
 
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\z/
+  validate :avatar_content_type
+
+  private
+
+  def avatar_content_type
+    if avatar.attached? && !avatar.content_type.in?(%w[image/jpeg image/jpg image/png image/gif])
+      errors.add(:avatar, 'must be a JPEG, PNG, or GIF')
+    end
+  end
+
+  public
 
   # ---- validates ----
 

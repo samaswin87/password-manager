@@ -2,7 +2,12 @@
 class CreatePasswordAttachments < ActiveRecord::Migration[5.2]
   def change
     create_table :password_attachments do |t|
-      t.attachment :attachment
+      # Paperclip attachment columns
+      t.string   :attachment_file_name
+      t.string   :attachment_content_type
+      t.bigint   :attachment_file_size
+      t.datetime :attachment_updated_at
+
       t.references :password, index: true, foreign_key: true
       t.timestamps
     end

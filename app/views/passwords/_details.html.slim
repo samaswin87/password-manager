@@ -2,7 +2,10 @@
   .row
     .col-md-6
       label.control-label.mr-3 Logo
-      = image_tag resource.logo.url(:icon), class: 'img-crud img-responsive img-logo mr-3', lazy: true
+      - if resource.logo.attached?
+        = image_tag resource.logo.variant(resize_to_limit: [32, 32]), class: 'img-crud img-responsive img-logo mr-3', lazy: true
+      - else
+        = image_tag '/vendor/images/img_placeholder.png', class: 'img-crud img-responsive img-logo mr-3', lazy: true
       = form.input :logo, as: :file, label: false
   .row
     .col-md-6

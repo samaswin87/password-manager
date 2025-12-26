@@ -5,7 +5,10 @@
 .row
   .col-md-12
     - if resource.persisted?
-      = image_tag resource.avatar.url(:large), class: 'img-crud img-responsive', lazy: true
+      - if resource.avatar.attached?
+        = image_tag resource.avatar.variant(resize_to_limit: [230, 230]), class: 'img-crud img-responsive', lazy: true
+      - else
+        = image_tag '/vendor/images/img_placeholder.png', class: 'img-crud img-responsive', lazy: true
     = form.input :avatar, as: :file, label: false
 hr
 
