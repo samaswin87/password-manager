@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.3.5'
-gem 'rails', '~> 6.0.6'
+gem 'rails', '~> 7.1.5', '>= 7.1.5.2'
 gem 'mutex_m' # Required for Ruby 3.4+ compatibility
 gem 'logger' # Required for Ruby 3.3+ compatibility
 # Use Puma as the app server
@@ -53,7 +53,7 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'webdrivers', '~> 4.0'
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails', '>= 1.4.3', require: false
   # database_cleaner is not mandatory, but highly recommended
   gem 'database_cleaner'
   gem 'simplecov', require: false
@@ -103,7 +103,7 @@ gem 'simple-navigation', git: 'https://github.com/samaswin87/simple-navigation.g
 gem 'simple_form'
 gem 'slim'
 gem 'pagy'
-gem 'ajax-datatables-rails'
+gem 'ajax-datatables-rails', '>= 1.5.0'
 gem 'jquery-datatables'
 gem 'yajl-ruby', require: 'yajl'
 gem 'webpacker', '~> 5.1.1'
