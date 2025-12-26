@@ -76,6 +76,4 @@ yarn-debug.log*
 yarn-debug.log*
 .yarn-integrity
 coverage
-goal.md
-PAPERCLIP_TO_ACTIVESTORAGE_MIGRATION.md
-UPGRADE_SUMMARY.md
+LEGACY_GEMS_MIGRATION_PLAN.md
