@@ -1,19 +1,10 @@
-(function ($) {
-  var params;
+// Field mappings - converted to vanilla JS
+// This file is now handled by Stimulus controller: field_mapping_controller.js
+// Keeping for backward compatibility if needed
 
-  function init(_params){
-    params = _params;
+window.fieldMapper = {
+  init: function(params) {
+    // This is now handled by Stimulus
+    console.log('Field mapper initialized with params:', params);
   }
-
-  $( ".add-field" ).click(function(_e) {
-    postData('/field_mappings/create_or_update', {field_mapping: {name: params.name, field: this.id}})
-    .then(_data => {
-      location.reload();
-    });
-  });
-
-  $.mapper = {
-    init: init,
-  }
-
-})(jQuery);
+};

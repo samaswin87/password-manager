@@ -9,54 +9,61 @@
 //
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
-//= require jquery
-//= require jquery-ui
-//= require jquery_ujs
 //= require popper
 //= require bootstrap
-//= require selectize
-//= require jquery.mask.min
-//= require jquery.slimscroll
-//= require moment
-//= require notifyjs_rails
-//= require toastr
 //= require papaparse
-//= require vendor/simple-fileupload
-//= require vendor/notifyset
-//= require datatables
-//= require select2-full
 //= require bs-stepper
 //= require api
 //= require admin
 // require_tree .
 
-$(document).ready(function(){
-
-  var _clipboard;
-  if (typeof ClipboardJS !== 'undefined')
-    _clipboard = new ClipboardJS('.clipboard-btn');
-
-  $('.nav-tabs > li').on('click', function(event){
-    $(".nav-tabs > li").removeClass("active");
-    $(event.target).parent().addClass('active');
-  });
+// Initialize clipboard on page load
+document.addEventListener('DOMContentLoaded', function() {
+  if (typeof ClipboardJS !== 'undefined') {
+    new ClipboardJS('.clipboard-btn');
+  }
 });
 
-// eslint-disable-next-line no-unused-vars
-var app = (function(){
-  var user_data;
+// User data cache
+window.app = (function(){
+  var user_data = null;
+  var userDataPromise = null;
 
-  $.ajax({
-    type: "GET",
-    url: "/current_user",
-    async: false,
-    success : function(data) {
-      user_data = data;
+  function fetchUserData() {
+    if (userDataPromise) {
+      return userDataPromise;
     }
-  });
+    
+    userDataPromise = fetch('/current_user', {
+      method: 'GET',
+      credentials: 'same-origin',
+      headers: {
+        'Accept': 'application/json',
+        'X-Requested-With': 'XMLHttpRequest'
+      }
+    })
+    .then(response => response.json())
+    .then(data => {
+      user_data = data;
+      return data;
+    })
+    .catch(error => {
+      console.error('Error fetching user data:', error);
+      return null;
+    });
+    
+    return userDataPromise;
+  }
 
-  return {getUser : function()
-  {
-    return user_data;
-  }};
+  // Fetch user data on initialization
+  fetchUserData();
+
+  return {
+    getUser: function() {
+      return user_data;
+    },
+    fetchUser: function() {
+      return fetchUserData();
+    }
+  };
 })();

@@ -17,8 +17,7 @@ module.exports = [
         console: 'readonly',
         window: 'readonly',
         document: 'readonly',
-        jQuery: 'readonly',
-        $: 'readonly'
+        // jQuery removed - using Hotwire (Turbo/Stimulus) instead
       }
     },
     rules: {

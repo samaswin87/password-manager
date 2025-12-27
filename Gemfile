@@ -31,12 +31,7 @@ gem 'bootstrap', '~> 5.3'
 gem 'font-awesome-sass', '~> 6.5'
 gem 'sassc-rails', '~> 2.1'
 
-# Keep jQuery for compatibility with existing code
-gem 'jquery-fileupload-rails', '~> 1.0'
-gem 'jquery-mask-plugin', '~> 1.15'
-gem 'jquery-rails', '~> 4.6'
-gem 'jquery-slimscroll-rails', '~> 1.0'
-gem 'jquery-ui-rails', '~> 7.0'
+# jQuery removed - using Hotwire (Turbo/Stimulus) instead
 gem 'momentjs-rails', '~> 2.29'
 gem 'notifyjs_rails', '~> 0.0.2'
 gem 'select2-rails', '~> 4.0'

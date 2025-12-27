@@ -124,7 +124,9 @@ module ApplicationHelper
       next unless types.key?(type)
 
       text = "<script>
-      $.notify.autoHideNotify('#{types[type]}', 'top right', '#{titles[type]}','#{message}');
+      if (typeof showNotification !== 'undefined') {
+        showNotification('#{types[type]}', 'top right', '#{titles[type]}', '#{escape_javascript(message)}');
+      }
       </script>"
       flash_messages << text.html_safe if message
     end
