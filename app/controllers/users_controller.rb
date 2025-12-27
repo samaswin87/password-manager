@@ -8,11 +8,32 @@ class UsersController < BaseController
   def index
     @field_mapper = FieldMapping.find_by(name: 'users')
     @import = FileImport.find_by(job_id: params[:job]) if params[:job].present?
+
+    # Build query scope
+    scope = User.includes(:user_type, :gender)
+
+    # Apply search filter
+    if params[:query].present?
+      search_term = "%#{params[:query]}%"
+      scope = scope.where(
+        'first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ? OR phone ILIKE ?',
+        search_term, search_term, search_term, search_term
+      )
+    end
+
+    # Apply status filter
+    scope = scope.active if params[:status] == 'active'
+    scope = scope.in_active if params[:status] == 'inactive'
+
+    # Apply sorting
+    scope = scope.order(sort_column => sort_direction)
+
+    # Paginate
+    @pagy, @users = pagy(scope, items: 10)
+
     respond_to do |format|
       format.html
-      format.json do
-        render json: UserDatatable.new(datatable_params, view_context: view_context, current_user: current_user)
-      end
+      format.turbo_stream
     end
   end
 
@@ -58,30 +79,13 @@ class UsersController < BaseController
 
   private
 
-  def datatable_params
-    # Permit DataTables parameters including nested regex parameters
-    # DataTables sends dynamic nested structures, so we need to permit them flexibly
-    permitted = params.permit(:draw, :start, :length, :form, :job, :_, search: %i[value regex])
+  def sort_column
+    valid_columns = %w[first_name last_name email phone created_at]
+    valid_columns.include?(params[:sort]) ? params[:sort] : 'created_at'
+  end
 
-    # Permit order parameters dynamically
-    if params[:order].present?
-      order_permitted = {}
-      params[:order].each do |key, order|
-        order_permitted[key] = order.permit(:column, :dir)
-      end
-      permitted[:order] = ActionController::Parameters.new(order_permitted)
-    end
-
-    # Permit columns parameters dynamically with nested search including regex
-    if params[:columns].present?
-      columns_permitted = {}
-      params[:columns].each do |key, column|
-        columns_permitted[key] = column.permit(:data, :name, :searchable, :orderable, search: %i[value regex])
-      end
-      permitted[:columns] = ActionController::Parameters.new(columns_permitted)
-    end
-
-    permitted
+  def sort_direction
+    %w[asc desc].include?(params[:direction]) ? params[:direction] : 'desc'
   end
 
   def user_params

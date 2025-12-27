@@ -25,6 +25,23 @@ module ApplicationHelper
     content_tag(:i, class: "fa-solid fa-#{icon} #{klass}") {}
   end
 
+  # ---- sortable table headers ----
+
+  def sortable(column, title = nil)
+    title ||= column.titleize
+    direction = column == params[:sort] && params[:direction] == 'asc' ? 'desc' : 'asc'
+    icon = if column == params[:sort]
+             content_tag(:i, '', class: "fa-solid fa-sort-#{params[:direction] == 'asc' ? 'up' : 'down'}")
+           else
+             ''
+           end
+
+    link_to url_for(params.permit(:query, :status, :sort, :direction, :page).merge(sort: column, direction: direction)),
+            data: { turbo_frame: 'users_table' } do
+      "#{title} #{icon}".html_safe
+    end
+  end
+
   # ---- simple form ----
 
   def deal_value(value, format = :default)

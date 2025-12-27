@@ -27,36 +27,17 @@ section.content
       .box-tools.pull-right
         = bootstrap_button_new({title: t("view.users.actions.new", default: "New User"), url: new_user_path, class: 'btn btn-primary'})
     .box-body
-      .table-responsive
-        table#users-datatable.table.table-bordered.table-striped.table-hover.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
-          thead
-            tr
-              th.all width="*" = t("view.users.fields.first_name")
-              th width="*" = t("view.users.fields.last_name")
-              th.all width="*" = t("view.users.fields.email")
-              th width="*" = t("view.users.fields.phone")
-              th width="*" = t("view.users.fields.gender")
-              th width="*" = t("view.users.fields.user_type")
-              th width="*" = t("view.users.fields.status")
-              th.all width="*" = t("common.table.actions")
-          tbody
+      / Search and Filter Form
+      .row.mb-3
+        .col-md-12 data-controller="search"
+          = form_with url: users_path, method: :get, data: { turbo_frame: "users_table", search_target: "form", action: "input->search#submit" } do |f|
+            .row
+              .col-md-6
+                = f.text_field :query, value: params[:query], placeholder: t("common.search", default: "Search by name, email, or phone..."), class: "form-control"
+              .col-md-3
+                = f.select :status, [[t("common.all", default: "All"), ""], [t("common.active"), "active"], [t("common.in_active"), "inactive"]], { selected: params[:status] }, { class: "form-control", data: { action: "change->search#submit" } }
 
-= javascript_include_tag 'users/index'
-javascript:
-  $(document).ready(function() {
-    let params = {
-      isAdmin: #{current_user.admin?},
-      active: "#{t('common.active')}",
-      in_active: "#{t('common.in_active')}",
-      import_csv: "#{t('common.import_csv')}",
-      title: "#{t('view.users.title')}",
-      file_size_error: "#{t('view.users.alerts.file_size_error')}",
-      file_type_error: "#{t('view.users.alerts.file_type_error')}"
-    };
-
-    let url = {
-      home: "#{users_path}"
-    };
-    $.users_index.init(params, url);
-  });
+      / Table with Turbo Frame
+      = turbo_frame_tag "users_table" do
+        = render "users_table", users: @users, pagy: @pagy
 

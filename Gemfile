@@ -6,6 +6,11 @@ ruby '3.3.5'
 # Core Rails
 gem 'rails', '~> 7.2.2'
 
+# Hotwire - Modern Rails frontend
+gem 'importmap-rails'
+gem 'stimulus-rails'
+gem 'turbo-rails'
+
 # Ruby 3.3+ compatibility
 gem 'drb'
 gem 'logger'
@@ -27,7 +32,6 @@ gem 'font-awesome-sass', '~> 6.5'
 gem 'sassc-rails', '~> 2.1'
 
 # Keep jQuery for compatibility with existing code
-gem 'jquery-datatables', '~> 1.10'
 gem 'jquery-fileupload-rails', '~> 1.0'
 gem 'jquery-mask-plugin', '~> 1.15'
 gem 'jquery-rails', '~> 4.6'
@@ -66,7 +70,6 @@ gem 'paranoia', '~> 3.0'
 gem 'searchkick', '~> 5.3'
 
 # Views & Templates
-gem 'ajax-datatables-rails', '~> 1.4'
 gem 'breadcrumbs_on_rails', '~> 4.1'
 gem 'draper', '~> 4.0'
 gem 'inherited_resources', '~> 1.14'

@@ -6,9 +6,12 @@ class FileImportsController < BaseController
 
   # ---- methods ----
   def index
+    scope = FileImport.order(created_at: :desc)
+    @pagy, @file_imports = pagy(scope, items: 10)
+
     respond_to do |format|
       format.html
-      format.json { render json: ImportDatatable.new(params, view_context: view_context, current_user: current_user) }
+      format.turbo_stream
     end
   end
 
@@ -21,12 +24,12 @@ class FileImportsController < BaseController
         @field_mapper = FieldMapping.find_by(name: resource.data_type)
       elsif params[:page] == 'records'
         resource.map! if resource.state == 'importing'
+        @headers = resource.headers || []
+        @pagy, @records = pagy(resource.import_records.order(created_at: :asc), items: 25)
+
         respond_to do |format|
           format.html
-          format.json do
-            render json: ImportRecordsDatatable.new(params, view_context: view_context, current_user: current_user,
-                                                            resource: resource)
-          end
+          format.turbo_stream
         end
       end
     else

@@ -3,20 +3,5 @@
   .box-body
     .row
       .col-md-12
-        table#file_imports-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
-          thead
-            tr
-              th.all width="*" File Name
-              th width="*" Type
-              th width="*" Data Type
-              th width="*" Uploaded On
-              th width="*" Imported On
-              th width="*" Status
-              th.all width="*" Counts
-        tbody
-
-= javascript_include_tag 'file_imports/index'
-javascript:
-  $(document).ready(function() {
-    $.file_imports_index.init();
-  });
+        = turbo_frame_tag "imports_table" do
+          = render "imports_table", file_imports: @file_imports, pagy: @pagy
