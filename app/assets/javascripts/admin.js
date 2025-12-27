@@ -7,20 +7,32 @@ $(document).ready(function(){
   // ========================================
   $('.sidebar-toggle').on('click', function(e){
     e.preventDefault();
-    $('body').toggleClass('sidebar-collapse');
 
-    // Store sidebar state in localStorage
-    if($('body').hasClass('sidebar-collapse')) {
-      localStorage.setItem('sidebar-state', 'collapsed');
+    // Different behavior for mobile vs desktop
+    if($(window).width() <= 768) {
+      // On mobile: toggle sidebar-open class (sidebar hidden by default)
+      $('body').toggleClass('sidebar-open');
+      // Ensure sidebar-collapse is set on mobile (for CSS targeting)
+      $('body').addClass('sidebar-collapse');
     } else {
-      localStorage.setItem('sidebar-state', 'expanded');
+      // On desktop: toggle sidebar-collapse class (sidebar visible by default)
+      $('body').toggleClass('sidebar-collapse');
+
+      // Store sidebar state in localStorage (desktop only)
+      if($('body').hasClass('sidebar-collapse')) {
+        localStorage.setItem('sidebar-state', 'collapsed');
+      } else {
+        localStorage.setItem('sidebar-state', 'expanded');
+      }
     }
   });
 
-  // Restore sidebar state from localStorage
-  var sidebarState = localStorage.getItem('sidebar-state');
-  if(sidebarState === 'collapsed') {
-    $('body').addClass('sidebar-collapse');
+  // Restore sidebar state from localStorage (desktop only)
+  if($(window).width() > 768) {
+    var sidebarState = localStorage.getItem('sidebar-state');
+    if(sidebarState === 'collapsed') {
+      $('body').addClass('sidebar-collapse');
+    }
   }
 
   // ========================================
@@ -86,16 +98,34 @@ $(document).ready(function(){
   // ========================================
   // Responsive Sidebar for Mobile
   // ========================================
-  if($(window).width() < 768) {
-    $('body').addClass('sidebar-collapse');
+  function handleMobileInit() {
+    if($(window).width() <= 768) {
+      $('body').addClass('sidebar-collapse');
+      $('body').removeClass('sidebar-open');
+    }
   }
+
+  // Initialize on page load
+  handleMobileInit();
+
+  // Re-initialize on window resize
+  $(window).on('resize', function(){
+    handleMobileInit();
+  });
 
   // Close sidebar on mobile when clicking outside
   $(document).on('click', function(e){
-    if($(window).width() < 768) {
+    if($(window).width() <= 768) {
       if(!$(e.target).closest('.main-sidebar, .sidebar-toggle').length) {
-        $('body').addClass('sidebar-collapse');
+        $('body').removeClass('sidebar-open');
       }
+    }
+  });
+
+  // Close sidebar when clicking the overlay (body::before pseudo-element area)
+  $(document).on('click', '.content-wrapper', function(e){
+    if($(window).width() <= 768 && $('body').hasClass('sidebar-open')) {
+      $('body').removeClass('sidebar-open');
     }
   });
 

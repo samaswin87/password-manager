@@ -4,14 +4,14 @@
 .passwords-header
   .row
     .col-md-12
-      .box
-        .box-header.with-border
-          h3.box-title
-            i.fa.fa-key.margin-r-5
-            | Passwords
-          .box-tools.pull-right
-            = link_to new_password_path, class: 'btn btn-primary' do
-              i.fa.fa-plus.margin-r-5
+      .passwords-header-banner
+        .passwords-header-content
+          .passwords-header-title
+            i.fa.fa-key
+            span Passwords
+          .passwords-header-actions
+            = link_to new_password_path, class: 'btn btn-new-password' do
+              i.fa.fa-plus
               | New Password
 
 / Search and Filter Section

@@ -18,7 +18,9 @@
 @import "login";
 @import "passwords";
 .main-header {
-  max-height: 100% !important;
+  max-height: 60px !important;
+  height: 60px !important;
+  overflow: visible !important;
 }
 
 .main-header .logo {
@@ -115,13 +117,23 @@
 }
 
 /* For sidebar/header user image - smaller size */
-.img-circle.profile-user-img.profile-icon-placeholder {
-  width: 60px;
-  height: 60px;
+.user-avatar .img-circle.profile-user-img.profile-icon-placeholder {
+  width: 50px !important;
+  height: 50px !important;
+  border: 3px solid rgba(255,255,255,0.5) !important;
+  background: rgba(255,255,255,0.15) !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
-.img-circle.profile-user-img.profile-icon-placeholder i {
-  font-size: 28px;
+.user-avatar .img-circle.profile-user-img.profile-icon-placeholder i {
+  font-size: 22px;
+  color: #fff;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 /* For password detail page - larger size */

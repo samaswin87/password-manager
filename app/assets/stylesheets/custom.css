@@ -498,13 +498,22 @@ label, .control-label {
 }
 
 /* Enhanced Navbar */
+.navbar-nav > .user-menu {
+  position: relative;
+}
+
 .navbar-nav > .user-menu > .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
   border-radius: 12px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
   border: none;
   padding: 10px;
   min-width: 260px;
   margin-top: 10px;
+  z-index: 1000;
 }
 
 .navbar-nav > .user-menu > .dropdown-menu > li.user-header {
@@ -533,22 +542,35 @@ label, .control-label {
   background: white;
   padding: 10px;
   border-radius: 0 0 8px 8px;
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
 }
 
 .navbar-nav > .user-menu > .dropdown-menu > li.user-footer > div {
-  display: inline-block;
-  width: 48%;
+  flex: 1;
+  min-width: 0;
+}
+
+.navbar-nav > .user-menu > .dropdown-menu > li.user-footer > .pull-left,
+.navbar-nav > .user-menu > .dropdown-menu > li.user-footer > .pull-right {
+  float: none;
 }
 
 .navbar-nav > .user-menu > .dropdown-menu .btn-flat {
   border-radius: 8px;
-  padding: 8px 16px;
+  padding: 8px 12px;
   font-weight: 600;
   font-size: 13px;
   transition: all 0.3s ease;
   border: 2px solid #e2e8f0;
   background: white;
   color: #4a5568;
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
 }
 
 .navbar-nav > .user-menu > .dropdown-menu .btn-flat:hover {
@@ -983,6 +1005,149 @@ label, .control-label {
 
 blockquote {
   margin: 20px 0 !important;
+}
+
+/* ========================================
+   Profile User Image Fix
+   ======================================== */
+
+.profile-user-img {
+  margin: 0 auto;
+  padding: 3px 3px 3px 4px;
+  border: 3px solid #d2d6de;
+  border-radius: 50%;
+}
+
+/* ========================================
+   Button Margin Fix
+   ======================================== */
+
+.btn-primary {
+  margin-top: 32px;
+}
+
+/* ========================================
+   Sidebar Mini Mode Fixes
+   ======================================== */
+
+/* Mini sidebar - collapsed state on desktop */
+@media (min-width: 768px) {
+  /* Collapsed sidebar menu items */
+  .skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li > a,
+  body.skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li > a {
+    padding: 14px 0 !important;
+    justify-content: center;
+    text-align: center;
+    border-left: none !important;
+  }
+
+  /* Collapsed sidebar icons - centered */
+  .skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li > a i,
+  body.skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li > a i {
+    margin: 0 !important;
+    font-size: 18px;
+    width: 20px;
+    text-align: center;
+  }
+
+  /* Hide text labels when collapsed */
+  .skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li > a span,
+  body.skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li > a span {
+    display: none !important;
+  }
+
+  /* Hide menu headers when collapsed */
+  .skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li.header,
+  body.skin-blue.sidebar-mini.sidebar-collapse .sidebar-menu > li.header {
+    display: none;
+  }
+
+  /* User panel collapsed state */
+  .skin-blue.sidebar-mini.sidebar-collapse .user-panel,
+  body.skin-blue.sidebar-mini.sidebar-collapse .user-panel {
+    padding: 10px 5px;
+    text-align: center;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .user-panel > .image,
+  body.skin-blue.sidebar-mini.sidebar-collapse .user-panel > .image {
+    float: none !important;
+    margin: 0 auto;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .user-panel > .image > img,
+  body.skin-blue.sidebar-mini.sidebar-collapse .user-panel > .image > img,
+  .skin-blue.sidebar-mini.sidebar-collapse .profile-user-img,
+  body.skin-blue.sidebar-mini.sidebar-collapse .profile-user-img {
+    width: 40px !important;
+    height: 40px !important;
+    padding: 2px 2px 2px 4px;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .user-panel > .info,
+  body.skin-blue.sidebar-mini.sidebar-collapse .user-panel > .info {
+    display: none !important;
+  }
+
+  /* Hover expand on mini sidebar */
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li > a,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li > a {
+    padding: 14px 20px !important;
+    justify-content: flex-start;
+    text-align: left;
+    border-left: 3px solid transparent !important;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li > a i,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li > a i {
+    margin-right: 12px !important;
+    margin-left: 0 !important;
+    font-size: 16px;
+    width: 20px;
+    text-align: center;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li > a span,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li > a span {
+    display: inline !important;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li.header,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li.header {
+    display: block;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel {
+    padding: 15px;
+    text-align: left;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .image,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .image {
+    float: left !important;
+    margin-right: 10px;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .image > img,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .image > img,
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .profile-user-img,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .profile-user-img {
+    width: 45px !important;
+    height: 45px !important;
+    padding: 3px 3px 3px 4px;
+  }
+
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .user-panel > .info {
+    display: block !important;
+  }
+
+  /* Active state on hover */
+  .skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li.active > a,
+  body.skin-blue.sidebar-mini.sidebar-collapse .main-sidebar:hover .sidebar-menu > li.active > a {
+    border-left: 3px solid #667eea !important;
+  }
 }
 
 /* ========================================

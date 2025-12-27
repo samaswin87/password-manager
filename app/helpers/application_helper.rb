@@ -133,7 +133,7 @@ module ApplicationHelper
       "<img src=#{variant_url} class='img-circle profile-user-img' loading='lazy' />"
     else
       "<div class='profile-user-img img-circle profile-icon-placeholder'>
-        <i class='fa fa-user'></i>
+        <i class='fa-solid fa-user'></i>
       </div>"
     end
   end

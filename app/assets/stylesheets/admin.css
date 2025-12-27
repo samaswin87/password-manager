@@ -26,8 +26,10 @@ body {
   left: 0;
   right: 0;
   max-height: 60px;
+  height: 60px;
   z-index: 1030;
   box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  overflow: visible;
 }
 
 .main-header .navbar {
@@ -35,8 +37,10 @@ body {
   margin-bottom: 0;
   border: none;
   min-height: 60px;
+  max-height: 60px;
   border-radius: 0;
   padding: 0;
+  overflow: visible;
 }
 
 .main-header .logo {
@@ -130,6 +134,10 @@ body {
 
 /* User Menu Dropdown */
 .user-menu .dropdown-menu {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: auto;
   border-top-right-radius: 0;
   border-top-left-radius: 0;
   padding: 0;
@@ -137,6 +145,7 @@ body {
   border-top-width: 0;
   margin-top: 0;
   box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+  z-index: 1000;
 }
 
 .user-menu .user-header {
@@ -248,7 +257,8 @@ body {
   flex-shrink: 0;
 }
 
-.user-avatar img {
+.user-avatar img,
+.user-avatar .profile-user-img {
   width: 50px;
   height: 50px;
   border-radius: 50%;
@@ -256,25 +266,33 @@ body {
   background: #fff;
   object-fit: cover;
   transition: all 0.3s ease;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Profile icon placeholder (when no avatar) */
-.profile-icon-placeholder {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  border: 3px solid rgba(255,255,255,0.4);
-  background: rgba(255,255,255,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.user-avatar .profile-icon-placeholder,
+.user-avatar .profile-user-img.profile-icon-placeholder {
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50% !important;
+  border: 3px solid rgba(255,255,255,0.5) !important;
+  background: rgba(255,255,255,0.15) !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
   transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
-.profile-icon-placeholder i {
-  font-size: 20px;
+.user-avatar .profile-icon-placeholder i,
+.user-avatar .profile-user-img.profile-icon-placeholder i {
+  font-size: 22px;
   color: #fff;
   transition: font-size 0.3s ease;
+  text-shadow: 0 1px 3px rgba(0,0,0,0.2);
 }
 
 .user-info {
@@ -591,12 +609,16 @@ body.sidebar-collapse .main-header .logo .logo-mini {
   }
 
   body.sidebar-collapse .main-sidebar .user-avatar img,
-  body.sidebar-collapse .main-sidebar .profile-icon-placeholder {
-    width: 40px;
-    height: 40px;
+  body.sidebar-collapse .main-sidebar .user-avatar .profile-icon-placeholder,
+  body.sidebar-collapse .main-sidebar .user-avatar .profile-user-img.profile-icon-placeholder {
+    width: 40px !important;
+    height: 40px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  body.sidebar-collapse .main-sidebar .profile-icon-placeholder i {
+  body.sidebar-collapse .main-sidebar .user-avatar .profile-icon-placeholder i,
+  body.sidebar-collapse .main-sidebar .user-avatar .profile-user-img.profile-icon-placeholder i {
     font-size: 16px;
   }
 
@@ -675,13 +697,17 @@ body.sidebar-collapse .main-header .logo .logo-mini {
   }
 
   body.sidebar-collapse .main-sidebar:hover .user-avatar img,
-  body.sidebar-collapse .main-sidebar:hover .profile-icon-placeholder {
-    width: 50px;
-    height: 50px;
+  body.sidebar-collapse .main-sidebar:hover .user-avatar .profile-icon-placeholder,
+  body.sidebar-collapse .main-sidebar:hover .user-avatar .profile-user-img.profile-icon-placeholder {
+    width: 50px !important;
+    height: 50px !important;
+    margin: 0 !important;
+    padding: 0 !important;
   }
 
-  body.sidebar-collapse .main-sidebar:hover .profile-icon-placeholder i {
-    font-size: 20px;
+  body.sidebar-collapse .main-sidebar:hover .user-avatar .profile-icon-placeholder i,
+  body.sidebar-collapse .main-sidebar:hover .user-avatar .profile-user-img.profile-icon-placeholder i {
+    font-size: 22px;
   }
 
   body.sidebar-collapse .main-sidebar:hover .user-info {
@@ -753,16 +779,18 @@ body.sidebar-collapse .main-header .logo .logo-mini {
    ======================================== */
 
 @media (max-width: 768px) {
+  /* Reset sidebar collapse behavior for mobile - opposite of desktop */
   .main-sidebar {
     transform: translateX(-250px);
   }
 
   .content-wrapper {
-    margin-left: 0;
+    margin-left: 0 !important;
+    padding: 15px;
   }
 
   .main-header .navbar-static-top {
-    margin-left: 0;
+    margin-left: 0 !important;
   }
 
   .main-header .logo {
@@ -777,10 +805,43 @@ body.sidebar-collapse .main-header .logo .logo-mini {
     display: block;
   }
 
-  /* Show sidebar when not collapsed on mobile */
+  /* On mobile: sidebar-collapse means SHOW sidebar (inverse of desktop) */
+  /* When user clicks hamburger on mobile, we ADD sidebar-open class */
+  body.sidebar-open .main-sidebar {
+    transform: translateX(0);
+    box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+  }
+
+  /* Legacy: support old toggle behavior where removing sidebar-collapse shows sidebar */
   body:not(.sidebar-collapse) .main-sidebar {
     transform: translateX(0);
     box-shadow: 4px 0 20px rgba(0,0,0,0.3);
+  }
+
+  /* Overlay behind sidebar when open on mobile */
+  body.sidebar-open::before,
+  body:not(.sidebar-collapse)::before {
+    content: '';
+    position: fixed;
+    top: 60px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 800;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
+
+  /* User dropdown positioning fix for mobile */
+  .user-menu .dropdown-menu {
+    position: fixed !important;
+    top: 60px !important;
+    right: 10px !important;
+    left: auto !important;
+    width: 280px;
+    max-width: calc(100vw - 20px);
+    transform: none !important;
   }
 }
 
@@ -849,4 +910,121 @@ html {
 .content-wrapper.loading {
   opacity: 0.6;
   pointer-events: none;
+}
+
+/* ========================================
+   Tablet Responsive (769px - 992px)
+   ======================================== */
+
+@media (min-width: 769px) and (max-width: 992px) {
+  .content-wrapper {
+    padding: 20px;
+  }
+
+  .main-sidebar {
+    width: 220px;
+  }
+
+  .content-wrapper {
+    margin-left: 220px;
+  }
+
+  .main-header .logo {
+    width: 220px;
+  }
+
+  .main-header .navbar-static-top {
+    margin-left: 220px;
+  }
+
+  /* Collapsed state on tablet */
+  body.sidebar-collapse .content-wrapper {
+    margin-left: 60px;
+  }
+
+  body.sidebar-collapse .main-header .navbar-static-top {
+    margin-left: 60px;
+  }
+}
+
+/* ========================================
+   Small Mobile (≤480px)
+   ======================================== */
+
+@media (max-width: 480px) {
+  .content-wrapper {
+    padding: 10px;
+  }
+
+  .content-header > h1 {
+    font-size: 22px;
+  }
+
+  .user-menu .dropdown-menu {
+    width: calc(100vw - 20px);
+    right: 10px !important;
+    left: 10px !important;
+  }
+
+  .user-menu .user-header {
+    height: 140px;
+    padding: 8px;
+  }
+
+  .user-menu .user-header p {
+    font-size: 15px;
+  }
+
+  .user-panel {
+    padding: 15px 10px;
+  }
+
+  .sidebar-menu > li > a {
+    padding: 10px 15px;
+    font-size: 13px;
+  }
+
+  .sidebar-menu > li > a > i {
+    font-size: 14px;
+    margin-right: 10px;
+  }
+}
+
+/* ========================================
+   Landscape Mobile Fix
+   ======================================== */
+
+@media (max-width: 768px) and (orientation: landscape) {
+  .main-sidebar {
+    height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+
+  .sidebar {
+    height: auto;
+    min-height: calc(100vh - 60px);
+  }
+
+  .user-menu .dropdown-menu {
+    max-height: calc(100vh - 70px);
+    overflow-y: auto;
+  }
+}
+
+/* ========================================
+   Print Styles
+   ======================================== */
+
+@media print {
+  .main-sidebar,
+  .main-header,
+  .sidebar-toggle {
+    display: none !important;
+  }
+
+  .content-wrapper {
+    margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding: 0 !important;
+  }
 }
