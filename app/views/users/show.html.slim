@@ -3,90 +3,119 @@
 
 section.content
   .row
-    .col-md-3
-      .box.box-primary
-        .box-body.box-profile
-          span
-            = @user.edit_icon
-          span.pull-right.pr-10p
-            = @user.status_button
-          - if resource.avatar.attached?
-            = image_tag resource.avatar.variant(resize_to_limit: [120, 120]), class: 'profile-user-img img-responsive img-circle', lazy: true
-          - else
-            = image_tag '/vendor/images/img_placeholder.png', class: 'profile-user-img img-responsive img-circle', lazy: true
-          h3.profile-username.text-center =deal_value resource.name
-          ul.list-group.list-group-unbordered
-            li.list-group-item
-              b.ml-2 = t("view.users.fields.first_name")
-              a.mr-2.pull-right =resource.first_name
-            li.list-group-item
-              b.ml-2 = t("view.users.fields.last_name")
-              a.mr-2.pull-right =resource.last_name
-            li.list-group-item
-              b.ml-2 = t("view.users.fields.gender")
-              a.mr-2.pull-right
-                = resource.toggle_gender
-            li.list-group-item
-              b.ml-2 = t("view.users.fields.email")
-              a.mr-2.pull-right =resource.email
-            li.list-group-item
-              b.ml-2 = t("view.users.fields.phone")
-              a.mr-2.pull-right =resource.phone
-            li.list-group-item
-              b.ml-2 = t("view.users.fields.user_type")
-              a.mr-2.pull-right
-                = resource.toggle_user_type
-
-    .col-md-9
+    .col-md-4
       .box.box-primary
         .box-header.with-border
-          h3.pull-left = t("view.addresses.title")
-        - resource.addresses.each do |address|
-          .box-header.with-border.bg-info
-            h6.pull-left.text-white = t("view.addresses.types.#{address.address_type}")
-            btn-group.pull-right
-              a.pr-10p href="#"
-                i.fa-solid.fa-pencil.text-white
-              a.pr-10p
-                i.fa-regular.fa-trash-can.text-white
-          .box-body
-            .row
-              .col-md-3.font-weight-bold
-                = t("view.addresses.fields.house_name")
-                | :
-              .col-md-3
-                = address.house_name
-              .col-md-3.font-weight-bold
-                = t("view.addresses.fields.number")
-                | :
-              .col-md-3
-                = address.number
-              .col-md-3.font-weight-bold
-                = t("view.addresses.fields.street")
-                | :
-              .col-md-3
-                = address.street
-              .col-md-3.font-weight-bold
-                = t("view.addresses.fields.details")
-                | :
-              .col-md-3
-                = address.additional_details
-              .col-md-3.font-weight-bold
-                = t("view.addresses.fields.country")
-                | :
-              .col-md-3
-                = address.country_name
-              .col-md-3.font-weight-bold
-                = t("view.addresses.state")
-                | :
-              .col-md-3
-                = address.state_name
-              .col-md-3.font-weight-bold
-                = t("view.addresses.city")
-                | :
-              .col-md-3
-                = address.city_name
-              .col-md-3.font-weight-bold
-                = t("view.addresses.zip")
-                | :
-              .col-md-3
+          h3.box-title
+            i.fa-solid.fa-user
+            = " #{t('view.users.profile')}"
+          .box-tools.pull-right
+            = @user.edit_icon
+            = @user.status_button
+        .box-body.box-profile
+          .text-center
+            - if resource.avatar.attached?
+              = image_tag resource.avatar.variant(resize_to_limit: [150, 150]), class: 'profile-user-img img-responsive img-circle', lazy: true
+            - else
+              = image_tag '/vendor/images/img_placeholder.png', class: 'profile-user-img img-responsive img-circle', lazy: true
+            h3.profile-username.mt-3.mb-3 = deal_value resource.name
+          
+          .user-info-section
+            .info-item
+              .info-label
+                i.fa-solid.fa-id-card
+                = " #{t("view.users.fields.first_name")}"
+              .info-value = deal_value resource.first_name
+            
+            .info-item
+              .info-label
+                i.fa-solid.fa-id-card
+                = " #{t("view.users.fields.last_name")}"
+              .info-value = deal_value resource.last_name
+            
+            .info-item
+              .info-label
+                i.fa-solid.fa-venus-mars
+                = " #{t("view.users.fields.gender")}"
+              .info-value = resource.toggle_gender
+            
+            .info-item
+              .info-label
+                i.fa-solid.fa-envelope
+                = " #{t("view.users.fields.email")}"
+              .info-value = deal_value resource.email
+            
+            .info-item
+              .info-label
+                i.fa-solid.fa-phone
+                = " #{t("view.users.fields.phone")}"
+              .info-value = deal_value resource.phone
+            
+            .info-item
+              .info-label
+                i.fa-solid.fa-user-tag
+                = " #{t("view.users.fields.user_type")}"
+              .info-value = resource.toggle_user_type
+
+    .col-md-8
+      .box.box-primary
+        .box-header.with-border
+          h3.box-title
+            i.fa-solid.fa-map-marker-alt
+            = " #{t("view.addresses.title")}"
+        .box-body
+          - if resource.addresses.any?
+            - resource.addresses.each_with_index do |address, index|
+              .address-card
+                .address-header
+                  h4
+                    i.fa-solid.fa-home
+                    = " #{t("view.addresses.types.#{address.address_type}")}"
+                .address-body
+                  .row
+                    .col-md-6.mb-2
+                      strong
+                        i.fa-solid.fa-building
+                        = " #{t("view.addresses.fields.house_name")}: "
+                      = deal_value address.house_name
+                    .col-md-6.mb-2
+                      strong
+                        i.fa-solid.fa-hashtag
+                        = " #{t("view.addresses.fields.number")}: "
+                      = deal_value address.number
+                    .col-md-12.mb-2
+                      strong
+                        i.fa-solid.fa-road
+                        = " #{t("view.addresses.fields.street")}: "
+                      = deal_value address.street
+                    .col-md-12.mb-2
+                      strong
+                        i.fa-solid.fa-info-circle
+                        = " #{t("view.addresses.fields.details")}: "
+                      = deal_value address.additional_details
+                    .col-md-4.mb-2
+                      strong
+                        i.fa-solid.fa-globe
+                        = " #{t("view.addresses.fields.country")}: "
+                      = deal_value address.country_name
+                    .col-md-4.mb-2
+                      strong
+                        i.fa-solid.fa-map
+                        = " #{t("view.addresses.state")}: "
+                      = deal_value address.state_name
+                    .col-md-4.mb-2
+                      strong
+                        i.fa-solid.fa-city
+                        = " #{t("view.addresses.city")}: "
+                      = deal_value address.city_name
+                    .col-md-4.mb-2
+                      strong
+                        i.fa-solid.fa-mail-bulk
+                        = " #{t("view.addresses.zip")}: "
+                      = deal_value address.zipcode
+              - unless index == resource.addresses.length - 1
+                hr
+          - else
+            .text-center.text-muted.py-4
+              i.fa-solid.fa-inbox.fa-3x.mb-3
+              p = t("view.addresses.no_addresses")

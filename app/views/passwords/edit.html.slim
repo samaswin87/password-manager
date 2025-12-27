@@ -1,15 +1,21 @@
 section.content.password-form-page
-  .row
-    .col-xs-12
-      .password-form-header
-        = link_to passwords_path, class: 'btn btn-default' do
-          i.fa.fa-arrow-left.margin-r-5
-          | Back to Passwords
+  / Modern Header Banner
+  .password-form-header
+    .row
+      .col-xs-12
+        .password-form-header-banner
+          .password-form-header-content
+            .password-form-header-title
+              = link_to passwords_path, class: 'password-form-back-btn' do
+                i.fa.fa-arrow-left
+              i.fa.fa-edit
+              span = edit_resource_label
 
+  / Form Card with Tabs
   .row
     .col-xs-12
-      = bootstrap_box edit_resource_label, nil do
-        .box-body
+      .password-form-card
+        .password-form-card-body
           .nav-tabs-custom
             ul.nav.nav-tabs
               li.active

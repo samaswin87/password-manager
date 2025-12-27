@@ -1,5 +1,5 @@
 class UserDatatable < ApplicationDatatable
-  def_delegators :@view, :check_box_tag, :link_to, :edit_user_path, :resource_path, :content_tag, :concat
+  def_delegators :@view, :check_box_tag, :link_to, :edit_user_path, :resource_path, :content_tag, :concat, :fa_icon
 
   def view_columns
     # Declare strings in this format: ModelName.column_name
@@ -31,10 +31,6 @@ class UserDatatable < ApplicationDatatable
         action: content_tag(:div, class: 'btn-group') do
           concat(link_to(fa_icon('eye padding-right'), resource_path(record)))
           concat(link_to(fa_icon('pencil padding-right'), edit_user_path(record)))
-          unless record.first_name == 'Administrator'
-            concat(link_to(fa_icon('trash-o padding-right'), resource_path(record),
-                           method: :delete, data: { confirm_swal: 'Are you sure?' }))
-          end
         end
       }
     end
@@ -54,7 +50,7 @@ class UserDatatable < ApplicationDatatable
 
   def get_raw_records
     users = User.includes(:user_type, :gender).all
-    status_params = params.fetch('columns', {}).fetch('6', {}).fetch('search', {}).permit(:value)
+    status_params = params.fetch('columns', {}).fetch('6', {}).fetch('search', {}).permit(:value, :regex)
     if status_params['value'] == 'active'
       users = users.active
     elsif status_params['value'] == 'in-active'

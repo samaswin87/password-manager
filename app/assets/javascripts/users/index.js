@@ -1,18 +1,18 @@
 (function ($) {
-  let params = {};
-  let url = {};
-  let isAdmin = true;
+  let params;
+  let url;
+  let _isAdmin;
 
   function init(_params, _url){
     params = _params;
     url = _url;
-    isAdmin = params.isAdmin;
+    _isAdmin = params.isAdmin;
 
     loadDataTable()
   }
 
   loadDataTable = function() {
-    var $usersDatatable = $('#users-datatable').DataTable({
+    $('#users-datatable').DataTable({
       processing: true,
       serverSide: true,
       dom: "<'row'<'col-sm-6 text-right'B><'col-sm-6'f>>" +
@@ -27,7 +27,7 @@
           text: params.active,
           titleAttr: params.active,
           className: 'filter-button active-users',
-          action: function ( e, dt, node, config ) {
+          action: function ( _e, dt, _node, _config ) {
             $('.active-users').toggleClass("active");
             if ($('.active-users').hasClass('active')) {
               $('.in-active-users').removeClass('active');
@@ -42,7 +42,7 @@
           text: params.in_active,
           titleAttr: params.in_active,
           className: 'filter-button in-active-users',
-          action: function ( e, dt, node, config ) {
+          action: function ( _e, dt, _node, _config ) {
             $('.in-active-users').toggleClass("active");
             if ($('.in-active-users').hasClass('active')) {
               $('.active-users').removeClass('active');
@@ -81,24 +81,32 @@
           bSortable: false
         }, {
           data: 'status',
-          bSortable: false
+          bSortable: false,
+          visible: false
         }, {
           "data": "action",
           bSortable: false
         }
       ],
       initComplete: function() {
-       $('.filter-button').html('<i class="fa fa-square" />');
-       $('.buttons-csv').html('<i class="fa fa-file-excel-o" />');
+       $('.filter-button').html('<i class="fa-solid fa-square"></i>');
+       $('.buttons-csv').html('<i class="fa-solid fa-file-csv"></i>');
       }
     })
-    .on("init.dt", function (e, settings) {
+    .on("init.dt", function (_e, _settings) {
       $button = $("<button type='button' name='upload_file' id='upload_file' data-target='#user-file-modal' class='btn btn-file btn-primary btn-sm'>"+
-        "<i class='fa fa-upload fa-lg btn-file'></i>"+params.import_csv+"</button>");
+        "<i class='fa-solid fa-upload'></i> "+params.import_csv+"</button>");
       $('#users-datatable_filter').prepend($button);
       $('#upload_file').click(function() {
         $(".row.form-group.mt-5").addClass('d-none');
-        $("#user-file-modal").modal("show");
+        // Use Bootstrap 5 modal API if available, otherwise fall back to jQuery
+        if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+          var modalElement = document.getElementById('user-file-modal');
+          var modal = new bootstrap.Modal(modalElement);
+          modal.show();
+        } else {
+          $("#user-file-modal").modal("show");
+        }
       });
 
       $('#fileupload').fileupload({
@@ -107,7 +115,7 @@
         formData: {
           type: 'users'
         },
-        add: function (e, data) {
+        add: function (_e, data) {
           $('.custom-file-label').html(data.files[0].name);
           var extension = data.files[0].name.split('.').pop();
           if(data.files[0].size > 10000000) {
@@ -123,13 +131,22 @@
         },
       });
 
-      $('#fileupload').bind('fileuploaddone', function(e, data) {
+      $('#fileupload').bind('fileuploaddone', function(_e, data) {
         window.location.replace("/file_imports/"+data.result.import_id);
       });
 
-      $('#fileupload').bind('fileuploadfail', function(e, data) {
+      $('#fileupload').bind('fileuploadfail', function(_e, data) {
         if(data.jqXHR.responseText) {
-          $("#password-file-modal").modal("hide");
+          // Use Bootstrap 5 modal API if available, otherwise fall back to jQuery
+          if (typeof bootstrap !== 'undefined' && bootstrap.Modal) {
+            var modalElement = document.getElementById('user-file-modal');
+            var modal = bootstrap.Modal.getInstance(modalElement);
+            if (modal) {
+              modal.hide();
+            }
+          } else {
+            $("#user-file-modal").modal("hide");
+          }
           $.notify.autoHideNotify('error', 'top right', 'Alert', data.jqXHR.responseText);
         }
       });

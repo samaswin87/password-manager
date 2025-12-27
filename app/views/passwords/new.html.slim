@@ -1,51 +1,51 @@
 section.content.password-form-page
-  .row
-    .col-xs-12
-      .password-form-header
-        = link_to passwords_path, class: 'btn btn-default' do
-          i.fa.fa-arrow-left.margin-r-5
-          | Back to Passwords
+  / Modern Header Banner
+  .password-form-header
+    .row
+      .col-xs-12
+        .password-form-header-banner
+          .password-form-header-content
+            .password-form-header-title
+              = link_to passwords_path, class: 'password-form-back-btn' do
+                i.fa.fa-arrow-left
+              i.fa.fa-key
+              span = new_resource_label
 
+  / Form Card
   .row
     .col-xs-12
-      = bootstrap_box new_resource_label, nil do
+      .password-form-card
         = simple_form_for resource do |form|
-          .box-body
-            .row
-              .col-xs-12
-                .password-form-section-header
-                  i.fa.fa-key.margin-r-5
-                  span.h3 Password Fields
+          .password-form-card-body
+            .password-form-section-header
+              i.fa.fa-key
+              span Password Information
 
             .row
               .col-xs-12.col-sm-12.col-md-6
-                .password-form-field
-                  =render 'shared/text_form', form: form, title: 'Name', field: :name
+                =render 'shared/text_form', form: form, title: 'Name', field: :name
 
               .col-xs-12.col-sm-12.col-md-6
-                .password-form-field
-                  =render 'shared/text_form', form: form, title: 'URL', field: :url
+                =render 'shared/text_form', form: form, title: 'URL', field: :url
 
               .col-xs-12.col-sm-12.col-md-6
-                .password-form-field
-                  =render 'shared/text_form', form: form, title: 'User Name', field: :username
+                =render 'shared/text_form', form: form, title: 'User Name', field: :username
 
               .col-xs-12.col-sm-12.col-md-6
-                .password-form-field
-                  =render 'shared/text_form', form: form, title: 'Email', field: :email
+                =render 'shared/text_form', form: form, title: 'Email', field: :email
 
               .col-xs-12.col-sm-12.col-md-6
-                .password-form-field
-                  =render 'shared/password_form', f: form, title: 'Password', field: :text_password
+                =render 'shared/password_form', f: form, title: 'Password', field: :text_password
 
               .col-xs-12.col-sm-12.col-md-6
-                .password-form-field
-                  =render 'shared/text_form', form: form, title: 'Key Phrase', field: :key
+                =render 'shared/text_form', form: form, title: 'Key Phrase', field: :key
 
               .col-xs-12
                 .password-generator-section
-                  =button_tag 'Generate Password', :type => 'button', class: 'btn btn-info generate-password', onclick: "genPassword()"
+                  =button_tag type: 'button', class: 'btn btn-generate-password generate-password', onclick: "genPassword()" do
+                    i.fa.fa-magic.margin-r-5
+                    | Generate Password
 
-          .box-footer.password-form-footer
+          .password-form-card-footer
             = render 'form_navigation', form: form
 

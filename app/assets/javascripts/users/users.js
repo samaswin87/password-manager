@@ -36,7 +36,7 @@
       });
     });
 
-    var $usersDatatable = $('#users-datatable').DataTable({
+    $('#users-datatable').DataTable({
       processing: true,
       serverSide: true,
       dom: "<'row'<'col-sm-6 text-right'B><'col-sm-6'f>>" +
@@ -49,7 +49,7 @@
         {
           text: 'Active',
           className: 'active-users',
-          action: function ( e, dt, node, config ) {
+          action: function ( _e, dt, _node, _config ) {
             $('.active-users').toggleClass("active");
             if ($('.active-users').hasClass('active')) {
               $('.in-active-users').removeClass('active');
@@ -62,7 +62,7 @@
         {
           text: 'In Active',
           className: 'in-active-users',
-          action: function ( e, dt, node, config ) {
+          action: function ( _e, dt, _node, _config ) {
             $('.in-active-users').toggleClass("active");
             if ($('.in-active-users').hasClass('active')) {
               $('.active-users').removeClass('active');
@@ -113,7 +113,7 @@
        $('.buttons-csv').html('<i class="fa fa-file-excel-o" />');
       }
     })
-    .on("init.dt", function (e, settings) {
+    .on("init.dt", function (_e, _settings) {
       $button = $("<button type='button' name='upload_file' id='upload_file' data-targe='#user-file-modal' class='btn btn-file btn-primary btn-sm'><i class='fa fa-upload fa-lg btn-file'></i>Import CSV</button>");
       $('#users-datatable_filter').prepend($button);
       $('#upload_file').click(function() {
@@ -127,7 +127,7 @@
         formData: {
           type: 'user'
         },
-        add: function (e, data) {
+        add: function (_e, data) {
           $('.custom-file-label').html(data.files[0].name);
           var extension = data.files[0].name.split('.').pop();
           if(data.files[0].size > 10000000) {
@@ -165,7 +165,7 @@
         },
       });
 
-      $('#fileupload').bind('fileuploaddone', function(e, data){
+      $('#fileupload').bind('fileuploaddone', function(_e, data){
         $(".row.form-group.mt-5").removeClass('d-none');
         $('#import_id').val(data.result);
       });

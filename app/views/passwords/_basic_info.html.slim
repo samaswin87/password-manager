@@ -1,48 +1,50 @@
-.box.box-primary
-  .box-body.box-profile
-    span.padding-right_10
-      = @password.edit_icon
-      = @password.status_button
+.password-detail-sidebar-card
+  .password-detail-profile-section
+    .password-detail-profile-actions
+      span.padding-right_10
+        = @password.edit_icon
+        = @password.status_button
     - if resource.logo.attached?
-      = image_tag resource.logo.variant(resize_to_limit: [120, 120]), class: 'profile-user-img img-responsive img-circle', lazy: true
+      = image_tag resource.logo.variant(resize_to_limit: [120, 120]), class: 'password-detail-profile-img', lazy: true
     - else
-      .profile-user-img.img-responsive.img-circle.profile-icon-placeholder
+      .password-detail-profile-img.password-detail-profile-placeholder
         i.fa.fa-key
-    h3.profile-username.text-center =deal_value resource.name
-    p.text-muted.text-center =deal_value resource.user.name
-    ul.list-group.list-group-unbordered
-      li.list-group-item
-        b.ml-2 Created on
-        a.mr-2.pull-right =resource.created_on
-      li.list-group-item
-        b.ml-2 Last Updated on
-        a.mr-2.pull-right =resource.updated_on
-      li.list-group-item
-        b.ml-2 Password Updated Days
-        a.mr-2.pull-right 290
-      li.list-group-item
-        b.ml-2 Password Expired Days
-        a.mr-2.pull-right 200
+    h3.password-detail-profile-name =deal_value resource.name
+    p.password-detail-profile-user =deal_value resource.user.name
+    ul.password-detail-info-list
+      li.password-detail-info-item
+        b Created on
+        span =resource.created_on
+      li.password-detail-info-item
+        b Last Updated on
+        span =resource.updated_on
+      li.password-detail-info-item
+        b Password Updated Days
+        span 290
+      li.password-detail-info-item
+        b Password Expired Days
+        span 200
 
-.box.box-primary
-  .box-header.with-border
-    h3 Attachments
+.password-detail-sidebar-card
+  .password-detail-attachments-section
+    .password-detail-attachments-header
+      i.fa.fa-paperclip
+      h3 Attachments
     - if resource.attachments.present?
-      table.table.table-borderless
-        tbody.files
-          - resource.attachments.each do |attachment|
-            tr
-              td
-                - if attachment.attachment.attached?
-                  = truncate(attachment.attachment.filename.to_s, length: 25)
-                - else
-                  = truncate(attachment.attachment_file_name, length: 25) if attachment.attachment_file_name.present?
-              td
-                - if attachment.attachment.attached?
-                  = link_to (fa_icon('download')), rails_blob_path(attachment.attachment, disposition: 'attachment'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment.filename.to_s
-                - elsif attachment.attachment_file_name.present?
-                  = link_to (fa_icon('download')), attachment.attachment_file_name, 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name
-                = @password.delete_attachment(attachment.id)
+      .password-detail-attachments-list
+        - resource.attachments.each do |attachment|
+          .password-detail-attachment-item
+            .password-detail-attachment-name
+              - if attachment.attachment.attached?
+                = truncate(attachment.attachment.filename.to_s, length: 25)
+              - else
+                = truncate(attachment.attachment_file_name, length: 25) if attachment.attachment_file_name.present?
+            .password-detail-attachment-actions
+              - if attachment.attachment.attached?
+                = link_to (fa_icon('download')), rails_blob_path(attachment.attachment, disposition: 'attachment'), 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment.filename.to_s, class: 'password-detail-attachment-btn'
+              - elsif attachment.attachment_file_name.present?
+                = link_to (fa_icon('download')), attachment.attachment_file_name, 'data-toggle' => 'tooltip', 'data-placement' => 'top', title: attachment.attachment_file_name, class: 'password-detail-attachment-btn'
+              = @password.delete_attachment(attachment.id)
     - else
-      p= deal_value ''
+      p.password-detail-no-attachments = deal_value ''
 

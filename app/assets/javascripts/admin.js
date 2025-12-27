@@ -123,7 +123,7 @@ $(document).ready(function(){
   });
 
   // Close sidebar when clicking the overlay (body::before pseudo-element area)
-  $(document).on('click', '.content-wrapper', function(e){
+  $(document).on('click', '.content-wrapper', function(_e){
     if($(window).width() <= 768 && $('body').hasClass('sidebar-open')) {
       $('body').removeClass('sidebar-open');
     }

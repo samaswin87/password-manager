@@ -10,7 +10,9 @@ class UsersController < BaseController
     @import = FileImport.find_by(job_id: params[:job]) if params[:job].present?
     respond_to do |format|
       format.html
-      format.json { render json: UserDatatable.new(params, view_context: view_context, current_user: current_user) }
+      format.json do
+        render json: UserDatatable.new(datatable_params, view_context: view_context, current_user: current_user)
+      end
     end
   end
 
@@ -55,6 +57,32 @@ class UsersController < BaseController
   end
 
   private
+
+  def datatable_params
+    # Permit DataTables parameters including nested regex parameters
+    # DataTables sends dynamic nested structures, so we need to permit them flexibly
+    permitted = params.permit(:draw, :start, :length, :form, :job, :_, search: %i[value regex])
+
+    # Permit order parameters dynamically
+    if params[:order].present?
+      order_permitted = {}
+      params[:order].each do |key, order|
+        order_permitted[key] = order.permit(:column, :dir)
+      end
+      permitted[:order] = ActionController::Parameters.new(order_permitted)
+    end
+
+    # Permit columns parameters dynamically with nested search including regex
+    if params[:columns].present?
+      columns_permitted = {}
+      params[:columns].each do |key, column|
+        columns_permitted[key] = column.permit(:data, :name, :searchable, :orderable, search: %i[value regex])
+      end
+      permitted[:columns] = ActionController::Parameters.new(columns_permitted)
+    end
+
+    permitted
+  end
 
   def user_params
     params.require(:user).permit(

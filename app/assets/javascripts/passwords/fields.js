@@ -1,12 +1,12 @@
 (function ($) {
-  let params = {};
-  let url = {};
-  let isAdmin = true;
+  let params;
+  let _url;
+  let _isAdmin;
 
-  function init(_params, _url){
+  function init(_params, url){
     params = _params;
-    url = _url;
-    isAdmin = params.isAdmin;
+    _url = url;
+    _isAdmin = params.isAdmin;
   }
 
   Array.prototype.remove = function (v) {
@@ -19,7 +19,7 @@
 
   let fileArray = [];
 
-  genPassword = function(e) {
+  genPassword = function(_e) {
     $("#password_text_password").val(generatePassword(true, true, true, false, 20));
   };
 
@@ -29,7 +29,7 @@
     for (var i = 0; i < fileArray.length; i++) {
       formData.append("attachments[]", fileArray[i]);
     }
-    putFiles('uploads', formData).then(data => {
+    putFiles('uploads', formData).then(_data => {
       location.reload();
     });
   });
@@ -64,6 +64,23 @@
     });
   });
 
+  // Modern password toggle for form fields
+  $('.modern-password-toggle').click(function() {
+    var $icon = $(this).find('i');
+    var $pwd = $("#password_text_password");
+    
+    $icon.toggleClass("fa-eye fa-eye-slash");
+    
+    if ($pwd.attr('type') === 'password') {
+      $pwd.attr('type', 'text');
+      $(this).attr('title', 'Hide password');
+    } else {
+      $pwd.attr('type', 'password');
+      $(this).attr('title', 'Show password');
+    }
+  });
+
+  // Legacy eye-btn support for detail pages
   $('.eye-btn').click(function() {
     $(this).toggleClass("fa-eye fa-eye-slash");
     var $pwd = $("#copy-text_password");

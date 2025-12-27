@@ -32,9 +32,9 @@
 
 $(document).ready(function(){
 
-  var clipboard;
+  var _clipboard;
   if (typeof ClipboardJS !== 'undefined')
-    clipboard = new ClipboardJS('.clipboard-btn');
+    _clipboard = new ClipboardJS('.clipboard-btn');
 
   $('.nav-tabs > li').on('click', function(event){
     $(".nav-tabs > li").removeClass("active");
@@ -42,6 +42,7 @@ $(document).ready(function(){
   });
 });
 
+// eslint-disable-next-line no-unused-vars
 var app = (function(){
   var user_data;
 

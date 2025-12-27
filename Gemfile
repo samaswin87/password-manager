@@ -18,13 +18,13 @@ gem 'puma', '~> 6.0'
 gem 'pg', '~> 1.5'
 
 # Asset Pipeline & Frontend
-gem 'sprockets-rails', '~> 3.5'
 gem 'sprockets', '4.2.1'
+gem 'sprockets-rails', '~> 3.5'
 
 # JavaScript & UI Libraries - Bootstrap 5
 gem 'bootstrap', '~> 5.3'
-gem 'sassc-rails', '~> 2.1'
 gem 'font-awesome-sass', '~> 6.5'
+gem 'sassc-rails', '~> 2.1'
 
 # Keep jQuery for compatibility with existing code
 gem 'jquery-datatables', '~> 1.10'
@@ -98,6 +98,7 @@ group :development, :test do
   # Code Quality & Security
   gem 'brakeman', '~> 6.2', require: false
   gem 'bundler-audit', '~> 0.9', require: false
+  gem 'erb_lint', '~> 0.9', require: false
   gem 'rubocop', '~> 1.69', require: false
   gem 'rubocop-performance', '~> 1.23', require: false
   gem 'rubocop-rails', '~> 2.27', require: false

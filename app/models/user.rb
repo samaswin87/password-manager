@@ -108,7 +108,7 @@ class User < ApplicationRecord
 
   # ---- aliases ----
 
-  alias_method :name, :full_name
+  alias name full_name
 
   def send_mail
     UserMailer.send_new_user_message(self).deliver

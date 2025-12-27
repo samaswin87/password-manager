@@ -5,9 +5,9 @@
     params = _params;
   }
 
-  $( ".add-field" ).click(function(e) {
+  $( ".add-field" ).click(function(_e) {
     postData('/field_mappings/create_or_update', {field_mapping: {name: params.name, field: this.id}})
-    .then(data => {
+    .then(_data => {
       location.reload();
     });
   });

@@ -10,9 +10,9 @@
   let currentPage = 1;
   let pagyData = null;
 
-  function initCards(_params, _url) {
-    params = _params;
-    url = _url;
+  function initCards(paramsArg, urlArg) {
+    params = paramsArg;
+    url = urlArg;
     loadPasswords(1);
     setupEventListeners();
   }
@@ -259,7 +259,7 @@
     `;
   }
 
-  function calculatePasswordStrength(password) {
+  function calculatePasswordStrength() {
     // Simple password strength calculation
     // In production, you might want to fetch this from the server
     const length = 8; // Default assumption

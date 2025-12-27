@@ -190,12 +190,14 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+  color: #ffffff !important;
 }
 
 .btn-primary:hover {
   background: linear-gradient(135deg, #5568d3 0%, #6a4290 100%);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+  color: #ffffff !important;
 }
 
 .btn-success {
@@ -206,12 +208,14 @@ body {
   font-weight: 600;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 176, 155, 0.3);
+  color: #ffffff !important;
 }
 
 .btn-success:hover {
   background: linear-gradient(135deg, #00a087 0%, #88b835 100%);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 176, 155, 0.4);
+  color: #ffffff !important;
 }
 
 .btn-danger {
@@ -221,11 +225,13 @@ body {
   padding: 10px 20px;
   font-weight: 600;
   transition: all 0.3s ease;
+  color: #ffffff !important;
 }
 
 .btn-danger:hover {
   background: linear-gradient(135deg, #e882ea 0%, #e44658 100%);
   transform: translateY(-2px);
+  color: #ffffff !important;
 }
 
 .btn-info {
@@ -235,11 +241,13 @@ body {
   padding: 10px 20px;
   font-weight: 600;
   transition: all 0.3s ease;
+  color: #ffffff !important;
 }
 
 .btn-info:hover {
   background: linear-gradient(135deg, #3f9de8 0%, #00dde8 100%);
   transform: translateY(-2px);
+  color: #ffffff !important;
 }
 
 /* Enhanced DataTables */
@@ -978,8 +986,76 @@ label, .control-label {
   padding: 4px 8px !important;
 }
 
-.btn-success {
-  color: #fff !important;
+.btn-success,
+.btn-success * {
+  color: #ffffff !important;
+}
+
+.btn-default {
+  background: #f8f9fa;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  color: #4a5568 !important;
+}
+
+.btn-default:hover {
+  background: #e9ecef;
+  border-color: #cbd5e0;
+  color: #2d3748 !important;
+  transform: translateY(-2px);
+}
+
+.btn-sm {
+  padding: 8px 16px;
+  font-size: 13px;
+}
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 15px 0;
+}
+
+/* Ensure all buttons have visible text */
+button.btn,
+input.btn,
+a.btn {
+  color: inherit;
+}
+
+button.btn-success,
+input.btn-success {
+  color: #ffffff !important;
+}
+
+button.btn-primary,
+input.btn-primary {
+  color: #ffffff !important;
+}
+
+button.btn-danger,
+input.btn-danger {
+  color: #ffffff !important;
+}
+
+button.btn-info,
+input.btn-info {
+  color: #ffffff !important;
+}
+
+/* Box Footer Enhancements */
+.box-footer {
+  background: #f7fafc;
+  border-top: 1px solid #e2e8f0;
+  padding: 20px 25px;
+  border-radius: 0 0 12px 12px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .img-crud {
@@ -1344,4 +1420,171 @@ blockquote {
     padding: 12px 16px;
     font-size: 13px;
   }
+}
+
+/* ========================================
+   Toastr Notification Fixes
+   ======================================== */
+
+#toast-container {
+  top: 80px !important;
+  right: 20px !important;
+  z-index: 9999 !important;
+}
+
+#toast-container > div {
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2) !important;
+  border-radius: 12px !important;
+  padding: 15px 20px !important;
+  min-width: 300px !important;
+  max-width: 400px !important;
+  margin-bottom: 15px !important;
+}
+
+#toast-container > .toast-success {
+  background: linear-gradient(135deg, #00b09b 0%, #96c93d 100%) !important;
+  border-left: 4px solid #00a087 !important;
+}
+
+#toast-container > .toast-error {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  border-left: 4px solid #e44658 !important;
+}
+
+#toast-container > .toast-info {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-left: 4px solid #5568d3 !important;
+}
+
+#toast-container > .toast-warning {
+  background: linear-gradient(135deg, #f5a623 0%, #f7b731 100%) !important;
+  border-left: 4px solid #e6941a !important;
+}
+
+#toast-container .toast-title {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  margin-bottom: 5px !important;
+  color: white !important;
+}
+
+#toast-container .toast-message {
+  font-size: 14px !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  line-height: 1.5 !important;
+}
+
+#toast-container .toast-close-button {
+  color: rgba(255, 255, 255, 0.9) !important;
+  font-weight: 700 !important;
+  font-size: 18px !important;
+  opacity: 0.8 !important;
+}
+
+#toast-container .toast-close-button:hover {
+  opacity: 1 !important;
+  color: white !important;
+}
+
+@media (max-width: 767px) {
+  #toast-container {
+    top: 70px !important;
+    right: 10px !important;
+    left: 10px !important;
+  }
+
+  #toast-container > div {
+    min-width: auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+}
+
+/* ========================================
+   Import Modal Enhancements
+   ======================================== */
+
+.modal-body .alert-warning {
+  background: linear-gradient(135deg, #fff3cd 0%, #ffeaa7 100%) !important;
+  border: 2px solid #ffc107 !important;
+  border-radius: 12px !important;
+  padding: 15px 20px !important;
+  margin-bottom: 25px !important;
+  box-shadow: 0 2px 8px rgba(255, 193, 7, 0.2) !important;
+}
+
+.modal-body .alert-warning i {
+  color: #856404 !important;
+  margin-right: 8px !important;
+}
+
+.modal-body .alert-warning .btn-close {
+  opacity: 0.7 !important;
+}
+
+.modal-body .alert-warning .btn-close:hover {
+  opacity: 1 !important;
+}
+
+.modal-body .form-label {
+  font-weight: 700 !important;
+  color: #2d3748 !important;
+  font-size: 15px !important;
+  margin-bottom: 12px !important;
+  display: block !important;
+}
+
+.modal-body .input-group-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  border: none !important;
+  padding: 12px 18px !important;
+  font-weight: 600 !important;
+}
+
+.modal-body .file-input-display {
+  border: 2px solid #e2e8f0 !important;
+  border-right: none !important;
+  border-radius: 12px 0 0 12px !important;
+  padding: 12px 18px !important;
+  font-size: 14px !important;
+  color: #4a5568 !important;
+  background: #f7fafc !important;
+}
+
+.modal-body .file-input-display:focus {
+  border-color: #667eea !important;
+  background: white !important;
+  box-shadow: none !important;
+}
+
+.modal-body .input-group .btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border: 2px solid #667eea !important;
+  border-left: none !important;
+  border-radius: 0 12px 12px 0 !important;
+  padding: 12px 20px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.modal-body .input-group .btn-primary:hover {
+  background: linear-gradient(135deg, #5568d3 0%, #6a4290 100%) !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(102, 126, 234, 0.3) !important;
+}
+
+.modal-footer .btn-secondary {
+  background: #6c757d !important;
+  border: none !important;
+  border-radius: 10px !important;
+  padding: 12px 24px !important;
+  font-weight: 600 !important;
+  transition: all 0.3s ease !important;
+}
+
+.modal-footer .btn-secondary:hover {
+  background: #5a6268 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 8px rgba(108, 117, 125, 0.3) !important;
 }

@@ -91,7 +91,7 @@ module ApplicationHelper
     options[:id] = id
 
     link_to(path, options) do
-      "#{fa_icon(icon)} #{title}"
+      fa_icon(icon) + " #{title}"
     end
   end
 

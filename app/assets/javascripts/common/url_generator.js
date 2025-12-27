@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 function addQSParm(name, value) {
     var re = new RegExp("([?&]" + name + "=)[^&]+", "");
 

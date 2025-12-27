@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 # Clear existing data
-puts '🗑️  Clearing existing data...'
+Rails.logger.debug '🗑️  Clearing existing data...'
 PasswordAttachment.delete_all
 Password.delete_all
 User.delete_all
@@ -9,7 +9,7 @@ Gender.delete_all
 UserType.delete_all
 
 # Create Genders
-puts '👥 Creating genders...'
+Rails.logger.debug '👥 Creating genders...'
 genders = [
   { name: 'Male', alias: 'male' },
   { name: 'Female', alias: 'female' },
@@ -20,10 +20,10 @@ genders = [
 genders.each do |gender_data|
   Gender.create!(gender_data)
 end
-puts "✅ Created #{Gender.count} genders"
+Rails.logger.debug { "✅ Created #{Gender.count} genders" }
 
 # Create User Types
-puts '🏷️  Creating user types...'
+Rails.logger.debug '🏷️  Creating user types...'
 user_types = [
   { name: 'Administrator', alias: 'administrator' },
   { name: 'User', alias: 'user' },
@@ -34,7 +34,7 @@ user_types = [
 user_types.each do |type_data|
   UserType.create!(type_data)
 end
-puts "✅ Created #{UserType.count} user types"
+Rails.logger.debug { "✅ Created #{UserType.count} user types" }
 
 # Get references
 admin_type = UserType.find_by(alias: 'administrator')
@@ -44,7 +44,7 @@ male_gender = Gender.find_by(alias: 'male')
 female_gender = Gender.find_by(alias: 'female')
 
 # Create Admin User
-puts '👨‍💼 Creating admin user...'
+Rails.logger.debug '👨‍💼 Creating admin user...'
 admin = User.create!(
   email: 'admin@passwordmanager.com',
   password: 'Admin@123',
@@ -56,10 +56,10 @@ admin = User.create!(
   user_type: admin_type,
   active: true
 )
-puts "✅ Created admin: #{admin.email}"
+Rails.logger.debug { "✅ Created admin: #{admin.email}" }
 
 # Create Sample Users
-puts '👥 Creating sample users...'
+Rails.logger.debug '👥 Creating sample users...'
 sample_users = [
   {
     email: 'john.doe@example.com',
@@ -138,10 +138,10 @@ sample_users = [
 users = sample_users.map do |user_data|
   User.create!(user_data.merge(active: true))
 end
-puts "✅ Created #{users.count} sample users"
+Rails.logger.debug { "✅ Created #{users.count} sample users" }
 
 # Create Sample Passwords
-puts '🔐 Creating sample passwords...'
+Rails.logger.debug '🔐 Creating sample passwords...'
 all_users = User.all
 
 password_data = [
@@ -297,21 +297,21 @@ password_data.each_with_index do |pwd_data, index|
   Password.create!(pwd_data.merge(user: user))
 end
 
-puts "✅ Created #{Password.count} sample passwords"
+Rails.logger.debug { "✅ Created #{Password.count} sample passwords" }
 
 # Summary
-puts "\n" + "=" * 50
-puts "🎉 Seed data creation completed!"
-puts "=" * 50
-puts "\n📊 Summary:"
-puts "  • Genders: #{Gender.count}"
-puts "  • User Types: #{UserType.count}"
-puts "  • Users: #{User.count}"
-puts "  • Passwords: #{Password.count}"
-puts "\n🔑 Admin Credentials:"
-puts "  • Email: admin@passwordmanager.com"
-puts "  • Password: Admin@123"
-puts "\n👤 Sample User Credentials:"
-puts "  • Email: john.doe@example.com"
-puts "  • Password: Password@123"
-puts "=" * 50
+Rails.logger.debug { "\n#{'=' * 50}" }
+Rails.logger.debug '🎉 Seed data creation completed!'
+Rails.logger.debug '=' * 50
+Rails.logger.debug "\n📊 Summary:"
+Rails.logger.debug { "  • Genders: #{Gender.count}" }
+Rails.logger.debug { "  • User Types: #{UserType.count}" }
+Rails.logger.debug { "  • Users: #{User.count}" }
+Rails.logger.debug { "  • Passwords: #{Password.count}" }
+Rails.logger.debug "\n🔑 Admin Credentials:"
+Rails.logger.debug '  • Email: admin@passwordmanager.com'
+Rails.logger.debug '  • Password: Admin@123'
+Rails.logger.debug "\n👤 Sample User Credentials:"
+Rails.logger.debug '  • Email: john.doe@example.com'
+Rails.logger.debug '  • Password: Password@123'
+Rails.logger.debug '=' * 50

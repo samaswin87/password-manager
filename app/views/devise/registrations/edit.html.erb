@@ -9,18 +9,18 @@
       <p>Aguardando confirmação para: <%= resource.unconfirmed_email %></p>
     <% end %>
 
-    <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change", required: false %>
+    <%= f.input :password, autocomplete: 'off', hint: "leave it blank if you don't want to change", required: false %>
     <%= f.input :password_confirmation, required: false %>
-    <%= f.input :current_password, hint: "we need you to confirm the password to save the changes", required: true %>
+    <%= f.input :current_password, hint: 'we need you to confirm the password to save the changes', required: true %>
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, "Atualizar" %>
+    <%= f.button :submit, 'Atualizar' %>
   </div>
 <% end %>
 
 <h3>Cancel my account</h3>
 
-<p>Unhappy? <%= link_to "Excluir conta", user_registration_path, data: { confirm: "Confirma?" }, method: :delete %></p>
+<p>Unhappy? <%= link_to 'Excluir conta', user_registration_path, data: { confirm: 'Confirma?' }, method: :delete %></p>
 
-<%= link_to "Back", :back %>
+<%= link_to 'Back', :back %>

@@ -1,17 +1,34 @@
-= content_for :title, t(".title")
+= content_for :title, t("users.index.title")
 = render 'shared/file_modal', id: 'user'
-= bootstrap_box 'Users', 'table', bootstrap_button_new do
-  .box-body
-    .row
-      - if @import.present?
-        .col-md-12.alert-imports
-          div.alert.alert-warning.alert-dismissible.alert-import
-            button.close type="button" data-dismiss="alert" aria-hidden="true" ×
-            h4
-              i.icon.fa.fa-warning = t("common.notifications._alert")
-            p = t("file_imports.alerts.success", file_name: (@import.data.attached? ? @import.data.filename.to_s : @import.try(:data_file_name)), link: link_to(t('link'), file_imports_path)).html_safe
+
+section.content-header
+  h1
+    i.fa-solid.fa-users
+    = " #{t('users.index.title')}"
+  ol.breadcrumb
+    = render_breadcrumbs tag: :li, separator: ''
+
+section.content
+  .row
+    - if @import.present?
       .col-md-12
-        table#users-datatable.table.table-bordered.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
+        .alert.alert-warning.alert-dismissible.fade.show
+          button.close type="button" data-bs-dismiss="alert" aria-hidden="true" ×
+          h4
+            i.fa-solid.fa-warning
+            = " #{t("common.notifications._alert")}"
+          p = t("file_imports.alerts.success", file_name: (@import.data.attached? ? @import.data.filename.to_s : @import.try(:data_file_name)), link: link_to(t('link'), file_imports_path)).html_safe
+
+  .box.box-primary
+    .box-header.with-border
+      h3.box-title
+        i.fa-solid.fa-table
+        = " #{t('view.users.title')}"
+      .box-tools.pull-right
+        = bootstrap_button_new({title: t("view.users.actions.new", default: "New User"), url: new_user_path, class: 'btn btn-primary'})
+    .box-body
+      .table-responsive
+        table#users-datatable.table.table-bordered.table-striped.table-hover.datatable.dataTable.dt-responsive.nowrap data-source= collection_url(form: 'json')
           thead
             tr
               th.all width="*" = t("view.users.fields.first_name")
@@ -20,9 +37,9 @@
               th width="*" = t("view.users.fields.phone")
               th width="*" = t("view.users.fields.gender")
               th width="*" = t("view.users.fields.user_type")
-              th width="*" = t("common.status")
+              th width="*" = t("view.users.fields.status")
               th.all width="*" = t("common.table.actions")
-        tbody
+          tbody
 
 = javascript_include_tag 'users/index'
 javascript:

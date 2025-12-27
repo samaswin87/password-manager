@@ -36,35 +36,35 @@
     })
   }
 
-  $('#upload-next').click(function(event) {
+  $('#upload-next').click(function(_event) {
     window.location.href = url.home_path + '?page=mapper'
   });
 
-  $('#upload-cancel').click(function(event) {
+  $('#upload-cancel').click(function(_event) {
     window.location.href = url.redirect_path
   });
 
-  $('#mapper-next').click(function(event) {
+  $('#mapper-next').click(function(_event) {
     fieldMaps = {}
     params.fields.forEach(field => {
       fieldMaps[field] = $("select[name='"+field+"']").val()
     })
     putData(url.home_path, { field_maps: fieldMaps})
-    .then(data => {
+    .then(_data => {
       window.location.href = url.home_path + '?page=records'
     });
   });
 
-  $('#mapper-prev').click(function(event) {
+  $('#mapper-prev').click(function(_event) {
     window.location.href = url.home_path
   });
 
-  $('#preview-prev').click(function(event) {
+  $('#preview-prev').click(function(_event) {
     window.location.href = url.home_path + '?page=mapper'
   });
 
-  $('#preview-submit').click(function(event) {
-    putData(url.submit_path).then(data => {
+  $('#preview-submit').click(function(_event) {
+    putData(url.submit_path).then(_data => {
       window.location.href = url.redirect_path
     });
   });

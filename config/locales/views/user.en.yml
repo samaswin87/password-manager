@@ -3,6 +3,8 @@ en:
     users:
       title: Users
       file_import: File Import
+      actions:
+        new: New User
       fields:
         first_name: First Name
         last_name: Last Name
@@ -10,6 +12,7 @@ en:
         user_type: User Type
         phone: Phone
         email: Email
+        status: Status
       alerts:
         file_size_error: Please import file less than 10 MB
         file_type_error: Not a valid file. Please import csv file
